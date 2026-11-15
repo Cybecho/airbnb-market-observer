@@ -1,0 +1,1 @@
+This project is maintained in the web editor and built on GitHub-hosted Ubuntu. No local native package installation, ad-hoc signing, Gatekeeper changes or Codespaces are required.

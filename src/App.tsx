@@ -1,25 +1,1160 @@
-import React,{useEffect,useMemo,useState} from 'react';
-import {Map as MapIcon,BarChart3,Users,Building2,Network,Search,Download,ArrowUpRight,Info,Layers,Upload,X,ChevronRight,Menu} from 'lucide-react';
-import SeoulMap from './Map';import Chart,{bars} from './Chart';import {metrics,periods,fmt,numeric,download,type Row} from './data';
-const tabs=[['map','지도 탐색',MapIcon],['revenue','매출 · 임대료',BarChart3],['people','고객 · 방문자',Users],['supply','공급 · 생활인구',Building2],['sources','데이터 연결',Network]] as const;
-const initial=new URLSearchParams(location.hash.slice(1));
-function Table({rows,cols,onSelect}:{rows:Row[];cols:{key:string;label:string;unit?:string}[];onSelect?:(r:Row)=>void}){const [sort,setSort]=useState(''),[asc,setAsc]=useState(false),[q,setQ]=useState('');const filtered=useMemo(()=>rows.filter(r=>Object.values(r).some(v=>String(v??'').includes(q))).sort((a,b)=>{if(!sort)return 0;const av=a[sort],bv=b[sort];if(av==null)return 1;if(bv==null)return -1;return (numeric(av)&&numeric(bv)?av-bv:String(av).localeCompare(String(bv),'ko'))*(asc?1:-1);}),[rows,sort,asc,q]);return <div className="data-table"><div className="table-tools"><label className="search"><Search size={15}/><input aria-label="표 검색" placeholder="표 안에서 검색" value={q} onChange={e=>setQ(e.target.value)}/></label><span>{filtered.length.toLocaleString()}개 결과</span><button className="quiet" onClick={()=>download(filtered,cols.map(c=>c.key))}><Download size={15}/> CSV</button></div><div className="table-scroll"><table><thead><tr>{cols.map(c=><th key={c.key} aria-sort={sort===c.key?(asc?'ascending':'descending'):'none'}><button onClick={()=>{setAsc(sort===c.key?!asc:false);setSort(c.key);}}>{c.label} {sort===c.key?(asc?'↑':'↓'):'↕'}</button></th>)}</tr></thead><tbody>{filtered.map((r,i)=><tr key={r.admin_code??i}>{cols.map((c,j)=><td key={c.key}>{j===0&&onSelect?<button className="text-link" onClick={()=>onSelect(r)}>{r[c.key]??'미제공'} <ChevronRight size={12}/></button>:r[c.key]==null?<span className="muted">미제공</span>:numeric(r[c.key])?fmt(r[c.key],c.unit):/^https?:\/\//.test(String(r[c.key]))?<a className="text-link" href={String(r[c.key])} target="_blank" rel="noreferrer">원문 보기 ↗</a>:String(r[c.key])}</td>)}</tr>)}</tbody></table>{!filtered.length&&<p className="empty">조건에 맞는 관측 데이터가 없습니다.</p>}</div></div>;}
-function Notice({children}:{children:React.ReactNode}){return <div className="notice"><Info size={17}/><div>{children}</div></div>;}
-function GenericDataset({title,rows,note}:{title:string;rows:Row[]|undefined;note:string}){const actual=Array.isArray(rows)?rows:[];const keys=actual.length?Object.keys(actual[0]).filter(k=>!actual.some(r=>typeof r[k]==='object'&&r[k]!==null)):[];return <section className="card"><h3>{title}</h3><p className="subtle">{note}</p>{actual.length?<Table rows={actual} cols={keys.map(key=>({key,label:key}))}/>:<p className="empty">공개 가능한 관측값 미제공 · 0으로 대체하지 않습니다.</p>}</section>;}
-export default function App(){const [data,setData]=useState<any>(null),[publicData,setPublicData]=useState<any>(null),[ext,setExt]=useState<any>({}),[publicExt,setPublicExt]=useState<any>({}),[geo,setGeo]=useState<any>(null),[error,setError]=useState(''),[local,setLocal]=useState(false),[importError,setImportError]=useState('');const [view,setView]=useState(initial.get('view')||'map'),[gu,setGu]=useState(initial.get('gu')||''),[period,setPeriod]=useState(initial.get('period')||'2026_jan_oct'),[layer,setLayer]=useState(Number(initial.get('layer')||0)),[selected,setSelected]=useState(initial.get('dong')||''),[search,setSearch]=useState(''),[networkNode,setNetworkNode]=useState('행정동');
-useEffect(()=>{const base=import.meta.env.BASE_URL;Promise.all([fetch(base+'data/dashboard.json').then(r=>{if(!r.ok)throw Error('dashboard');return r.json();}),fetch(base+'data/seoul-admin.geojson').then(r=>{if(!r.ok)throw Error('geometry');return r.json();}),fetch(base+'data/extensions.json').then(r=>r.ok?r.json():{}).catch(()=>({}))]).then(([d,g,e])=>{setData(d);setPublicData(d);setGeo(g);setExt(e);setPublicExt(e);}).catch(()=>setError('데이터를 불러오지 못했습니다. 네트워크 연결 또는 배포된 데이터 파일을 확인해 주세요. 오프라인에서는 처음 데이터를 불러올 수 없습니다.'));},[]);
-useEffect(()=>{const p=new URLSearchParams({view,period,layer:String(layer)});if(gu)p.set('gu',gu);if(selected)p.set('dong',selected);history.replaceState(null,'','#'+p);},[view,gu,period,layer,selected]);
-const allMetrics=metrics(period),metric=allMetrics[layer]||allMetrics[0];const rows:Row[]=data?.rows??data?.rows427??[];const filtered=useMemo(()=>rows.filter(r=>(!gu||r.gu===gu)&&(!search||`${r.gu} ${r.admin_name}`.includes(search))),[rows,gu,search]);const active=rows.find(r=>String(r.admin_code)===selected);const available=filtered.filter(r=>numeric(r[metric.key]));const sorted=[...available].sort((a,b)=>b[metric.key]-a[metric.key]);const gus=[...new Set(rows.map(r=>r.gu))].sort();const select=(code:string)=>{setSelected(code);};
-async function importFile(file?:File){if(!file)return;try{if(file.size>30_000_000)throw Error('파일은 30MB 이하여야 합니다.');const parsed=JSON.parse(await file.text());const d=parsed.dashboard??parsed;const rs=d.rows??d.rows427;if(!Array.isArray(rs)||rs.length!==427||new Set(rs.map((r:any)=>r.admin_code)).size!==427||rs.some((r:any)=>!/^\d{8}$/.test(String(r.admin_code))||typeof r.gu!=='string'||typeof r.admin_name!=='string'))throw Error('427개 행정동과 중복 없는 8자리 행정코드가 필요합니다.');for(const r of rs)for(const [k,v] of Object.entries(r)){if(typeof v==='number'&&(!Number.isFinite(v)||Math.abs(v)>1e16||(k.endsWith('_pct')&&!k.includes('delta')&&!k.includes('yoy')&&(v<0||v>100))))throw Error('유효하지 않은 수치 또는 비율이 있습니다.');if(v!==null&&typeof v==='object')throw Error('행정동 필드는 단일 값이어야 합니다.');}const allowed=new Set((publicData.rows??publicData.rows427).map((r:Row)=>String(r.admin_code)));if(rs.some((r:Row)=>!allowed.has(String(r.admin_code))))throw Error('공개 지도의 행정코드와 일치하지 않습니다.');setData({...d,rows:rs});if(parsed.extensions)setExt(parsed.extensions);setLocal(true);setImportError('');}catch(e){setImportError(e instanceof Error?e.message:'파일을 확인해 주세요.');}}
-if(error)return <main className="fatal"><h1>관측 데이터를 불러오지 못했습니다</h1><p>{error}</p><button onClick={()=>location.reload()}>다시 시도</button></main>;if(!data||!geo)return <main className="loading"><div className="spinner"/><h1>서울의 관측 지도를 준비하고 있습니다</h1><p>행정경계와 공개 데이터를 불러오는 중입니다.</p></main>;
-const survey:Row[]=data.survey??[];const residence=survey.filter(r=>r.dimension==='residence_region');const rentRows=ext.rents?.rows??[];
-return <><a className="skip" href="#content">본문으로 건너뛰기</a><header className="header"><a className="brand" href="#view=map" onClick={()=>setView('map')}><span className="brand-icon"><Layers size={23}/></span><span>Airbnb <b>Market Observer</b><small>SEOUL · INDEPENDENT RESEARCH</small></span></a><div className="header-right"><span className="status-dot"/>공개 데이터 관측 <span className="date">{data.meta?.observed??'기준일 미제공'}</span><a className="github" href="https://github.com/Cybecho/airbnb-market-observer" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={14}/></a></div></header><nav className="navigation" aria-label="주요 탐색">{tabs.map(([id,label,Icon])=><button key={id} className={view===id?'active':''} onClick={()=>setView(id)} aria-current={view===id?'page':undefined}><Icon size={17}/>{label}</button>)}<label className="import-button"><Upload size={15}/>로컬 데이터<input type="file" accept="application/json,.json" onChange={e=>importFile(e.target.files?.[0])}/></label></nav>{local&&<div className="local-banner"><strong>LOCAL DATA · 비공개 파일 탐색</strong> 이 기기 메모리에서만 사용합니다. 서버 전송·자동 저장 없음.<button onClick={()=>{setData(publicData);setExt(publicExt);setLocal(false);}}>데이터 지우기 <X size={14}/></button></div>}{importError&&<p role="alert" className="import-error">{importError}</p>}
-<main id="content"><div className="page-heading"><div><div className="eyebrow">SEOUL LODGING OBSERVATORY</div><h1>{view==='map'?'지역을 읽는 가장 넓은 시야':view==='revenue'?'매출과 임대료, 같은 숫자가 아닙니다':view==='people'?'누가 방문하고, 누가 소비할까요':view==='supply'?'공간의 공급과 사람의 움직임':'숫자 뒤의 연결을 확인하세요'}</h1><p>{view==='map'?'25개 자치구 · 427개 행정동. 관측된 것과 알 수 없는 것을 나누어 봅니다.':'서로 다른 모집단과 통계를 구분하며, 출처까지 이어지는 탐색.'}</p></div><span className="outline-tag">독립 프로젝트 · Airbnb 비제휴</span></div>
-{view!=='sources'&&<div className="filters"><label>지역<select aria-label="자치구" value={gu} onChange={e=>{setGu(e.target.value);setSelected('');}}><option value="">서울 전체 · 25개 구</option>{gus.map(g=><option key={g}>{g}</option>)}</select></label><label className="search-filter">행정동 검색<div className="search"><Search size={17}/><input value={search} onChange={e=>setSearch(e.target.value)} placeholder="동 이름을 입력하세요" aria-label="행정동 검색"/></div></label><label>고객구성 관측기간<select value={period} onChange={e=>setPeriod(e.target.value)}>{Object.entries(periods).map(([k,v])=><option value={k} key={k}>{v}</option>)}</select></label><label className="layer-filter">지도 · 표 지표<select value={layer} onChange={e=>setLayer(Number(e.target.value))}>{allMetrics.map((m,i)=><option key={m.key} value={i}>{m.label}</option>)}</select></label></div>}
-{view==='map'&&<><div className="map-layout"><section className="map-card"><div className="map-title"><div><span className="pill">{metric.grade}</span><strong>{metric.label}</strong><small>{metric.period} · 단위 {metric.unit}</small></div><span className="count">관측 {available.length} / {filtered.length}동</span></div><SeoulMap geo={geo} rows={rows} metric={metric} gu={gu} selected={selected} onSelect={select}/><div className="legend"><span>낮음</span><div className="ramp">{['#d8eee9','#a6d8cc','#65b7a6','#2b8e7d','#126454'].map(c=><i key={c} style={{background:c}}/>)}</div><span>높음 · 분위 구간</span><span className="missing-swatch"/>미제공 / 공개 제한 <button onClick={()=>{setGu('');setSelected('');}}>서울 전체 보기</button></div></section><aside className="detail-panel"><div className="eyebrow">AREA PROFILE</div><h2>{active?active.admin_name:'어느 동이 궁금하세요?'}</h2><p className="subtle">{active?`${active.gu} · 행정코드 ${active.admin_code}`:'지도 위 행정동을 선택하거나 아래 표에서 찾아보세요.'}</p><div className="big-value">{active?fmt(active[metric.key],metric.unit):`${available.length}`}<small>{active?metric.short:'개 행정동에서 지표 관측'}</small>{active&&!numeric(active[metric.key])&&<small>{!local&&metric.key.startsWith('m3_')&&active.customer_values_publication_status?'재배포 제한 · 원자료 존재':'원천 미제공 / 매칭 미확인'}</small>}</div><div className="detail-metrics"><div><span>게스트하우스 점포</span><b>{active?fmt(active.guesthouse_store_2026Q2,'개'):'2026년 2분기'}</b></div><div><span>도시민박업 영업 등록</span><b>{active?fmt(active.foreigner_operating_spatial,'개'):'별도 등록 통계'}</b></div><div><span>Airbnb 실제 매출</span><b className="muted">확인 불가</b></div><div><span>점포 매출 중앙값</span><b className="muted">미제공</b></div></div><div className="definition"><span className="eyebrow">METRIC NOTES</span><h3>{metric.source}</h3><p>{metric.definition}</p>{active&&layer===0&&<p>{active.inn_monthly_display_source}</p>}{active&&layer===6&&<p>성별 제공액 / 전체 매출 커버리지: {fmt(active.inn_sex_amount_coverage_pct,'%')}</p>}{active?.[`m3_${period}_profile_flag`]&&layer>0&&layer<3&&<p className="warning">{active[`m3_${period}_profile_flag`]}</p>}{!local&&layer>0&&layer<3&&<p className="warning">원자료가 존재하더라도 재배포 권리 제한으로 공개 값이 가려질 수 있습니다. 로컬 파일을 불러오면 비공개 분석이 가능합니다.</p>}<button className="text-link" onClick={()=>setView('sources')}>정의와 출처 보기 <ArrowUpRight size={14}/></button></div></aside></div><Notice>회색은 0이 아닙니다. 미관측·미제공·재배포 제한을 포함합니다. 여관업 추정매출은 Airbnb 실매출이 아니며, 임대료와 차감해 수익·ROI를 산출할 수 없습니다.</Notice><section className="card"><div className="section-heading"><div><h2>지도 데이터를 표로 탐색</h2><p className="subtle">열 제목으로 정렬 · 행정동을 선택하면 상세 패널에 연결됩니다.</p></div></div><Table rows={filtered} onSelect={r=>{select(r.admin_code);window.scrollTo({top:0,behavior:'smooth'});}} cols={[{key:'admin_name',label:'행정동'},{key:'gu',label:'자치구'},{key:metric.key,label:metric.short,unit:metric.unit},{key:'inn_monthly_display_source',label:'매출값 산출 근거'}]}/></section></>}
-{view==='revenue'&&<><Notice><strong>서로 다른 지표를 나란히, 수익 계산은 하지 않습니다.</strong> 여관 카드추정매출은 월환산 평균 성격입니다. 점포 매출 중앙값은 제공되지 않습니다. 주택 임대차와 업종·공간·기간이 달라 순이익이나 ROI를 계산하지 않습니다.</Notice><div className="two-col"><section className="card"><span className="pill">추정 · 2026년 2분기</span><h2>여관 점포당 월환산 매출</h2><p className="subtle">서울시 상권분석 · 원/점포/월 · 관측값만 순위</p><Chart option={bars([...filtered].filter(r=>numeric(r.inn_monthly_display_krw)).sort((a,b)=>b.inn_monthly_display_krw-a.inn_monthly_display_krw).slice(0,12).map(r=>r.admin_name),[...filtered].filter(r=>numeric(r.inn_monthly_display_krw)).sort((a,b)=>b.inn_monthly_display_krw-a.inn_monthly_display_krw).slice(0,12).map(r=>r.inn_monthly_display_krw),'원')} label="여관 점포당 월환산 추정매출 상위 12동" height={400}/></section><section className="card"><span className="pill neutral">별도 통계</span><h2>임대료는 계약 관측으로</h2><p>중앙값 · 표본 수 · 계약기간을 함께 확인합니다.</p><div className="metric-callout">매출 − 임대료 ≠ 수익</div><p className="subtle">보증금, 주택 유형, 면적과 계약 형태를 보존합니다. 현재 임대차 요약은 자치구 단위로, 427개 행정동과 같은 공간 단위가 아닙니다. 공간 대응이 확인되지 않은 행을 행정동 매출에 결합하지 않습니다.</p></section></div><section className="card"><h2>여관 매출 관측값</h2><Table rows={filtered.filter(r=>numeric(r.inn_monthly_display_krw))} cols={[{key:'admin_name',label:'행정동'},{key:'gu',label:'자치구'},{key:'inn_monthly_display_krw',label:'점포당 월환산',unit:'원'},{key:'inn_store_2026Q2',label:'분모 점포 수',unit:'개'},{key:'inn_monthly_display_source',label:'산출 경로'}]}/></section><GenericDataset title="임대차 계약 · 중앙값과 표본 수" rows={rentRows} note={typeof ext.rents?.definition==='string'?ext.rents.definition:'자치구 기준 · 임대료/보증금 단위 만원 · N은 계약 수. 원자료 통계·기간을 그대로 보존합니다. 표에서 지역명과 유형을 검색하세요.'}/><GenericDataset title="민간 제공자 과거 관측/추정" rows={ext.revenue?.districtHistorical} note="현재 수익으로 해석하지 않습니다. 체계적 민간 KPI는 재배포 제한에 따라 공개 값이 가려질 수 있습니다."/></>}
-{view==='people'&&<><Notice>국적, 설문 거주국·거주권역, 행정동 카드소비는 서로 다른 모집단입니다. 서울 수준의 국적 차트는 행정동 소비금액을 필터링하지 않습니다. 성별×연령의 결합 분포를 만들지 않습니다.</Notice><div className="two-col"><section className="card"><h2>행정동 고객 구성</h2><p className="subtle">{periods[period]} · 기타숙박 · 내국인 카드소비금액</p>{active?<Chart label="선택 행정동 연령별 소비금액 구성비" option={bars(['10대','20대','30대','40대','50대','60대','70대','80대'],[10,20,30,40,50,60,70,80].map(a=>active[`m3_${period}_age${a}_pct`]),'%')}/>:<p className="empty">지도에서 행정동을 선택해 연령별 소비금액을 확인하세요.</p>}{!local&&<Notice>공개 재배포 제한 값은 표시하지 않습니다. 이는 원천 데이터가 없다는 뜻이 아닙니다.</Notice>}<p className="subtle">거래표본 수 미제공. 제공 연령 ≤3개 또는 최다 연령 ≥90%인 경우 집중값에 주의하세요.</p></section><section className="card"><span className="pill">서울 전체 · 2025년 설문</span><h2>공유숙박 이용자의 거주권역</h2><p className="subtle">가중 구성비 · 응답자 {data.shared?.n??'미제공'}명 · 국적이 아닌 거주권역</p><Chart label="공유숙박 이용자 거주권역 가중 비중" option={bars(residence.map(r=>r.category),residence.map(r=>r.within_cohort_weighted_pct),'%')}/></section></div><section className="card"><h2>거주권역별 설문 통계</h2><p className="subtle">1인당 여행 전체 숙박 지출. 객실 ADR·호스트 매출 아님. n&lt;30은 소표본입니다.</p><Table rows={residence.map(r=>({...r,sample_warning:r.n<30?'소표본 n<30':'표본 확인'}))} cols={[{key:'category',label:'거주권역'},{key:'n',label:'응답 수'},{key:'within_cohort_weighted_pct',label:'가중 비중',unit:'%'},{key:'per_person_trip_lodging_spend_krw_weighted_mean',label:'지출 가중평균',unit:'원'},{key:'per_person_trip_lodging_spend_krw_weighted_median',label:'지출 가중중앙값',unit:'원'},{key:'sample_warning',label:'표본 주의'}]}/></section><section className="card"><h2>거주국별 공유숙박 이용자</h2><p className="subtle">2025 최종 설문 · 국적 아님 · 서울 전체 · n&lt;30 소표본 주의</p><Table rows={survey.filter(r=>r.dimension==='residence_country')} cols={[{key:'category',label:'거주국'},{key:'n',label:'응답 수'},{key:'within_cohort_weighted_pct',label:'가중 비중',unit:'%'},{key:'small_n_lt30',label:'n<30 여부'}]}/></section><GenericDataset title="서울 수준 국적 관측" rows={ext.tourism?.nationality} note="도시 수준 국적 통계. 설문 거주권역 또는 행정동 숙박객 국적으로 치환하지 않습니다."/></>}
-{view==='supply'&&<><Notice>상권 업종 점포, 인허가 등록, 민간 숙소 표본은 서로 다른 공급 지표입니다. 생활인구·이동량은 숙박 수요나 예약으로 환산하지 않습니다.</Notice><div className="two-col"><section className="card"><h2>게스트하우스 업종 점포</h2><p className="subtle">2026년 2분기 · 관측 상위 12동</p><Chart label="게스트하우스 점포 상위 행정동" option={bars([...filtered].filter(r=>numeric(r.guesthouse_store_2026Q2)).sort((a,b)=>b.guesthouse_store_2026Q2-a.guesthouse_store_2026Q2).slice(0,12).map(r=>r.admin_name),[...filtered].filter(r=>numeric(r.guesthouse_store_2026Q2)).sort((a,b)=>b.guesthouse_store_2026Q2-a.guesthouse_store_2026Q2).slice(0,12).map(r=>r.guesthouse_store_2026Q2),'개')}/></section><section className="card"><h2>공유숙박 여행 동행 규모</h2><p className="subtle">2025년 서울 방문객 설문 · 가중 비중 · 객실 정원 아님</p><Chart label="여행 동행 규모 가중 비중" option={bars(survey.filter(r=>r.dimension==='party_group').map(r=>r.category),survey.filter(r=>r.dimension==='party_group').map(r=>r.within_cohort_weighted_pct),'%')}/></section></div><section className="card"><h2>행정동 공급 · 생활인구</h2><Table rows={filtered} cols={[{key:'admin_name',label:'행정동'},{key:'gu',label:'자치구'},{key:'guesthouse_store_2026Q2',label:'업종 점포',unit:'개'},{key:'foreigner_operating_spatial',label:'도시민박 등록',unit:'개'},{key:'hanok_operating_spatial',label:'한옥체험 등록',unit:'개'},{key:'foreign_yoy_mean_2026_04',label:'외국인 일평균',unit:'명'},{key:'foreign_yoy_yoy_pct_04',label:'전년동월 증감',unit:'%'}]}/></section><GenericDataset title="이동 · 주중/주말 관측" rows={ext.population?.odByDaytype} note="관측기간과 출발·도착 공간단위를 보존한 이동 통계입니다. 숙박 목적을 식별하지 않습니다."/><GenericDataset title="민간 인원 규모별 공간 표본" rows={data.capacity} note="과거 관측/추정. 사이트 인원 구간은 실제 동행인 수 또는 객실 정원인지 확인되지 않았습니다. n<15는 소표본. 예약률은 공급 구성비가 아닙니다."/></>}
-{view==='sources'&&<><div className="two-col network-layout"><section className="card"><div className="eyebrow">DATA RELATIONSHIPS</div><h2>연결할 수 있는 것, 없는 것</h2><p className="subtle">노드를 선택해 결합 원칙을 확인하세요. 드래그·확대 가능.</p><Chart height={390} label="행정동, 자치구, 등록, 카드 소비, 도시 국적, 설문 데이터 관계망" onClick={p=>setNetworkNode(p.name)} option={{tooltip:{},series:[{type:'graph',layout:'force',roam:true,label:{show:true,position:'bottom',color:'#283f49'},force:{repulsion:350,edgeLength:110},data:['행정동','자치구','여관 매출','등록 공급','생활인구','기타숙박 소비','서울 국적','설문 거주권역','임대차 계약'].map((name,i)=>({id:name,name,symbolSize:i===0?58:35,itemStyle:{color:i===0?'#153e49':i>5?'#b7c7cc':'#31917f'}})),links:[['행정동','여관 매출'],['행정동','등록 공급'],['행정동','생활인구'],['행정동','기타숙박 소비'],['자치구','임대차 계약']].map(([source,target])=>({source,target})),lineStyle:{color:'#8aada5',width:2}}]}}/></section><section className="card"><span className="pill">선택한 연결</span><h2>{networkNode}</h2><p>{['서울 국적','설문 거주권역'].includes(networkNode)?'도시 전체 또는 설문 모집단의 별도 집계입니다. 행정동×국적 숙박객 매출 결합은 지원하지 않습니다.':['법정동','임대차 계약'].includes(networkNode)?'자치구 임대차 요약과 427개 행정동 매출은 공간 단위가 다릅니다. 확인된 대응 없이 결합하거나 임대료를 매출에서 차감하지 않습니다.':'동일 행정코드 또는 검증된 공간 대응에 한해 연결합니다. 같은 위치라도 업종·기간·모집단이 다르면 수익이나 인과관계로 합성하지 않습니다.'}</p><ul className="principles"><li>행정동 코드 / 공간 결합: 근거를 보존</li><li>성별과 연령: 별도 주변분포, 곱셈 금지</li><li>국적과 거주권역: 분리</li><li>매출과 주택 임대료: ROI 결합 금지</li><li>미제공과 공개 제한: 0으로 대체 금지</li></ul><div className="download-links"><a href={`${import.meta.env.BASE_URL}data/dashboard.json`} download><Download size={15}/>공개 dashboard.json</a><a href={`${import.meta.env.BASE_URL}data/extensions.json`} download><Download size={15}/>확장 데이터</a><a href={`${import.meta.env.BASE_URL}data/seoul-admin.geojson`} download><Download size={15}/>행정경계 GeoJSON</a></div></section></div><section className="card"><h2>지표 사전</h2><div className="catalog">{allMetrics.map(m=><article key={m.key}><span className="pill">{m.grade}</span><h3>{m.label}</h3><small>{m.period} · {m.unit} · {m.source}</small><p>{m.definition}</p></article>)}</div></section><GenericDataset title="원천 출처 카탈로그" rows={ext.sources} note="원문 링크, 정확한 관측기간, 이용조건과 공개 제한을 확인하세요."/><Notice>이 사이트는 Airbnb와 관련 없는 독립 공개데이터 프로젝트입니다. 투자·운영 수익을 보장하지 않으며 미관측값을 추정 채움하지 않습니다. 로컬 데이터 가져오기는 브라우저 메모리만 사용하며 파일을 전송하지 않습니다.</Notice></>}
-</main><footer><span>Airbnb Market Observer <b>서울 숙박시장 관측</b></span><span>숫자의 크기보다, 근거의 선명함.</span><a href="https://github.com/Cybecho/airbnb-market-observer" target="_blank" rel="noreferrer">코드 · 방법론 ↗</a></footer></>;
+// AMO_CLOUD_REVIEWED_V1
+import React, { useEffect, useMemo, useState } from "react";
+import {
+  Map as MapIcon,
+  BarChart3,
+  Users,
+  Building2,
+  Network,
+  Search,
+  Download,
+  ArrowUpRight,
+  Info,
+  Layers,
+  Upload,
+  X,
+  ChevronRight,
+  Menu,
+} from "lucide-react";
+import { RentExplorer, SurveyPanels, ExtraEvidence } from "./ResearchPanels";
+import SeoulMap from "./Map";
+import Chart, { bars } from "./Chart";
+import { metrics, periods, fmt, numeric, download, type Row } from "./data";
+const tabs = [
+  ["map", "지도 탐색", MapIcon],
+  ["revenue", "매출 · 임대료", BarChart3],
+  ["people", "고객 · 방문자", Users],
+  ["supply", "공급 · 생활인구", Building2],
+  ["sources", "데이터 연결", Network],
+] as const;
+const initial = new URLSearchParams(location.hash.slice(1));
+function Table({
+  rows,
+  cols,
+  onSelect,
+}: {
+  rows: Row[];
+  cols: { key: string; label: string; unit?: string }[];
+  onSelect?: (r: Row) => void;
+}) {
+  const [sort, setSort] = useState(""),
+    [asc, setAsc] = useState(false),
+    [q, setQ] = useState(""),
+    [pg, setPg] = useState(0);
+  useEffect(() => setPg(0), [rows, q, sort, asc]);
+  const filtered = useMemo(
+    () =>
+      rows
+        .filter((r) =>
+          Object.values(r).some((v) => String(v ?? "").includes(q)),
+        )
+        .sort((a, b) => {
+          if (!sort) return 0;
+          const av = a[sort],
+            bv = b[sort];
+          if (av == null) return 1;
+          if (bv == null) return -1;
+          return (
+            (numeric(av) && numeric(bv)
+              ? av - bv
+              : String(av).localeCompare(String(bv), "ko")) * (asc ? 1 : -1)
+          );
+        }),
+    [rows, sort, asc, q],
+  );
+  return (
+    <div className="data-table">
+      <div className="table-tools">
+        <label className="search">
+          <Search size={15} />
+          <input
+            aria-label="표 검색"
+            placeholder="표 안에서 검색"
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+          />
+        </label>
+        <span>{filtered.length.toLocaleString()}개 결과</span>
+        <button
+          className="quiet"
+          onClick={() =>
+            download(
+              filtered,
+              cols.map((c) => c.key),
+            )
+          }
+        >
+          <Download size={15} /> CSV
+        </button>
+      </div>
+      <div className="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              {cols.map((c) => (
+                <th
+                  key={c.key}
+                  aria-sort={
+                    sort === c.key ? (asc ? "ascending" : "descending") : "none"
+                  }
+                >
+                  <button
+                    onClick={() => {
+                      setAsc(sort === c.key ? !asc : false);
+                      setSort(c.key);
+                    }}
+                  >
+                    {c.label} {sort === c.key ? (asc ? "↑" : "↓") : "↕"}
+                  </button>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {filtered.slice(pg * 50, (pg + 1) * 50).map((r, i) => (
+              <tr key={r.admin_code ?? i}>
+                {cols.map((c, j) => (
+                  <td key={c.key}>
+                    {j === 0 && onSelect ? (
+                      <button className="text-link" onClick={() => onSelect(r)}>
+                        {r[c.key] ?? "미제공"} <ChevronRight size={12} />
+                      </button>
+                    ) : r[c.key] == null ? (
+                      <span className="muted">미제공</span>
+                    ) : numeric(r[c.key]) ? (
+                      fmt(r[c.key], c.unit)
+                    ) : /^https?:\/\//.test(String(r[c.key])) ? (
+                      <a
+                        className="text-link"
+                        href={String(r[c.key])}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        원문 보기 ↗
+                      </a>
+                    ) : (
+                      String(r[c.key])
+                    )}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        {filtered.length > 50 && (
+          <div className="table-tools">
+            <button disabled={pg === 0} onClick={() => setPg(pg - 1)}>
+              이전 페이지
+            </button>
+            <span>
+              {pg + 1} / {Math.ceil(filtered.length / 50)} · 페이지당50행
+            </span>
+            <button
+              disabled={(pg + 1) * 50 >= filtered.length}
+              onClick={() => setPg(pg + 1)}
+            >
+              다음 페이지
+            </button>
+          </div>
+        )}
+        {!filtered.length && (
+          <p className="empty">조건에 맞는 관측 데이터가 없습니다.</p>
+        )}
+      </div>
+    </div>
+  );
+}
+function Notice({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="notice">
+      <Info size={17} />
+      <div>{children}</div>
+    </div>
+  );
+}
+function GenericDataset({
+  title,
+  rows,
+  note,
+}: {
+  title: string;
+  rows: Row[] | undefined;
+  note: string;
+}) {
+  const actual = Array.isArray(rows) ? rows : [];
+  const keys = actual.length
+    ? Object.keys(actual[0]).filter(
+        (k) => !actual.some((r) => typeof r[k] === "object" && r[k] !== null),
+      )
+    : [];
+  return (
+    <section className="card">
+      <h3>{title}</h3>
+      <p className="subtle">{note}</p>
+      {actual.length ? (
+        <Table rows={actual} cols={keys.map((key) => ({ key, label: key }))} />
+      ) : (
+        <p className="empty">
+          공개 가능한 관측값 미제공 · 0으로 대체하지 않습니다.
+        </p>
+      )}
+    </section>
+  );
+}
+export default function App() {
+  const [data, setData] = useState<any>(null),
+    [publicData, setPublicData] = useState<any>(null),
+    [ext, setExt] = useState<any>({}),
+    [publicExt, setPublicExt] = useState<any>({}),
+    [geo, setGeo] = useState<any>(null),
+    [error, setError] = useState(""),
+    [local, setLocal] = useState(false),
+    [importError, setImportError] = useState("");
+  const [view, setView] = useState(initial.get("view") || "map"),
+    [gu, setGu] = useState(initial.get("gu") || ""),
+    [period, setPeriod] = useState(initial.get("period") || "2026_jan_oct"),
+    [layer, setLayer] = useState(Number(initial.get("layer") || 0)),
+    [selected, setSelected] = useState(initial.get("dong") || ""),
+    [search, setSearch] = useState(""),
+    [networkNode, setNetworkNode] = useState("행정동");
+  useEffect(() => {
+    const base = import.meta.env.BASE_URL;
+    Promise.all([
+      fetch(base + "data/dashboard.json").then((r) => {
+        if (!r.ok) throw Error("dashboard");
+        return r.json();
+      }),
+      fetch(base + "data/seoul-admin.geojson").then((r) => {
+        if (!r.ok) throw Error("geometry");
+        return r.json();
+      }),
+      fetch(base + "data/extensions.json")
+        .then((r) => (r.ok ? r.json() : {}))
+        .catch(() => ({})),
+    ])
+      .then(([d, g, e]) => {
+        setData(d);
+        setPublicData(d);
+        setGeo(g);
+        setExt(e);
+        setPublicExt(e);
+      })
+      .catch(() =>
+        setError(
+          "데이터를 불러오지 못했습니다. 네트워크 연결 또는 배포된 데이터 파일을 확인해 주세요. 오프라인에서는 처음 데이터를 불러올 수 없습니다.",
+        ),
+      );
+  }, []);
+  useEffect(() => {
+    const p = new URLSearchParams({ view, period, layer: String(layer) });
+    if (gu) p.set("gu", gu);
+    if (selected) p.set("dong", selected);
+    history.replaceState(null, "", "#" + p);
+  }, [view, gu, period, layer, selected]);
+  const allMetrics = metrics(period),
+    metric = allMetrics[layer] || allMetrics[0];
+  const rows: Row[] = useMemo(
+    () =>
+      (data?.rows ?? data?.rows427 ?? []).map((r: Row) => ({
+        ...r,
+        foreign_yoy_yoy_pct_04: r.presence_comparison_valid_304days
+          ? r.foreign_yoy_yoy_pct_04
+          : null,
+      })),
+    [data],
+  );
+  const filtered = useMemo(
+    () =>
+      rows.filter(
+        (r) =>
+          (!gu || r.gu === gu) &&
+          (!search || `${r.gu} ${r.admin_name}`.includes(search)),
+      ),
+    [rows, gu, search],
+  );
+  const active = rows.find((r) => String(r.admin_code) === selected);
+  const available = filtered.filter((r) => numeric(r[metric.key]));
+  const sorted = [...available].sort((a, b) => b[metric.key] - a[metric.key]);
+  const gus = [...new Set(rows.map((r) => r.gu))].sort();
+  const select = (code: string) => {
+    setSelected(code);
+  };
+  async function importFile(file?: File) {
+    if (!file) return;
+    try {
+      if (file.size > 30_000_000) throw Error("파일은 30MB 이하여야 합니다.");
+      const parsed = JSON.parse(await file.text());
+      const d = parsed.dashboard ?? parsed;
+      for (const k of [
+        "survey",
+        "price",
+        "capacity",
+        "companions",
+        "gu",
+        "geo",
+      ])
+        if (d[k] != null && !Array.isArray(d[k]))
+          throw Error("배열 형식 오류: " + k);
+      if (d.meta?.observed != null && typeof d.meta.observed !== "string")
+        throw Error("기준일 형식 오류");
+      const rs = d.rows ?? d.rows427;
+      if (
+        !Array.isArray(rs) ||
+        rs.length !== 427 ||
+        new Set(rs.map((r: any) => r.admin_code)).size !== 427 ||
+        rs.some(
+          (r: any) =>
+            !/^\d{8}$/.test(String(r.admin_code)) ||
+            typeof r.gu !== "string" ||
+            typeof r.admin_name !== "string",
+        )
+      )
+        throw Error("427개 행정동과 중복 없는 8자리 행정코드가 필요합니다.");
+      for (const r of rs)
+        for (const [k, v] of Object.entries(r)) {
+          if (
+            typeof v === "number" &&
+            (!Number.isFinite(v) ||
+              Math.abs(v) > 1e16 ||
+              (k.endsWith("_pct") &&
+                !/(delta|yoy|coverage|sum)/.test(k) &&
+                (v < 0 || v > 100.05)))
+          )
+            throw Error("유효하지 않은 수치 또는 비율이 있습니다.");
+          if (v !== null && typeof v === "object")
+            throw Error("행정동 필드는 단일 값이어야 합니다.");
+        }
+      const allowed = new Set(
+        (publicData.rows ?? publicData.rows427).map((r: Row) =>
+          String(r.admin_code),
+        ),
+      );
+      if (rs.some((r: Row) => !allowed.has(String(r.admin_code))))
+        throw Error("공개 지도의 행정코드와 일치하지 않습니다.");
+      setData({ ...publicData, ...d, rows: rs });
+      setExt(parsed.extensions ?? publicExt);
+      setLocal(true);
+      setImportError("");
+    } catch (e) {
+      setImportError(e instanceof Error ? e.message : "파일을 확인해 주세요.");
+    }
+  }
+  if (error)
+    return (
+      <main className="fatal">
+        <h1>관측 데이터를 불러오지 못했습니다</h1>
+        <p>{error}</p>
+        <button onClick={() => location.reload()}>다시 시도</button>
+      </main>
+    );
+  if (!data || !geo)
+    return (
+      <main className="loading">
+        <div className="spinner" />
+        <h1>서울의 관측 지도를 준비하고 있습니다</h1>
+        <p>행정경계와 공개 데이터를 불러오는 중입니다.</p>
+      </main>
+    );
+  const survey: Row[] = data.survey ?? [];
+  const residence = survey.filter((r) => r.dimension === "residence_region");
+  const rentRows = ext.rents?.rows ?? [];
+  return (
+    <>
+      <a className="skip" href="#content">
+        본문으로 건너뛰기
+      </a>
+      <header className="header">
+        <a className="brand" href="#view=map" onClick={() => setView("map")}>
+          <span className="brand-icon">
+            <Layers size={23} />
+          </span>
+          <span>
+            Airbnb <b>Market Observer</b>
+            <small>SEOUL · INDEPENDENT RESEARCH</small>
+          </span>
+        </a>
+        <div className="header-right">
+          <span className="status-dot" />
+          공개 데이터 관측{" "}
+          <span className="date">{data.meta?.observed ?? "기준일 미제공"}</span>
+          <a
+            className="github"
+            href="https://github.com/Cybecho/airbnb-market-observer"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub <ArrowUpRight size={14} />
+          </a>
+        </div>
+      </header>
+      <nav className="navigation" aria-label="주요 탐색">
+        {tabs.map(([id, label, Icon]) => (
+          <button
+            key={id}
+            className={view === id ? "active" : ""}
+            onClick={() => setView(id)}
+            aria-current={view === id ? "page" : undefined}
+          >
+            <Icon size={17} />
+            {label}
+          </button>
+        ))}
+        <label className="import-button">
+          <Upload size={15} />
+          로컬 데이터
+          <input
+            type="file"
+            accept="application/json,.json"
+            onChange={(e) => importFile(e.target.files?.[0])}
+          />
+        </label>
+      </nav>
+      {local && (
+        <div className="local-banner">
+          <strong>LOCAL DATA · 비공개 파일 탐색</strong> 이 기기 메모리에서만
+          사용합니다. 서버 전송·자동 저장 없음.
+          <button
+            onClick={() => {
+              setData(publicData);
+              setExt(publicExt);
+              setLocal(false);
+            }}
+          >
+            데이터 지우기 <X size={14} />
+          </button>
+        </div>
+      )}
+      {importError && (
+        <p role="alert" className="import-error">
+          {importError}
+        </p>
+      )}
+      <main id="content">
+        <div className="page-heading">
+          <div>
+            <div className="eyebrow">SEOUL LODGING OBSERVATORY</div>
+            <h1>
+              {view === "map"
+                ? "지역을 읽는 가장 넓은 시야"
+                : view === "revenue"
+                  ? "매출과 임대료, 같은 숫자가 아닙니다"
+                  : view === "people"
+                    ? "누가 방문하고, 누가 소비할까요"
+                    : view === "supply"
+                      ? "공간의 공급과 사람의 움직임"
+                      : "숫자 뒤의 연결을 확인하세요"}
+            </h1>
+            <p>
+              {view === "map"
+                ? "25개 자치구 · 427개 행정동. 관측된 것과 알 수 없는 것을 나누어 봅니다."
+                : "서로 다른 모집단과 통계를 구분하며, 출처까지 이어지는 탐색."}
+            </p>
+          </div>
+          <span className="outline-tag">독립 프로젝트 · Airbnb 비제휴</span>
+        </div>
+        {view !== "sources" && (
+          <div className="filters">
+            <label>
+              지역
+              <select
+                aria-label="자치구"
+                value={gu}
+                onChange={(e) => {
+                  setGu(e.target.value);
+                  setSelected("");
+                }}
+              >
+                <option value="">서울 전체 · 25개 구</option>
+                {gus.map((g) => (
+                  <option key={g}>{g}</option>
+                ))}
+              </select>
+            </label>
+            <label className="search-filter">
+              행정동 검색
+              <div className="search">
+                <Search size={17} />
+                <input
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder="동 이름을 입력하세요"
+                  aria-label="행정동 검색"
+                />
+              </div>
+            </label>
+            <label>
+              고객구성 관측기간
+              <select
+                aria-label="고객구성 관측기간"
+                value={period}
+                onChange={(e) => setPeriod(e.target.value)}
+              >
+                {Object.entries(periods).map(([k, v]) => (
+                  <option value={k} key={k}>
+                    {v}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className="layer-filter">
+              지도 · 표 지표
+              <select
+                aria-label="지도 지표"
+                value={layer}
+                onChange={(e) => setLayer(Number(e.target.value))}
+              >
+                {allMetrics.map((m, i) => (
+                  <option key={m.key} value={i}>
+                    {m.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+        )}
+        {view === "map" && (
+          <>
+            <div className="map-layout">
+              <section className="map-card">
+                <div className="map-title">
+                  <div>
+                    <span className="pill">{metric.grade}</span>
+                    <strong>{metric.label}</strong>
+                    <small>
+                      {metric.period} · 단위 {metric.unit}
+                    </small>
+                  </div>
+                  <span className="count">
+                    관측 {available.length} / {filtered.length}동
+                  </span>
+                </div>
+                <SeoulMap
+                  geo={geo}
+                  rows={filtered}
+                  metric={metric}
+                  gu={gu}
+                  selected={selected}
+                  onSelect={select}
+                />
+                <div className="legend">
+                  <span>낮음</span>
+                  <div className="ramp">
+                    {[
+                      "#d8eee9",
+                      "#a6d8cc",
+                      "#65b7a6",
+                      "#2b8e7d",
+                      "#126454",
+                    ].map((c) => (
+                      <i key={c} style={{ background: c }} />
+                    ))}
+                  </div>
+                  <span>높음 · 분위 구간</span>
+                  <span className="missing-swatch" />
+                  미제공 / 공개 제한{" "}
+                  <button
+                    onClick={() => {
+                      setGu("");
+                      setSelected("");
+                    }}
+                  >
+                    서울 전체 보기
+                  </button>
+                </div>
+              </section>
+              <aside className="detail-panel">
+                <div className="eyebrow">AREA PROFILE</div>
+                <h2>{active ? active.admin_name : "어느 동이 궁금하세요?"}</h2>
+                <p className="subtle">
+                  {active
+                    ? `${active.gu} · 행정코드 ${active.admin_code}`
+                    : "지도 위 행정동을 선택하거나 아래 표에서 찾아보세요."}
+                </p>
+                <div className="big-value">
+                  {active
+                    ? fmt(active[metric.key], metric.unit)
+                    : `${available.length}`}
+                  <small>
+                    {active ? metric.short : "개 행정동에서 지표 관측"}
+                  </small>
+                  {active && !numeric(active[metric.key]) && (
+                    <small>
+                      {!local &&
+                      metric.key.startsWith("m3_") &&
+                      active.customer_values_publication_status
+                        ? "재배포 제한 · 원자료 존재"
+                        : "원천 미제공 / 매칭 미확인"}
+                    </small>
+                  )}
+                </div>
+                <div className="detail-metrics">
+                  <div>
+                    <span>게스트하우스 점포</span>
+                    <b>
+                      {active
+                        ? fmt(active.guesthouse_store_2026Q2, "개")
+                        : "2026년 2분기"}
+                    </b>
+                  </div>
+                  <div>
+                    <span>도시민박업 영업 등록</span>
+                    <b>
+                      {active
+                        ? fmt(active.foreigner_operating_spatial, "개")
+                        : "별도 등록 통계"}
+                    </b>
+                  </div>
+                  <div>
+                    <span>Airbnb 실제 매출</span>
+                    <b className="muted">확인 불가</b>
+                  </div>
+                  <div>
+                    <span>점포 매출 중앙값</span>
+                    <b className="muted">미제공</b>
+                  </div>
+                </div>
+                <div className="definition">
+                  <span className="eyebrow">METRIC NOTES</span>
+                  <h3>{metric.source}</h3>
+                  <p>{metric.definition}</p>
+                  {active && layer === 0 && (
+                    <p>{active.inn_monthly_display_source}</p>
+                  )}
+                  {active && layer === 6 && (
+                    <p>
+                      성별 제공액 / 전체 매출 커버리지:{" "}
+                      {fmt(active.inn_sex_amount_coverage_pct, "%")}
+                    </p>
+                  )}
+                  {active?.[`m3_${period}_profile_flag`] &&
+                    layer > 0 &&
+                    layer < 3 && (
+                      <p className="warning">
+                        {active[`m3_${period}_profile_flag`]}
+                      </p>
+                    )}
+                  {!local && layer > 0 && layer < 3 && (
+                    <p className="warning">
+                      원자료가 존재하더라도 재배포 권리 제한으로 공개 값이
+                      가려질 수 있습니다. 로컬 파일을 불러오면 비공개 분석이
+                      가능합니다.
+                    </p>
+                  )}
+                  <button
+                    className="text-link"
+                    onClick={() => setView("sources")}
+                  >
+                    정의와 출처 보기 <ArrowUpRight size={14} />
+                  </button>
+                </div>
+              </aside>
+            </div>
+            <Notice>
+              회색은 0이 아닙니다. 미관측·미제공·재배포 제한을 포함합니다.
+              여관업 추정매출은 Airbnb 실매출이 아니며, 임대료와 차감해
+              수익·ROI를 산출할 수 없습니다.
+            </Notice>
+            <section className="card">
+              <div className="section-heading">
+                <div>
+                  <h2>지도 데이터를 표로 탐색</h2>
+                  <p className="subtle">
+                    열 제목으로 정렬 · 행정동을 선택하면 상세 패널에 연결됩니다.
+                  </p>
+                </div>
+              </div>
+              <Table
+                rows={filtered}
+                onSelect={(r) => {
+                  select(r.admin_code);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                cols={[
+                  { key: "admin_name", label: "행정동" },
+                  { key: "gu", label: "자치구" },
+                  { key: metric.key, label: metric.short, unit: metric.unit },
+                  {
+                    key: "inn_monthly_display_source",
+                    label: "매출값 산출 근거",
+                  },
+                ]}
+              />
+            </section>
+          </>
+        )}
+        {view === "revenue" && (
+          <>
+            <Notice>
+              <strong>
+                서로 다른 지표를 나란히, 수익 계산은 하지 않습니다.
+              </strong>{" "}
+              여관 카드추정매출은 월환산 평균 성격입니다. 점포 매출 중앙값은
+              제공되지 않습니다. 주택 임대차와 업종·공간·기간이 달라 순이익이나
+              ROI를 계산하지 않습니다.
+            </Notice>
+            <div className="two-col">
+              <section className="card">
+                <span className="pill">추정 · 2026년 2분기</span>
+                <h2>여관 점포당 월환산 매출</h2>
+                <p className="subtle">
+                  서울시 상권분석 · 원/점포/월 · 관측값만 순위
+                </p>
+                <Chart
+                  option={bars(
+                    [...filtered]
+                      .filter((r) => numeric(r.inn_monthly_display_krw))
+                      .sort(
+                        (a, b) =>
+                          b.inn_monthly_display_krw - a.inn_monthly_display_krw,
+                      )
+                      .slice(0, 12)
+                      .map((r) => r.admin_name),
+                    [...filtered]
+                      .filter((r) => numeric(r.inn_monthly_display_krw))
+                      .sort(
+                        (a, b) =>
+                          b.inn_monthly_display_krw - a.inn_monthly_display_krw,
+                      )
+                      .slice(0, 12)
+                      .map((r) => r.inn_monthly_display_krw),
+                    "원",
+                  )}
+                  label="여관 점포당 월환산 추정매출 상위 12동"
+                  height={400}
+                />
+              </section>
+              <section className="card">
+                <span className="pill neutral">별도 통계</span>
+                <h2>임대료는 계약 관측으로</h2>
+                <p>중앙값 · 표본 수 · 계약기간을 함께 확인합니다.</p>
+                <div className="metric-callout">매출 − 임대료 ≠ 수익</div>
+                <p className="subtle">
+                  보증금, 주택 유형, 면적과 계약 형태를 보존합니다. 현재 임대차
+                  요약은 자치구 단위로, 427개 행정동과 같은 공간 단위가
+                  아닙니다. 공간 대응이 확인되지 않은 행을 행정동 매출에
+                  결합하지 않습니다.
+                </p>
+              </section>
+            </div>
+            <section className="card">
+              <h2>여관 매출 관측값</h2>
+              <Table
+                rows={[...filtered]
+                  .filter((r) => numeric(r.inn_monthly_display_krw))
+                  .sort(
+                    (a, b) =>
+                      b.inn_monthly_display_krw - a.inn_monthly_display_krw ||
+                      a.admin_name.localeCompare(b.admin_name, "ko"),
+                  )
+                  .map((r, i) => ({ ...r, display_rank: i + 1 }))}
+                cols={[
+                  { key: "display_rank", label: "표시순번" },
+                  { key: "admin_name", label: "행정동" },
+                  { key: "gu", label: "자치구" },
+                  {
+                    key: "inn_monthly_display_krw",
+                    label: "점포당 월환산",
+                    unit: "원",
+                  },
+                  {
+                    key: "inn_store_2026Q2",
+                    label: "분모 점포 수",
+                    unit: "개",
+                  },
+                  { key: "inn_monthly_display_source", label: "산출 경로" },
+                ]}
+              />
+            </section>
+            <RentExplorer rents={ext.rents} gu={gu} Table={Table} />
+            <GenericDataset
+              title="임대차 전체 집계 원표 · 기간별 별도 자료"
+              rows={rentRows}
+              note={
+                typeof ext.rents?.definition === "string"
+                  ? ext.rents.definition
+                  : "자치구 기준 · 임대료/보증금 단위 만원 · N은 공개행 수이며 유일 계약 수로 검증되지 않았습니다. 원자료 통계·기간을 그대로 보존합니다. 표에서 지역명과 유형을 검색하세요."
+              }
+            />
+            <GenericDataset
+              title="민간 제공자 과거 관측/추정"
+              rows={ext.revenue?.districtHistorical}
+              note="현재 수익으로 해석하지 않습니다. 체계적 민간 KPI는 재배포 제한에 따라 공개 값이 가려질 수 있습니다."
+            />
+          </>
+        )}
+        {view === "people" && (
+          <>
+            <Notice>
+              국적, 설문 거주국·거주권역, 행정동 카드소비는 서로 다른
+              모집단입니다. 서울 수준의 국적 차트는 행정동 소비금액을 필터링하지
+              않습니다. 성별×연령의 결합 분포를 만들지 않습니다.
+            </Notice>
+            <div className="two-col">
+              <section className="card">
+                <h2>행정동 고객 구성</h2>
+                <p className="subtle">
+                  {periods[period]} · 기타숙박 · 내국인 카드소비금액
+                </p>
+                {active ? (
+                  <Chart
+                    label="선택 행정동 연령별 소비금액 구성비"
+                    option={bars(
+                      [
+                        "10대",
+                        "20대",
+                        "30대",
+                        "40대",
+                        "50대",
+                        "60대",
+                        "70대",
+                        "80대",
+                      ],
+                      [10, 20, 30, 40, 50, 60, 70, 80].map(
+                        (a) => active[`m3_${period}_age${a}_pct`],
+                      ),
+                      "%",
+                    )}
+                  />
+                ) : (
+                  <p className="empty">
+                    지도에서 행정동을 선택해 연령별 소비금액을 확인하세요.
+                  </p>
+                )}
+                {!local && (
+                  <Notice>
+                    공개 재배포 제한 값은 표시하지 않습니다. 이는 원천 데이터가
+                    없다는 뜻이 아닙니다.
+                  </Notice>
+                )}
+                <p className="subtle">
+                  거래표본 수 미제공. 제공 연령 ≤3개 또는 최다 연령 ≥90%인 경우
+                  집중값에 주의하세요.
+                </p>
+              </section>
+              <section className="card">
+                <span className="pill">서울 전체 · 2025년 설문</span>
+                <h2>공유숙박 이용자의 거주권역</h2>
+                <p className="subtle">
+                  가중 구성비 · 응답자 {data.shared?.n ?? "미제공"}명 · 국적이
+                  아닌 거주권역
+                </p>
+                <Chart
+                  label="공유숙박 이용자 거주권역 가중 비중"
+                  option={bars(
+                    residence.map((r) => r.category),
+                    residence.map((r) => r.within_cohort_weighted_pct),
+                    "%",
+                  )}
+                />
+              </section>
+            </div>
+            <section className="card">
+              <h2>거주권역별 설문 통계</h2>
+              <p className="subtle">
+                1인당 여행 전체 숙박 지출. 객실 ADR·호스트 매출 아님. n&lt;30은
+                소표본입니다.
+              </p>
+              <Table
+                rows={residence.map((r) => ({
+                  ...r,
+                  sample_warning: r.n < 30 ? "소표본 n<30" : "표본 확인",
+                }))}
+                cols={[
+                  { key: "category", label: "거주권역" },
+                  { key: "n", label: "응답 수" },
+                  {
+                    key: "within_cohort_weighted_pct",
+                    label: "가중 비중",
+                    unit: "%",
+                  },
+                  {
+                    key: "per_person_trip_lodging_spend_krw_weighted_mean",
+                    label: "지출 가중평균",
+                    unit: "원",
+                  },
+                  {
+                    key: "per_person_trip_lodging_spend_krw_weighted_median",
+                    label: "지출 가중중앙값",
+                    unit: "원",
+                  },
+                  { key: "sample_warning", label: "표본 주의" },
+                ]}
+              />
+            </section>
+            <section className="card">
+              <h2>거주국별 공유숙박 이용자</h2>
+              <p className="subtle">
+                2025 최종 설문 · 국적 아님 · 서울 전체 · n&lt;30 소표본 주의
+              </p>
+              <Table
+                rows={survey.filter((r) => r.dimension === "residence_country")}
+                cols={[
+                  { key: "category", label: "거주국" },
+                  { key: "n", label: "응답 수" },
+                  {
+                    key: "within_cohort_weighted_pct",
+                    label: "가중 비중",
+                    unit: "%",
+                  },
+                  { key: "small_n_lt30", label: "n<30 여부" },
+                ]}
+              />
+            </section>
+            <SurveyPanels data={data} Table={Table} />
+            <GenericDataset
+              title="서울 수준 국적 관측"
+              rows={ext.tourism?.nationality}
+              note="도시 수준 국적 통계. 설문 거주권역 또는 행정동 숙박객 국적으로 치환하지 않습니다."
+            />
+          </>
+        )}
+        {view === "supply" && (
+          <>
+            <Notice>
+              상권 업종 점포, 인허가 등록, 민간 숙소 표본은 서로 다른 공급
+              지표입니다. 생활인구·이동량은 숙박 수요나 예약으로 환산하지
+              않습니다.
+            </Notice>
+            <div className="two-col">
+              <section className="card">
+                <h2>게스트하우스 업종 점포</h2>
+                <p className="subtle">2026년 2분기 · 관측 상위 12동</p>
+                <Chart
+                  label="게스트하우스 점포 상위 행정동"
+                  option={bars(
+                    [...filtered]
+                      .filter((r) => numeric(r.guesthouse_store_2026Q2))
+                      .sort(
+                        (a, b) =>
+                          b.guesthouse_store_2026Q2 - a.guesthouse_store_2026Q2,
+                      )
+                      .slice(0, 12)
+                      .map((r) => r.admin_name),
+                    [...filtered]
+                      .filter((r) => numeric(r.guesthouse_store_2026Q2))
+                      .sort(
+                        (a, b) =>
+                          b.guesthouse_store_2026Q2 - a.guesthouse_store_2026Q2,
+                      )
+                      .slice(0, 12)
+                      .map((r) => r.guesthouse_store_2026Q2),
+                    "개",
+                  )}
+                />
+              </section>
+              <section className="card">
+                <h2>공유숙박 여행 동행 규모</h2>
+                <p className="subtle">
+                  2025년 서울 방문객 설문 · 가중 비중 · 객실 정원 아님
+                </p>
+                <Chart
+                  label="여행 동행 규모 가중 비중"
+                  option={bars(
+                    survey
+                      .filter((r) => r.dimension === "party_group")
+                      .map((r) => r.category),
+                    survey
+                      .filter((r) => r.dimension === "party_group")
+                      .map((r) => r.within_cohort_weighted_pct),
+                    "%",
+                  )}
+                />
+              </section>
+            </div>
+            <section className="card">
+              <h2>행정동 공급 · 생활인구</h2>
+              <Table
+                rows={filtered}
+                cols={[
+                  { key: "admin_name", label: "행정동" },
+                  { key: "gu", label: "자치구" },
+                  {
+                    key: "guesthouse_store_2026Q2",
+                    label: "업종 점포",
+                    unit: "개",
+                  },
+                  {
+                    key: "foreigner_operating_spatial",
+                    label: "도시민박 등록",
+                    unit: "개",
+                  },
+                  {
+                    key: "hanok_operating_spatial",
+                    label: "한옥체험 등록",
+                    unit: "개",
+                  },
+                  {
+                    key: "foreign_yoy_mean_2026_04",
+                    label: "04시 존재 추정",
+                    unit: "명",
+                  },
+                  {
+                    key: "foreign_yoy_yoy_pct_04",
+                    label: "전년 동기간 04시 변화",
+                    unit: "%",
+                  },
+                ]}
+              />
+            </section>
+            <GenericDataset
+              title="이동 · 주중/주말 관측"
+              rows={ext.population?.odByDaytype}
+              note="관측기간과 출발·도착 공간단위를 보존한 이동 통계입니다. 숙박 목적을 식별하지 않습니다."
+            />
+            <ExtraEvidence ext={ext} gu={gu} GenericDataset={GenericDataset} />
+            <GenericDataset
+              title="민간 인원 규모별 공간 표본"
+              rows={data.capacity}
+              note="과거 관측/추정. 사이트 인원 구간은 실제 동행인 수 또는 객실 정원인지 확인되지 않았습니다. n<15는 소표본. 예약률은 공급 구성비가 아닙니다."
+            />
+          </>
+        )}
+        {view === "sources" && (
+          <>
+            <div className="two-col network-layout">
+              <section className="card">
+                <div className="eyebrow">DATA RELATIONSHIPS</div>
+                <h2>연결할 수 있는 것, 없는 것</h2>
+                <p className="subtle">
+                  노드를 선택해 결합 원칙을 확인하세요. 드래그·확대 가능.
+                </p>
+                <Chart
+                  height={390}
+                  label="행정동, 자치구, 등록, 카드 소비, 도시 국적, 설문 데이터 관계망"
+                  onClick={(p) => setNetworkNode(p.name)}
+                  option={{
+                    tooltip: {},
+                    series: [
+                      {
+                        type: "graph",
+                        layout: "force",
+                        roam: true,
+                        label: {
+                          show: true,
+                          position: "bottom",
+                          color: "#283f49",
+                        },
+                        force: { repulsion: 350, edgeLength: 110 },
+                        data: [
+                          "행정동",
+                          "자치구",
+                          "여관 매출",
+                          "등록 공급",
+                          "생활인구",
+                          "기타숙박 소비",
+                          "서울 국적",
+                          "설문 거주권역",
+                          "임대차 계약",
+                        ].map((name, i) => ({
+                          id: name,
+                          name,
+                          symbolSize: i === 0 ? 58 : 35,
+                          itemStyle: {
+                            color:
+                              i === 0
+                                ? "#153e49"
+                                : i > 5
+                                  ? "#b7c7cc"
+                                  : "#31917f",
+                          },
+                        })),
+                        links: [
+                          ["행정동", "여관 매출"],
+                          ["행정동", "등록 공급"],
+                          ["행정동", "생활인구"],
+                          ["행정동", "기타숙박 소비"],
+                          ["자치구", "임대차 계약"],
+                        ].map(([source, target]) => ({ source, target })),
+                        lineStyle: { color: "#8aada5", width: 2 },
+                      },
+                    ],
+                  }}
+                />
+              </section>
+              <section className="card">
+                <span className="pill">선택한 연결</span>
+                <h2>{networkNode}</h2>
+                <p>
+                  {["서울 국적", "설문 거주권역"].includes(networkNode)
+                    ? "도시 전체 또는 설문 모집단의 별도 집계입니다. 행정동×국적 숙박객 매출 결합은 지원하지 않습니다."
+                    : ["법정동", "임대차 계약"].includes(networkNode)
+                      ? "자치구 임대차 요약과 427개 행정동 매출은 공간 단위가 다릅니다. 확인된 대응 없이 결합하거나 임대료를 매출에서 차감하지 않습니다."
+                      : "동일 행정코드 또는 검증된 공간 대응에 한해 연결합니다. 같은 위치라도 업종·기간·모집단이 다르면 수익이나 인과관계로 합성하지 않습니다."}
+                </p>
+                <ul className="principles">
+                  <li>행정동 코드 / 공간 결합: 근거를 보존</li>
+                  <li>성별과 연령: 별도 주변분포, 곱셈 금지</li>
+                  <li>국적과 거주권역: 분리</li>
+                  <li>매출과 주택 임대료: ROI 결합 금지</li>
+                  <li>미제공과 공개 제한: 0으로 대체 금지</li>
+                </ul>
+                <div className="download-links">
+                  <a
+                    href={`${import.meta.env.BASE_URL}data/dashboard.json`}
+                    download
+                  >
+                    <Download size={15} />
+                    공개 dashboard.json
+                  </a>
+                  <a
+                    href={`${import.meta.env.BASE_URL}data/extensions.json`}
+                    download
+                  >
+                    <Download size={15} />
+                    확장 데이터
+                  </a>
+                  <a
+                    href={`${import.meta.env.BASE_URL}data/seoul-admin.geojson`}
+                    download
+                  >
+                    <Download size={15} />
+                    행정경계 GeoJSON
+                  </a>
+                </div>
+              </section>
+            </div>
+            <section className="card">
+              <h2>지표 사전</h2>
+              <div className="catalog">
+                {allMetrics.map((m) => (
+                  <article key={m.key}>
+                    <span className="pill">{m.grade}</span>
+                    <h3>{m.label}</h3>
+                    <small>
+                      {m.period} · {m.unit} · {m.source}
+                    </small>
+                    <p>{m.definition}</p>
+                  </article>
+                ))}
+              </div>
+            </section>
+            <GenericDataset
+              title="원천 출처 카탈로그"
+              rows={ext.sources}
+              note="원문 링크, 정확한 관측기간, 이용조건과 공개 제한을 확인하세요."
+            />
+            <Notice>
+              이 사이트는 Airbnb와 관련 없는 독립 공개데이터 프로젝트입니다.
+              투자·운영 수익을 보장하지 않으며 미관측값을 추정 채움하지
+              않습니다. 로컬 데이터 가져오기는 브라우저 메모리만 사용하며 파일을
+              전송하지 않습니다.
+            </Notice>
+          </>
+        )}
+      </main>
+      <footer>
+        <span>
+          Airbnb Market Observer <b>서울 숙박시장 관측</b>
+        </span>
+        <span>숫자의 크기보다, 근거의 선명함.</span>
+        <a
+          href="https://github.com/Cybecho/airbnb-market-observer"
+          target="_blank"
+          rel="noreferrer"
+        >
+          코드 · 방법론 ↗
+        </a>
+      </footer>
+    </>
+  );
 }
