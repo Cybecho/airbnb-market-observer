@@ -1,53 +1,52 @@
 name: Cloud maintenance
 on:
   workflow_dispatch:
-      inputs:
-            operation:
-                    description: Initialize once or update only dependency lockfile
-                            type: choice
-                                    options: [lockfile, initialize]
-                                            default: lockfile
-                                            permissions:
-                                              contents: write
-                                              concurrency:
-                                                group: cloud-maintenance
-                                                  cancel-in-progress: false
-                                                  jobs:
-                                                    maintain:
-                                                        runs-on: ubuntu-latest
-                                                            timeout-minutes: 15
-                                                                steps:
-                                                                      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-                                                                            - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
-                                                                                    with:
-                                                                                              node-version: 24
-                                                                                                    - name: Initialize on GitHub Linux only
-                                                                                                            if: inputs.operation == 'initialize'
-                                                                                                                    run: |
-                                                                                                                              node scripts/cloud-bootstrap.mjs
-                                                                                                                                        npm install -D vite@latest @vitejs/plugin-react@latest typescript@latest vitest@latest @playwright/test@latest prettier@latest --ignore-scripts
-                                                                                                                                                  npx prettier --write src scripts docs tests README.md DATA_LICENSES.md THIRD_PARTY_NOTICES.md CONTRIBUTING.md SECURITY.md package.json tsconfig*.json vite.config.ts vitest.config.ts playwright.config.ts 'data/organized/*/README.md'
-                                                                                                                                                            npm run data:build
-                                                                                                                                                                  - name: Lockfile only
-                                                                                                                                                                          if: inputs.operation == 'lockfile'
-                                                                                                                                                                                  run: npm install --package-lock-only --ignore-scripts
-                                                                                                                                                                                        - name: Save cloud-generated sources for review
-                                                                                                                                                                                                run: |
-                                                                                                                                                                                                          git config user.name 'github-actions[bot]'
-                                                                                                                                                                                                                    git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-                                                                                                                                                                                                                              git add .
-                                                                                                                                                                                                                                        if ! git diff --cached --quiet; then
-                                                                                                                                                                                                                                                    git commit -m 'Prepare cloud-built dashboard, documentation and data safeguards'
-                                                                                                                                                                                                                                                                git push
-                                                                                                                                                                                                                                                                          fi
-                                                                                                                                                                                                                                                                                - name: Validate and build on Linux
-                                                                                                                                                                                                                                                                                        if: inputs.operation == 'initialize'
-                                                                                                                                                                                                                                                                                                run: |
-                                                                                                                                                                                                                                                                                                          npm run data:check
-                                                                                                                                                                                                                                                                                                                    npm run check:publication
-                                                                                                                                                                                                                                                                                                                              npm audit --omit=dev --audit-level=high
-                                                                                                                                                                                                                                                                                                                                        npm test
-                                                                                                                                                                                                                                                                                                                                                  npm run build
-                                                                                                                                                                                                                                                                                                                                                            npx playwright install --with-deps chromium
-                                                                                                                                                                                                                                                                                                                                                                      npm run test:e2e
-                                                                                                                                                                                                                                                                                                                                                                      
+    inputs:
+      operation:
+        description: Initialize once or update only dependency lockfile
+        type: choice
+        options: [lockfile, initialize]
+        default: lockfile
+permissions:
+  contents: write
+concurrency:
+  group: cloud-maintenance
+  cancel-in-progress: false
+jobs:
+  maintain:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: 24
+      - name: Initialize on GitHub Linux only
+        if: inputs.operation == 'initialize'
+        run: |
+          node scripts/cloud-bootstrap.mjs
+          npm install -D vite@latest @vitejs/plugin-react@latest typescript@latest vitest@latest @playwright/test@latest prettier@latest --ignore-scripts
+          npx prettier --write src scripts docs tests README.md DATA_LICENSES.md THIRD_PARTY_NOTICES.md CONTRIBUTING.md SECURITY.md package.json tsconfig*.json vite.config.ts vitest.config.ts playwright.config.ts 'data/organized/*/README.md'
+          npm run data:build
+      - name: Lockfile only
+        if: inputs.operation == 'lockfile'
+        run: npm install --package-lock-only --ignore-scripts
+      - name: Save cloud-generated sources for review
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .
+          if ! git diff --cached --quiet; then
+            git commit -m 'Prepare cloud-built dashboard, documentation and data safeguards'
+            git push
+          fi
+      - name: Validate and build on Linux
+        if: inputs.operation == 'initialize'
+        run: |
+          npm run data:check
+          npm run check:publication
+          npm audit --omit=dev --audit-level=high
+          npm test
+          npm run build
+          npx playwright install --with-deps chromium
+          npm run test:e2e
