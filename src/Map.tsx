@@ -27,6 +27,8 @@ export default function SeoulMap({
     if (!element.current) return;
     map.current = L.map(element.current, {
       preferCanvas: true,
+      zoomSnap: 0.25,
+      zoomDelta: 0.5,
       zoomControl: true,
       minZoom: 9,
       maxZoom: 16,
