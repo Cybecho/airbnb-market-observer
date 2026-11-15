@@ -1,0 +1,1280 @@
+[
+  {
+    "file": "dashboard.json",
+    "field": "admin_code",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Identifier string; join only to same code system and vintage"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "gu",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "admin_name",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "foreign_yoy_mean_2026_04",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "foreign_yoy_yoy_pct_04",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "presence_comparison_valid_304days",
+    "types": [
+      "boolean"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "foreigner_operating_spatial",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "hanok_operating_spatial",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "tourist_operating_spatial",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "lodging_operating_spatial",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "screen_quadrant_foreigner_registry",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "inn_당월_매출_금액",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 238,
+    "meaning": "KRW; use domain period and denominator, not actual Airbnb host income"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "inn_당월_매출_건수",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 238,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "inn_남성_매출_금액",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 238,
+    "meaning": "KRW; use domain period and denominator, not actual Airbnb host income"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "inn_여성_매출_금액",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 238,
+    "meaning": "KRW; use domain period and denominator, not actual Airbnb host income"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "inn_연령대_10_매출_금액",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 238,
+    "meaning": "KRW; use domain period and denominator, not actual Airbnb host income"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "inn_연령대_20_매출_금액",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 238,
+    "meaning": "KRW; use domain period and denominator, not actual Airbnb host income"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "inn_연령대_30_매출_금액",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 238,
+    "meaning": "KRW; use domain period and denominator, not actual Airbnb host income"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "inn_연령대_40_매출_금액",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 238,
+    "meaning": "KRW; use domain period and denominator, not actual Airbnb host income"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "inn_연령대_50_매출_금액",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 238,
+    "meaning": "KRW; use domain period and denominator, not actual Airbnb host income"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "inn_연령대_60_이상_매출_금액",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 238,
+    "meaning": "KRW; use domain period and denominator, not actual Airbnb host income"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "inn_sex_amount_coverage_pct",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 238,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "inn_female_within_sex_provided_pct",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 238,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "guesthouse_store_2024Q2",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 5,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "guesthouse_store_2025Q2",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 5,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "guesthouse_store_2026Q2",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 5,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "source_admin_name",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 5,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "join_status",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 5,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "hotel_남성_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "hotel_여성_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "hotel_10대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "hotel_20대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "hotel_30대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "hotel_40대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "hotel_50대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "hotel_60대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "hotel_70대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "hotel_80대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "hotel_age20_30_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "hotel_top_age",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "hotel_top_age_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "other_남성_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "other_여성_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "other_10대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "other_20대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "other_30대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "other_40대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "other_50대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "other_60대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "other_70대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "other_80대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "other_age20_30_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "other_top_age",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "other_top_age_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "inn_store_2026Q2",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 5,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "inn_monthly_per_store_calc_krw",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 238,
+    "meaning": "KRW; use domain period and denominator, not actual Airbnb host income"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "inn_monthly_per_store_ui_10k_krw",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 417,
+    "meaning": "KRW; use domain period and denominator, not actual Airbnb host income"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "inn_monthly_display_krw",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 233,
+    "meaning": "KRW; use domain period and denominator, not actual Airbnb host income"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "inn_monthly_display_source",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "customer_scope",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "lodging_customer_country_by_dong",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "airbnb_revenue_by_dong_krw",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "KRW; use domain period and denominator, not actual Airbnb host income"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "bedroom_or_area_revenue_by_dong",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "coverage_note",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_full_female_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_full_male_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_full_age10_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_full_age20_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_full_age30_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_full_age40_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_full_age50_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_full_age60_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_full_age70_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_full_age80_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_full_age20_30_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_full_age40_50_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_full_age60plus_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_full_age_category_count",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_full_gender_category_count",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_full_source_row_count",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_full_join_status",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_full_top_age",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_full_top_age_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_full_age_provided_sum_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_full_gender_provided_sum_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_full_profile_flag",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_full_age_majority_note",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_full_source_zip",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_full_source_url",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_jan_oct_female_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_jan_oct_male_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_jan_oct_age10_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_jan_oct_age20_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_jan_oct_age30_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_jan_oct_age40_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_jan_oct_age50_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_jan_oct_age60_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_jan_oct_age70_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_jan_oct_age80_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_jan_oct_age20_30_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_jan_oct_age40_50_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_jan_oct_age60plus_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_jan_oct_age_category_count",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_jan_oct_gender_category_count",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_jan_oct_source_row_count",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_jan_oct_join_status",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_jan_oct_top_age",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_jan_oct_top_age_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_jan_oct_age_provided_sum_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_jan_oct_gender_provided_sum_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_jan_oct_profile_flag",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_jan_oct_age_majority_note",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_jan_oct_source_zip",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2025_jan_oct_source_url",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2026_jan_oct_female_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2026_jan_oct_male_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2026_jan_oct_age10_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2026_jan_oct_age20_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2026_jan_oct_age30_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2026_jan_oct_age40_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2026_jan_oct_age50_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2026_jan_oct_age60_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2026_jan_oct_age70_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2026_jan_oct_age80_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2026_jan_oct_age20_30_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2026_jan_oct_age40_50_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2026_jan_oct_age60plus_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2026_jan_oct_age_category_count",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2026_jan_oct_gender_category_count",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2026_jan_oct_source_row_count",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2026_jan_oct_join_status",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2026_jan_oct_top_age",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2026_jan_oct_top_age_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2026_jan_oct_age_provided_sum_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2026_jan_oct_gender_provided_sum_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2026_jan_oct_profile_flag",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2026_jan_oct_age_majority_note",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2026_jan_oct_source_zip",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_2026_jan_oct_source_url",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_delta_female_pp",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage-point difference, paired January–October windows"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_delta_male_pp",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage-point difference, paired January–October windows"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_delta_age20_30_pp",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage-point difference, paired January–October windows"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_delta_age40_50_pp",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage-point difference, paired January–October windows"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_delta_age60plus_pp",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Percentage-point difference, paired January–October windows"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "m3_common_source_periods",
+    "types": [
+      "boolean"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "dashboard.json",
+    "field": "customer_values_publication_status",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  }
+]

@@ -1,0 +1,79 @@
+[
+  {
+    "thread_id": 105999,
+    "title": "[2026 데이터] 서울 에어비앤비 지금 들어가도 될까",
+    "date": "2026-01-15",
+    "url": "https://cafe.naver.com/f-e/cafes/21812311/articles/105999",
+    "topic": "AirDNA·구별공급",
+    "source_type": "데이터주장+댓글자기보고",
+    "quant_or_experience": "구별 Active/등록 수 주장; 댓글 체감",
+    "access": "원문 접근 확인",
+    "limitations": "방법·원자료·실제정산 비교 없음"
+  },
+  {
+    "thread_id": 101518,
+    "title": "에어비앤비 분석툴 Airbtics 써보신분?",
+    "date": "2025-10-02",
+    "url": "https://cafe.naver.com/f-e/cafes/21812311/articles/101518",
+    "topic": "Airbtics 정확도",
+    "source_type": "사용후기 요청",
+    "quant_or_experience": "월 15만원 언급은 질문자 진술",
+    "access": "원문 접근 확인",
+    "limitations": "검증 가능한 사용후기·실수익 대조 없음"
+  },
+  {
+    "thread_id": 117344,
+    "title": "일주일째 예약이 없어요 ㅠㅠ",
+    "date": "2026-11-13",
+    "url": "https://cafe.naver.com/f-e/cafes/21812311/articles/117344",
+    "topic": "동작구 예약부진·교통·주차",
+    "source_type": "자기보고+댓글자기보고",
+    "quant_or_experience": "1주 공백/오픈4주/도보5분",
+    "access": "원문 접근 확인",
+    "limitations": "단일 숙소; 요금·캘린더분모·노출 변화 미상"
+  },
+  {
+    "thread_id": 116008,
+    "title": "예약 안잡힌지 어언...",
+    "date": "2026-09-30",
+    "url": "https://cafe.naver.com/f-e/cafes/21812311/articles/116008",
+    "topic": "예약부진",
+    "source_type": "자기보고",
+    "quant_or_experience": "1주 자기보고",
+    "access": "원문 접근 확인",
+    "limitations": "지역·객실·가격·분모 없음"
+  },
+  {
+    "thread_id": 117059,
+    "title": "연희동 쓰리룸 vs 상수역 투룸/쓰리룸",
+    "date": "2026-11-04",
+    "url": "https://cafe.naver.com/f-e/cafes/21812311/articles/117059",
+    "topic": "입지·3룸·역도보·욕실",
+    "source_type": "계획 질문",
+    "quant_or_experience": "보증금/월세 등 계획수치",
+    "access": "원문 접근 확인",
+    "limitations": "댓글0; 성과 실측 없음"
+  },
+  {
+    "thread_id": 117161,
+    "title": "호스텔 2인객실 or 4-6인객실 고민입니다",
+    "date": "2026-11-07",
+    "url": "https://cafe.naver.com/f-e/cafes/21812311/articles/117161",
+    "topic": "시청권·객실정원",
+    "source_type": "계획 질문",
+    "quant_or_experience": "29평·객실 배치 계획",
+    "access": "원문 접근 확인",
+    "limitations": "댓글0; 예약률·매출 증빙 없음"
+  },
+  {
+    "thread_id": 117391,
+    "title": "1박 요금 설정(성수기 문의요)",
+    "date": "2026-11-14",
+    "url": "https://cafe.naver.com/f-e/cafes/21812311/articles/117391",
+    "topic": "성수기 가격",
+    "source_type": "오픈전 질문",
+    "quant_or_experience": "날짜별 요금 설정 질문",
+    "access": "원문 접근 확인",
+    "limitations": "댓글0; 시장 수요·실적 근거 없음"
+  }
+]

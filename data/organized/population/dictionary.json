@@ -1,0 +1,1840 @@
+[
+  {
+    "file": "admin-dongs.json",
+    "field": "admin_code",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Identifier string; join only to same code system and vintage"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "admin_name",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "gu",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "polygon_area_km2",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "geometry_source",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "legal_dongs_observed_in_license_points",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 37,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign2025_year",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign2025_calendar_days",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign2025_mean_04_all",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign2025_valid_days_04_all",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign2025_mean_04_weekday",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign2025_valid_days_04_weekday",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign2025_mean_04_weekend",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign2025_valid_days_04_weekend",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign2025_peak_month_04",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign2025_trough_month_04",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign2025_peak_trough_ratio_04",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign2025_mean_14_all",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign2025_valid_days_14_all",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign2025_mean_14_weekday",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign2025_valid_days_14_weekday",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign2025_mean_14_weekend",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign2025_valid_days_14_weekend",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign2025_peak_month_14",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign2025_trough_month_14",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign2025_peak_trough_ratio_14",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign2025_ratio_04_to_14",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign2025_expected_active_days",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign2025_full_365_day_comparable",
+    "types": [
+      "boolean"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign2025_boundary_note",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign_yoy_period",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign_yoy_comparison",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign_yoy_paired_days_04",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign_yoy_mean_2025_04",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign_yoy_mean_2026_04",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign_yoy_yoy_pct_04",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign_yoy_paired_days_14",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign_yoy_mean_2025_14",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign_yoy_mean_2026_14",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign_yoy_yoy_pct_14",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign_yoy_full_304_paired_days",
+    "types": [
+      "boolean"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign_yoy_boundary_note",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign2025_04_density_per_km2",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreign2025_weekend_weekday_04_ratio",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreigner_operating_spatial",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreigner_nonoperating_spatial",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreigner_new_2025_Jan01_Nov11_spatial",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreigner_closures_2025_Jan01_Nov11_spatial",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreigner_new_2026_Jan01_Nov11_spatial",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreigner_closures_2026_Jan01_Nov11_spatial",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "hanok_operating_spatial",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "hanok_nonoperating_spatial",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "hanok_new_2025_Jan01_Nov11_spatial",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "hanok_closures_2025_Jan01_Nov11_spatial",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "hanok_new_2026_Jan01_Nov11_spatial",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "hanok_closures_2026_Jan01_Nov11_spatial",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "tourist_operating_spatial",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "tourist_nonoperating_spatial",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "tourist_new_2025_Jan01_Nov11_spatial",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "tourist_closures_2025_Jan01_Nov11_spatial",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "tourist_new_2026_Jan01_Nov11_spatial",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "tourist_closures_2026_Jan01_Nov11_spatial",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "lodging_operating_spatial",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "lodging_nonoperating_spatial",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "lodging_new_2025_Jan01_Nov11_spatial",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "lodging_closures_2025_Jan01_Nov11_spatial",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "lodging_new_2026_Jan01_Nov11_spatial",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "lodging_closures_2026_Jan01_Nov11_spatial",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "od_202510_short_inflow_daily",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "od_202610_short_inflow_daily",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "od_Oct_vs_Oct_short_inflow_change_pct",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "od_202610_outside_seoul_short_inflow_daily",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "od_same_code_paired_days",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Identifier string; join only to same code system and vintage"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "od_holiday_adjusted",
+    "types": [
+      "boolean"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "od_202610_short_inflow_weekday_daily",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "od_202610_short_inflow_weekend_daily",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_source_days",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_purpose_total_cnt",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_purpose_short_forn_cnt",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_purpose_known_sex_age_cnt",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_purpose_known_male_share",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Fraction 0–1 unless explicitly suffixed pct; source-specific denominator"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_purpose_known_female_share",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Fraction 0–1 unless explicitly suffixed pct; source-specific denominator"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_purpose_known_age_under20_share",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Fraction 0–1 unless explicitly suffixed pct; source-specific denominator"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_purpose_known_age_20s_share",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Fraction 0–1 unless explicitly suffixed pct; source-specific denominator"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_purpose_known_age_30s_share",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Fraction 0–1 unless explicitly suffixed pct; source-specific denominator"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_purpose_known_age_40s_share",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Fraction 0–1 unless explicitly suffixed pct; source-specific denominator"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_purpose_known_age_50plus_share",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Fraction 0–1 unless explicitly suffixed pct; source-specific denominator"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_purpose_night_short_share",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Fraction 0–1 unless explicitly suffixed pct; source-specific denominator"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_purpose_mean_daily_short_arrivals",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_short_sex_age_available",
+    "types": [
+      "boolean"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_short_female_share",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Fraction 0–1 unless explicitly suffixed pct; source-specific denominator"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_short_male_share",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Fraction 0–1 unless explicitly suffixed pct; source-specific denominator"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_short_age_under20_share",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Fraction 0–1 unless explicitly suffixed pct; source-specific denominator"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_short_age_20s_share",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Fraction 0–1 unless explicitly suffixed pct; source-specific denominator"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_short_age_30s_share",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Fraction 0–1 unless explicitly suffixed pct; source-specific denominator"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_short_age_40s_share",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Fraction 0–1 unless explicitly suffixed pct; source-specific denominator"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_short_age_50plus_share",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Fraction 0–1 unless explicitly suffixed pct; source-specific denominator"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_trans_short_arrivals",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_trans_night_short_share",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Fraction 0–1 unless explicitly suffixed pct; source-specific denominator"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_trans_air_short_share",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Fraction 0–1 unless explicitly suffixed pct; source-specific denominator"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_trans_rail_short_share",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Fraction 0–1 unless explicitly suffixed pct; source-specific denominator"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_trans_express_bus_short_share",
+    "types": [
+      "number",
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Fraction 0–1 unless explicitly suffixed pct; source-specific denominator"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_trans_regional_bus_short_share",
+    "types": [
+      "number",
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Fraction 0–1 unless explicitly suffixed pct; source-specific denominator"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_trans_local_bus_short_share",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Fraction 0–1 unless explicitly suffixed pct; source-specific denominator"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_trans_subway_short_share",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Fraction 0–1 unless explicitly suffixed pct; source-specific denominator"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_trans_walk_short_share",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Fraction 0–1 unless explicitly suffixed pct; source-specific denominator"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_trans_vehicle_short_share",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Fraction 0–1 unless explicitly suffixed pct; source-specific denominator"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_trans_other_short_share",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Fraction 0–1 unless explicitly suffixed pct; source-specific denominator"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_baseline_202510_short_arrivals",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_purpose_short_yoy_pct",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_vehicle_is_family_verified",
+    "types": [
+      "boolean"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "segment_period",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "presence_comparison_valid_304days",
+    "types": [
+      "boolean"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "screen_low_presence_base_flag",
+    "types": [
+      "boolean"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "screen_valid",
+    "types": [
+      "boolean"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "geometry_supplemental_flag",
+    "types": [
+      "boolean"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "lodging_occupied_nights",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Nights in stated survey cohort; not occupancy"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "lodging_occupancy_rate",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "lodging_revenue_krw",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "meaning": "KRW; use domain period and denominator, not actual Airbnb host income"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "actual_lodging_balance_verified",
+    "types": [
+      "boolean"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "data_role",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "hold_reason",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "presence_high_concentration_ge_p75",
+    "types": [
+      "boolean"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "presence_growth_positive",
+    "types": [
+      "boolean"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "presence_high_and_growing",
+    "types": [
+      "boolean"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "screen_quadrant_foreigner_registry",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreigner_low_new_base_lt5_flag",
+    "types": [
+      "boolean"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "admin-dongs.json",
+    "field": "foreigner_operating_le5_flag",
+    "types": [
+      "boolean"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "definitions.json",
+    "field": "screening",
+    "types": [
+      "object"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "definitions.json",
+    "field": "evidence",
+    "types": [
+      "object"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "definitions.json",
+    "field": "periods",
+    "types": [
+      "object"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "definitions.json",
+    "field": "units",
+    "types": [
+      "object"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "dong_code",
+    "types": [
+      "string"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Identifier string; join only to same code system and vintage"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "gu",
+    "types": [
+      "string"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "dong",
+    "types": [
+      "string"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "daytype",
+    "types": [
+      "string"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "comparison",
+    "types": [
+      "string"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "same_code",
+    "types": [
+      "boolean"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Identifier string; join only to same code system and vintage"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "valid_days_202510",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "valid_days_202610",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "same_daynumber_paired_days_all",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "same_daynumber_and_both_in_this_daytype",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "metric_basis",
+    "types": [
+      "string"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "holiday_adjusted",
+    "types": [
+      "boolean"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "mean_202510_inflow_all_from_seoul",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "mean_202610_inflow_all_from_seoul",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "change_pct_inflow_all_from_seoul",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "mean_202510_inflow_short_from_seoul",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "mean_202610_inflow_short_from_seoul",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "change_pct_inflow_short_from_seoul",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "mean_202510_inflow_all_from_outside_seoul",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "mean_202610_inflow_all_from_outside_seoul",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "change_pct_inflow_all_from_outside_seoul",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "mean_202510_inflow_short_from_outside_seoul",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "mean_202610_inflow_short_from_outside_seoul",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "change_pct_inflow_short_from_outside_seoul",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "mean_202510_outflow_all_to_seoul",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "mean_202610_outflow_all_to_seoul",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "change_pct_outflow_all_to_seoul",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "mean_202510_outflow_short_to_seoul",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "mean_202610_outflow_short_to_seoul",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "change_pct_outflow_short_to_seoul",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "mean_202510_outflow_all_to_outside_seoul",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "mean_202610_outflow_all_to_outside_seoul",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "change_pct_outflow_all_to_outside_seoul",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "mean_202510_outflow_short_to_outside_seoul",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "mean_202610_outflow_short_to_outside_seoul",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "change_pct_outflow_short_to_outside_seoul",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "mean_202510_within_dong_all",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "mean_202610_within_dong_all",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "change_pct_within_dong_all",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "mean_202510_within_dong_short",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "mean_202610_within_dong_short",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "change_pct_within_dong_short",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "mean_202510_inflow_all_excl_same_dong",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "mean_202610_inflow_all_excl_same_dong",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "change_pct_inflow_all_excl_same_dong",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "mean_202510_inflow_short_excl_same_dong",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "mean_202610_inflow_short_excl_same_dong",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "change_pct_inflow_short_excl_same_dong",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "mean_202510_outflow_all_excl_same_dong",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "mean_202610_outflow_all_excl_same_dong",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "change_pct_outflow_all_excl_same_dong",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "mean_202510_outflow_short_excl_same_dong",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "mean_202610_outflow_short_excl_same_dong",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "od-by-daytype.json",
+    "field": "change_pct_outflow_short_excl_same_dong",
+    "types": [
+      "number"
+    ],
+    "rows": 1281,
+    "null_or_absent": 0,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  }
+]

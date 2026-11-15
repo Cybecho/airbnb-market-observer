@@ -1,0 +1,372 @@
+[
+  {
+    "file": "bedrooms.json",
+    "field": "bedroom_group",
+    "types": [
+      "string"
+    ],
+    "rows": 6,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "bedrooms.json",
+    "field": "listings",
+    "types": [],
+    "rows": 6,
+    "null_or_absent": 6,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "bedrooms.json",
+    "field": "median_annual_revenue_krw",
+    "types": [],
+    "rows": 6,
+    "null_or_absent": 6,
+    "meaning": "KRW; use domain period and denominator, not actual Airbnb host income"
+  },
+  {
+    "file": "bedrooms.json",
+    "field": "mean_annual_revenue_krw",
+    "types": [],
+    "rows": 6,
+    "null_or_absent": 6,
+    "meaning": "KRW; use domain period and denominator, not actual Airbnb host income"
+  },
+  {
+    "file": "bedrooms.json",
+    "field": "adr_krw",
+    "types": [],
+    "rows": 6,
+    "null_or_absent": 6,
+    "meaning": "KRW; use domain period and denominator, not actual Airbnb host income"
+  },
+  {
+    "file": "bedrooms.json",
+    "field": "reported_occupancy_pct",
+    "types": [],
+    "rows": 6,
+    "null_or_absent": 6,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "bedrooms.json",
+    "field": "period",
+    "types": [
+      "string"
+    ],
+    "rows": 6,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "bedrooms.json",
+    "field": "scope",
+    "types": [
+      "string"
+    ],
+    "rows": 6,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "bedrooms.json",
+    "field": "source_url",
+    "types": [
+      "string"
+    ],
+    "rows": 6,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "bedrooms.json",
+    "field": "observed_date",
+    "types": [
+      "string"
+    ],
+    "rows": 6,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "bedrooms.json",
+    "field": "evidence_grade",
+    "types": [
+      "string"
+    ],
+    "rows": 6,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "bedrooms.json",
+    "field": "limitations",
+    "types": [
+      "string"
+    ],
+    "rows": 6,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "bedrooms.json",
+    "field": "publication_status",
+    "types": [
+      "string"
+    ],
+    "rows": 6,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "definitions.json",
+    "field": "actual_airbnb_revenue_available",
+    "types": [
+      "boolean"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "definitions.json",
+    "field": "profit_calculation_supported",
+    "types": [
+      "boolean"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "definitions.json",
+    "field": "district",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "definitions.json",
+    "field": "bedrooms",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "definitions.json",
+    "field": "seasonality",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "definitions.json",
+    "field": "capacity",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "definitions.json",
+    "field": "publication",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "district-historical.json",
+    "field": "구",
+    "types": [
+      "string"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "district-historical.json",
+    "field": "화면기준월",
+    "types": [
+      "string"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "district-historical.json",
+    "field": "중위연매출_원",
+    "types": [],
+    "rows": 25,
+    "null_or_absent": 25,
+    "meaning": "KRW; use domain period and denominator, not actual Airbnb host income"
+  },
+  {
+    "file": "district-historical.json",
+    "field": "중위가동률",
+    "types": [],
+    "rows": 25,
+    "null_or_absent": 25,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "district-historical.json",
+    "field": "중위ADR_원",
+    "types": [],
+    "rows": 25,
+    "null_or_absent": 25,
+    "meaning": "KRW; use domain period and denominator, not actual Airbnb host income"
+  },
+  {
+    "file": "district-historical.json",
+    "field": "활성리스팅_사이트",
+    "types": [],
+    "rows": 25,
+    "null_or_absent": 25,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "district-historical.json",
+    "field": "출처URL",
+    "types": [
+      "string"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "district-historical.json",
+    "field": "관측시각_UTC",
+    "types": [
+      "string"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "district-historical.json",
+    "field": "publication_status",
+    "types": [
+      "string"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "district-historical.json",
+    "field": "metric_type",
+    "types": [
+      "string"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "district-historical.json",
+    "field": "currency",
+    "types": [
+      "string"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "district-historical.json",
+    "field": "period_basis",
+    "types": [
+      "string"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "seasonality.json",
+    "field": "month",
+    "types": [
+      "string"
+    ],
+    "rows": 12,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "seasonality.json",
+    "field": "mean_monthly_revenue_KRW",
+    "types": [],
+    "rows": 12,
+    "null_or_absent": 12,
+    "meaning": "KRW; use domain period and denominator, not actual Airbnb host income"
+  },
+  {
+    "file": "seasonality.json",
+    "field": "occupancy_pct",
+    "types": [],
+    "rows": 12,
+    "null_or_absent": 12,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "seasonality.json",
+    "field": "adr_KRW",
+    "types": [],
+    "rows": 12,
+    "null_or_absent": 12,
+    "meaning": "KRW; use domain period and denominator, not actual Airbnb host income"
+  },
+  {
+    "file": "seasonality.json",
+    "field": "revpar_KRW",
+    "types": [],
+    "rows": 12,
+    "null_or_absent": 12,
+    "meaning": "KRW; use domain period and denominator, not actual Airbnb host income"
+  },
+  {
+    "file": "seasonality.json",
+    "field": "lead_days",
+    "types": [],
+    "rows": 12,
+    "null_or_absent": 12,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "seasonality.json",
+    "field": "stay_nights",
+    "types": [],
+    "rows": 12,
+    "null_or_absent": 12,
+    "meaning": "Nights in stated survey cohort; not occupancy"
+  },
+  {
+    "file": "seasonality.json",
+    "field": "publication_status",
+    "types": [
+      "string"
+    ],
+    "rows": 12,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  }
+]

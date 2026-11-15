@@ -1,0 +1,642 @@
+[
+  {
+    "file": "coverage.json",
+    "field": "summary",
+    "types": [
+      "object"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "coverage.json",
+    "field": "period_audits",
+    "types": [
+      "array"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "coverage.json",
+    "field": "rows_total",
+    "types": [
+      "number"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "coverage.json",
+    "field": "master_rows",
+    "types": [
+      "number"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "coverage.json",
+    "field": "gu_rows",
+    "types": [
+      "number"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "coverage.json",
+    "field": "source_file_count",
+    "types": [
+      "number"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "coverage.json",
+    "field": "missing_imputation",
+    "types": [
+      "boolean"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "coverage.json",
+    "field": "annual_independent_parser_crosscheck",
+    "types": [
+      "array"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "coverage.json",
+    "field": "hotel_old_raw_rows",
+    "types": [
+      "number"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "coverage.json",
+    "field": "hotel_old_valid_numeric_rows",
+    "types": [
+      "number"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "coverage.json",
+    "field": "unmatched_source_rows",
+    "types": [
+      "number"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "coverage.json",
+    "field": "definition",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "input-manifest.json",
+    "field": "id",
+    "types": [
+      "string"
+    ],
+    "rows": 15,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "input-manifest.json",
+    "field": "file",
+    "types": [
+      "string"
+    ],
+    "rows": 15,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "input-manifest.json",
+    "field": "bytes",
+    "types": [
+      "number"
+    ],
+    "rows": 15,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "input-manifest.json",
+    "field": "sha256",
+    "types": [
+      "string"
+    ],
+    "rows": 15,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "input-manifest.json",
+    "field": "source_url",
+    "types": [
+      "string"
+    ],
+    "rows": 15,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "input-manifest.json",
+    "field": "status",
+    "types": [
+      "string"
+    ],
+    "rows": 15,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "input-manifest.json",
+    "field": "original_in_repository",
+    "types": [
+      "boolean"
+    ],
+    "rows": 15,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "kto-excluded-originals.json",
+    "field": "period",
+    "types": [
+      "string"
+    ],
+    "rows": 75,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "kto-excluded-originals.json",
+    "field": "period_start",
+    "types": [
+      "string"
+    ],
+    "rows": 75,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "kto-excluded-originals.json",
+    "field": "period_end",
+    "types": [
+      "string"
+    ],
+    "rows": 75,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "kto-excluded-originals.json",
+    "field": "gu",
+    "types": [
+      "string"
+    ],
+    "rows": 75,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "kto-excluded-originals.json",
+    "field": "industry",
+    "types": [
+      "string"
+    ],
+    "rows": 75,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "kto-excluded-originals.json",
+    "field": "unit",
+    "types": [
+      "string"
+    ],
+    "rows": 75,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "kto-excluded-originals.json",
+    "field": "gender_filter",
+    "types": [
+      "string"
+    ],
+    "rows": 75,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "kto-excluded-originals.json",
+    "field": "age_filter",
+    "types": [
+      "string"
+    ],
+    "rows": 75,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "kto-excluded-originals.json",
+    "field": "file",
+    "types": [
+      "string"
+    ],
+    "rows": 75,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "kto-excluded-originals.json",
+    "field": "bytes",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "kto-excluded-originals.json",
+    "field": "sha256",
+    "types": [
+      "string"
+    ],
+    "rows": 75,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "kto-excluded-originals.json",
+    "field": "csv_count",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "kto-excluded-originals.json",
+    "field": "rows",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "kto-excluded-originals.json",
+    "field": "native_filename",
+    "types": [
+      "string"
+    ],
+    "rows": 75,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "kto-excluded-originals.json",
+    "field": "source_url",
+    "types": [
+      "string"
+    ],
+    "rows": 75,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "kto-excluded-originals.json",
+    "field": "scope",
+    "types": [
+      "string"
+    ],
+    "rows": 75,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "kto-excluded-originals.json",
+    "field": "publication_status",
+    "types": [
+      "string"
+    ],
+    "rows": 75,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "rent-originals.json",
+    "field": "source_url",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "rent-originals.json",
+    "field": "portal_catalog_url",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "rent-originals.json",
+    "field": "accessed_at",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "rent-originals.json",
+    "field": "live_ui_data_update",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "rent-originals.json",
+    "field": "annual_zip_displayed_modified",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "rent-originals.json",
+    "field": "annual_download_endpoint",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "rent-originals.json",
+    "field": "sheet_download_endpoint",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "rent-originals.json",
+    "field": "download_method",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "rent-originals.json",
+    "field": "license",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "rent-originals.json",
+    "field": "files",
+    "types": [
+      "array"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "rent-originals.json",
+    "field": "quality",
+    "types": [
+      "object"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "rent-originals.json",
+    "field": "annual_zip_sha256",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "sources.json",
+    "field": "id",
+    "types": [
+      "string"
+    ],
+    "rows": 20,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "sources.json",
+    "field": "title",
+    "types": [
+      "string"
+    ],
+    "rows": 20,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "sources.json",
+    "field": "source_url",
+    "types": [
+      "string"
+    ],
+    "rows": 20,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "sources.json",
+    "field": "owner",
+    "types": [
+      "string"
+    ],
+    "rows": 20,
+    "null_or_absent": 9,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "sources.json",
+    "field": "license",
+    "types": [
+      "string"
+    ],
+    "rows": 20,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "sources.json",
+    "field": "license_url",
+    "types": [
+      "string"
+    ],
+    "rows": 20,
+    "null_or_absent": 9,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "sources.json",
+    "field": "period",
+    "types": [
+      "string"
+    ],
+    "rows": 20,
+    "null_or_absent": 9,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "sources.json",
+    "field": "grain",
+    "types": [
+      "string"
+    ],
+    "rows": 20,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "sources.json",
+    "field": "retrieved_at",
+    "types": [
+      "string"
+    ],
+    "rows": 20,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "sources.json",
+    "field": "redistribution_status",
+    "types": [
+      "string"
+    ],
+    "rows": 20,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "sources.json",
+    "field": "modification_note",
+    "types": [
+      "string"
+    ],
+    "rows": 20,
+    "null_or_absent": 9,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "survey-originals.json",
+    "field": "page",
+    "types": [
+      "string"
+    ],
+    "rows": 2,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "survey-originals.json",
+    "field": "url",
+    "types": [
+      "string"
+    ],
+    "rows": 2,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "survey-originals.json",
+    "field": "file",
+    "types": [
+      "string"
+    ],
+    "rows": 2,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "survey-originals.json",
+    "field": "bytes",
+    "types": [
+      "number"
+    ],
+    "rows": 2,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "survey-originals.json",
+    "field": "observed",
+    "types": [
+      "string"
+    ],
+    "rows": 2,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  }
+]

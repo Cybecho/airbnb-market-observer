@@ -1,0 +1,12 @@
+[
+  {
+    "period": "2025",
+    "country_dimension": "국가(예:러시아)",
+    "location_dimension": "시도 수준 지역비율만 관찰",
+    "industry_dimension": "숙박업 대분류만 관찰",
+    "metric": "신용카드 관광소비",
+    "official_direct_cross": "NO",
+    "denominator_status": "국가비율=전체 외국인 소비 대비 해당 국가 소비; 숙박/구동 분모 아님",
+    "decision": "국가별 관광전체 비중을 호텔·기타숙박 또는 구동 금액에 곱하지 않음"
+  }
+]

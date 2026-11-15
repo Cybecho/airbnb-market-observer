@@ -1,0 +1,502 @@
+[
+  {
+    "file": "legal-dongs.json",
+    "field": "legal_dong_code",
+    "types": [
+      "string"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Identifier string; join only to same code system and vintage"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "gu",
+    "types": [
+      "string"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "legal_dong",
+    "types": [
+      "string"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "foreigner_current_operating",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "foreigner_current_suspended",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "foreigner_current_closed",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "foreigner_current_other",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "foreigner_total_records",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "foreigner_new_permits_2025_Jan01_Nov11",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "foreigner_closures_2025_Jan01_Nov11",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "foreigner_cancellations_2025_Jan01_Nov11",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "foreigner_new_permits_2026_Jan01_Nov11",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "foreigner_closures_2026_Jan01_Nov11",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "foreigner_cancellations_2026_Jan01_Nov11",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "hanok_current_operating",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "hanok_current_suspended",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "hanok_current_closed",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "hanok_current_other",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "hanok_total_records",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "hanok_new_permits_2025_Jan01_Nov11",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "hanok_closures_2025_Jan01_Nov11",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "hanok_cancellations_2025_Jan01_Nov11",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "hanok_new_permits_2026_Jan01_Nov11",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "hanok_closures_2026_Jan01_Nov11",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "hanok_cancellations_2026_Jan01_Nov11",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "tourist_current_operating",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "tourist_current_suspended",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "tourist_current_closed",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "tourist_current_other",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "tourist_total_records",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "tourist_new_permits_2025_Jan01_Nov11",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "tourist_closures_2025_Jan01_Nov11",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "tourist_cancellations_2025_Jan01_Nov11",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "tourist_new_permits_2026_Jan01_Nov11",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "tourist_closures_2026_Jan01_Nov11",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "tourist_cancellations_2026_Jan01_Nov11",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "lodging_current_operating",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "lodging_current_suspended",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "lodging_current_closed",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "lodging_current_other",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "lodging_total_records",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "lodging_new_permits_2025_Jan01_Nov11",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "lodging_closures_2025_Jan01_Nov11",
+    "types": [],
+    "rows": 467,
+    "null_or_absent": 467,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "lodging_cancellations_2025_Jan01_Nov11",
+    "types": [],
+    "rows": 467,
+    "null_or_absent": 467,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "lodging_new_permits_2026_Jan01_Nov11",
+    "types": [
+      "number"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "lodging_closures_2026_Jan01_Nov11",
+    "types": [],
+    "rows": 467,
+    "null_or_absent": 467,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "lodging_cancellations_2026_Jan01_Nov11",
+    "types": [],
+    "rows": 467,
+    "null_or_absent": 467,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "demand_not_name_allocated",
+    "types": [
+      "boolean"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "actual_lodging_balance_verified",
+    "types": [
+      "boolean"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "lodging_revenue_krw",
+    "types": [],
+    "rows": 467,
+    "null_or_absent": 467,
+    "meaning": "KRW; use domain period and denominator, not actual Airbnb host income"
+  },
+  {
+    "file": "legal-dongs.json",
+    "field": "hold_reason",
+    "types": [
+      "string"
+    ],
+    "rows": 467,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  }
+]

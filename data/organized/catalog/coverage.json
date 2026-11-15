@@ -1,0 +1,184 @@
+{
+  "summary": {
+    "annual_other_dongs": 313,
+    "latest_other_dongs": 312,
+    "matched_comparison_dongs": 300,
+    "annual_any_customer_dongs": 319,
+    "official_zip_count": 75,
+    "age_category_missing_count": 508,
+    "annual_previous_overlap_matches": 872,
+    "annual_previous_overlap_rows": 872,
+    "female_comparison_dongs": 300,
+    "age20_30_comparison_dongs": 245,
+    "age40_50_comparison_dongs": 245,
+    "periods": {
+      "2025_full": {
+        "start": "2025-01-01",
+        "end": "2025-12-31"
+      },
+      "2025_jan_oct": {
+        "start": "2025-01-01",
+        "end": "2025-10-31"
+      },
+      "2026_jan_oct": {
+        "start": "2026-01-01",
+        "end": "2026-10-31"
+      }
+    },
+    "source_scope": "KTO 기타숙박, 신한카드 내국인·온라인 제외·성연령 파악 가능 소비금액 구성비, 거래표본수 미제공",
+    "no_gender_age_independence_assumption": true
+  },
+  "period_audits": [
+    {
+      "period": "2025_full",
+      "zip_count": 25,
+      "csv_count": 50,
+      "raw_rows": 2622,
+      "source_dongs": 313,
+      "mapped_dongs": 313,
+      "unmatched_rows": 0,
+      "exact_rows": 2622,
+      "dot_normalized_rows": 0,
+      "female_dongs": 313,
+      "gender_complete_dongs": 313,
+      "all8_age_dongs": 155,
+      "age20_30_dongs": 259,
+      "age40_50_dongs": 260,
+      "age60plus_dongs": 166,
+      "source_row_null_pct": 0,
+      "source_observed_zero_pct": 35,
+      "missing_age_cells_in_provided_dongs": 508,
+      "age_sum_min": 99.98,
+      "age_sum_max": 100.02,
+      "gender_sum_min": 100,
+      "gender_sum_max": 100,
+      "duplicate_keys": 0
+    },
+    {
+      "period": "2025_jan_oct",
+      "zip_count": 25,
+      "csv_count": 50,
+      "raw_rows": 2572,
+      "source_dongs": 306,
+      "mapped_dongs": 306,
+      "unmatched_rows": 0,
+      "exact_rows": 2572,
+      "dot_normalized_rows": 0,
+      "female_dongs": 306,
+      "gender_complete_dongs": 306,
+      "all8_age_dongs": 145,
+      "age20_30_dongs": 257,
+      "age40_50_dongs": 259,
+      "age60plus_dongs": 157,
+      "source_row_null_pct": 0,
+      "source_observed_zero_pct": 28,
+      "missing_age_cells_in_provided_dongs": 488,
+      "age_sum_min": 99.98,
+      "age_sum_max": 100.02,
+      "gender_sum_min": 100,
+      "gender_sum_max": 100,
+      "duplicate_keys": 0
+    },
+    {
+      "period": "2026_jan_oct",
+      "zip_count": 25,
+      "csv_count": 50,
+      "raw_rows": 2563,
+      "source_dongs": 312,
+      "mapped_dongs": 312,
+      "unmatched_rows": 0,
+      "exact_rows": 2563,
+      "dot_normalized_rows": 0,
+      "female_dongs": 312,
+      "gender_complete_dongs": 312,
+      "all8_age_dongs": 147,
+      "age20_30_dongs": 253,
+      "age40_50_dongs": 254,
+      "age60plus_dongs": 158,
+      "source_row_null_pct": 0,
+      "source_observed_zero_pct": 37,
+      "missing_age_cells_in_provided_dongs": 557,
+      "age_sum_min": 99.98,
+      "age_sum_max": 100.02,
+      "gender_sum_min": 100,
+      "gender_sum_max": 100,
+      "duplicate_keys": 0
+    }
+  ],
+  "rows_total": 7757,
+  "master_rows": 427,
+  "gu_rows": 25,
+  "source_file_count": 75,
+  "missing_imputation": false,
+  "annual_independent_parser_crosscheck": [
+    {
+      "field": "female_pct",
+      "tested": 427,
+      "mismatches": 0
+    },
+    {
+      "field": "male_pct",
+      "tested": 427,
+      "mismatches": 0
+    },
+    {
+      "field": "age10_pct",
+      "tested": 427,
+      "mismatches": 0
+    },
+    {
+      "field": "age20_pct",
+      "tested": 427,
+      "mismatches": 0
+    },
+    {
+      "field": "age30_pct",
+      "tested": 427,
+      "mismatches": 0
+    },
+    {
+      "field": "age40_pct",
+      "tested": 427,
+      "mismatches": 0
+    },
+    {
+      "field": "age50_pct",
+      "tested": 427,
+      "mismatches": 0
+    },
+    {
+      "field": "age60_pct",
+      "tested": 427,
+      "mismatches": 0
+    },
+    {
+      "field": "age70_pct",
+      "tested": 427,
+      "mismatches": 0
+    },
+    {
+      "field": "age80_pct",
+      "tested": 427,
+      "mismatches": 0
+    },
+    {
+      "field": "age20_30_pct",
+      "tested": 427,
+      "mismatches": 0
+    },
+    {
+      "field": "age40_50_pct",
+      "tested": 427,
+      "mismatches": 0
+    },
+    {
+      "field": "age60plus_pct",
+      "tested": 427,
+      "mismatches": 0
+    }
+  ],
+  "hotel_old_raw_rows": 773,
+  "hotel_old_valid_numeric_rows": 772,
+  "unmatched_source_rows": 0,
+  "definition": "All deltas are percentage points; matched Jan-Oct windows only. Trade volume, guest count, significance, causality, joint sex-age composition, and Airbnb outcomes are not identified."
+}

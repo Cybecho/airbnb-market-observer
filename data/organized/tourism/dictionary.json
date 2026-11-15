@@ -1,0 +1,442 @@
+[
+  {
+    "file": "definitions.json",
+    "field": "official_url",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "definitions.json",
+    "field": "menu",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "definitions.json",
+    "field": "data_provider",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "definitions.json",
+    "field": "official_purpose",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "definitions.json",
+    "field": "period_available",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "definitions.json",
+    "field": "unit",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "definitions.json",
+    "field": "foreign_scope_notes",
+    "types": [
+      "array"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "definitions.json",
+    "field": "industry_notes",
+    "types": [
+      "array"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "definitions.json",
+    "field": "online_notes",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "definitions.json",
+    "field": "other_lodging_definition",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "nationality-support.json",
+    "field": "period",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "nationality-support.json",
+    "field": "country_dimension",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "nationality-support.json",
+    "field": "location_dimension",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "nationality-support.json",
+    "field": "industry_dimension",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "nationality-support.json",
+    "field": "metric",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "nationality-support.json",
+    "field": "official_direct_cross",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "nationality-support.json",
+    "field": "denominator_status",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "nationality-support.json",
+    "field": "decision",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "residence-country-historical.json",
+    "field": "residence_country_code",
+    "types": [
+      "string"
+    ],
+    "rows": 19,
+    "null_or_absent": 0,
+    "meaning": "Identifier string; join only to same code system and vintage"
+  },
+  {
+    "file": "residence-country-historical.json",
+    "field": "residence_country",
+    "types": [
+      "string"
+    ],
+    "rows": 19,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "residence-country-historical.json",
+    "field": "subgroup",
+    "types": [
+      "string"
+    ],
+    "rows": 19,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "residence-country-historical.json",
+    "field": "n",
+    "types": [
+      "number"
+    ],
+    "rows": 19,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "residence-country-historical.json",
+    "field": "small_n_lt30",
+    "types": [
+      "boolean"
+    ],
+    "rows": 19,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "residence-country-historical.json",
+    "field": "shared_usage_pct_within_country",
+    "types": [
+      "number"
+    ],
+    "rows": 19,
+    "null_or_absent": 0,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "residence-country-historical.json",
+    "field": "solo_pct",
+    "types": [
+      "number"
+    ],
+    "rows": 19,
+    "null_or_absent": 0,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "residence-country-historical.json",
+    "field": "family_pct",
+    "types": [
+      "number"
+    ],
+    "rows": 19,
+    "null_or_absent": 0,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "residence-country-historical.json",
+    "field": "friends_partner_pct",
+    "types": [
+      "number"
+    ],
+    "rows": 19,
+    "null_or_absent": 0,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "residence-country-historical.json",
+    "field": "coworker_pct",
+    "types": [
+      "number"
+    ],
+    "rows": 19,
+    "null_or_absent": 0,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "residence-country-historical.json",
+    "field": "myeongdong_pct",
+    "types": [
+      "number"
+    ],
+    "rows": 19,
+    "null_or_absent": 0,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "residence-country-historical.json",
+    "field": "hongdae_pct",
+    "types": [
+      "number"
+    ],
+    "rows": 19,
+    "null_or_absent": 0,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "residence-country-historical.json",
+    "field": "gangnam_pct",
+    "types": [
+      "number"
+    ],
+    "rows": 19,
+    "null_or_absent": 0,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "residence-country-historical.json",
+    "field": "seongsu_pct",
+    "types": [
+      "number"
+    ],
+    "rows": 19,
+    "null_or_absent": 0,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "residence-country-historical.json",
+    "field": "itaewon_pct",
+    "types": [
+      "number"
+    ],
+    "rows": 19,
+    "null_or_absent": 0,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "residence-country-historical.json",
+    "field": "party_mean_including_self",
+    "types": [
+      "number"
+    ],
+    "rows": 19,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "residence-country-historical.json",
+    "field": "nights_mean_raw_D2_A",
+    "types": [
+      "number"
+    ],
+    "rows": 19,
+    "null_or_absent": 0,
+    "meaning": "Nights in stated survey cohort; not occupancy"
+  },
+  {
+    "file": "residence-country-historical.json",
+    "field": "status",
+    "types": [
+      "string"
+    ],
+    "rows": 19,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "residence-country-historical.json",
+    "field": "dimension",
+    "types": [
+      "string"
+    ],
+    "rows": 19,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "visitor-summary.json",
+    "field": "source_url",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "visitor-summary.json",
+    "field": "retrieved",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "visitor-summary.json",
+    "field": "period",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "visitor-summary.json",
+    "field": "geography",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "visitor-summary.json",
+    "field": "foreign_visitors",
+    "types": [
+      "object"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "visitor-summary.json",
+    "field": "credit_card_tourism_spend_million_krw",
+    "types": [
+      "object"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "KRW; use domain period and denominator, not actual Airbnb host income"
+  },
+  {
+    "file": "visitor-summary.json",
+    "field": "caveats",
+    "types": [
+      "array"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  }
+]

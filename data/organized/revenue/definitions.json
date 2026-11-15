@@ -1,0 +1,9 @@
+{
+  "actual_airbnb_revenue_available": false,
+  "profit_calculation_supported": false,
+  "district": "Airbtics median annual model revenue, KRW, September 2026 UI; not monthly mean or host payout",
+  "bedrooms": "AirROI Seoul entire homes with bedroom count, November 2025–October 2026; not building-ledger use/floor area",
+  "seasonality": "AirROI monthly means October 2025–September 2026; active-month listing population differs from annual population",
+  "capacity": "Gongichang recent three months, exact dates not supplied; personnel-scale label not verified as actual party size or listing capacity",
+  "publication": "Systematic vendor values withheld pending permission. Structural rows are provenance placeholders; null is not zero."
+}

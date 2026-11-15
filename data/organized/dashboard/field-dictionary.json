@@ -1,0 +1,2840 @@
+[
+  {
+    "table": "rows",
+    "field": "admin_code",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "identifier string",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "gu",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "admin_name",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "foreign_yoy_mean_2026_04",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "2026",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "foreign_yoy_yoy_pct_04",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "presence_comparison_valid_304days",
+    "types": [
+      "boolean"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "foreigner_operating_spatial",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "hanok_operating_spatial",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "tourist_operating_spatial",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "lodging_operating_spatial",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "screen_quadrant_foreigner_registry",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "inn_당월_매출_금액",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 238,
+    "unit": "KRW",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "inn_당월_매출_건수",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 238,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "inn_남성_매출_금액",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 238,
+    "unit": "KRW",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "inn_여성_매출_금액",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 238,
+    "unit": "KRW",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "inn_연령대_10_매출_금액",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 238,
+    "unit": "KRW",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "inn_연령대_20_매출_금액",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 238,
+    "unit": "KRW",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "inn_연령대_30_매출_금액",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 238,
+    "unit": "KRW",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "inn_연령대_40_매출_금액",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 238,
+    "unit": "KRW",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "inn_연령대_50_매출_금액",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 238,
+    "unit": "KRW",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "inn_연령대_60_이상_매출_금액",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 238,
+    "unit": "KRW",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "inn_sex_amount_coverage_pct",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 238,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "inn_female_within_sex_provided_pct",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 238,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "guesthouse_store_2024Q2",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 5,
+    "unit": "see CONTRACT semantic family",
+    "period": "2024Q2",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "guesthouse_store_2025Q2",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 5,
+    "unit": "see CONTRACT semantic family",
+    "period": "2025Q2",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "guesthouse_store_2026Q2",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 5,
+    "unit": "see CONTRACT semantic family",
+    "period": "2026Q2",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "source_admin_name",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 5,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "join_status",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 5,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "hotel_남성_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "hotel_여성_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "hotel_10대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "hotel_20대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "hotel_30대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "hotel_40대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "hotel_50대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "hotel_60대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "hotel_70대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "hotel_80대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "hotel_age20_30_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "hotel_top_age",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "hotel_top_age_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "other_남성_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "other_여성_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "other_10대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "other_20대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "other_30대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "other_40대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "other_50대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "other_60대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "other_70대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "other_80대_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "other_age20_30_consumption_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "other_top_age",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "other_top_age_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "inn_store_2026Q2",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 5,
+    "unit": "see CONTRACT semantic family",
+    "period": "2026Q2",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "inn_monthly_per_store_calc_krw",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 238,
+    "unit": "KRW",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "inn_monthly_per_store_ui_10k_krw",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 417,
+    "unit": "10000 KRW",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "inn_monthly_display_krw",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 233,
+    "unit": "KRW",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "inn_monthly_display_source",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "customer_scope",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "lodging_customer_country_by_dong",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "airbnb_revenue_by_dong_krw",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "KRW",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "bedroom_or_area_revenue_by_dong",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "coverage_note",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_full_female_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_full",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_full_male_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_full",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_full_age10_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_full",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_full_age20_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_full",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_full_age30_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_full",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_full_age40_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_full",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_full_age50_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_full",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_full_age60_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_full",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_full_age70_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_full",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_full_age80_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_full",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_full_age20_30_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_full",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_full_age40_50_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_full",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_full_age60plus_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_full",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_full_age_category_count",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "2025_full",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_full_gender_category_count",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "2025_full",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_full_source_row_count",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "2025_full",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_full_join_status",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "2025_full",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_full_top_age",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "see CONTRACT semantic family",
+    "period": "2025_full",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_full_top_age_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_full",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_full_age_provided_sum_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_full",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_full_gender_provided_sum_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_full",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_full_profile_flag",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "see CONTRACT semantic family",
+    "period": "2025_full",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_full_age_majority_note",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "see CONTRACT semantic family",
+    "period": "2025_full",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_full_source_zip",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "2025_full",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_full_source_url",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "2025_full",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_jan_oct_female_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_jan_oct_male_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_jan_oct_age10_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_jan_oct_age20_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_jan_oct_age30_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_jan_oct_age40_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_jan_oct_age50_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_jan_oct_age60_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_jan_oct_age70_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_jan_oct_age80_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_jan_oct_age20_30_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_jan_oct_age40_50_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_jan_oct_age60plus_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_jan_oct_age_category_count",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "2025_jan_oct",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_jan_oct_gender_category_count",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "2025_jan_oct",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_jan_oct_source_row_count",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "2025_jan_oct",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_jan_oct_join_status",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "2025_jan_oct",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_jan_oct_top_age",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "see CONTRACT semantic family",
+    "period": "2025_jan_oct",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_jan_oct_top_age_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_jan_oct_age_provided_sum_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_jan_oct_gender_provided_sum_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2025_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_jan_oct_profile_flag",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "see CONTRACT semantic family",
+    "period": "2025_jan_oct",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_jan_oct_age_majority_note",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "see CONTRACT semantic family",
+    "period": "2025_jan_oct",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_jan_oct_source_zip",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "2025_jan_oct",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2025_jan_oct_source_url",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "2025_jan_oct",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2026_jan_oct_female_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2026_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2026_jan_oct_male_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2026_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2026_jan_oct_age10_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2026_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2026_jan_oct_age20_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2026_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2026_jan_oct_age30_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2026_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2026_jan_oct_age40_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2026_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2026_jan_oct_age50_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2026_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2026_jan_oct_age60_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2026_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2026_jan_oct_age70_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2026_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2026_jan_oct_age80_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2026_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2026_jan_oct_age20_30_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2026_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2026_jan_oct_age40_50_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2026_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2026_jan_oct_age60plus_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2026_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2026_jan_oct_age_category_count",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "2026_jan_oct",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2026_jan_oct_gender_category_count",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "2026_jan_oct",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2026_jan_oct_source_row_count",
+    "types": [
+      "number"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "2026_jan_oct",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2026_jan_oct_join_status",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "2026_jan_oct",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2026_jan_oct_top_age",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "see CONTRACT semantic family",
+    "period": "2026_jan_oct",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2026_jan_oct_top_age_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2026_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2026_jan_oct_age_provided_sum_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2026_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2026_jan_oct_gender_provided_sum_pct",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percent",
+    "period": "2026_jan_oct",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2026_jan_oct_profile_flag",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "see CONTRACT semantic family",
+    "period": "2026_jan_oct",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2026_jan_oct_age_majority_note",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "see CONTRACT semantic family",
+    "period": "2026_jan_oct",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2026_jan_oct_source_zip",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "2026_jan_oct",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "m3_2026_jan_oct_source_url",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "2026_jan_oct",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "m3_delta_female_pp",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percentage points",
+    "period": "table/source-defined",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_delta_male_pp",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percentage points",
+    "period": "table/source-defined",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_delta_age20_30_pp",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percentage points",
+    "period": "table/source-defined",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_delta_age40_50_pp",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percentage points",
+    "period": "table/source-defined",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_delta_age60plus_pp",
+    "types": [],
+    "rows": 427,
+    "null_or_absent": 427,
+    "unit": "percentage points",
+    "period": "table/source-defined",
+    "status": "withheld_by_license; original coverage separately retained"
+  },
+  {
+    "table": "rows",
+    "field": "m3_common_source_periods",
+    "types": [
+      "boolean"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "rows",
+    "field": "customer_values_publication_status",
+    "types": [
+      "string"
+    ],
+    "rows": 427,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "gu",
+    "field": "gu",
+    "types": [
+      "string"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "gu",
+    "field": "foreign_other_seoul_share_pct_2025",
+    "types": [],
+    "rows": 25,
+    "null_or_absent": 25,
+    "unit": "percent",
+    "period": "2025",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "gu",
+    "field": "foreign_hotel_seoul_share_pct_2025",
+    "types": [],
+    "rows": 25,
+    "null_or_absent": 25,
+    "unit": "percent",
+    "period": "2025",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "gu",
+    "field": "industry_code",
+    "types": [
+      "string"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "unit": "identifier string",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "gu",
+    "field": "industry",
+    "types": [
+      "string"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "gu",
+    "field": "all_stores_2024Q2",
+    "types": [
+      "number"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "2024Q2",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "gu",
+    "field": "franchise_2024Q2",
+    "types": [
+      "number"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "2024Q2",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "gu",
+    "field": "general_2024Q2",
+    "types": [
+      "number"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "2024Q2",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "gu",
+    "field": "all_stores_2025Q2",
+    "types": [
+      "number"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "2025Q2",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "gu",
+    "field": "franchise_2025Q2",
+    "types": [
+      "number"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "2025Q2",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "gu",
+    "field": "general_2025Q2",
+    "types": [
+      "number"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "2025Q2",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "gu",
+    "field": "all_stores_2026Q2",
+    "types": [
+      "number"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "2026Q2",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "gu",
+    "field": "franchise_2026Q2",
+    "types": [
+      "number"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "2026Q2",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "gu",
+    "field": "general_2026Q2",
+    "types": [
+      "number"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "2026Q2",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "gu",
+    "field": "source_url",
+    "types": [
+      "string"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "gu",
+    "field": "gu_filter",
+    "types": [
+      "string"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "gu",
+    "field": "demand_statement",
+    "types": [],
+    "rows": 25,
+    "null_or_absent": 25,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "gu",
+    "field": "vendor_source_url",
+    "types": [
+      "string"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "gu",
+    "field": "evidence_grade",
+    "types": [
+      "string"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "gu",
+    "field": "current_dongs",
+    "types": [
+      "number"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "gu",
+    "field": "other_customer_dongs",
+    "types": [
+      "number"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "gu",
+    "field": "hotel_customer_dongs",
+    "types": [
+      "number"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "gu",
+    "field": "inn_raw_revenue_dongs",
+    "types": [
+      "number"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "gu",
+    "field": "inn_monthly_available_dongs",
+    "types": [
+      "number"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "gu",
+    "field": "m3_annual_other_dongs",
+    "types": [
+      "number"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "gu",
+    "field": "m3_latest_other_dongs",
+    "types": [
+      "number"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "gu",
+    "field": "m3_comparison_dongs",
+    "types": [
+      "number"
+    ],
+    "rows": 25,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "cohort",
+    "types": [
+      "string"
+    ],
+    "rows": 75,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "dimension",
+    "types": [
+      "string"
+    ],
+    "rows": 75,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "category",
+    "types": [
+      "string"
+    ],
+    "rows": 75,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "within_cohort_unweighted_pct",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "within_cohort_weighted_pct",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "n",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "weighted_base",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "kish_effective_n",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "small_n_lt30",
+    "types": [
+      "boolean"
+    ],
+    "rows": 75,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "party_n_valid",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "party_n_missing",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "party_weighted_mean",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "party_weighted_median",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "party_unweighted_mean",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "party_unweighted_median",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "seoul_nights_n_valid",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "nights",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "seoul_nights_n_missing",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "nights",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "seoul_nights_weighted_mean",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "nights",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "seoul_nights_weighted_median",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "nights",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "seoul_nights_unweighted_mean",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "nights",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "seoul_nights_unweighted_median",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "nights",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "shared_lodging_nights_n_valid",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "nights",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "shared_lodging_nights_n_missing",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "nights",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "shared_lodging_nights_weighted_mean",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "nights",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "shared_lodging_nights_weighted_median",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "nights",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "shared_lodging_nights_unweighted_mean",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "nights",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "shared_lodging_nights_unweighted_median",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "nights",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "total_lodging_nights_n_valid",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "nights",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "total_lodging_nights_n_missing",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "nights",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "total_lodging_nights_weighted_mean",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "nights",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "total_lodging_nights_weighted_median",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "nights",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "total_lodging_nights_unweighted_mean",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "nights",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "total_lodging_nights_unweighted_median",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "nights",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "per_person_trip_lodging_spend_krw_n_valid",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "KRW",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "per_person_trip_lodging_spend_krw_n_missing",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "KRW",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "per_person_trip_lodging_spend_krw_weighted_mean",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "KRW",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "per_person_trip_lodging_spend_krw_weighted_median",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "KRW",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "per_person_trip_lodging_spend_krw_unweighted_mean",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "KRW",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "per_person_trip_lodging_spend_krw_unweighted_median",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "KRW",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "per_person_trip_lodging_spend_zero_n",
+    "types": [
+      "number"
+    ],
+    "rows": 75,
+    "null_or_absent": 23,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "scope",
+    "types": [
+      "string"
+    ],
+    "rows": 75,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "survey",
+    "field": "privacy_suppressed",
+    "types": [
+      "boolean"
+    ],
+    "rows": 75,
+    "null_or_absent": 52,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "price",
+    "field": "cohort",
+    "types": [
+      "string"
+    ],
+    "rows": 6,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "price",
+    "field": "party_group",
+    "types": [
+      "string"
+    ],
+    "rows": 6,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "price",
+    "field": "rate_definition",
+    "types": [
+      "string"
+    ],
+    "rows": 6,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "price",
+    "field": "unit",
+    "types": [
+      "string"
+    ],
+    "rows": 6,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "price",
+    "field": "n_total_cohort",
+    "types": [
+      "number"
+    ],
+    "rows": 6,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "price",
+    "field": "n_valid_rate",
+    "types": [
+      "number"
+    ],
+    "rows": 6,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "price",
+    "field": "n_spend_missing",
+    "types": [
+      "number"
+    ],
+    "rows": 6,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "price",
+    "field": "n_observed_zero_spend",
+    "types": [
+      "number"
+    ],
+    "rows": 6,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "price",
+    "field": "n_invalid_or_zero_nights",
+    "types": [
+      "number"
+    ],
+    "rows": 6,
+    "null_or_absent": 0,
+    "unit": "nights",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "price",
+    "field": "weighted_base_valid",
+    "types": [
+      "number"
+    ],
+    "rows": 6,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "price",
+    "field": "unweighted_p25",
+    "types": [
+      "number"
+    ],
+    "rows": 6,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "price",
+    "field": "unweighted_median",
+    "types": [
+      "number"
+    ],
+    "rows": 6,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "price",
+    "field": "unweighted_p75",
+    "types": [
+      "number"
+    ],
+    "rows": 6,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "price",
+    "field": "weighted_p25",
+    "types": [
+      "number"
+    ],
+    "rows": 6,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "price",
+    "field": "weighted_median",
+    "types": [
+      "number"
+    ],
+    "rows": 6,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "price",
+    "field": "weighted_p75",
+    "types": [
+      "number"
+    ],
+    "rows": 6,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "price",
+    "field": "weighted_mean",
+    "types": [
+      "number"
+    ],
+    "rows": 6,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "companions",
+    "field": "cohort",
+    "types": [
+      "string"
+    ],
+    "rows": 5,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "companions",
+    "field": "variable",
+    "types": [
+      "string"
+    ],
+    "rows": 5,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "companions",
+    "field": "label",
+    "types": [
+      "string"
+    ],
+    "rows": 5,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "companions",
+    "field": "n_selected",
+    "types": [
+      "number"
+    ],
+    "rows": 5,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "companions",
+    "field": "n_base",
+    "types": [
+      "number"
+    ],
+    "rows": 5,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "companions",
+    "field": "unweighted_pct",
+    "types": [
+      "number"
+    ],
+    "rows": 5,
+    "null_or_absent": 0,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "companions",
+    "field": "weighted_pct",
+    "types": [
+      "number"
+    ],
+    "rows": 5,
+    "null_or_absent": 0,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "companions",
+    "field": "multiple_response",
+    "types": [
+      "boolean"
+    ],
+    "rows": 5,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "capacity",
+    "field": "gu_filter",
+    "types": [
+      "string"
+    ],
+    "rows": 119,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "capacity",
+    "field": "people_bin_site_label",
+    "types": [
+      "string"
+    ],
+    "rows": 119,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "capacity",
+    "field": "listing_count",
+    "types": [],
+    "rows": 119,
+    "null_or_absent": 119,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "capacity",
+    "field": "low_n_lt15",
+    "types": [],
+    "rows": 119,
+    "null_or_absent": 119,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "capacity",
+    "field": "highlighted_in_statement",
+    "types": [],
+    "rows": 119,
+    "null_or_absent": 119,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "capacity",
+    "field": "occupancy_median_pct",
+    "types": [],
+    "rows": 119,
+    "null_or_absent": 119,
+    "unit": "percent",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "capacity",
+    "field": "monthly_settlement_median_krw",
+    "types": [],
+    "rows": 119,
+    "null_or_absent": 119,
+    "unit": "KRW",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "capacity",
+    "field": "classification_basis",
+    "types": [
+      "string"
+    ],
+    "rows": 119,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "capacity",
+    "field": "period",
+    "types": [
+      "string"
+    ],
+    "rows": 119,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "capacity",
+    "field": "source_url",
+    "types": [
+      "string"
+    ],
+    "rows": 119,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "capacity",
+    "field": "observed_at",
+    "types": [
+      "string"
+    ],
+    "rows": 119,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "capacity",
+    "field": "quality_grade",
+    "types": [
+      "string"
+    ],
+    "rows": 119,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  },
+  {
+    "table": "capacity",
+    "field": "publication_status",
+    "types": [
+      "string"
+    ],
+    "rows": 119,
+    "null_or_absent": 0,
+    "unit": "see CONTRACT semantic family",
+    "period": "table/source-defined",
+    "status": "published_or_source_missing"
+  }
+]

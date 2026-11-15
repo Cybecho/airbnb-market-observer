@@ -1,0 +1,142 @@
+[
+  {
+    "field_or_group": "registry_identity",
+    "normalized_field": "record_id",
+    "source_raw_field": "dataset_id|agency_code|management_number",
+    "registry_coverage_18562": "18562/18562",
+    "permitted_interpretation": "one source-registry licence record",
+    "not_permitted_interpretation": "one property; building; room; or platform listing",
+    "building_ledger_equivalent": "NO",
+    "action_for_building_use_or_revenue_linkage": "retain as licence-record key only"
+  },
+  {
+    "field_or_group": "business_address",
+    "normalized_field": "jibun_address|road_address",
+    "source_raw_field": "지번주소|도로명주소",
+    "registry_coverage_18562": "not separately profiled",
+    "permitted_interpretation": "business-place address in licence data",
+    "not_permitted_interpretation": "architectural-ledger parcel or exact unit; Airbnb exact address inference",
+    "building_ledger_equivalent": "NO",
+    "action_for_building_use_or_revenue_linkage": "use only as public business-address evidence; obtain building-ledger record separately"
+  },
+  {
+    "field_or_group": "registry_building_use",
+    "normalized_field": "raw_건물용도명",
+    "source_raw_field": "건물용도명",
+    "registry_coverage_18562": "7475/18562",
+    "permitted_interpretation": "licence-source supplied building-use label",
+    "not_permitted_interpretation": "official current 건축물대장 use or unit-level legal use",
+    "building_ledger_equivalent": "NO",
+    "action_for_building_use_or_revenue_linkage": "do not map to building register without parcel/building/unit verification"
+  },
+  {
+    "field_or_group": "building_floors",
+    "normalized_field": "raw_총층수|raw_지상층수|raw_지하층수",
+    "source_raw_field": "총층수|지상층수|지하층수",
+    "registry_coverage_18562": "3492|4238|2898 nonblank",
+    "permitted_interpretation": "source-reported floor attributes",
+    "not_permitted_interpretation": "building-register floors; licensed suite floor; bedroom count",
+    "building_ledger_equivalent": "NO",
+    "action_for_building_use_or_revenue_linkage": "do not use as 3-room threshold or building-register fact"
+  },
+  {
+    "field_or_group": "lodging_floor_range",
+    "normalized_field": "raw_건물지상층수|raw_건물지하층수|raw_사용시작지상층|raw_사용끝지상층",
+    "source_raw_field": "건물지상층수|건물지하층수|사용시작지상층|사용끝지상층",
+    "registry_coverage_18562": "6191|5802|6053|4903 nonblank",
+    "permitted_interpretation": "source-reported lodging building/floor-use attributes",
+    "not_permitted_interpretation": "official building ledger floors or exact licensed unit/area",
+    "building_ledger_equivalent": "NO",
+    "action_for_building_use_or_revenue_linkage": "available for 숙박업 rows only; verify with filed documents/ledger"
+  },
+  {
+    "field_or_group": "room_count",
+    "normalized_field": "rooms_numeric",
+    "source_raw_field": "객실수",
+    "registry_coverage_18562": "5949/18562",
+    "permitted_interpretation": "reported guest-room count where supplied",
+    "not_permitted_interpretation": "bedroom count; dwelling room count; licensed capacity; Airbnb bedrooms",
+    "building_ledger_equivalent": "NO",
+    "action_for_building_use_or_revenue_linkage": "never rename as 침실수; no all-record total-room field"
+  },
+  {
+    "field_or_group": "korean_western_rooms",
+    "normalized_field": "korean_rooms_raw|western_rooms_raw",
+    "source_raw_field": "한실수|양실수",
+    "registry_coverage_18562": "6529|6614 nonblank",
+    "permitted_interpretation": "reported Korean-style/western-style room counts on 숙박업 source",
+    "not_permitted_interpretation": "bedrooms; universally comparable total room count",
+    "building_ledger_equivalent": "NO",
+    "action_for_building_use_or_revenue_linkage": "do not automatically sum or use for 3-bedroom filter"
+  },
+  {
+    "field_or_group": "facility_area",
+    "normalized_field": "area_facility_numeric",
+    "source_raw_field": "시설면적",
+    "registry_coverage_18562": "10038/18562",
+    "permitted_interpretation": "source field labelled facility area",
+    "not_permitted_interpretation": "exclusive dwelling area; legal 230㎡ test; building-register area",
+    "building_ledger_equivalent": "NO",
+    "action_for_building_use_or_revenue_linkage": "keep unit/definition unverified; do not derive 평 or revenue-per-area"
+  },
+  {
+    "field_or_group": "facility_scale",
+    "normalized_field": "facility_size_raw",
+    "source_raw_field": "시설규모",
+    "registry_coverage_18562": "10038/18562",
+    "permitted_interpretation": "source field labelled facility scale",
+    "not_permitted_interpretation": "exclusive area; gross area; room size",
+    "building_ledger_equivalent": "NO",
+    "action_for_building_use_or_revenue_linkage": "do not treat as area without source-specific unit verification"
+  },
+  {
+    "field_or_group": "site_address_area",
+    "normalized_field": "area_site_numeric",
+    "source_raw_field": "소재지면적",
+    "registry_coverage_18562": "7232/18562",
+    "permitted_interpretation": "source field labelled 소재지면적",
+    "not_permitted_interpretation": "exclusive area; gross floor area; cadastral/building-register area",
+    "building_ledger_equivalent": "NO",
+    "action_for_building_use_or_revenue_linkage": "unit/meaning must be confirmed before use"
+  },
+  {
+    "field_or_group": "building_gross_area",
+    "normalized_field": "area_gross_numeric",
+    "source_raw_field": "건축연면적",
+    "registry_coverage_18562": "472/18562",
+    "permitted_interpretation": "source field labelled building gross floor area",
+    "not_permitted_interpretation": "official building-ledger total floor area or licensed accommodation-only area",
+    "building_ledger_equivalent": "NO",
+    "action_for_building_use_or_revenue_linkage": "not suitable for 230㎡ or revenue-per-exclusive-area calculation"
+  },
+  {
+    "field_or_group": "licence_status",
+    "normalized_field": "is_current_operating",
+    "source_raw_field": "영업상태코드",
+    "registry_coverage_18562": "all rows",
+    "permitted_interpretation": "status 01 in downloaded registry snapshot",
+    "not_permitted_interpretation": "actual open/booking status or compliance of every condition",
+    "building_ledger_equivalent": "NO",
+    "action_for_building_use_or_revenue_linkage": "do not use as platform-operating or legality proof"
+  },
+  {
+    "field_or_group": "platform_revenue",
+    "normalized_field": "none",
+    "source_raw_field": "none",
+    "registry_coverage_18562": "0/18562",
+    "permitted_interpretation": "no revenue metric is present",
+    "not_permitted_interpretation": "ADR; occupancy; revenue; gross booking value; room-night sales",
+    "building_ledger_equivalent": "NO",
+    "action_for_building_use_or_revenue_linkage": "blocked unless listing links accurately to licence and verified building/unit data"
+  },
+  {
+    "field_or_group": "platform_listing_link",
+    "normalized_field": "none",
+    "source_raw_field": "none",
+    "registry_coverage_18562": "0/18562",
+    "permitted_interpretation": "no platform listing ID or exact listing-to-licence linkage",
+    "not_permitted_interpretation": "Airbnb listing identity; host identity; exact address; building/use match",
+    "building_ledger_equivalent": "NO",
+    "action_for_building_use_or_revenue_linkage": "do not infer from approximate map point; name; or public licence address"
+  }
+]

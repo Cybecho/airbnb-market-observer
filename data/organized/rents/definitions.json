@@ -1,0 +1,28 @@
+{
+  "grain": "district × building type × contract period × explicit deposit/area strata (not legal dong or administrative dong)",
+  "unit": "money columns labelled 만원 are 10,000 KRW; monthly rent per month; deposit is refundable principal, not expense; area is reported rental area m², exclusive-area equivalence unverified",
+  "filters": "monthly rent >0, deposit >=0, reported rental area 20–60 m² inclusive; apartment excluded; three building types kept separate",
+  "periods": {
+    "2025전체": "2025-01-01/2025-12-31",
+    "2025상반기": "2025-01-01/2025-06-30",
+    "2026상반기": "2026-01-01/2026-06-30",
+    "2026가용": "2026-01-01/2026-11-13"
+  },
+  "N": "public rows, not verified unique contracts; identical public attributes can refer to distinct units",
+  "limitations": [
+    "Receipt-year files filtered by contract date; late registrations/corrections/cancellations remain",
+    "Maintenance/utilities/financing/taxes absent",
+    "No listing-level linkage, no legal-to-admin name join",
+    "No vendor revenue minus rent profit metric",
+    "Compare matched H1 only; do not annualize mismatched windows",
+    "N<30 flagged, not imputed"
+  ],
+  "source_url": "https://data.seoul.go.kr/dataList/OA-21276/S/1/datasetView.do?tab=A",
+  "observed_period_labels": [
+    "2025전체",
+    "2025상반기",
+    "2026상반기",
+    "2026가용"
+  ],
+  "matchedH1Area40to50": "exact deposit 10,000,000 KRW; 연립다세대 only; rental area >40 and <=50 m²; N>=30 in both H1 periods"
+}

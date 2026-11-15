@@ -1,0 +1,20 @@
+{
+  "source_url": "https://datalab.visitkorea.or.kr/datalab/portal/loc/getAreaFocTourBeta.do",
+  "retrieved": "2026-11-15",
+  "period": "2025 annual",
+  "geography": "Seoul metropolitan city; Jongno-gu comparator",
+  "foreign_visitors": {
+    "Seoul": 47409856,
+    "unit": "daily unique-visitor-based big-data count; not de-duplicated trip persons"
+  },
+  "credit_card_tourism_spend_million_krw": {
+    "Seoul": 8308212,
+    "Jongno": 464612
+  },
+  "caveats": [
+    "Visitor destination is not lodging location.",
+    "Tourism consumption is card-measured consumption, not Airbnb room revenue.",
+    "The UI labels visitor trend as mobile-telecommunications data and spending as foreign credit-card data.",
+    "Accommodation categories do not identify Airbnb or private shared accommodation."
+  ]
+}

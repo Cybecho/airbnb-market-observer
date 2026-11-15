@@ -1,0 +1,227 @@
+[
+  {
+    "id": "dashboard/dashboard",
+    "file": "v3_dashboard_data.json",
+    "bytes": 5814690,
+    "sha256": "e7f74026d357b78a7924d7fb7c847517a037ad29110d44848eaa6ac0fdb4b074",
+    "source_url": "https://datalab.visitkorea.or.kr/datalab/portal/bda/getInquiryBySexAndAge.do",
+    "status": "aggregate-input",
+    "original_in_repository": false
+  },
+  {
+    "id": "registry/legal-dongs",
+    "file": "legal_dong_467_clean.json",
+    "bytes": 1083274,
+    "sha256": "6e70cfc610ecd319c6a8993d1783cf4484bc78f1ca5a0d6a610695d57ea6749c",
+    "source_url": "https://www.code.go.kr/stdcode/regCodeL.do",
+    "status": "aggregate-input",
+    "original_in_repository": false
+  },
+  {
+    "id": "population/admin-dongs",
+    "file": "admin_dong_427_clean.json",
+    "bytes": 2938193,
+    "sha256": "6a736ce68beaad5ca37331a95c59e3a08303d13f7809ef3b1c335ea0a18e54ef",
+    "source_url": "https://data.seoul.go.kr/dataList/OA-23018/S/1/datasetView.do",
+    "status": "aggregate-input",
+    "original_in_repository": false
+  },
+  {
+    "id": "population/od-by-daytype",
+    "file": "od_Oct_comparison_by_daytype_1281.csv",
+    "bytes": 1150939,
+    "sha256": "0973f837666ca3a5297f6960d6a9fa978e828d1070e1fcb73173530c61c5e42e",
+    "source_url": "https://data.seoul.go.kr/dataList/OA-22379/F/1/datasetView.do",
+    "status": "aggregate-input",
+    "original_in_repository": false
+  },
+  {
+    "id": "rents/new_contract_summary",
+    "file": "new_contract_summary.csv",
+    "bytes": 61959,
+    "sha256": "247a9b53b4584028e5646a2355c9e9b5579b89df6997a277447f3040b864cc9b",
+    "source_url": "https://data.seoul.go.kr/dataList/OA-21276/S/1/datasetView.do?tab=A",
+    "status": "aggregate-input",
+    "original_in_repository": false
+  },
+  {
+    "id": "rents/district_type_summary",
+    "file": "district_type_summary.csv",
+    "bytes": 61901,
+    "sha256": "3364201c7590a9d7ad730210578860703d27da2b4436c621fab228eb2da626de",
+    "source_url": "https://data.seoul.go.kr/dataList/OA-21276/S/1/datasetView.do?tab=A",
+    "status": "aggregate-input",
+    "original_in_repository": false
+  },
+  {
+    "id": "rents/exact_deposit_1000_area",
+    "file": "exact_deposit_1000_area.csv",
+    "bytes": 104716,
+    "sha256": "d9f2251a6183efd8454f5180a401ef8fbed3ad06f68a0d33666bf8821ce4e259",
+    "source_url": "https://data.seoul.go.kr/dataList/OA-21276/S/1/datasetView.do?tab=A",
+    "status": "aggregate-input",
+    "original_in_repository": false
+  },
+  {
+    "id": "rents/matched_H1_exact_deposit",
+    "file": "matched_H1_exact_deposit.csv",
+    "bytes": 47087,
+    "sha256": "82ea56a6c0c5e8c131c3c0c30a73409bd14c6a0ad23d043054ce020cef527698",
+    "source_url": "https://data.seoul.go.kr/dataList/OA-21276/S/1/datasetView.do?tab=A",
+    "status": "aggregate-input",
+    "original_in_repository": false
+  },
+  {
+    "id": "rents/matched_H1_40to50_N30",
+    "file": "matched_H1_40to50_N30.csv",
+    "bytes": 539,
+    "sha256": "8b064f82ceb3160acbcc3f966763a757bd45db261d49e9b02dd421c0ef1898bd",
+    "source_url": "https://data.seoul.go.kr/dataList/OA-21276/S/1/datasetView.do?tab=A",
+    "status": "aggregate-input",
+    "original_in_repository": false
+  },
+  {
+    "id": "rents/deposit_area_strata",
+    "file": "deposit_area_strata.csv",
+    "bytes": 631871,
+    "sha256": "cbd976116fea0b26932ee6253d2e1986c80f22afec75a97dab6dc062c178ceb1",
+    "source_url": "https://data.seoul.go.kr/dataList/OA-21276/S/1/datasetView.do?tab=A",
+    "status": "aggregate-input",
+    "original_in_repository": false
+  },
+  {
+    "id": "tourism/residence-country-historical",
+    "file": "STO2025_country_cross.csv",
+    "bytes": 11990,
+    "sha256": "e7a489e8e1c6f9cadc1733eee6bf2cbe7224b0ae2f471ef792d07bc2cdc9c945",
+    "source_url": "https://sto.or.kr/survey/16085_/16085",
+    "status": "aggregate-input",
+    "original_in_repository": false
+  },
+  {
+    "id": "revenue/district-historical",
+    "file": "district_revenue_historical.json",
+    "bytes": 5364,
+    "sha256": "176021e953b2cf9e646f686f7c552c5c8ecc0fdfc2252e97418521d77a679810",
+    "source_url": "https://app.airbtics.com/airbnb-data/south-korea/0/seoul",
+    "status": "aggregate-input",
+    "original_in_repository": false
+  },
+  {
+    "id": "revenue/bedrooms",
+    "file": "seoul_bedroom_revenue.json",
+    "bytes": 4263,
+    "sha256": "f991253a8621953a2f87635dec76bd8ef85313e64dd23eede7c8416020839c53",
+    "source_url": "https://www.airroi.com/airbnb-data/south-korea/seoul/seoul",
+    "status": "aggregate-input",
+    "original_in_repository": false
+  },
+  {
+    "id": "revenue/seasonality",
+    "file": "seoul_revenue_seasonality.json",
+    "bytes": 1188,
+    "sha256": "70d32c52c77460477612a61efb21819f8ea853959895f9490871fe1bda42dffc",
+    "source_url": "https://www.airroi.com/airbnb-data/south-korea/seoul/seoul",
+    "status": "aggregate-input",
+    "original_in_repository": false
+  },
+  {
+    "id": "geometry",
+    "file": "community_admdongkor_20261001_original.geojson",
+    "bytes": 34652038,
+    "sha256": "843ece3a0b3429742cd4a1b699cc13987a88b5e5401f382e7fdaaa194ea5e605",
+    "source_url": "https://github.com/vuski/admdongkor/tree/master/ver20261001",
+    "status": "aggregate-input",
+    "original_in_repository": false
+  },
+  {
+    "id": "seoul-sales",
+    "file": "official_sales_lodging_subset.csv",
+    "bytes": 386627,
+    "sha256": "e20ed184ab58078168ff02ed2e95514e34d7d3842ecb7ae4fe6565503587c31e",
+    "source_url": "https://data.seoul.go.kr/dataList/OA-22175/S/1/datasetView.do",
+    "original_in_repository": false,
+    "status": "excluded_original; source attribution or safe aggregates only"
+  },
+  {
+    "id": "guesthouse-industry",
+    "file": "guesthouse_dong_2024Q2_2025Q2_2026Q2.csv",
+    "bytes": 140363,
+    "sha256": "5116759b0fa84dde66999247cedbf0c9dae08886d293b657a1bc98c8691b85ec",
+    "source_url": "https://golmok.seoul.go.kr/stateArea.do",
+    "original_in_repository": false,
+    "status": "excluded_original; source attribution or safe aggregates only"
+  },
+  {
+    "id": "sto-final",
+    "file": "STO2025_final_customer_profiles.csv",
+    "bytes": 242530,
+    "sha256": "ab36958dac2caf781ae4ff039571cf298d54a4554af69ca4f1a8b5ee056112b2",
+    "source_url": "https://sto.or.kr/survey/16119",
+    "original_in_repository": false,
+    "status": "excluded_original; source attribution or safe aggregates only"
+  },
+  {
+    "id": "country-tourism",
+    "file": "definition.json",
+    "bytes": 1438,
+    "sha256": "06738e295e007f13c39bd988362bee8895ae54063608f1b58b5348d9a2b7a8fe",
+    "source_url": "https://datalab.visitkorea.or.kr/datalab/portal/nat/getNatFocTourAna.do",
+    "original_in_repository": false,
+    "status": "excluded_original; source attribution or safe aggregates only"
+  },
+  {
+    "id": "buildings",
+    "file": "field_audit.csv",
+    "bytes": 3959,
+    "sha256": "b2ecbc4206c239a93ddb65624da6afa9722e807907e8ecd3b6e8ad2ea40e912f",
+    "source_url": "https://data.seoul.go.kr/dataList/OA-16045/S/1/datasetView.do",
+    "original_in_repository": false,
+    "status": "excluded_original; source attribution or safe aggregates only"
+  },
+  {
+    "id": "community",
+    "file": "evidence.csv",
+    "bytes": 2345,
+    "sha256": "3db5b3fa6e0f6a9cc95f081ecf1888bd42d0baa154409dd813387665e8846535",
+    "source_url": "https://cafe.naver.com/f-e/cafes/21812311",
+    "original_in_repository": false,
+    "status": "excluded_original; source attribution or safe aggregates only"
+  },
+  {
+    "id": "gongichang",
+    "file": "capacity_bins.csv",
+    "bytes": 40989,
+    "sha256": "7fdd29a7ece2b5a9c12c388349a8f96f5963e9593d74fa8d8ab823a2bba74692",
+    "source_url": "https://www.gongichang.com/terms",
+    "original_in_repository": false,
+    "status": "excluded_original; source attribution or safe aggregates only"
+  },
+  {
+    "id": "tourism",
+    "file": "summary.json",
+    "bytes": 723,
+    "sha256": "7a90811d3e5def2f3d8e9951605f535569d95f3f15c35aa9bb042035157b23b4",
+    "source_url": "https://datalab.visitkorea.or.kr/datalab/portal/loc/getAreaFocTourBeta.do",
+    "original_in_repository": false,
+    "status": "excluded_original; source attribution or safe aggregates only"
+  },
+  {
+    "id": "registry-provenance",
+    "file": "sources_manifest.json",
+    "bytes": 9745,
+    "sha256": "61e6dbbc2336d4d7b1b08e7a54d568f23da683833e087152c45e29e4e7e59f76",
+    "source_url": "https://data.seoul.go.kr/dataList/OA-16045/S/1/datasetView.do",
+    "original_in_repository": false,
+    "status": "excluded_original; source attribution or safe aggregates only"
+  },
+  {
+    "id": "population-provenance",
+    "file": "population_source_manifest.json",
+    "bytes": 9243,
+    "sha256": "ec3b98ba899e89c8c2fc9744eedea2b9276e45796f1641dbb899269db1f86182",
+    "source_url": "https://data.seoul.go.kr/dataList/OA-23018/S/1/datasetView.do",
+    "original_in_repository": false,
+    "status": "excluded_original; source attribution or safe aggregates only"
+  }
+]

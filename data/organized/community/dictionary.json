@@ -1,0 +1,92 @@
+[
+  {
+    "file": "evidence.json",
+    "field": "thread_id",
+    "types": [
+      "number"
+    ],
+    "rows": 7,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "evidence.json",
+    "field": "title",
+    "types": [
+      "string"
+    ],
+    "rows": 7,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "evidence.json",
+    "field": "date",
+    "types": [
+      "string"
+    ],
+    "rows": 7,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "evidence.json",
+    "field": "url",
+    "types": [
+      "string"
+    ],
+    "rows": 7,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "evidence.json",
+    "field": "topic",
+    "types": [
+      "string"
+    ],
+    "rows": 7,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "evidence.json",
+    "field": "source_type",
+    "types": [
+      "string"
+    ],
+    "rows": 7,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "evidence.json",
+    "field": "quant_or_experience",
+    "types": [
+      "string"
+    ],
+    "rows": 7,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "evidence.json",
+    "field": "access",
+    "types": [
+      "string"
+    ],
+    "rows": 7,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "evidence.json",
+    "field": "limitations",
+    "types": [
+      "string"
+    ],
+    "rows": 7,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  }
+]

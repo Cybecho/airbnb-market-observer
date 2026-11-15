@@ -1,0 +1,44 @@
+{
+  "screening": {
+    "unit": "administrative dong x one registry type; not unique accommodation supply",
+    "concentration": "presence 2026 Jan-Oct 04 >= linear-interpolated p75 among valid dongs",
+    "threshold_persons": 371.1219243421053,
+    "growth": "same-day presence Jan-Oct2026 vs2025 >0%",
+    "demand_axis": "high concentration AND positive growth; false means one/both missing, not necessarily falling demand",
+    "supply_axis": "new registrations Jan01-Nov11 2026 minus2025 >0; absolute registration increase, not stock growth",
+    "valid": "304 paired days at04 AND14; 31 paired OD October days; 2025 04 mean>=30 estimated persons",
+    "low_sample_flags": "presence prior mean<30 excluded; registrations prior new<5 and current<=5 flagged, not statistical sampling n; no significance claim",
+    "period_mismatch": "presence Jan-Oct; supply Jan01-Nov11; OD October; no causal synchronization",
+    "low_registry": "<=5 current spatially matched records in that one registry; not total physical supply",
+    "micro_selection": "6 presence leaders +5 low-foreigner-registry presence leaders +5 growth leaders with prior presence>=100; no duplicates; max3 areas/gu; no composite score"
+  },
+  "evidence": {
+    "confirmed": "registry record statuses/events and published telecom estimated aggregates only",
+    "unavailable": "dong occupied nights, bookable room inventory, occupancy, ADR, RevPAR, actual revenue, short-stay sex/age",
+    "forbidden": [
+      "presence/registrations as occupancy or shortage",
+      "tourist+general lodging sum as unique supply",
+      "vehicle as family demand",
+      "purpose and transport denominator mixing",
+      "legal-to-admin name allocation",
+      "OD as unique tourists",
+      "new minus closed as verified net supply"
+    ]
+  },
+  "periods": {
+    "presence2025annual": "Jan01-Dec31 2025, annual comparable flag retained",
+    "presence_yoy": "Jan01-Oct31 both years paired valid dates",
+    "od": "October2025 vsOctober2026, not annual, holidays not adjusted",
+    "registry_snapshot": "download2026-11-14, status01 registered operating not observed actual operation",
+    "registry_events": "Jan01-Nov11 each year; latest snapshot retrospective dates not complete event logs"
+  },
+  "units": {
+    "presence": "estimated persons present at selected hour",
+    "od": "estimated repeated movement events per day; cross-dong inflow excludes within-dong",
+    "segment": "estimated monthly arrivals including within-dong, per-source denominator",
+    "registry": "registration records not properties/listings/rooms",
+    "shares": "0..1",
+    "change_pct": "percent not fraction",
+    "null": "unavailable or zero denominator, never coerced to0"
+  }
+}

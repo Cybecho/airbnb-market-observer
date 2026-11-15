@@ -1,0 +1,152 @@
+[
+  {
+    "file": "classification.json",
+    "field": "classification",
+    "types": [
+      "string"
+    ],
+    "rows": 5,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "classification.json",
+    "field": "ledger_dataset_or_subtype",
+    "types": [
+      "string"
+    ],
+    "rows": 5,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "classification.json",
+    "field": "primary_current_basis",
+    "types": [
+      "string"
+    ],
+    "rows": 5,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "classification.json",
+    "field": "core_location_and_building_type",
+    "types": [
+      "string"
+    ],
+    "rows": 5,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "classification.json",
+    "field": "core_operating_constraint_relevant_to_3room_plus",
+    "types": [
+      "string"
+    ],
+    "rows": 5,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "classification.json",
+    "field": "revenue_axis_status",
+    "types": [
+      "string"
+    ],
+    "rows": 5,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "classification.json",
+    "field": "what_must_be_checked_case_by_case",
+    "types": [
+      "string"
+    ],
+    "rows": 5,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "field-audit.json",
+    "field": "field_or_group",
+    "types": [
+      "string"
+    ],
+    "rows": 14,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "field-audit.json",
+    "field": "normalized_field",
+    "types": [
+      "string"
+    ],
+    "rows": 14,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "field-audit.json",
+    "field": "source_raw_field",
+    "types": [
+      "string"
+    ],
+    "rows": 14,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "field-audit.json",
+    "field": "registry_coverage_18562",
+    "types": [
+      "string"
+    ],
+    "rows": 14,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "field-audit.json",
+    "field": "permitted_interpretation",
+    "types": [
+      "string"
+    ],
+    "rows": 14,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "field-audit.json",
+    "field": "not_permitted_interpretation",
+    "types": [
+      "string"
+    ],
+    "rows": 14,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "field-audit.json",
+    "field": "building_ledger_equivalent",
+    "types": [
+      "string"
+    ],
+    "rows": 14,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "field-audit.json",
+    "field": "action_for_building_use_or_revenue_linkage",
+    "types": [
+      "string"
+    ],
+    "rows": 14,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  }
+]

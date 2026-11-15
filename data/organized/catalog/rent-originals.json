@@ -1,0 +1,162 @@
+{
+  "source_url": "https://data.seoul.go.kr/dataList/OA-21276/S/1/datasetView.do?tab=A",
+  "portal_catalog_url": "https://www.data.go.kr/data/15052420/fileData.do",
+  "accessed_at": "2026-11-14T23:34:31+09:00",
+  "live_ui_data_update": "2026-11-13",
+  "annual_zip_displayed_modified": "2026-02-04",
+  "annual_download_endpoint": "https://datafile.seoul.go.kr/bigfile/iot/inf/nio_download.do?&useCache=false",
+  "sheet_download_endpoint": "https://datafile.seoul.go.kr/bigfile/iot/sheet/csv/download.do",
+  "download_method": "No-key public UI: annual ZIP downloadFile(40); Sheet filter BLDG_USG each of 연립다세대, 단독다가구, 오피스텔, 조회 then CSV. Endpoints are form submissions, not reusable standalone GET links.",
+  "license": "공공누리 제1유형: 출처표시 (상업적 이용 및 변경 가능), 무료",
+  "files": [
+    {
+      "file": "seoul_rent_2025_original.csv",
+      "bytes": 155574646,
+      "sha256": "e9edae54f7612207642a1a7d3fd1aac963280f7ecee4cf0ac55de7c862d4ec5c",
+      "rows": 1084942,
+      "building_types": {
+        "아파트": 444983,
+        "단독다가구": 261285,
+        "연립다세대": 220378,
+        "오피스텔": 158296
+      },
+      "contract_years": {
+        "2023": 2074,
+        "2024": 60053,
+        "2025": 1022756,
+        "2026": 59
+      },
+      "contract_date_min": "20230918",
+      "contract_date_max": "20260202"
+    },
+    {
+      "file": "seoul_rent_2026_multifamily_original.csv",
+      "bytes": 19400573,
+      "sha256": "ace0508df9950dc2e9546347ecb7738fada5aa19a82f49d9e71a82e5b0cd04ac",
+      "rows": 111901,
+      "building_types": {
+        "연립다세대": 111901
+      },
+      "contract_years": {
+        "2025": 3874,
+        "2026": 108027
+      },
+      "contract_date_min": "20251106",
+      "contract_date_max": "20261113"
+    },
+    {
+      "file": "seoul_rent_2026_detached_original.csv",
+      "bytes": 18388023,
+      "sha256": "702f970b13d2e91aee71d254df7fc3d2e874140347ee54767e98404e57160986",
+      "rows": 126319,
+      "building_types": {
+        "단독다가구": 126319
+      },
+      "contract_years": {
+        "2025": 5562,
+        "2026": 120757
+      },
+      "contract_date_min": "20251105",
+      "contract_date_max": "20261113"
+    },
+    {
+      "file": "seoul_rent_2026_officetel_original.csv",
+      "bytes": 14006238,
+      "sha256": "974926f20e1a7a63d1c871f8c33c6c50aaa905a7668907229742adac034724a4",
+      "rows": 79242,
+      "building_types": {
+        "오피스텔": 79242
+      },
+      "contract_years": {
+        "2025": 3186,
+        "2026": 76056
+      },
+      "contract_date_min": "20251108",
+      "contract_date_max": "20261113"
+    }
+  ],
+  "quality": {
+    "raw_rows_total": 1402404,
+    "nonapartment_rows": 957421,
+    "cross_file_exact_attribute_keys": 262,
+    "cross_file_exact_attribute_rows": 524,
+    "within_file_duplicate_attribute_rows": 264459,
+    "invalid_dates": 0,
+    "invalid_area": 0,
+    "invalid_deposit": 0,
+    "invalid_monthly_rent": 0,
+    "analysis_rows_by_period": {
+      "2025전체": 299101,
+      "2025상반기": 173158,
+      "2026상반기": 97938,
+      "2026가용": 157022
+    },
+    "analysis_deposit_cap_rows_by_period": {
+      "2025전체": 240239,
+      "2025상반기": 138691,
+      "2026상반기": 77054,
+      "2026가용": 122531
+    },
+    "exact_deposit_matched_cells_bothN30": 168,
+    "filtered_floor_diagnostics": {
+      "단독다가구": {
+        "N": 196939,
+        "floor_zero": 0,
+        "floor_blank": 196939
+      },
+      "연립다세대": {
+        "N": 143667,
+        "floor_zero": 0,
+        "floor_blank": 0
+      },
+      "오피스텔": {
+        "N": 115517,
+        "floor_zero": 0,
+        "floor_blank": 0
+      }
+    },
+    "duplicate_sensitivity_counts": [
+      {
+        "기간": "2025상반기",
+        "시나리오": "공개행유지",
+        "N": 138691
+      },
+      {
+        "기간": "2025상반기",
+        "시나리오": "동일속성1행가정_민감도만",
+        "N": 72308
+      },
+      {
+        "기간": "2025전체",
+        "시나리오": "공개행유지",
+        "N": 240239
+      },
+      {
+        "기간": "2025전체",
+        "시나리오": "동일속성1행가정_민감도만",
+        "N": 141798
+      },
+      {
+        "기간": "2026가용",
+        "시나리오": "공개행유지",
+        "N": 122531
+      },
+      {
+        "기간": "2026가용",
+        "시나리오": "동일속성1행가정_민감도만",
+        "N": 122531
+      },
+      {
+        "기간": "2026상반기",
+        "시나리오": "공개행유지",
+        "N": 77054
+      },
+      {
+        "기간": "2026상반기",
+        "시나리오": "동일속성1행가정_민감도만",
+        "N": 77054
+      }
+    ]
+  },
+  "annual_zip_sha256": "d7a887488fb89eb337e134d4ce724b0279b207ec4d4f54e6ee3fb95c6fa49d52"
+}

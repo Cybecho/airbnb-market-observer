@@ -1,0 +1,47 @@
+[
+  {
+    "classification": "외국인관광도시민박업",
+    "ledger_dataset_or_subtype": "외국인관광도시민박업",
+    "primary_current_basis": "관광진흥법 시행령 제2조제1항제3호바목; 2026-10-29 시행",
+    "core_location_and_building_type": "urban resident actually living in detached/dagagu house or apartment/row/multiplex house; not officetel or neighbourhood facility",
+    "core_operating_constraint_relevant_to_3room_plus": "one relevant floor/unit; dwelling gross floor area under 230㎡; foreign tourists only; language and safety. 3+ rooms is not a legal category",
+    "revenue_axis_status": "BUILDING_USE_BY_REVENUE=BLOCKED: no platform revenue or verified listing linkage",
+    "what_must_be_checked_case_by_case": "building-register use/floor plans/area; actual residence; registered unit; foreign-only guests; district registration"
+  },
+  {
+    "classification": "관광숙박업_호스텔포함",
+    "ledger_dataset_or_subtype": "관광숙박업; 호스텔업·관광호텔업 등",
+    "primary_current_basis": "관광진흥법 시행령 제2조제1항제2호 및 시행규칙 별표1; 건축법 시행령 별표1 제15호나목",
+    "core_location_and_building_type": "tourist accommodation is a Building Act lodging facility; hostel has separate required common facilities",
+    "core_operating_constraint_relevant_to_3room_plus": "a 3-room dwelling is not thereby hostel/tourist accommodation; planning approval/registration; zoning; building/fire conditions separate",
+    "revenue_axis_status": "BUILDING_USE_BY_REVENUE=BLOCKED: no platform revenue or verified listing linkage",
+    "what_must_be_checked_case_by_case": "district project approval/registration; building-register lodging use; zoning; fire; rooms/common facilities"
+  },
+  {
+    "classification": "한옥체험업",
+    "ledger_dataset_or_subtype": "한옥체험업",
+    "primary_current_basis": "관광진흥법 시행령 제2조제1항제3호사목; 한옥 등 건축자산의 진흥에 관한 법률 제2조제2호",
+    "core_location_and_building_type": "statutory hanok with suitable lodging or traditional-culture experience facilities",
+    "core_operating_constraint_relevant_to_3room_plus": "room/floor/area alone do not establish hanok or registration; not defined as foreigner-only",
+    "revenue_axis_status": "BUILDING_USE_BY_REVENUE=BLOCKED: no platform revenue or verified listing linkage",
+    "what_must_be_checked_case_by_case": "hanok eligibility; facility form location/land/building use/area/rooms/safety/manager; district registration"
+  },
+  {
+    "classification": "숙박업_일반",
+    "ledger_dataset_or_subtype": "숙박업(일반)",
+    "primary_current_basis": "공중위생관리법 제2조·제3조; 시행령 제4조제1호; 건축법 시행령 별표1 제15호가목",
+    "core_location_and_building_type": "lodging service excluding cooking facilities; generally lodging facility use",
+    "core_operating_constraint_relevant_to_3room_plus": "partial-building rule: independent floor OR 30+ rooms OR business area at least 1/3 gross floor area; local ordinance may relax; distinct from 3+ rooms",
+    "revenue_axis_status": "BUILDING_USE_BY_REVENUE=BLOCKED: no platform revenue or verified listing linkage",
+    "what_must_be_checked_case_by_case": "building-register use/use change; zoning/ordinance; filing; partial-building rule; fire/hygiene"
+  },
+  {
+    "classification": "숙박업_생활",
+    "ledger_dataset_or_subtype": "숙박업(생활)",
+    "primary_current_basis": "공중위생관리법 시행령 제4조제2호; 시행규칙 별표1; 건축법 시행령 별표1 제15호가목",
+    "core_location_and_building_type": "lodging service including cooking facilities; living accommodation is lodging not a synonym for dwelling/officetel",
+    "core_operating_constraint_relevant_to_3room_plus": "fixed cooking/ventilation; bathroom or shower per room; partial-building rule. Regulatory exception is not blanket short-stay permission",
+    "revenue_axis_status": "BUILDING_USE_BY_REVENUE=BLOCKED: no platform revenue or verified listing linkage",
+    "what_must_be_checked_case_by_case": "building-register use; room standards; filing/use change/fire; exact exception document/scope/term"
+  }
+]

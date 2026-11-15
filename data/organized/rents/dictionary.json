@@ -1,0 +1,912 @@
+[
+  {
+    "file": "definitions.json",
+    "field": "grain",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "definitions.json",
+    "field": "unit",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "definitions.json",
+    "field": "filters",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "definitions.json",
+    "field": "periods",
+    "types": [
+      "object"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "definitions.json",
+    "field": "N",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "definitions.json",
+    "field": "limitations",
+    "types": [
+      "array"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "definitions.json",
+    "field": "source_url",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "deposit_area_strata.json",
+    "field": "기간",
+    "types": [
+      "string"
+    ],
+    "rows": 5869,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "deposit_area_strata.json",
+    "field": "자치구명",
+    "types": [
+      "string"
+    ],
+    "rows": 5869,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "deposit_area_strata.json",
+    "field": "건물용도",
+    "types": [
+      "string"
+    ],
+    "rows": 5869,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "deposit_area_strata.json",
+    "field": "보증금구간",
+    "types": [
+      "string"
+    ],
+    "rows": 5869,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "deposit_area_strata.json",
+    "field": "면적구간",
+    "types": [
+      "string"
+    ],
+    "rows": 5869,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "deposit_area_strata.json",
+    "field": "N",
+    "types": [
+      "number"
+    ],
+    "rows": 5869,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "deposit_area_strata.json",
+    "field": "보증금중위_만원",
+    "types": [
+      "number"
+    ],
+    "rows": 5869,
+    "null_or_absent": 0,
+    "meaning": "10,000 KRW; rent is monthly, deposit is refundable principal"
+  },
+  {
+    "file": "deposit_area_strata.json",
+    "field": "월세중위_만원",
+    "types": [
+      "number"
+    ],
+    "rows": 5869,
+    "null_or_absent": 0,
+    "meaning": "10,000 KRW; rent is monthly, deposit is refundable principal"
+  },
+  {
+    "file": "deposit_area_strata.json",
+    "field": "면적중위_m2",
+    "types": [
+      "number"
+    ],
+    "rows": 5869,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "deposit_area_strata.json",
+    "field": "월세25분위_만원",
+    "types": [
+      "number"
+    ],
+    "rows": 5869,
+    "null_or_absent": 0,
+    "meaning": "10,000 KRW; rent is monthly, deposit is refundable principal"
+  },
+  {
+    "file": "deposit_area_strata.json",
+    "field": "월세75분위_만원",
+    "types": [
+      "number"
+    ],
+    "rows": 5869,
+    "null_or_absent": 0,
+    "meaning": "10,000 KRW; rent is monthly, deposit is refundable principal"
+  },
+  {
+    "file": "deposit_area_strata.json",
+    "field": "N30미만주의",
+    "types": [
+      "boolean"
+    ],
+    "rows": 5869,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "district_type_summary.json",
+    "field": "기간",
+    "types": [
+      "string"
+    ],
+    "rows": 600,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "district_type_summary.json",
+    "field": "범위",
+    "types": [
+      "string"
+    ],
+    "rows": 600,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "district_type_summary.json",
+    "field": "자치구명",
+    "types": [
+      "string"
+    ],
+    "rows": 600,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "district_type_summary.json",
+    "field": "건물용도",
+    "types": [
+      "string"
+    ],
+    "rows": 600,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "district_type_summary.json",
+    "field": "N",
+    "types": [
+      "number"
+    ],
+    "rows": 600,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "district_type_summary.json",
+    "field": "보증금중위_만원",
+    "types": [
+      "number"
+    ],
+    "rows": 600,
+    "null_or_absent": 0,
+    "meaning": "10,000 KRW; rent is monthly, deposit is refundable principal"
+  },
+  {
+    "file": "district_type_summary.json",
+    "field": "월세중위_만원",
+    "types": [
+      "number"
+    ],
+    "rows": 600,
+    "null_or_absent": 0,
+    "meaning": "10,000 KRW; rent is monthly, deposit is refundable principal"
+  },
+  {
+    "file": "district_type_summary.json",
+    "field": "면적중위_m2",
+    "types": [
+      "number"
+    ],
+    "rows": 600,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "district_type_summary.json",
+    "field": "월세25분위_만원",
+    "types": [
+      "number"
+    ],
+    "rows": 600,
+    "null_or_absent": 0,
+    "meaning": "10,000 KRW; rent is monthly, deposit is refundable principal"
+  },
+  {
+    "file": "district_type_summary.json",
+    "field": "월세75분위_만원",
+    "types": [
+      "number"
+    ],
+    "rows": 600,
+    "null_or_absent": 0,
+    "meaning": "10,000 KRW; rent is monthly, deposit is refundable principal"
+  },
+  {
+    "file": "district_type_summary.json",
+    "field": "N30미만주의",
+    "types": [
+      "boolean"
+    ],
+    "rows": 600,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "exact_deposit_1000_area.json",
+    "field": "기간",
+    "types": [
+      "string"
+    ],
+    "rows": 1172,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "exact_deposit_1000_area.json",
+    "field": "자치구명",
+    "types": [
+      "string"
+    ],
+    "rows": 1172,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "exact_deposit_1000_area.json",
+    "field": "건물용도",
+    "types": [
+      "string"
+    ],
+    "rows": 1172,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "exact_deposit_1000_area.json",
+    "field": "면적구간",
+    "types": [
+      "string"
+    ],
+    "rows": 1172,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "exact_deposit_1000_area.json",
+    "field": "N",
+    "types": [
+      "number"
+    ],
+    "rows": 1172,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "exact_deposit_1000_area.json",
+    "field": "보증금중위_만원",
+    "types": [
+      "number"
+    ],
+    "rows": 1172,
+    "null_or_absent": 0,
+    "meaning": "10,000 KRW; rent is monthly, deposit is refundable principal"
+  },
+  {
+    "file": "exact_deposit_1000_area.json",
+    "field": "월세중위_만원",
+    "types": [
+      "number"
+    ],
+    "rows": 1172,
+    "null_or_absent": 0,
+    "meaning": "10,000 KRW; rent is monthly, deposit is refundable principal"
+  },
+  {
+    "file": "exact_deposit_1000_area.json",
+    "field": "면적중위_m2",
+    "types": [
+      "number"
+    ],
+    "rows": 1172,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "exact_deposit_1000_area.json",
+    "field": "월세25분위_만원",
+    "types": [
+      "number"
+    ],
+    "rows": 1172,
+    "null_or_absent": 0,
+    "meaning": "10,000 KRW; rent is monthly, deposit is refundable principal"
+  },
+  {
+    "file": "exact_deposit_1000_area.json",
+    "field": "월세75분위_만원",
+    "types": [
+      "number"
+    ],
+    "rows": 1172,
+    "null_or_absent": 0,
+    "meaning": "10,000 KRW; rent is monthly, deposit is refundable principal"
+  },
+  {
+    "file": "exact_deposit_1000_area.json",
+    "field": "N30미만주의",
+    "types": [
+      "boolean"
+    ],
+    "rows": 1172,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "matched_H1_40to50_N30.json",
+    "field": "자치구명",
+    "types": [
+      "string"
+    ],
+    "rows": 10,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "matched_H1_40to50_N30.json",
+    "field": "N_2025H1",
+    "types": [
+      "number"
+    ],
+    "rows": 10,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "matched_H1_40to50_N30.json",
+    "field": "월세중위_만원_2025H1",
+    "types": [
+      "number"
+    ],
+    "rows": 10,
+    "null_or_absent": 0,
+    "meaning": "10,000 KRW; rent is monthly, deposit is refundable principal"
+  },
+  {
+    "file": "matched_H1_40to50_N30.json",
+    "field": "N_2026H1",
+    "types": [
+      "number"
+    ],
+    "rows": 10,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "matched_H1_40to50_N30.json",
+    "field": "월세중위_만원_2026H1",
+    "types": [
+      "number"
+    ],
+    "rows": 10,
+    "null_or_absent": 0,
+    "meaning": "10,000 KRW; rent is monthly, deposit is refundable principal"
+  },
+  {
+    "file": "matched_H1_40to50_N30.json",
+    "field": "월세중위변화율_pct",
+    "types": [
+      "number"
+    ],
+    "rows": 10,
+    "null_or_absent": 0,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "matched_H1_exact_deposit.json",
+    "field": "기간_2025H1",
+    "types": [
+      "string"
+    ],
+    "rows": 286,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "matched_H1_exact_deposit.json",
+    "field": "자치구명",
+    "types": [
+      "string"
+    ],
+    "rows": 286,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "matched_H1_exact_deposit.json",
+    "field": "건물용도",
+    "types": [
+      "string"
+    ],
+    "rows": 286,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "matched_H1_exact_deposit.json",
+    "field": "면적구간",
+    "types": [
+      "string"
+    ],
+    "rows": 286,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "matched_H1_exact_deposit.json",
+    "field": "N_2025H1",
+    "types": [
+      "number"
+    ],
+    "rows": 286,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "matched_H1_exact_deposit.json",
+    "field": "보증금중위_만원_2025H1",
+    "types": [
+      "number"
+    ],
+    "rows": 286,
+    "null_or_absent": 0,
+    "meaning": "10,000 KRW; rent is monthly, deposit is refundable principal"
+  },
+  {
+    "file": "matched_H1_exact_deposit.json",
+    "field": "월세중위_만원_2025H1",
+    "types": [
+      "number"
+    ],
+    "rows": 286,
+    "null_or_absent": 0,
+    "meaning": "10,000 KRW; rent is monthly, deposit is refundable principal"
+  },
+  {
+    "file": "matched_H1_exact_deposit.json",
+    "field": "면적중위_m2_2025H1",
+    "types": [
+      "number"
+    ],
+    "rows": 286,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "matched_H1_exact_deposit.json",
+    "field": "월세25분위_만원_2025H1",
+    "types": [
+      "number"
+    ],
+    "rows": 286,
+    "null_or_absent": 0,
+    "meaning": "10,000 KRW; rent is monthly, deposit is refundable principal"
+  },
+  {
+    "file": "matched_H1_exact_deposit.json",
+    "field": "월세75분위_만원_2025H1",
+    "types": [
+      "number"
+    ],
+    "rows": 286,
+    "null_or_absent": 0,
+    "meaning": "10,000 KRW; rent is monthly, deposit is refundable principal"
+  },
+  {
+    "file": "matched_H1_exact_deposit.json",
+    "field": "N30미만주의_2025H1",
+    "types": [
+      "boolean"
+    ],
+    "rows": 286,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "matched_H1_exact_deposit.json",
+    "field": "기간_2026H1",
+    "types": [
+      "string"
+    ],
+    "rows": 286,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "matched_H1_exact_deposit.json",
+    "field": "N_2026H1",
+    "types": [
+      "number"
+    ],
+    "rows": 286,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "matched_H1_exact_deposit.json",
+    "field": "보증금중위_만원_2026H1",
+    "types": [
+      "number"
+    ],
+    "rows": 286,
+    "null_or_absent": 0,
+    "meaning": "10,000 KRW; rent is monthly, deposit is refundable principal"
+  },
+  {
+    "file": "matched_H1_exact_deposit.json",
+    "field": "월세중위_만원_2026H1",
+    "types": [
+      "number"
+    ],
+    "rows": 286,
+    "null_or_absent": 0,
+    "meaning": "10,000 KRW; rent is monthly, deposit is refundable principal"
+  },
+  {
+    "file": "matched_H1_exact_deposit.json",
+    "field": "면적중위_m2_2026H1",
+    "types": [
+      "number"
+    ],
+    "rows": 286,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "matched_H1_exact_deposit.json",
+    "field": "월세25분위_만원_2026H1",
+    "types": [
+      "number"
+    ],
+    "rows": 286,
+    "null_or_absent": 0,
+    "meaning": "10,000 KRW; rent is monthly, deposit is refundable principal"
+  },
+  {
+    "file": "matched_H1_exact_deposit.json",
+    "field": "월세75분위_만원_2026H1",
+    "types": [
+      "number"
+    ],
+    "rows": 286,
+    "null_or_absent": 0,
+    "meaning": "10,000 KRW; rent is monthly, deposit is refundable principal"
+  },
+  {
+    "file": "matched_H1_exact_deposit.json",
+    "field": "N30미만주의_2026H1",
+    "types": [
+      "boolean"
+    ],
+    "rows": 286,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "matched_H1_exact_deposit.json",
+    "field": "월세중위변화율_pct",
+    "types": [
+      "number"
+    ],
+    "rows": 286,
+    "null_or_absent": 0,
+    "meaning": "Percentage 0–100 unless source explicitly states otherwise; null if unavailable/withheld"
+  },
+  {
+    "file": "matched_H1_exact_deposit.json",
+    "field": "양기간N30이상",
+    "types": [
+      "boolean"
+    ],
+    "rows": 286,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "new_contract_summary.json",
+    "field": "기간",
+    "types": [
+      "string"
+    ],
+    "rows": 600,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "new_contract_summary.json",
+    "field": "범위",
+    "types": [
+      "string"
+    ],
+    "rows": 600,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "new_contract_summary.json",
+    "field": "자치구명",
+    "types": [
+      "string"
+    ],
+    "rows": 600,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "new_contract_summary.json",
+    "field": "건물용도",
+    "types": [
+      "string"
+    ],
+    "rows": 600,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "new_contract_summary.json",
+    "field": "N",
+    "types": [
+      "number"
+    ],
+    "rows": 600,
+    "null_or_absent": 0,
+    "meaning": "Count of source-defined records/responses/events, not unique accommodation units"
+  },
+  {
+    "file": "new_contract_summary.json",
+    "field": "보증금중위_만원",
+    "types": [
+      "number"
+    ],
+    "rows": 600,
+    "null_or_absent": 0,
+    "meaning": "10,000 KRW; rent is monthly, deposit is refundable principal"
+  },
+  {
+    "file": "new_contract_summary.json",
+    "field": "월세중위_만원",
+    "types": [
+      "number"
+    ],
+    "rows": 600,
+    "null_or_absent": 0,
+    "meaning": "10,000 KRW; rent is monthly, deposit is refundable principal"
+  },
+  {
+    "file": "new_contract_summary.json",
+    "field": "면적중위_m2",
+    "types": [
+      "number"
+    ],
+    "rows": 600,
+    "null_or_absent": 0,
+    "meaning": "Source-specific summary; unit and denominator in domain definitions"
+  },
+  {
+    "file": "new_contract_summary.json",
+    "field": "월세25분위_만원",
+    "types": [
+      "number"
+    ],
+    "rows": 600,
+    "null_or_absent": 0,
+    "meaning": "10,000 KRW; rent is monthly, deposit is refundable principal"
+  },
+  {
+    "file": "new_contract_summary.json",
+    "field": "월세75분위_만원",
+    "types": [
+      "number"
+    ],
+    "rows": 600,
+    "null_or_absent": 0,
+    "meaning": "10,000 KRW; rent is monthly, deposit is refundable principal"
+  },
+  {
+    "file": "new_contract_summary.json",
+    "field": "N30미만주의",
+    "types": [
+      "boolean"
+    ],
+    "rows": 600,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "source-manifest.json",
+    "field": "source_url",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "source-manifest.json",
+    "field": "portal_catalog_url",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Provenance, period, definition or quality metadata; preserve literally"
+  },
+  {
+    "file": "source-manifest.json",
+    "field": "accessed_at",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "source-manifest.json",
+    "field": "live_ui_data_update",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "source-manifest.json",
+    "field": "annual_zip_displayed_modified",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "source-manifest.json",
+    "field": "annual_download_endpoint",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "source-manifest.json",
+    "field": "sheet_download_endpoint",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "source-manifest.json",
+    "field": "download_method",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "source-manifest.json",
+    "field": "license",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "source-manifest.json",
+    "field": "files",
+    "types": [
+      "array"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "source-manifest.json",
+    "field": "quality",
+    "types": [
+      "object"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  },
+  {
+    "file": "source-manifest.json",
+    "field": "annual_zip_sha256",
+    "types": [
+      "string"
+    ],
+    "rows": 1,
+    "null_or_absent": 0,
+    "meaning": "Source field; semantic family and period defined in domain README and definitions.json; no invented cross-source equivalence"
+  }
+]
