@@ -79,6 +79,7 @@ const extensions = {
 };
 write("dashboard.json", dashboard);
 write("extensions.json", extensions);
+write("observatory.json", read("insights/observatory.json"));
 fs.copyFileSync(
   path.join(input, "geography/seoul-admin.geojson"),
   path.join(out, "seoul-admin.geojson"),
@@ -107,5 +108,5 @@ write("build-manifest.json", {
   files: hashes,
 });
 console.log(
-  "Built dashboard, extensions, WGS84 geography, sources and coverage from repository-only inputs.",
+  "Built dashboard, extensions, observatory trends, WGS84 geography, sources and coverage from repository-only inputs.",
 );

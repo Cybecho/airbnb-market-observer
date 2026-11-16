@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "amo-overlay/1",
+  "meta": {
+    "id": "REPLACE_WITH_SOURCE_ID",
+    "title": "REPLACE_WITH_TITLE",
+    "provider": "REPLACE_WITH_PROVIDER",
+    "observedAt": "2026-01-01",
+    "geography": "REPLACE_WITH_GEOGRAPHY",
+    "metricDefinition": "REPLACE_WITH_EXACT_VENDOR_METRIC_DEFINITION",
+    "occupancyUnit": "percent",
+    "currency": "KRW",
+    "historyCoverageNote": "Optional: describe covered months, omissions, and revisions. If availableNights is sellable total, add availableNightsDefinition: sellable_total."
+  },
+  "marketMonthly": [],
+  "listings": [],
+  "listingMonthly": [],
+  "warnings": ["Template only: replace metadata before import. Empty tables intentionally contain no market observations."]
+}

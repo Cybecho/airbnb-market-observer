@@ -1,11 +1,13 @@
 // Reviewed Seoul Research Atlas v2 source patch. Run ONLY in GitHub-hosted Linux.
 // Contains source files and official aggregate data, never the personal 427-dong bundle.
-import fs from 'node:fs';
-import path from 'node:path';
-import { gunzipSync } from 'node:zlib';
-import { createHash } from 'node:crypto';
-if (process.platform !== 'linux' || process.env.GITHUB_ACTIONS !== 'true') {
-  throw new Error('This migration must run in GitHub Actions on Linux, not on a local machine.');
+import fs from "node:fs";
+import path from "node:path";
+import { gunzipSync } from "node:zlib";
+import { createHash } from "node:crypto";
+if (process.platform !== "linux" || process.env.GITHUB_ACTIONS !== "true") {
+  throw new Error(
+    "This migration must run in GitHub Actions on Linux, not on a local machine.",
+  );
 }
 const encoded = [
   "H4sICJ2B+2oCA3VwZ3JhZGUtbWFuaWZlc3QuanNvbgC0vW1zXMeVJvhXEOoP43FQpZvvmfqmVTu2vf0ij6V1xIztaNMSbHFbEhUkZa+nYzpIClRAJjUk24QEUgAbdJMi6YWiIRKUwGhqP7j/yX5EVf2HzXPvrbo38zkgk6GciYm2VKoq1HMz",
@@ -3293,25 +3295,65 @@ const encoded = [
   "4vMzVAhtvbbntb0E/bYPRvuTfHxwF/2E8gBphyaD/pf4Ta/ot/N/e231yrvnrzyFsJL1gs9ox2GOBDYb0IY8QCTZ6T1n9ebJ8tUHHdyNfv8Y+p39u/8Ka0VVjsEEpWai3/rHE+iw9HEvvvrN7yJT00LvKL4FZv8CF/7gEP5yDb34FX/1FTxR",
   "eIw4Vhv3Gf/ydaobeG8dYtWqh4pq59Pi4vWYoNvYj2E9LjTCBZxZfJOU6D/5Ab+p7WuD6Qyqiin+qjca3QLF1xHRTb7Ib0O3GsVayt/t70/Afs6m9QjkQzLaT39wvjI49OZD+H90iB79QxpkZBmlp4/Ssw3Trx6nc6PlHPLqrom/xDLD7+7k",
   "kyEr4SwuYBHo/vo0TAKtcrehabRCLctOvhBiNTglCh7YNqTcR5MmKoEIebraaHCJWcca6PX9DLpQlvqIpDRQx+J+SmIaJxBzy8cO7Hq7KlLx/9Kh28UA/f23Vj9+jU748jefOMtXP8SBBY9fX/72CYotWL17D7q/y9cfrH7xIfz6/uqVj5av",
-  "3l+++m4j92aYTyYo1ro/AWDoHORTB6V6qe8rZ+EVLALEYamdTWnGSwXb/M0pyk/9RK4cTZwdAjpQPc6odK5Vkk92r9wIOrqxy2IuGu6BWqTHN5otXuiScULOZx1v14gPWrBD6sWNxf8Ck7Of8tYMKwA="
-].join('');
-const manifest = JSON.parse(gunzipSync(Buffer.from(encoded, 'base64')).toString('utf8'));
-if (manifest.schemaVersion !== 'amo-reviewed-upgrade/2' || manifest.files.length !== 18) throw new Error('Invalid migration payload');
+  "3l+++m4j92aYTyYo1ro/AWDoHORTB6V6qe8rZ+EVLALEYamdTWnGSwXb/M0pyk/9RK4cTZwdAjpQPc6odK5Vkk92r9wIOrqxy2IuGu6BWqTHN5otXuiScULOZx1v14gPWrBD6sWNxf8Ck7Of8tYMKwA=",
+].join("");
+const manifest = JSON.parse(
+  gunzipSync(Buffer.from(encoded, "base64")).toString("utf8"),
+);
+if (
+  manifest.schemaVersion !== "amo-reviewed-upgrade/2" ||
+  manifest.files.length !== 18
+)
+  throw new Error("Invalid migration payload");
 const root = process.cwd();
-const adapterFix = manifest.files.find((f) => f.path === 'src/adapter.ts'); if (!adapterFix || !adapterFix.content.includes('function enumValue<T extends string>')) throw new Error('Unexpected adapter source'); adapterFix.content = adapterFix.content.replace('function enumValue<T extends string>', 'function enumValue<const T extends string>'); const chartFix = manifest.files.find((f) => f.path === 'src/Chart.tsx'); if (!chartFix || !chartFix.content.includes('aria: { enabled: true }')) throw new Error('Unexpected chart source'); chartFix.content = chartFix.content.replace('aria: { enabled: true }', 'aria: { enabled: true, label: { enabled: true, description: label } }').replace('}, [option]);', '}, [option, label]);'); const targets = new Set();
+const adapterFix = manifest.files.find((f) => f.path === "src/adapter.ts");
+if (
+  !adapterFix ||
+  !adapterFix.content.includes("function enumValue<T extends string>")
+)
+  throw new Error("Unexpected adapter source");
+adapterFix.content = adapterFix.content.replace(
+  "function enumValue<T extends string>",
+  "function enumValue<const T extends string>",
+);
+const chartFix = manifest.files.find((f) => f.path === "src/Chart.tsx");
+if (!chartFix || !chartFix.content.includes("aria: { enabled: true }"))
+  throw new Error("Unexpected chart source");
+chartFix.content = chartFix.content
+  .replace(
+    "aria: { enabled: true }",
+    "aria: { enabled: true, label: { enabled: true, description: label } }",
+  )
+  .replace("}, [option]);", "}, [option, label]);");
+const targets = new Set();
 for (const file of manifest.files) {
   const target = path.resolve(root, file.path);
-  const allowed = /^(src\/|scripts\/|data\/organized\/|public\/templates\/|docs\/|tests\/)/.test(file.path) || ['README.md', 'package.json', 'package-lock.json'].includes(file.path);
-  if (!allowed || !target.startsWith(root + path.sep) || targets.has(target)) throw new Error('Unexpected migration path: ' + file.path);
+  const allowed =
+    /^(src\/|scripts\/|data\/organized\/|public\/templates\/|docs\/|tests\/)/.test(
+      file.path,
+    ) || ["README.md", "package.json", "package-lock.json"].includes(file.path);
+  if (!allowed || !target.startsWith(root + path.sep) || targets.has(target))
+    throw new Error("Unexpected migration path: " + file.path);
   targets.add(target);
-  if (typeof file.content !== 'string') throw new Error('Missing file content');
-  const actual = fs.existsSync(target) ? fs.readFileSync(target, 'utf8') : null;
-  if (actual !== file.before && actual !== file.content) throw new Error('Concurrent source change. Review before replacing: ' + file.path);
+  if (typeof file.content !== "string") throw new Error("Missing file content");
+  const actual = fs.existsSync(target) ? fs.readFileSync(target, "utf8") : null;
+  if (actual !== file.before && actual !== file.content)
+    throw new Error(
+      "Concurrent source change. Review before replacing: " + file.path,
+    );
 }
 for (const file of manifest.files) {
   const target = path.resolve(root, file.path);
   fs.mkdirSync(path.dirname(target), { recursive: true });
   fs.writeFileSync(target, file.content);
-  console.log(file.path + ' sha256=' + createHash('sha256').update(file.content).digest('hex'));
+  console.log(
+    file.path +
+      " sha256=" +
+      createHash("sha256").update(file.content).digest("hex"),
+  );
 }
-console.log('Applied ' + manifest.files.length + ' reviewed files. No packages, tests or builds ran locally.');
+console.log(
+  "Applied " +
+    manifest.files.length +
+    " reviewed files. No packages, tests or builds ran locally.",
+);

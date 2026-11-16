@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import * as echarts from "echarts";
+export const palette = ["#168879", "#e4846b", "#6786b3", "#ab8bba", "#c4a458"];
 export default function Chart({
   option,
   label,
@@ -11,26 +12,45 @@ export default function Chart({
   height?: number;
   onClick?: (p: any) => void;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
+  const element = useRef<HTMLDivElement>(null);
+  const instance = useRef<echarts.ECharts | null>(null);
+  const click = useRef(onClick);
+  click.current = onClick;
   useEffect(() => {
-    if (!ref.current) return;
-    const chart = echarts.init(ref.current, undefined, { renderer: "svg" });
-    chart.setOption({
-      ...option,
-      tooltip: { ...option.tooltip, renderMode: "richText" },
-      aria: { enabled: true },
+    if (!element.current) return;
+    const chart = echarts.init(element.current, undefined, { renderer: "svg" });
+    instance.current = chart;
+    chart.on("click", (p) => click.current?.(p));
+    let frame = 0;
+    const resize = new ResizeObserver(() => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => chart.resize());
     });
-    if (onClick) chart.on("click", onClick);
-    const resize = new ResizeObserver(() => chart.resize());
-    resize.observe(ref.current);
+    resize.observe(element.current);
     return () => {
+      cancelAnimationFrame(frame);
       resize.disconnect();
       chart.dispose();
+      instance.current = null;
     };
-  }, [option, onClick]);
+  }, []);
+  useEffect(() => {
+    instance.current?.setOption(
+      {
+        animationDuration: 350,
+        color: palette,
+        textStyle: { fontFamily: "system-ui, sans-serif", color: "#53686d" },
+        ...option,
+        tooltip: { ...option.tooltip, renderMode: "richText", confine: true },
+        aria: { enabled: true, label: { enabled: true, description: label } },
+      },
+      { notMerge: true },
+    );
+  }, [option, label]);
   return (
     <div
-      ref={ref}
+      className="chart"
+      ref={element}
       style={{ height, width: "100%" }}
       role="img"
       aria-label={label}
@@ -39,8 +59,8 @@ export default function Chart({
 }
 export function bars(labels: string[], values: any[], unit = "") {
   return {
-    color: ["#218875"],
-    grid: { left: 15, right: 45, top: 20, bottom: 35, containLabel: true },
+    color: [palette[0]],
+    grid: { left: 8, right: 38, top: 10, bottom: 25, containLabel: true },
     tooltip: {
       trigger: "axis",
       valueFormatter: (v: any) =>
@@ -49,11 +69,11 @@ export function bars(labels: string[], values: any[], unit = "") {
     xAxis: {
       type: "value",
       axisLabel: {
-        color: "#627680",
+        color: "#74858b",
         formatter: (v: number) =>
-          v >= 10000 ? `${Math.round(v / 10000)}만` : v,
+          Math.abs(v) >= 10000 ? `${Math.round(v / 10000)}만` : v,
       },
-      splitLine: { lineStyle: { color: "#edf1f2" } },
+      splitLine: { lineStyle: { color: "#eaf0ef" } },
     },
     yAxis: {
       type: "category",
@@ -61,15 +81,71 @@ export function bars(labels: string[], values: any[], unit = "") {
       data: labels,
       axisTick: { show: false },
       axisLine: { show: false },
-      axisLabel: { color: "#43565e", width: 120, overflow: "truncate" },
+      axisLabel: { color: "#496067", width: 105, overflow: "truncate" },
     },
     series: [
       {
         type: "bar",
         data: values,
-        barMaxWidth: 22,
+        barMaxWidth: 17,
         itemStyle: { borderRadius: [0, 4, 4, 0] },
       },
     ],
+  };
+}
+export function lines(
+  months: string[],
+  series: { name: string; values: (number | null)[] }[],
+  unit = "",
+) {
+  return {
+    grid: { left: 12, right: 22, top: 44, bottom: 45, containLabel: true },
+    legend: {
+      top: 0,
+      type: "scroll",
+      icon: "roundRect",
+      itemWidth: 12,
+      itemHeight: 3,
+    },
+    tooltip: {
+      trigger: "axis",
+      valueFormatter: (v: any) =>
+        v == null
+          ? "미제공"
+          : `${Number(v).toLocaleString("ko-KR", { maximumFractionDigits: 1 })}${unit}`,
+    },
+    xAxis: {
+      type: "category",
+      data: months,
+      boundaryGap: false,
+      axisLine: { lineStyle: { color: "#dce5e3" } },
+      axisTick: { show: false },
+      axisLabel: {
+        color: "#74858b",
+        hideOverlap: true,
+        formatter: (v: string) => v.replace("-", "."),
+      },
+    },
+    yAxis: {
+      type: "value",
+      name: unit,
+      nameTextStyle: { color: "#74858b" },
+      axisLabel: {
+        color: "#74858b",
+        formatter: (v: number) =>
+          Math.abs(v) >= 10000 ? `${Math.round(v / 10000)}만` : v,
+      },
+      splitLine: { lineStyle: { color: "#eaf0ef" } },
+    },
+    series: series.map((s) => ({
+      name: s.name,
+      type: "line",
+      data: s.values,
+      connectNulls: false,
+      showSymbol: months.length < 15,
+      symbolSize: 5,
+      lineStyle: { width: 2.5 },
+      emphasis: { focus: "series" },
+    })),
   };
 }

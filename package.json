@@ -1,7 +1,7 @@
 {
   "name": "airbnb-market-observer",
   "private": true,
-  "version": "1.0.0",
+  "version": "2.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
@@ -9,7 +9,7 @@
     "preview": "vite preview --host 127.0.0.1",
     "test": "vitest run",
     "data:build": "node scripts/build-data.mjs",
-    "data:check": "node scripts/validate-data.mjs",
+    "data:check": "node scripts/validate-data.mjs && node scripts/validate-observatory.mjs",
     "check:publication": "node scripts/check-publication.mjs",
     "test:e2e": "playwright test"
   },
