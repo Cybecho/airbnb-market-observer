@@ -3301,7 +3301,7 @@ const root = process.cwd();
 const targets = new Set();
 for (const file of manifest.files) {
   const target = path.resolve(root, file.path);
-  const allowed = /^(src\/|scripts\/|data\/organized\/|public\/templates\/|docs\/)/.test(file.path) || ['README.md', 'package.json', 'package-lock.json'].includes(file.path);
+  const allowed = /^(src\/|scripts\/|data\/organized\/|public\/templates\/|docs\/|tests\/)/.test(file.path) || ['README.md', 'package.json', 'package-lock.json'].includes(file.path);
   if (!allowed || !target.startsWith(root + path.sep) || targets.has(target)) throw new Error('Unexpected migration path: ' + file.path);
   targets.add(target);
   if (typeof file.content !== 'string') throw new Error('Missing file content');
