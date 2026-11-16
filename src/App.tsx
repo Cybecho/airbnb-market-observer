@@ -163,6 +163,9 @@ export default function App() {
     if (selected) p.set("dong", selected);
     history.replaceState(null, "", "#" + p);
   }, [view, gu, selected, period, layer]);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, [view]);
   const rows: Row[] = useMemo(
     () =>
       (data?.rows ?? data?.rows427 ?? []).map((r: Row) => ({
@@ -346,6 +349,7 @@ export default function App() {
           </div>
           <button
             className="local-connect"
+            aria-label="로컬 데이터"
             onClick={() => fileInput.current?.click()}
           >
             <Upload size={16} />

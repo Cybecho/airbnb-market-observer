@@ -1599,3 +1599,9 @@ details .card {
     scroll-behavior: auto !important;
   }
 }
+
+/* Keep mobile navigation reachable after scrolling within a data panel. */
+@media (max-width: 960px) {
+  .sidebar { position: sticky; top: 0; }
+  .topbar { position: relative; }
+}

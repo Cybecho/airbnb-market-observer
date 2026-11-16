@@ -53,7 +53,13 @@ export default function SeoulMap({
     let frame = 0;
     const resize = new ResizeObserver(() => {
       cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => m.invalidateSize());
+      frame = requestAnimationFrame(() => {
+        m.invalidateSize({ pan: false });
+        const b = current.current.gu
+          ? boundsByGu.current.get(current.current.gu)
+          : allBounds.current;
+        if (b?.isValid()) m.fitBounds(b, { padding: [30, 30], animate: false });
+      });
     });
     resize.observe(element.current);
     return () => {
