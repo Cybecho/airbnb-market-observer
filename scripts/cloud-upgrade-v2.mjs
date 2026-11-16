@@ -3298,7 +3298,7 @@ const encoded = [
 const manifest = JSON.parse(gunzipSync(Buffer.from(encoded, 'base64')).toString('utf8'));
 if (manifest.schemaVersion !== 'amo-reviewed-upgrade/2' || manifest.files.length !== 18) throw new Error('Invalid migration payload');
 const root = process.cwd();
-const adapterFix = manifest.files.find((f) => f.path === 'src/adapter.ts'); if (!adapterFix || !adapterFix.content.includes('function enumValue<T extends string>')) throw new Error('Unexpected adapter source'); adapterFix.content = adapterFix.content.replace('function enumValue<T extends string>', 'function enumValue<const T extends string>'); const targets = new Set();
+const adapterFix = manifest.files.find((f) => f.path === 'src/adapter.ts'); if (!adapterFix || !adapterFix.content.includes('function enumValue<T extends string>')) throw new Error('Unexpected adapter source'); adapterFix.content = adapterFix.content.replace('function enumValue<T extends string>', 'function enumValue<const T extends string>'); const chartFix = manifest.files.find((f) => f.path === 'src/Chart.tsx'); if (!chartFix || !chartFix.content.includes('aria: { enabled: true }')) throw new Error('Unexpected chart source'); chartFix.content = chartFix.content.replace('aria: { enabled: true }', 'aria: { enabled: true, label: { enabled: true, description: label } }').replace('}, [option]);', '}, [option, label]);'); const targets = new Set();
 for (const file of manifest.files) {
   const target = path.resolve(root, file.path);
   const allowed = /^(src\/|scripts\/|data\/organized\/|public\/templates\/|docs\/|tests\/)/.test(file.path) || ['README.md', 'package.json', 'package-lock.json'].includes(file.path);
