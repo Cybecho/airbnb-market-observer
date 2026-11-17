@@ -79,10 +79,10 @@ test("official observatory sentinels survive a local legacy import without persi
   const selected = dashboard.rows[0];
   const days = (month: string) =>
     new Date(Date.UTC(Number(month.slice(0, 4)), Number(month.slice(5, 7)), 0)).getUTCDate();
-  const months = ["2026-01", "2026-02", "2026-03"];
+  const months = ["2026-01", "2026-02", "2026-03", "2026-04"];
   const officialObservatory = {
     schemaVersion: "synthetic-observatory/1",
-    updatedAt: "2026-03-31T00:00:00.000Z",
+    updatedAt: "2026-04-30T00:00:00.000Z",
     sources: [
       {
         id: "official-synthetic-sentinel",
@@ -138,6 +138,12 @@ test("official observatory sentinels survive a local legacy import without persi
           days04: days("2026-03") - 1,
           days14: days("2026-03") - 1,
         },
+        {
+          month: "2026-04", adminCode: String(selected.admin_code),
+          gu: selected.gu, name: "E2E sentinel selected dong",
+          mean04: 73, mean14: 81, weekday04: 73, weekend04: 73,
+          weekday14: 81, weekend14: 81, days04: days("2026-04"), days14: days("2026-04"),
+        },
       ],
     },
   };
@@ -157,18 +163,26 @@ test("official observatory sentinels survive a local legacy import without persi
   await page.goto(`/#view=trends&dong=${selected.admin_code}`);
   await expect(monthlyChart(page)).toBeVisible();
   await openMonthlyTable(page);
-  await expect(monthlyTable(page)).toContainText("2026-01");
-  await expect(monthlyTable(page)).toContainText("0명");
-  const incompleteMarch = monthlyTable(page)
-    .locator("tbody tr")
-    .filter({ hasText: "2026-03" });
-  await expect(incompleteMarch).toContainText("미제공");
-  await expect(incompleteMarch).not.toContainText("0명");
-  const officialTable = await monthlyTable(page).innerText();
+  // Compare individual semantic cells, not layout-dependent whitespace in the whole table.
+  const expectedRows = [
+    ["2026-01", "1", "0", "0명"],
+    ["2026-02", "0", "0", "미제공"],
+    ["2026-03", "0", "0", "미제공"],
+    ["2026-04", "1", "0", "73명"],
+  ];
+  const assertOfficialTable = async () => {
+    const table = monthlyTable(page);
+    await expect(table.getByRole("columnheader").last()).toContainText(
+      selected.gu + " " + selected.admin_name,
+    );
+    const rows = table.locator("tbody tr");
+    await expect(rows).toHaveCount(expectedRows.length);
+    for (const [index, cells] of expectedRows.entries()) {
+      await expect(rows.nth(index).getByRole("cell")).toHaveText(cells);
+    }
+  };
+  await assertOfficialTable();
   const officialDescription = await (await monthlyDescription(page)).innerText();
-  expect(officialTable).toContain("2026-01");
-  expect(officialTable).toContain("0명");
-  expect(officialTable).toContain("미제공");
 
   const legacyFixture = {
     dashboard: {
@@ -192,7 +206,7 @@ test("official observatory sentinels survive a local legacy import without persi
   importing = false;
 
   await expect(monthlyChart(page)).toBeVisible();
-  await expect(monthlyTable(page)).toHaveText(officialTable);
+  await assertOfficialTable();
   await expect(await monthlyDescription(page)).toHaveText(officialDescription);
   await expect(monthlyTable(page)).toContainText("0명");
   await expect(monthlyTable(page)).toContainText("미제공");
@@ -205,5 +219,5 @@ test("official observatory sentinels survive a local legacy import without persi
   await expect(page.locator(".local-banner")).toHaveCount(0);
   await expect(monthlyChart(page)).toBeVisible();
   await openMonthlyTable(page);
-  await expect(monthlyTable(page)).toHaveText(officialTable);
+  await assertOfficialTable();
 });

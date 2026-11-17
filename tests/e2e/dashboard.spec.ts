@@ -80,7 +80,7 @@ test("trends and evidence panels retain detailed data", async ({ page }) => {
     page.getByRole("heading", { name: "자료 출처" }),
   ).toBeVisible();
   await expect(
-    page.getByRole("heading", { name: "연결한 자료" }),
+    page.getByRole("heading", { name: "연결한 자료", level: 2, exact: true }),
   ).toBeVisible();
 });
 
