@@ -20,7 +20,11 @@ jobs:
           node-version: 24
           cache: npm
       - name: Install on GitHub Linux only
-        run: npm ci --ignore-scripts
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends proj-bin unzip
+          command -v iconv
+          npm ci --ignore-scripts
       - name: Rebuild and validate public data
         run: |
           npm run data:build
@@ -45,6 +49,17 @@ jobs:
           path: test-results
           if-no-files-found: ignore
           retention-days: 3
+      - name: Record verified build provenance
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from "node:fs";
+          fs.writeFileSync("dist/build-provenance.json", JSON.stringify({
+            schemaVersion: "1.0",
+            dataCommit: process.env.GITHUB_SHA,
+            baseCommit: process.env.GITHUB_SHA,
+            workflowRun: process.env.GITHUB_RUN_ID
+          }) + String.fromCharCode(10));
+          NODE
       - name: Prepare verified Pages artifact
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
