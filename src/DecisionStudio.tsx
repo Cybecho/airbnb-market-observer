@@ -3,6 +3,13 @@ import Chart from "./Chart";
 import DataTable from "./DataTable";
 import FitLens from "./FitLens";
 import RevenueLens from "./RevenueLens";
+import LiveUpdates from "./LiveUpdates";
+import {
+  comparisonPeriodLabel,
+  currentPresenceLabel,
+  liveOpportunityInputs,
+  readAutomation,
+} from "./live";
 import { fmt, type Row } from "./data";
 import type { PrivateOverlay } from "./adapter";
 import {
@@ -55,7 +62,34 @@ export default function DecisionStudio(props: Props) {
   const [query, setQuery] = useState("");
   const [minimum, setMinimum] = useState(0);
   const [focused, setFocused] = useState(true);
-  const model = useMemo(() => opportunityModel(rows), [rows]);
+  const automation = useMemo(() => readAutomation(ext), [ext]);
+  const liveInputs = useMemo(
+    () =>
+      automation.status === "ready"
+        ? liveOpportunityInputs(automation.automation, rows)
+        : undefined,
+    [automation, rows],
+  );
+  const model = useMemo(
+    () =>
+      opportunityModel(
+        rows,
+        automation.status === "absent" ? undefined : (liveInputs ?? []),
+      ),
+    [rows, automation.status, liveInputs],
+  );
+  const periodLabel =
+    automation.status === "ready"
+      ? comparisonPeriodLabel(automation.automation)
+      : "2025·2026년 1~10월";
+  const currentLabel =
+    automation.status === "ready"
+      ? currentPresenceLabel(automation.automation)
+      : "2026년 1~10월 04시";
+  const registryObserved =
+    automation.status === "ready"
+      ? automation.automation.registry.observedAt
+      : (data.meta?.observed ?? "미제공");
   const shown = useMemo(
     () =>
       filterOpportunities(model.points, {
@@ -112,7 +146,7 @@ export default function DecisionStudio(props: Props) {
       formatter: (p: any) => {
         const r: OpportunityPoint | undefined = p.data?.raw;
         return r
-          ? `${r.gu} ${r.name}\n존재 추정 변화 ${fmt(r.change, "%")}\n2026년 1~10월 04시 ${fmt(r.presence, "명")}\n도시민박 영업등록 ${fmt(r.supply, "개")}\n${opportunityLabels[r.group]}${focused && Math.abs(r.change) > 50 ? "\n삼각형: 축 범위 밖 실제 변화율" : ""}`
+          ? `${r.gu} ${r.name}\n존재 추정 변화 ${fmt(r.change, "%")}\n${currentLabel} ${fmt(r.presence, "명")}\n도시민박 영업등록 ${fmt(r.supply, "개")}\n${opportunityLabels[r.group]}${focused && Math.abs(r.change) > 50 ? "\n삼각형: 축 범위 밖 실제 변화율" : ""}`
           : "";
       },
     },
@@ -230,6 +264,7 @@ export default function DecisionStudio(props: Props) {
               비교 가능 {model.points.length} / {model.total}동
             </span>
           </div>
+          <LiveUpdates state={automation} />
           <div className="opportunity-controls">
             <label>
               지역
@@ -324,9 +359,9 @@ export default function DecisionStudio(props: Props) {
               />
               <p className="decision-note">
                 가로축은 <b>인허가 스냅샷의 영업등록 수준</b>, 세로축은{" "}
-                <b>2025·2026년 1~10월 04시 존재 추정 변화</b>입니다. 같은 기간의
-                공급 증감 비교가 아닙니다. 등록 0개는 로그축의 별도 왼쪽 위치에
-                표시합니다. 등록자료 관측일: {data.meta?.observed ?? "미제공"}.
+                <b>{periodLabel} 04시 존재 추정 변화</b>입니다. 같은 기간의 공급
+                증감 비교가 아닙니다. 등록 0개는 로그축의 별도 왼쪽 위치에
+                표시합니다. 등록자료 관측일: {registryObserved}.
               </p>
               {focused && (
                 <p className="decision-note">
@@ -355,7 +390,7 @@ export default function DecisionStudio(props: Props) {
                       <dd>{fmt(active.change, "%")}</dd>
                     </div>
                     <div>
-                      <dt>2026년 1~10월 04시</dt>
+                      <dt>{currentLabel}</dt>
                       <dd>{fmt(active.presence, "명")}</dd>
                     </div>
                     <div>

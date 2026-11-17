@@ -13,6 +13,9 @@ const dashboard = read("dashboard/dashboard.json");
 const extensions = {
   schemaVersion: "1.0.0",
   publicationProfile: "public-safe",
+  ...(fs.existsSync(path.join(input, "insights/automation.json"))
+    ? { automation: read("insights/automation.json") }
+    : {}),
   legalDongs: read("registry/legal-dongs.json"),
   population: {
     adminDongs: read("population/admin-dongs.json"),
@@ -80,6 +83,8 @@ const extensions = {
 write("dashboard.json", dashboard);
 write("extensions.json", extensions);
 write("observatory.json", read("insights/observatory.json"));
+if (extensions.automation) write("automation.json", extensions.automation);
+else fs.rmSync(path.join(out, "automation.json"), { force: true });
 fs.copyFileSync(
   path.join(input, "geography/seoul-admin.geojson"),
   path.join(out, "seoul-admin.geojson"),

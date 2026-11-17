@@ -239,7 +239,10 @@ export default function App() {
           ...validated.dashboard,
           rows: validated.dashboard.rows ?? validated.dashboard.rows427,
         });
-        setPrivateExt(validated.extensions ?? publicExt);
+        // A private import cannot replace or erase the verified public automation feed.
+        const localExtensions = { ...(validated.extensions ?? {}) };
+        delete localExtensions.automation;
+        setPrivateExt({ ...publicExt, ...localExtensions });
       }
       setImportError("");
     } catch (e) {

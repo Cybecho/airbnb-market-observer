@@ -7,11 +7,13 @@
     "dev": "vite --host 127.0.0.1",
     "build": "tsc -b && vite build",
     "preview": "vite preview --host 127.0.0.1",
-    "test": "vitest run",
+    "test": "node --test scripts/refresh/*.test.mjs && vitest run && npm run typecheck",
     "data:build": "node scripts/build-data.mjs",
-    "data:check": "node scripts/validate-data.mjs && node scripts/validate-observatory.mjs",
+    "data:check": "node scripts/validate-data.mjs && node scripts/validate-observatory.mjs && node scripts/validate-refresh.mjs",
     "check:publication": "node scripts/check-publication.mjs",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "data:refresh": "node scripts/refresh-official.mjs",
+    "typecheck": "tsc -b"
   },
   "dependencies": {
     "echarts": "6.1.0",

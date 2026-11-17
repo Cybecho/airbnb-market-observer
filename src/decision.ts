@@ -2,6 +2,15 @@ import { numeric, type Row } from "./data";
 
 export type OpportunityGroup =
   "rising-low" | "rising-high" | "nonrising-low" | "nonrising-high";
+export type OpportunityInput = {
+  code: string;
+  name: string;
+  gu: string;
+  presence: number | null;
+  change: number | null;
+  supply: number | null;
+  comparisonComplete: boolean;
+};
 export type OpportunityPoint = {
   code: string;
   name: string;
@@ -23,8 +32,19 @@ export function median(values: number[]): number | null {
   const mid = Math.floor(sorted.length / 2);
   return sorted.length % 2 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
 }
+function legacyInput(row: Row): OpportunityInput {
+  return {
+    code: String(row.admin_code),
+    name: row.admin_name,
+    gu: row.gu,
+    comparisonComplete: row.presence_comparison_valid_304days === true,
+    presence: row.foreign_yoy_mean_2026_04,
+    change: row.foreign_yoy_yoy_pct_04,
+    supply: row.foreigner_operating_spatial,
+  };
+}
 /** Descriptive screen only. Registration is a snapshot level, not same-period supply change. */
-export function opportunityModel(rows: Row[]) {
+export function opportunityModel(rows: Row[], override?: OpportunityInput[]) {
   const omissions = {
     comparison: 0,
     presence: 0,
@@ -32,57 +52,48 @@ export function opportunityModel(rows: Row[]) {
     change: 0,
     identity: 0,
   };
-  const usable: Omit<OpportunityPoint, "group">[] = [];
+  const candidates = override ?? rows.map(legacyInput);
   const codeCounts = new Map<string, number>();
-  for (const row of rows)
-    codeCounts.set(
-      String(row.admin_code),
-      (codeCounts.get(String(row.admin_code)) ?? 0) + 1,
-    );
-  for (const row of rows) {
-    const code = String(row.admin_code);
+  for (const row of candidates)
+    codeCounts.set(row.code, (codeCounts.get(row.code) ?? 0) + 1);
+  const usable: Omit<OpportunityPoint, "group">[] = [];
+  for (const row of candidates) {
     if (
-      !/^\d{8}$/.test(code) ||
-      codeCounts.get(code) !== 1 ||
-      typeof row.admin_name !== "string" ||
+      !/^\d{8}$/.test(row.code) ||
+      codeCounts.get(row.code) !== 1 ||
+      typeof row.name !== "string" ||
       typeof row.gu !== "string"
     ) {
       omissions.identity++;
       continue;
     }
-    if (row.presence_comparison_valid_304days !== true) {
+    if (row.comparisonComplete !== true) {
       omissions.comparison++;
       continue;
     }
-    if (
-      !numeric(row.foreign_yoy_mean_2026_04) ||
-      row.foreign_yoy_mean_2026_04 < 0
-    ) {
+    if (!numeric(row.presence) || row.presence < 0) {
       omissions.presence++;
       continue;
     }
     if (
-      !numeric(row.foreigner_operating_spatial) ||
-      row.foreigner_operating_spatial < 0 ||
-      !Number.isInteger(row.foreigner_operating_spatial)
+      !numeric(row.supply) ||
+      row.supply < 0 ||
+      !Number.isInteger(row.supply)
     ) {
       omissions.supply++;
       continue;
     }
-    if (
-      !numeric(row.foreign_yoy_yoy_pct_04) ||
-      row.foreign_yoy_yoy_pct_04 < -100
-    ) {
+    if (!numeric(row.change) || row.change < -100) {
       omissions.change++;
       continue;
     }
     usable.push({
-      code,
-      name: row.admin_name,
+      code: row.code,
+      name: row.name,
       gu: row.gu,
-      presence: row.foreign_yoy_mean_2026_04,
-      change: row.foreign_yoy_yoy_pct_04,
-      supply: row.foreigner_operating_spatial,
+      presence: row.presence,
+      change: row.change,
+      supply: row.supply,
     });
   }
   const medianSupply = median(usable.map((p) => p.supply));
@@ -103,7 +114,7 @@ export function opportunityModel(rows: Row[]) {
     medianSupply,
     counts,
     omissions,
-    excluded: rows.length - points.length,
+    excluded: candidates.length - points.length,
     total: rows.length,
   };
 }

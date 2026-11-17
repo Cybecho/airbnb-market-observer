@@ -15,6 +15,7 @@ async function chooseDong(page: Page) {
 
 test("three focused questions preserve denominators, geography, and withheld values", async ({
   page,
+  request,
 }) => {
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
@@ -28,8 +29,9 @@ test("three focused questions preserve denominators, geography, and withheld val
   await expect(page.getByLabel("기회 자치구").locator("option")).toHaveCount(
     26,
   );
+  const dashboard = await (await request.get("/data/dashboard.json")).json();
   await expect(page.locator(".lens-heading .decision-badge")).toContainText(
-    "423 / 427",
+    new RegExp(`\\d+ / ${dashboard.rows.length}동`),
   );
   await page.getByRole("button", { name: "전체 범위", exact: true }).click();
   await expect(
@@ -191,13 +193,11 @@ test("linked bedroom revenue stays local and uses one month and exact listing ID
   page.on("request", (r) => {
     if (!["GET", "HEAD"].includes(r.method())) writes.push(r.url());
   });
-  await page
-    .getByLabel("로컬 데이터 파일")
-    .setInputFiles({
-      name: "synthetic-bedroom-linkage.json",
-      mimeType: "application/json",
-      buffer: Buffer.from(JSON.stringify(fixture)),
-    });
+  await page.getByLabel("로컬 데이터 파일").setInputFiles({
+    name: "synthetic-bedroom-linkage.json",
+    mimeType: "application/json",
+    buffer: Buffer.from(JSON.stringify(fixture)),
+  });
   await expect(
     page.getByRole("heading", { name: "기회 · 적합 · 검증", exact: true }),
   ).toBeVisible();

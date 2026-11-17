@@ -4,7 +4,12 @@ import fs from "node:fs";
 import path from "node:path";
 import { gunzipSync } from "node:zlib";
 import { execFileSync } from "node:child_process";
-if (process.platform !== "linux" || process.env.GITHUB_ACTIONS !== "true" || process.env.RUNNER_ENVIRONMENT !== "github-hosted") throw new Error("Use GitHub-hosted Linux only; do not run locally.");
+if (
+  process.platform !== "linux" ||
+  process.env.GITHUB_ACTIONS !== "true" ||
+  process.env.RUNNER_ENVIRONMENT !== "github-hosted"
+)
+  throw new Error("Use GitHub-hosted Linux only; do not run locally.");
 const packed = [
   "H4sIAAAAAAAAA+y9/Xcbx5Eo+q+MtIoASIMvipJlyBSXJimbz/paknLikAw5BIYkIhBAMIBEhsI9sk37KJH2Wd5YiexIvvKuHNtZ7VlalmP5Xue8c/ynvB8F8H949dU93TMDSk6899x7nnwSETPTXd1dXV1dVV1V",
   "vbX/kt8Kqo36/lLR3b/sBf7+0v7lo0MvFI+tDB0/Vh4+euTo8tHj3gsrhZWj3vARb+XY0ReOHnvxyIvH/MJ+d/9KteYH+0tzW/ubXnsN6uZWq+3qar3R8uHrsr+CP0r7642Kv7jeqHSgdH6+XqkGbfiTu1Rt+/C3",
@@ -838,21 +843,62 @@ const packed = [
   "CwvlZpvNWmNkaGhhYaEQlur1aglDVocoa+PQFFqlGkNSX0mpAIFrx3DosV+c/T5hB45REr7vT5Wai/ynvTnOtg0NTkyWQ1ef6mTkqlSJ5uqI6p8u5bm+HHzH5Ekb3WjBkzJ2kG49D9C5HyrqVKl+9swbwSmcOY7y",
   "17Tz3AQQB8dhSlE0VpaL/KYOmcPdsu9OPwXLufBuzQBQ/hc7RtroUPhyyKzRXESgh6UA+M2ZUuWdam0kODpsjYfviSaVDPl3S5XswpeXKpPUZ4QayJgCg/oUHsZ/CHEdPtSBwDhQPKTwKaVh48ksNPOHG8IEkiiy",
   "jBou6bpS6FP7PldLb1iiYfIRDDENRvBwlNEB5dTura39v62nkA9iJ1eyjrFZcJggWYUr7HZPfq29RXbpM+6bAqCicLFQatC/ZF6fQjVWOBNhYjr9czASnLNHB6p81dgmmmCQsD9rxUIQSf7bwjX4pUVnjQ7NAQ+p",
-  "/Tw6XYWe1Q065q8SlMznhIgReouUgcEZUrjD26hivna5/fk3Qt1h2ZO2c0atvpluImZaONXEF/hJ8MkkA0vzqRVMQ28z2Y3RIR6b+koXC+O/MQYEJu2V5fPL/x/xW2iuZqUGAA=="
+  "/Tw6XYWe1Q065q8SlMznhIgReouUgcEZUrjD26hivna5/fk3Qt1h2ZO2c0atvpluImZaONXEF/hJ8MkkA0vzqRVMQ28z2Y3RIR6b+koXC+O/MQYEJu2V5fPL/x/xW2iuZqUGAA==",
 ].join("");
-const manifest = JSON.parse(gunzipSync(Buffer.from(packed, "base64")).toString("utf8"));
-if (manifest.version !== 1 || manifest.files.length !== 29) throw new Error("Unexpected reviewed installation manifest");
+const manifest = JSON.parse(
+  gunzipSync(Buffer.from(packed, "base64")).toString("utf8"),
+);
+if (manifest.version !== 1 || manifest.files.length !== 29)
+  throw new Error("Unexpected reviewed installation manifest");
 execFileSync("git", ["merge-base", "--is-ancestor", manifest.base, "HEAD"]);
-const allowed = new Set([".gitignore","README.md","package.json","scripts/build-data.mjs","scripts/refresh-official.mjs","scripts/validate-refresh.mjs","scripts/refresh-health.mjs","scripts/refresh/io.mjs","scripts/refresh/derive.mjs","scripts/refresh/derive.test.mjs","scripts/refresh/presence.mjs","scripts/refresh/presence.test.mjs","scripts/refresh/registry.mjs","scripts/refresh/registry.test.mjs","scripts/refresh/mobility.mjs","scripts/refresh/mobility.test.mjs","scripts/refresh/sales.mjs","scripts/refresh/sales.test.mjs","src/live.ts","src/LiveUpdates.tsx","src/live.test.ts","src/DecisionStudio.tsx","src/decision.ts","src/styles.css","tests/e2e/refresh.spec.ts","tests/e2e/decision.spec.ts","docs/OFFICIAL-REFRESH.md","scripts/refresh/contract.test.mjs","src/App.tsx"]);
+const allowed = new Set([
+  ".gitignore",
+  "README.md",
+  "package.json",
+  "scripts/build-data.mjs",
+  "scripts/refresh-official.mjs",
+  "scripts/validate-refresh.mjs",
+  "scripts/refresh-health.mjs",
+  "scripts/refresh/io.mjs",
+  "scripts/refresh/derive.mjs",
+  "scripts/refresh/derive.test.mjs",
+  "scripts/refresh/presence.mjs",
+  "scripts/refresh/presence.test.mjs",
+  "scripts/refresh/registry.mjs",
+  "scripts/refresh/registry.test.mjs",
+  "scripts/refresh/mobility.mjs",
+  "scripts/refresh/mobility.test.mjs",
+  "scripts/refresh/sales.mjs",
+  "scripts/refresh/sales.test.mjs",
+  "src/live.ts",
+  "src/LiveUpdates.tsx",
+  "src/live.test.ts",
+  "src/DecisionStudio.tsx",
+  "src/decision.ts",
+  "src/styles.css",
+  "tests/e2e/refresh.spec.ts",
+  "tests/e2e/decision.spec.ts",
+  "docs/OFFICIAL-REFRESH.md",
+  "scripts/refresh/contract.test.mjs",
+  "src/App.tsx",
+]);
 const seen = new Set();
 for (const file of manifest.files) {
- if (!allowed.has(file.path) || seen.has(file.path)) throw new Error("Unreviewed installation path");
- seen.add(file.path);
- const current = fs.existsSync(file.path) ? fs.readFileSync(file.path,"utf8") : null;
- if (current !== file.after && current !== file.before) throw new Error("Concurrent source edit, refusing overwrite: " + file.path);
+  if (!allowed.has(file.path) || seen.has(file.path))
+    throw new Error("Unreviewed installation path");
+  seen.add(file.path);
+  const current = fs.existsSync(file.path)
+    ? fs.readFileSync(file.path, "utf8")
+    : null;
+  if (current !== file.after && current !== file.before)
+    throw new Error("Concurrent source edit, refusing overwrite: " + file.path);
 }
 for (const file of manifest.files) {
- fs.mkdirSync(path.dirname(file.path), { recursive: true });
- fs.writeFileSync(file.path, file.after);
+  fs.mkdirSync(path.dirname(file.path), { recursive: true });
+  fs.writeFileSync(file.path, file.after);
 }
-console.log("Applied " + manifest.files.length + " reviewed source files. Official data collection, tests and publication checks must still pass before commit/deployment.");
+console.log(
+  "Applied " +
+    manifest.files.length +
+    " reviewed source files. Official data collection, tests and publication checks must still pass before commit/deployment.",
+);

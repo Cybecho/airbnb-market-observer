@@ -12,3 +12,8 @@ test-results/
 private/
 *.log
 *.tsbuildinfo
+
+# Ephemeral official-source processing on GitHub Linux only
+.refresh-private/
+.refresh-reports/
+*.candidate
