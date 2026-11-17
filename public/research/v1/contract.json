@@ -139,6 +139,23 @@
       "조사 동 검색",
       "조사 자치구",
       "조사 분류"
+    ],
+    "controls": [
+      {
+        "role": "combobox",
+        "name": "조사 자치구",
+        "exact": true
+      },
+      {
+        "role": "combobox",
+        "name": "조사 분류",
+        "exact": true
+      },
+      {
+        "role": "searchbox",
+        "name": "조사 동 검색",
+        "exact": true
+      }
     ]
   },
   "sourceRequirements": {

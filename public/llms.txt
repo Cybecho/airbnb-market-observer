@@ -22,3 +22,5 @@ For a human, Playwright, or Computer Use agent:
 Units: `inflowDaily` is estimated cross-dong movement events/day, not people. `nightPurposePct` is the share of 00:00–05:59 arrivals among short-term arrivals in the purpose dataset. `subwayTransportPct` is the subway share in the transport dataset.
 
 Safety: read only. No login, upload, form action, mutation, signed query, private/raw-record inference, or autonomous operating, investment, legal, or licensing conclusion. A human must evaluate the counterpoint, source confidence, period and boundary fit, and unresolved gaps before real-world action.
+
+Match the control role and exact accessible name (not a substring): combobox ‘조사 자치구’, combobox ‘조사 분류’, searchbox ‘조사 동 검색’. In Playwright, use getByRole('combobox', {name:'조사 분류',exact:true}). Select an area by its 8-digit code rather than guessing a map coordinate.

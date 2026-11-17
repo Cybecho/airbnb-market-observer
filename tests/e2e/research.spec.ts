@@ -140,8 +140,8 @@ test("where lens filters, selects real paths and table links, and preserves deep
   await page.goto(whereUrl(mapOrigin));
   await expect(page.getByTestId("research-lens")).toBeVisible();
   await expectSelectedArea(page, mapOrigin);
-  await page.getByLabel("조사 자치구").selectOption("");
-  await page.getByLabel("조사 분류").selectOption(mapTarget.tier);
+  await page.getByRole("combobox", { name: "조사 자치구", exact: true }).selectOption("");
+  await page.getByRole("combobox", { name: "조사 분류", exact: true }).selectOption(mapTarget.tier);
   const map = page.getByTestId("research-map");
   const path = map.locator(
     `path[data-area-code="${mapTarget.code}"][data-tier="${mapTarget.tier}"]`,
@@ -159,7 +159,7 @@ test("where lens filters, selects real paths and table links, and preserves deep
     map.locator(`path[data-tier="${mapTarget.tier}"][aria-disabled="false"]`),
   ).toHaveCount(index.counts.byTier[mapTarget.tier]);
 
-  await page.getByLabel("조사 동 검색").fill(tableTarget.code);
+  await page.getByRole("searchbox", { name: "조사 동 검색", exact: true }).fill(tableTarget.code);
   const table = page.getByTestId("research-table");
   const tableLink = table.locator(
     `a[data-area-code="${tableTarget.code}"][href*="dong=${tableTarget.code}"]`,
@@ -226,7 +226,7 @@ test("where lens filters, selects real paths and table links, and preserves deep
       () => document.documentElement.scrollWidth <= window.innerWidth + 1,
     ),
   ).toBe(true);
-  await page.getByLabel("조사 동 검색").fill(mobileTarget.code);
+  await page.getByRole("searchbox", { name: "조사 동 검색", exact: true }).fill(mobileTarget.code);
   await page
     .getByTestId("research-table")
     .locator(`a[data-area-code="${mobileTarget.code}"]`)
