@@ -23,7 +23,8 @@ const sourceLabel = (source: ResearchIndex["sources"][number]) => source.title |
 
 function periodDays(period: string) {
   const dates = period.match(/\d{4}[.-]\d{1,2}[.-]\d{1,2}/g) ?? [];
-  if (dates.length < 2) {
+  const [firstDate, lastDate] = dates;
+  if (!firstDate || !lastDate) {
     const yearMonth = /^(\d{4})년\s*1[~–-](\d{1,2})월/.exec(period);
     if (!yearMonth) return null;
     const year=Number(yearMonth[1]), month=Number(yearMonth[2]);
@@ -33,7 +34,7 @@ function periodDays(period: string) {
     const [year, month, day] = text.split(/[.-]/).map(Number);
     return Date.UTC(year, month - 1, day);
   };
-  const days = Math.round((toUtc(dates[1]) - toUtc(dates[0])) / 86_400_000) + 1;
+  const days = Math.round((toUtc(lastDate) - toUtc(firstDate)) / 86_400_000) + 1;
   return days > 0 ? days : null;
 }
 
