@@ -357,7 +357,7 @@ export default function RevenueLens({
         symbolSize: i ? 13 : 10,
         z: i ? 3 : 4,
         itemStyle: {
-          color: i ? "#ad563b" : "#126f66",
+          color: i ? "#965528" : "#24669a",
           borderColor: "#fff",
           borderWidth: 1,
         },
@@ -394,7 +394,7 @@ export default function RevenueLens({
           className="revenue-lens-import"
           onClick={onImport}
         >
-          로컬 자료 연결
+          파일 연결
         </button>
       </header>
       <div className="revenue-lens-controls">
@@ -407,7 +407,7 @@ export default function RevenueLens({
               setRoomChoice("");
             }}
           >
-            <option value="legacy">기존 침실 벤치마크</option>
+            <option value="legacy">출처별 침실 매출 추정치</option>
             {overlay && <option value="linked">연결 숙소·월</option>}
           </select>
         </label>
@@ -494,16 +494,16 @@ export default function RevenueLens({
         <div className="revenue-lens-empty decision-note" role="status">
           <h3>
             {source === "legacy" && group?.withheld
-              ? "공개권한 확인 대기"
+              ? "공개할 수 있는 침실별 매출이 없습니다"
               : "비교 가능한 침실별 매출이 없습니다"}
           </h3>
           <p>
             {source === "legacy"
-              ? "공개 벤치마크의 비어 있는 값은 0원이 아닙니다. 이용 권한이 있는 로컬 자료를 연결하면 비교할 수 있습니다."
-              : "선택 월·범위에 정확히 연결되는 숙소 ID, 침실 수, 유효한 매출이 필요합니다."}
+              ? "공개 자료의 빈칸은 0원이 아닙니다. 이용할 권한이 있는 자료를 연결하면 같은 기간의 매출을 비교할 수 있습니다."
+              : "선택 월·범위에 정확히 연결되는 숙소 식별값, 침실 수, 유효한 매출이 필요합니다."}
           </p>
           <button type="button" onClick={onImport}>
-            로컬 자료 불러오기
+            파일 연결
           </button>
         </div>
       )}
@@ -511,14 +511,16 @@ export default function RevenueLens({
         overlay.marketMonthly.length > 0 &&
         !overlay.listingMonthly.length && (
           <p className="revenue-lens-warning">
-            marketMonthly 시장 집계만으로는 침실별 비교를 만들 수 없습니다.
-            listings와 listingMonthly의 정확한 숙소 ID 연결이 필요합니다.
+            시장 월별 집계만으로는 침실별 비교를 만들 수 없습니다.
+            숙소 정보와 같은 월 매출 자료를 정확한 숙소 식별값으로 연결해야 합니다.
           </p>
         )}
       {hasValues && (
         <Chart
           option={option}
-          label={`침실별 평균 원형·중앙값 마름모 매출 비교. ${scopeLabel}. ${unit}. 정확한 값과 표본 수는 다음 표에 있습니다.`}
+          label={`침실별 매출 비교 · ${scopeLabel}`}
+          cue="원은 평균, 마름모는 중앙값입니다. 오른쪽일수록 매출이 높습니다."
+          guide={`같은 줄의 두 점은 같은 침실 수·기간·지역을 나타냅니다. 두 점 사이의 선은 평균과 중앙값의 차이이지 신뢰구간이 아닙니다. 표에서 단위(${unit})와 표본 수를 확인하세요. 추정 매출은 실제 정산액이나 순이익이 아닙니다.`}
           height={Math.max(270, rows.length * 42 + 100)}
           onClick={(p: { value?: unknown[] }) => {
             const index = p.value?.[1];
@@ -583,11 +585,11 @@ export default function RevenueLens({
       )}
       {source === "linked" && (
         <p className="revenue-lens-omissions">
-          선택 월 제외 {linked.omitted}행: ID 누락 {linked.omissions.missingId},
-          미연결 {linked.omissions.unmatched}, 중복·모호 ID{" "}
+          선택 월 제외 {linked.omitted}행: 숙소 식별값 누락 {linked.omissions.missingId},
+          연결 실패 {linked.omissions.unmatched}, 중복·모호 식별값{" "}
           {linked.omissions.duplicate}, 침실 결측·오류{" "}
           {linked.omissions.bedrooms}, 매출 결측·오류 {linked.omissions.revenue}
-          , 코드 불일치·누락 {linked.omissions.outsideScope}. 중복은 해당 ID의
+          , 선택 범위 불일치 {linked.omissions.outsideScope}. 중복은 해당 식별값의
           모든 행을 제외합니다. 별도 월 형식 오류 {linked.invalidMonthRows}행.
           실제 0원은 포함합니다.
         </p>

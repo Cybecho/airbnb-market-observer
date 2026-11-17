@@ -1,16 +1,23 @@
 import { useEffect, useRef } from "react";
-import * as echarts from "echarts";
-export const palette = ["#168879", "#e4846b", "#6786b3", "#ab8bba", "#c4a458"];
+import * as echarts from "echarts/core";
+import { BarChart, LineChart, ScatterChart } from "echarts/charts";
+import { GridComponent, TooltipComponent, LegendComponent, MarkLineComponent, AriaComponent } from "echarts/components";
+import { SVGRenderer } from "echarts/renderers";
+import { ChartFrame } from "./ChartFrame";
+echarts.use([BarChart, LineChart, ScatterChart, GridComponent, TooltipComponent, LegendComponent, MarkLineComponent, AriaComponent, SVGRenderer]);
+export const palette = ["#24669a", "#9a592e", "#37746b", "#635786", "#87712f"];
 export default function Chart({
   option,
   label,
   height = 320,
-  onClick,
+  onClick, guide, cue,
 }: {
   option: any;
   label: string;
   height?: number;
   onClick?: (p: any) => void;
+  guide?: string;
+  cue?: string;
 }) {
   const element = useRef<HTMLDivElement>(null);
   const instance = useRef<echarts.ECharts | null>(null);
@@ -41,6 +48,7 @@ export default function Chart({
         color: palette,
         textStyle: { fontFamily: "system-ui, sans-serif", color: "#53686d" },
         ...option,
+        animation: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? false : option.animation !== false,
         tooltip: { ...option.tooltip, renderMode: "richText", confine: true },
         aria: { enabled: true, label: { enabled: true, description: label } },
       },
@@ -48,6 +56,7 @@ export default function Chart({
     );
   }, [option, label]);
   return (
+    <ChartFrame label={label} cue={cue} guide={guide ?? "축에 적힌 단위와 기간을 먼저 확인하세요. 항목에 포인터를 올리면 관측값을 볼 수 있습니다. 미제공은 0이 아닙니다."}>
     <div
       className="chart"
       ref={element}
@@ -55,6 +64,7 @@ export default function Chart({
       role="img"
       aria-label={label}
     />
+    </ChartFrame>
   );
 }
 export function bars(labels: string[], values: any[], unit = "") {
@@ -88,7 +98,7 @@ export function bars(labels: string[], values: any[], unit = "") {
         type: "bar",
         data: values,
         barMaxWidth: 17,
-        itemStyle: { borderRadius: [0, 4, 4, 0] },
+        itemStyle: { borderRadius: 0 },
       },
     ],
   };
@@ -137,14 +147,15 @@ export function lines(
       },
       splitLine: { lineStyle: { color: "#eaf0ef" } },
     },
-    series: series.map((s) => ({
+    series: series.map((s, i) => ({
       name: s.name,
       type: "line",
       data: s.values,
       connectNulls: false,
       showSymbol: months.length < 15,
       symbolSize: 5,
-      lineStyle: { width: 2.5 },
+      symbol: ["circle", "rect", "diamond", "triangle"][i % 4],
+      lineStyle: { width: 2.2, type: ["solid", "dashed", "dotted", "solid"][i % 4] },
       emphasis: { focus: "series" },
     })),
   };

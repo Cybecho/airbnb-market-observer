@@ -24,7 +24,7 @@ export function metrics(period: string): Metric[] {
       period: "2026년 2분기",
       source: "서울시 우리마을가게 상권분석서비스",
       definition:
-        "여관업 카드추정매출. 원표÷사업체수÷3 계산 또는 UI 직접표시. 계산 분모의 전체 일반화는 미확정. 평균 성격의 환산값이며 중앙값·Airbnb 호스트 실매출이 아닙니다.",
+        "여관업의 분기 카드추정매출을 사업체 수와 3개월로 나눈 값이거나 원문 화면의 표시값입니다. 일부 자료는 분모가 확인되지 않았습니다. 점포당 월환산값은 중앙값이나 Airbnb 호스트의 실제 매출이 아닙니다.",
       grade: "추정",
     },
     {
@@ -105,7 +105,7 @@ export function color(v: unknown, values: number[]) {
   if (!numeric(v)) return "#dbe1e4";
   const sorted = [...values].sort((a, b) => a - b);
   const idx = sorted.findIndex((x) => x >= v);
-  return ["#d8eee9", "#a6d8cc", "#65b7a6", "#2b8e7d", "#126454"][
+  return ["#e3eff9", "#b8d6ed", "#82b4d9", "#4686b8", "#235c8b"][
     Math.min(4, Math.floor((Math.max(0, idx) / Math.max(1, sorted.length)) * 5))
   ];
 }

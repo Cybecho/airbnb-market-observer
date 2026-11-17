@@ -20,6 +20,7 @@ import {
 import SeoulMap from "./Map";
 import DecisionStudio from "./DecisionStudio";
 import Chart, { bars, lines } from "./Chart";
+import { ChartFrame } from "./ChartFrame";
 import DataTable, { GenericDataset } from "./DataTable";
 import { SurveyPanels, ExtraEvidence } from "./ResearchPanels";
 import {
@@ -44,7 +45,7 @@ const sections = [
   ["revenue", "매출 근거", BarChart3],
   ["supply", "등록 공급", Building2],
   ["performance", "숙소 성과", SlidersHorizontal],
-  ["sources", "데이터 연결", Database],
+  ["sources", "자료 연결", Database],
 ] as const;
 const titles: Record<string, [string, string]> = {
   decision: [
@@ -76,12 +77,12 @@ const titles: Record<string, [string, string]> = {
     "업종·행정동·법정동의 기준을 유지한 공급 배경입니다.",
   ],
   performance: [
-    "숙소 성과를 연결하는 작업공간",
-    "직접 보유한 정산 자료나 유료 데이터도 같은 분석 흐름에 연결됩니다.",
+    "숙소 성과",
+    "연결한 성과 자료를 기존 관측 자료와 함께 봅니다.",
   ],
   sources: [
-    "무엇을 알고, 무엇을 연결할까요",
-    "데이터의 기간·지역·단위와 세부 원자료를 한곳에서 확인합니다.",
+    "연결한 자료와 기준",
+    "자료의 기간·지역·단위를 확인합니다.",
   ],
 };
 const hash = new URLSearchParams(location.hash.slice(1));
@@ -222,7 +223,7 @@ export default function App() {
   async function importFile(file?: File) {
     if (!file) return;
     try {
-      if (file.size > 30_000_000) throw Error("파일은 30MB 이하여야 합니다.");
+      if (file.size > 30_000_000) throw Error("file-too-large");
       const parsed = JSON.parse(await file.text());
       if (parsed.schemaVersion === "amo-overlay/1") {
         setOverlay(parseOverlay(parsed));
@@ -246,7 +247,11 @@ export default function App() {
       }
       setImportError("");
     } catch (e) {
-      setImportError(e instanceof Error ? e.message : "파일을 확인해 주세요.");
+      setImportError(
+        e instanceof Error && e.message === "file-too-large"
+          ? "파일 크기는 30MB 이하여야 합니다."
+          : "파일 형식 또는 내용이 올바르지 않습니다.",
+      );
     } finally {
       if (fileInput.current) fileInput.current.value = "";
     }
@@ -358,7 +363,7 @@ export default function App() {
         </details>
         <div className="sidebar-bottom">
           <span className="status-dot" />
-          {local ? "개인 데이터 연결됨" : "무료 관측자료"}
+          {local ? "파일 연결됨" : "공개 관측자료"}
           <small>Airbnb와 무관한 독립 연구</small>
           <a
             href="https://github.com/Cybecho/airbnb-market-observer"
@@ -390,16 +395,16 @@ export default function App() {
           </div>
           <button
             className="local-connect"
-            aria-label="로컬 데이터"
+            aria-label="파일 연결"
             onClick={() => fileInput.current?.click()}
           >
             <Upload size={16} />
-            <span>로컬 데이터</span>
+            <span>파일 연결</span>
           </button>
           <input
             ref={fileInput}
             className="file-input"
-            aria-label="로컬 데이터 파일"
+            aria-label="연결할 파일"
             type="file"
             accept="application/json,.json"
             onChange={(e) => importFile(e.target.files?.[0])}
@@ -409,10 +414,10 @@ export default function App() {
           <div className="local-banner" role="status">
             <span>
               <Check size={15} />
-              <strong>개인 데이터 연결됨</strong> · 브라우저 메모리에서만 사용
+              <strong>파일 연결됨</strong>
             </span>
             <button onClick={clearLocal}>
-              데이터 지우기 <X size={14} />
+              연결 해제 <X size={14} />
             </button>
           </div>
         )}
@@ -562,15 +567,21 @@ export default function App() {
                       관측 {available.length} / {filtered.length}동
                     </span>
                   </div>
-                  <SeoulMap
-                    geo={geo}
-                    rows={rows}
-                    metric={metric}
-                    gu={gu}
-                    selected={selected}
-                    compare={compared}
-                    onSelect={select}
-                  />
+                  <ChartFrame
+                    label="행정동 지표 지도"
+                    cue="색이 진할수록 선택 지표가 큽니다"
+                    guide="같은 지표에서 색이 진할수록 값이 큰 동입니다. 자치구를 바꾸면 그 구 안에서 색을 다시 나눕니다. 회색은 0이 아니라 미제공입니다. 동을 누르거나 아래 표에서 선택하면 수치와 출처를 볼 수 있습니다."
+                  >
+                    <SeoulMap
+                      geo={geo}
+                      rows={rows}
+                      metric={metric}
+                      gu={gu}
+                      selected={selected}
+                      compare={compared}
+                      onSelect={select}
+                    />
+                  </ChartFrame>
                   <div className="legend">
                     <span>낮음</span>
                     <i />
@@ -661,7 +672,7 @@ export default function App() {
                       {!ranked.length && (
                         <p className="empty-inline">
                           이 지표는 연결된 숫자가 없습니다. 다른 지표를
-                          선택하거나 로컬 자료를 연결해 주세요.
+                          선택하거나 파일을 연결해 주세요.
                         </p>
                       )}
                     </div>
@@ -802,6 +813,8 @@ export default function App() {
                     <h2>선택 지표 나란히 보기</h2>
                     <Chart
                       label="선택 지역 지표 비교"
+                      cue="막대 길이로 지역별 값을 비교"
+                      guide="막대가 길수록 선택 지표 값이 큽니다. 같은 단위와 기간의 지역만 비교하세요."
                       option={bars(
                         compareRows.map((r) => r.admin_name),
                         compareRows.map((r) => r[metric.key]),
@@ -820,7 +833,7 @@ export default function App() {
                 <div className="section-heading">
                   <div>
                     <span className="eyebrow">서울 공유숙박 설문</span>
-                    <h2>거주국별 공유숙박 이용자</h2>
+                    <h2>거주지역별 공유숙박 이용자</h2>
                     <p className="subtle">
                       2025년 서울 전체 · 공유숙박 이용자 746명 · 가중 구성비 ·
                       거주국과 국적은 다릅니다
@@ -830,6 +843,8 @@ export default function App() {
                 </div>
                 <Chart
                   label="거주지역별 공유숙박 설문 구성"
+                  cue="막대 길이로 가중 구성비 비교"
+                  guide="막대가 길수록 해당 거주지역의 가중 구성비가 큽니다. 거주국과 국적은 다릅니다."
                   option={bars(
                     (data.survey ?? [])
                       .filter((r: Row) => r.dimension === "residence_region")
@@ -892,6 +907,8 @@ export default function App() {
                 <Chart
                   height={360}
                   label="여관 카드추정매출 점포당 월환산 비교"
+                  cue="막대 길이로 점포당 월환산 비교"
+                  guide="막대가 길수록 여관의 점포당 월환산 카드추정매출이 큽니다. Airbnb 숙소 매출이 아닙니다."
                   option={bars(
                     [...filtered]
                       .filter((r) => numeric(r.inn_monthly_display_krw))
@@ -928,8 +945,7 @@ export default function App() {
                   />
                 </details>
                 <p className="method-note">
-                  공개행의 평균 성격 환산값입니다. 아래 임대료를 차감해 수익이나
-                  ROI를 계산하지 않습니다.
+                  점포당 월환산은 평균 성격의 추정값입니다. 개별 숙소의 정산액이나 순이익은 알 수 없습니다.
                 </p>
               </section>
 
@@ -958,6 +974,8 @@ export default function App() {
                 </div>
                 <Chart
                   label="게스트하우스 업종 점포 수 분기 비교"
+                  cue="선의 높이로 분기별 점포 수 비교"
+                  guide="선이 높을수록 해당 분기의 게스트하우스 점포 수가 많습니다. 같은 업종 분류 안에서만 비교하세요."
                   option={lines(
                     ["2024-Q2", "2025-Q2", "2026-Q2"],
                     [
@@ -991,7 +1009,7 @@ export default function App() {
               <details className="card">
                 <summary>허가·폐업 및 전체 법정동 등록 필드</summary>
                 <GenericDataset
-                  title="법정동 등록 원자료 상세"
+                  title="법정동 등록 상세"
                   rows={(ext.legalDongs ?? []).filter(
                     (r: Row) => !gu || r.gu === gu,
                   )}
@@ -1026,14 +1044,15 @@ export default function App() {
                 <section className="card">
                   <h2>기존 연구 묶음의 성과 벤치마크</h2>
                   <p className="subtle">
-                    로컬 파일의 기존 시장·침실·계절성 자료입니다. 원천
-                    기간·단위·집계법을 유지합니다.
+                    연결한 파일의 시장·침실·계절성 자료입니다. 기간·단위·집계 기준을 유지합니다.
                   </p>
                   <div className="two-col">
                     <div>
                       <h3>시장 월평균 추정매출</h3>
                       <Chart
-                        label="로컬 기존 시장 월평균 추정매출"
+                        label="연결한 시장 월평균 추정매출"
+                        cue="선의 높이로 월별 추정값 비교"
+                        guide="선이 높을수록 연결한 자료의 월평균 추정매출이 큽니다. 실제 매출이 아닙니다."
                         option={lines(
                           (ext.revenue?.seasonality ?? []).map(
                             (r: Row) => r.month,
@@ -1056,7 +1075,9 @@ export default function App() {
                     <div>
                       <h3>시장 추정 점유율</h3>
                       <Chart
-                        label="로컬 기존 시장 추정 점유율"
+                        label="연결한 시장 추정 점유율"
+                        cue="선의 높이로 월별 추정 점유율 비교"
+                        guide="선이 높을수록 연결한 자료의 추정 점유율이 큽니다. 미제공 구간은 선으로 이어지지 않습니다."
                         option={lines(
                           (ext.revenue?.seasonality ?? []).map(
                             (r: Row) => r.month,
@@ -1080,7 +1101,7 @@ export default function App() {
                   <GenericDataset
                     title="월별 계절성"
                     rows={ext.revenue?.seasonality}
-                    note="시점별 시장 추정이며 실제 호스트 정산이 아닙니다."
+                    note="시점별 시장 추정값입니다."
                   />
                   <GenericDataset
                     title="침실별 벤치마크"
@@ -1102,10 +1123,10 @@ export default function App() {
                 <div className="section-heading">
                   <div>
                     <span className="eyebrow">지금 연결된 범위</span>
-                    <h2>데이터 연결 현황</h2>
+                    <h2>연결한 자료</h2>
                   </div>
                   <span className="badge private">
-                    {local ? "개인 자료 포함" : "무료 관측자료"}
+                    {local ? "파일 연결됨" : "무료 관측자료"}
                   </span>
                 </div>
                 <div className="inventory-grid">
@@ -1136,7 +1157,7 @@ export default function App() {
                       "자치구·유형·보증금·면적",
                     ],
                     [
-                      "개인 성과",
+                      "연결한 성과",
                       `${overlay?.marketMonthly.length ?? 0}시장월`,
                       overlay ? overlay.meta.title : "파일 연결 시 활성화",
                     ],
@@ -1151,37 +1172,28 @@ export default function App() {
               </section>
               <section className="card connection-card">
                 <div>
-                  <span className="eyebrow">앞으로의 연결도 같은 방식으로</span>
-                  <h2>무료 자료부터 유료 성과 데이터까지</h2>
-                  <p>
-                    기존 427동 연구 묶음 또는 표준 성과 JSON을 연결하세요.
-                    원자료를 서버에 올리지 않고 이 화면에서만 분석합니다.
-                  </p>
+                  <span className="eyebrow">파일 추가</span>
+                  <h2>성과 자료 연결</h2>
+                  <p>기존 427동 연구 묶음 또는 성과 파일을 연결하세요.</p>
                 </div>
                 <div className="button-row">
                   <button
                     className="primary"
                     onClick={() => fileInput.current?.click()}
                   >
-                    <Upload size={16} /> 로컬 파일 연결
+                    <Upload size={16} /> 파일 연결
                   </button>
                   <button onClick={downloadOverlayTemplate}>
-                    성과 데이터 양식
+                    성과 자료 양식
                   </button>
                 </div>
-                <div className="connector-flow">
-                  <span>원천 데이터</span>
-                  <span>코드·기간·단위 검증</span>
-                  <span>지도·추세·성과 패널</span>
-                </div>
                 <p className="method-note">
-                  행정동 코드가 없는 숙소·커스텀 시장은 지도에 임의 배분하지
-                  않습니다. 저장소 공개 여부와 별개로 로컬 파일은 브라우저
-                  메모리에서만 사용합니다.
+                  파일은 이 탭에서만 열리며 새로고침하면 연결이 해제됩니다.
+                  행정동 코드가 없는 항목은 지도에 표시하지 않습니다.
                 </p>
               </section>
               <section className="card">
-                <h2>원천 출처 카탈로그</h2>
+                <h2>자료 출처</h2>
                 <DataTable
                   rows={sourceRows}
                   cols={[
@@ -1194,11 +1206,9 @@ export default function App() {
                 />
               </section>
               <section className="card reference-card">
-                <h2>무료 시장 화면 교차 확인</h2>
+                <h2>외부 시장 추세 확인</h2>
                 <p className="subtle">
-                  외부 무료 화면으로 이동합니다. 아래 서비스의 차트는 이
-                  대시보드에 가져온 데이터가 아닙니다. 자동 수집·유료 API 호출은
-                  하지 않습니다.
+                  AirROI의 무료 화면을 새 탭에서 엽니다. 외부 차트의 값은 이 대시보드에 포함하지 않습니다.
                 </p>
                 <a
                   className="source-link"
@@ -1229,16 +1239,16 @@ export default function App() {
                 </a>
               </section>
               <details className="card">
-                <summary>전체 행정동 필드와 수집 범위 상세</summary>
+                <summary>전체 행정동 자료와 범위 상세</summary>
                 <GenericDataset
-                  title="427개 행정동의 연결 필드"
+                  title="427개 행정동 자료"
                   rows={filtered}
                   note="지역 코드와 원천 정의를 함께 확인하세요. 미제공과 실제 0을 구분합니다."
                 />
                 <GenericDataset
-                  title="수집 범위"
+                  title="자료 범위"
                   rows={Array.isArray(ext.coverage) ? ext.coverage : []}
-                  note="수집된 구조·기간·결합 상태"
+                  note="기간과 범위를 확인하세요."
                 />
               </details>
             </>

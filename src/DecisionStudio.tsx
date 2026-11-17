@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { registryAxis, inspections } from "./atlasViews";
 import Chart from "./Chart";
 import DataTable from "./DataTable";
 import FitLens from "./FitLens";
@@ -116,15 +117,15 @@ export default function DecisionStudio(props: Props) {
     name: `${p.gu} ${p.name}`,
     code: p.code,
     raw: p,
-    value: [p.supply === 0 ? 0.5 : p.supply, displayChange(p.change, focused)],
+    value: [xAxis.position(p.supply), displayChange(p.change, focused)],
     symbol: focused && Math.abs(p.change) > 50 ? "triangle" : "circle",
     symbolRotate: p.change < -50 ? 180 : 0,
     symbolSize: p.code === selected ? 15 : muted ? 5 : 8,
     itemStyle: {
-      color: p.code === selected ? "#d87c65" : muted ? "#c4d3ce" : "#168879",
+      color: p.code === selected ? "#4a90e2" : muted ? "#aebbc6" : "#326d9e",
       opacity: muted ? 0.45 : 0.85,
       borderWidth: p.code === selected ? 2 : 0,
-      borderColor: "#754838",
+      borderColor: "#222222",
     },
     label:
       p.code === selected
@@ -132,15 +133,15 @@ export default function DecisionStudio(props: Props) {
             show: true,
             formatter: p.name,
             position: "right",
-            color: "#593e31",
+            color: "#222222",
             fontSize: 11,
           }
         : { show: false },
   });
-  const maxSupply = Math.max(10, ...model.points.map((p) => p.supply));
+  const xAxis = registryAxis(Math.max(10, ...model.points.map((p) => p.supply)));
   const chart = {
     animation: false,
-    grid: { top: 24, left: 56, right: 28, bottom: 70 },
+    grid: { top: 34, left: 52, right: 26, bottom: 55 },
     tooltip: {
       trigger: "item",
       formatter: (p: any) => {
@@ -151,36 +152,28 @@ export default function DecisionStudio(props: Props) {
       },
     },
     xAxis: {
-      type: "log",
-      logBase: 10,
-      min: 0.5,
-      max: 10 ** Math.ceil(Math.log10(maxSupply)),
-      name: "영업등록 수 · 개 (로그 간격)",
+      type: "value",
+      min: 0,
+      max: 100,
+      axisTick: { show: true, customValues: xAxis.ticks },
+      name: "도시민박 영업등록 (개, 로그 눈금)",
       nameLocation: "middle",
       nameGap: 45,
-      axisLabel: {
-        showMinLabel: true,
-        formatter: (v: number) =>
-          v === 0.5
-            ? "0"
-            : Number.isInteger(v)
-              ? v.toLocaleString("ko-KR")
-              : "",
-      },
-      splitLine: { lineStyle: { color: "#eaf0ed" } },
+      axisLabel: { showMinLabel: true, showMaxLabel: true, customValues: xAxis.ticks, formatter: xAxis.label },
+      splitLine: { show: false },
     },
     yAxis: {
       type: "value",
       min: focused ? -50 : undefined,
       max: focused ? 50 : undefined,
-      name: "동기간 존재 추정 변화 · %",
-      nameTextStyle: { align: "left" },
+      name: "04시 생활인구 변화 (%)",
+      nameTextStyle: { align: "left", color: "#455b69", fontSize: 11 },
       axisLabel: { formatter: "{value}%" },
-      splitLine: { lineStyle: { color: "#eaf0ed" } },
+      splitLine: { lineStyle: { color: "#dae1e6" } },
     },
     series: [
       {
-        name: "서울 비교 맥락",
+        name: "조건 밖 행정동",
         type: "scatter",
         silent: true,
         data: model.points
@@ -194,8 +187,8 @@ export default function DecisionStudio(props: Props) {
         markLine: {
           silent: true,
           symbol: "none",
-          lineStyle: { type: "dashed", color: "#9aada5", width: 1 },
-          label: { fontSize: 9, color: "#75877f" },
+          lineStyle: { type: "dashed", color: "#60798c", width: 1 },
+          label: { fontSize: 9, color: "#384f61" },
           data: [
             {
               yAxis: 0,
@@ -205,9 +198,9 @@ export default function DecisionStudio(props: Props) {
               ? []
               : [
                   {
-                    xAxis: model.medianSupply === 0 ? 0.5 : model.medianSupply,
+                    xAxis: xAxis.position(model.medianSupply),
                     label: {
-                      formatter: `서울 중간 등록 ${fmt(model.medianSupply, "개")}`,
+                      formatter: `서울 중앙값 ${fmt(model.medianSupply, "개")}`,
                       position: "insideEndTop",
                     },
                   },
@@ -219,13 +212,6 @@ export default function DecisionStudio(props: Props) {
   };
   return (
     <div className="decision-studio">
-      <div className="decision-premise">
-        <strong>통계를 모으기보다, 다음 조사 대상을 좁힙니다.</strong>
-        <span>
-          대화에서 추론한 세 가지 니즈입니다. 자동 투자 추천·수급 부족 판정은
-          하지 않습니다.
-        </span>
-      </div>
       <div className="intent-steps" role="group" aria-label="핵심 판단 세 단계">
         {intents.map(([key, word, question], i) => (
           <button
@@ -248,24 +234,21 @@ export default function DecisionStudio(props: Props) {
           <span>
             관심 지역 <b>{chosenName}</b>
           </span>
-          <span>고객 설문·기존 침실 매출은 서울 전체 자료입니다.</span>
+          <span>고객 설문·서울 침실별 매출은 서울 전체 자료입니다.</span>
           <button onClick={() => onSelect("")}>지역 선택 해제</button>
         </div>
       )}
       {intent === "opportunity" && (
         <section className="lens-panel opportunity-lens" aria-label="기회 탐색">
-          <div className="lens-heading">
+          <div className="lens-heading opportunity-heading">
             <div>
-              <span className="lens-eyebrow">01 · 기회</span>
-              <h2>등록이 적고 존재인구가 늘어난 동부터 살펴볼까요?</h2>
-              <p>수급 부족의 결론이 아니라, 현장 확인을 시작할 조건입니다.</p>
+              <span className="lens-eyebrow">01 / 기회 탐색</span>
+              <h2>어느 동부터 현장을 확인할까요?</h2>
+              <p>등록 수준과 04시 존재 추정 변화를 함께 보고, 조사 대상을 좁힙니다.</p>
             </div>
-            <span className="decision-badge">
-              비교 가능 {model.points.length} / {model.total}동
-            </span>
+            <span className="decision-badge">비교 가능 {model.points.length} / {model.total}동</span>
           </div>
-          <LiveUpdates state={automation} />
-          <div className="opportunity-controls">
+          <div className="opportunity-controls" aria-label="기회 필터">
             <label>
               지역
               <select
@@ -323,12 +306,16 @@ export default function DecisionStudio(props: Props) {
               </button>
             ))}
           </div>
+          <div className="opportunity-reading-key" aria-label="차트 범례">
+            <span><i className="opportunity-key-dot" />현재 조건</span>
+            <span><i className="opportunity-key-dot opportunity-key-dot--muted" />조건 밖 동</span>
+            <span><i className="opportunity-key-line" />점선: 변화 0% / 서울 등록 중앙값</span>
+          </div>
           <div className="opportunity-layout">
             <div className="opportunity-plot">
               <div className="opportunity-plot-head">
                 <span>
-                  현재 조건 <strong>{shown.length}동</strong> · 회색은 서울 비교
-                  맥락
+                  선택 조건 <strong>{shown.length}동</strong>
                 </span>
                 <div className="segmented">
                   <button
@@ -347,6 +334,8 @@ export default function DecisionStudio(props: Props) {
               </div>
               <Chart
                 label="행정동별 존재인구 변화와 영업등록 분포"
+                guide="점 하나가 행정동 하나입니다. 가로 점선 위는 작년 같은 기간보다 새벽 생활인구가 늘어난 동, 세로 점선 왼쪽은 도시민박 영업등록이 서울 중앙값보다 적은 동입니다. 등록 0개는 따로 표시하며, 삼각형은 표시 범위 밖의 값입니다. 숙소 부족을 뜻하지는 않습니다."
+                cue="위로 갈수록 생활인구 증가율이 높고, 왼쪽일수록 등록이 적습니다."
                 height={390}
                 option={chart}
                 onClick={(p) => {
@@ -358,16 +347,11 @@ export default function DecisionStudio(props: Props) {
                 }}
               />
               <p className="decision-note">
-                가로축은 <b>인허가 스냅샷의 영업등록 수준</b>, 세로축은{" "}
-                <b>{periodLabel} 04시 존재 추정 변화</b>입니다. 같은 기간의 공급
-                증감 비교가 아닙니다. 등록 0개는 로그축의 별도 왼쪽 위치에
-                표시합니다. 등록자료 관측일: {registryObserved}.
+                생활인구 비교: <b>{periodLabel} 04시</b>. 도시민박 등록은 {String(registryObserved).slice(0,10)} 기준이며, 등록 수의 증감을 나타내지 않습니다.
               </p>
               {focused && (
                 <p className="decision-note">
-                  중심 구간은 −50~50%. 현재 조건 중 범위 밖 {outside}동은 경계
-                  삼각형이며, 툴팁·표는 실제 수치를 보존합니다. 전체 범위로
-                  전환할 수 있습니다.
+                  중심 구간은 −50~50%입니다. 현재 조건 중 범위 밖 {outside}동은 경계 삼각형으로 보이며, 툴팁과 표에는 실제 값을 그대로 둡니다.
                 </p>
               )}
             </div>
@@ -417,9 +401,7 @@ export default function DecisionStudio(props: Props) {
                     <button onClick={() => onExplore("map")}>
                       지도에서 위치 확인
                     </button>
-                    <button onClick={() => onExplore("trends")}>
-                      24개월 흐름 확인
-                    </button>
+                    {inspections.map(item => <button key={item.id} onClick={() => item.destination === "trends" ? onExplore("trends") : selectIntent(item.destination)}>{item.title} <small>· {item.scope}</small></button>)}
                   </div>
                 </>
               ) : (
@@ -440,23 +422,16 @@ export default function DecisionStudio(props: Props) {
               </button>
             </aside>
           </div>
+          <LiveUpdates state={automation} />
           <div className="decision-evidence">
-            <span>
-              <b>관측됨</b> 동기간 존재 변화·등록 수준
-            </span>
-            <span>
-              <b>미연결</b> 이 동의 실제 숙박 고객
-            </span>
-            <span>
-              <b>별도 확인</b> 객실 구성별 판매·매출
-            </span>
+            <span><b>차트에 있음</b> 04시 생활인구 변화 · 등록 수</span>
+            <span><b>차트에 없음</b> 실제 숙박 고객</span>
+            <span><b>별도 확인</b> 객실별 판매 · 매출</span>
           </div>
           <details className="decision-details">
-            <summary>
-              조건에 맞는 {shown.length}동의 원값 · 키보드로 선택
-            </summary>
+            <summary>조건에 맞는 {shown.length}동의 원값 표 · 키보드로 선택</summary>
             <p className="decision-note">
-              가나다순 출발입니다. 종합점수나 투자 순위를 만들지 않습니다.
+              행정동 이름순입니다. 조사할 지역을 고르는 표이며 투자 순위가 아닙니다.
             </p>
             <DataTable
               rows={shown.map((p) => ({
@@ -547,23 +522,11 @@ export default function DecisionStudio(props: Props) {
         </>
       )}
       <details className="decision-method">
-        <summary>왜 이 세 가지 시각화만 남겼나요?</summary>
+        <summary>화면 범위</summary>
         <p>
-          대화에서 추론한 목적은 기회 발견, 고객·객실 적합성 탐색, 매출 근거
-          검증입니다. 첫 화면은 이 세 질문으로 좁히고 기존 지도·시계열·원자료는
-          세부 탐색에 보존했습니다. 월세·전세·순이익은 이 판단 흐름에서
-          제외했습니다.
-        </p>
-        <p>
-          ECharts, D3, Vega-Lite, Observable Plot, React Flow, Mermaid,
-          Cytoscape.js, Plotly.js를 검토했습니다. 기존 ECharts와 Leaflet로
-          필요한 상호작용을 구현하고 추가 런타임은 넣지 않았습니다. 실제 전이
-          자료가 없는 국적→지역→객실 Sankey나 장식용 네트워크는 만들지
-          않았습니다.
-        </p>
-        <p>
-          세 단계는 조사 순서입니다. 서로 다른 모집단을 연결한 고객
-          이동·인과관계를 뜻하지 않습니다.
+          세 단계는 조사 순서입니다. 기회 화면은 동별 생활인구 변화와 등록 수를,
+          적합·검증 화면은 각자 표시된 자료 범위를 다룹니다. 서로 다른 자료가
+          고객 이동이나 인과관계를 뜻하지는 않습니다.
         </p>
       </details>
     </div>

@@ -1,3 +1,4 @@
+import { ChartFrame } from './ChartFrame';
 import { useId, useState } from "react";
 import { fmt, numeric } from "./data";
 
@@ -144,7 +145,7 @@ export default function FitLens({
       <header className="lens-header fit-header">
         <div>
           <p className="lens-eyebrow">적합 · 일행 규모</p>
-          <h2 id={id + "-title"}>누가, 몇 박, 얼마를 썼나</h2>
+          <h2 id={id + "-title"}>일행 규모에 따라 숙박일수와 지출이 어떻게 다를까?</h2>
         </div>
         <p className="fit-scope">서울 전체 · 2025년 서울 방문객 조사</p>
       </header>
@@ -161,7 +162,7 @@ export default function FitLens({
         </p>
         <p>
           <strong>1인·공유숙박 1박 지출</strong> 위 집단 중 공유숙박만 이용한
-          shared_only N={fmt(count(totalPrice?.n_total_cohort))}, 지출 유효 N=
+          표본 N={fmt(count(totalPrice?.n_total_cohort))}, 지출 유효 N=
           {fmt(count(totalPrice?.n_valid_rate))}. 별도 유효표본의 가중
           분위수입니다.
         </p>
@@ -172,10 +173,10 @@ export default function FitLens({
         </p>
       )}
       <p className="fit-instructions">
-        행을 선택하면 표본과 확인 질문을 볼 수 있습니다. 키보드 Tab으로 이동,
-        Enter 또는 Space로 선택.
+        일행 규모를 선택하면 숙박일수와 지출 표본을 따로 볼 수 있습니다.
       </p>
-      <div className="fit-matrix-scroll">
+      <ChartFrame label="일행 규모별 구성비와 1인 1박 지출" cue="막대는 일행 비중, 점은 1인 1박 지출의 중앙값입니다." guide="한 줄이 일행 규모 하나입니다. 막대는 응답자의 가중 비중이고, 지출선은 1인 1박 지출의 가운데 50%입니다. 점이 오른쪽일수록 중앙값이 높습니다. 지출은 공유숙박만 이용하고 지출을 답한 사람을 기준으로 합니다. 두 수치를 곱해 매출을 계산할 수 없습니다.">
+        <div className="fit-matrix-scroll">
         <div
           className="fit-matrix"
           role="group"
@@ -230,7 +231,7 @@ export default function FitLens({
                   <rect
                     width="100"
                     height="6"
-                    rx="3"
+                    rx="0"
                     fill="currentColor"
                     opacity="0.1"
                   />
@@ -238,7 +239,7 @@ export default function FitLens({
                     <rect
                       width={r.share}
                       height="6"
-                      rx="3"
+                      rx="0"
                       fill="currentColor"
                     />
                   )}
@@ -323,12 +324,13 @@ export default function FitLens({
             </span>
           </div>
         </div>
-      </div>
-      <p className="fit-reading-note">
-        구간은 가운데 50%의 지출 분포(IQR)이며 신뢰구간이 아닙니다.
-        구성비·숙박일수·지출은 중첩된 서로 다른 분모의 기술통계입니다.
-        결합확률로 읽거나 서로 곱하지 않습니다.
-      </p>
+        </div>
+        <p className="fit-reading-note">
+          구간은 가운데 50%의 지출 분포(IQR)이며 신뢰구간이 아닙니다.
+          구성비·숙박일수·지출은 중첩된 서로 다른 분모의 기술통계입니다.
+          결합확률로 읽거나 서로 곱하지 않습니다.
+        </p>
+      </ChartFrame>
       <section
         className="fit-detail"
         id={id + "-detail"}
@@ -408,7 +410,7 @@ export default function FitLens({
       <details className="fit-table-details">
         <summary>접근 가능한 수치표 · 분모와 해석 한계</summary>
         <p>
-          출처: public/data/dashboard.json의 survey·price 집계. N은 비가중
+          출처: 2025년 서울 방문객 조사 집계. N은 비가중
           응답자 수입니다. 구성비 가중 분모(일행 규모별 가중치 합의 합):{" "}
           {fmt(weightedBase)}. 지출 전체 유효 가중치 합:{" "}
           {fmt(totalPrice?.weighted_base_valid)}. 이는 원시 표본 N과 다릅니다.
@@ -417,7 +419,7 @@ export default function FitLens({
           <table className="fit-table">
             <caption>
               2025 서울 전체 · 가중 구성비, 가중 숙박일수 중앙값, 별도
-              shared_only 집단의 가중 지출 분위수
+              공유숙박만 이용한 집단의 가중 지출 분위수
             </caption>
             <thead>
               <tr>

@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import { Upload, Download, ArrowUpRight } from "lucide-react";
 import Chart, { lines, palette } from "./Chart";
+import { ChartFrame } from "./ChartFrame";
+import PresenceTrendChart from "./PresenceTrendChart";
 import DataTable from "./DataTable";
 import { fmt, numeric, type Row } from "./data";
 import { downloadOverlayTemplate, type PrivateOverlay } from "./adapter";
@@ -33,12 +35,13 @@ export type Observatory = {
   registry?: { rows: Row[]; definition: string };
   notes?: string[];
 };
+const emptyComparison: string[] = [];
 export function PresencePanel({
   observatory,
   rows,
   gu,
   selected,
-  compare = [],
+  compare = emptyComparison,
 }: {
   observatory: Observatory | null;
   rows: Row[];
@@ -80,7 +83,7 @@ export function PresencePanel({
         ).length,
         total: ids.length,
         series: ids.map((id) => ({
-          name: rows.find((r) => String(r.admin_code) === id)?.admin_name ?? id,
+          name: (() => { const row = rows.find((r) => String(r.admin_code) === id); return row ? `${row.gu} ${row.admin_name}` : id; })(),
           values: months.map((m) => {
             const r = index.get(`${id}:${m}`);
             return usable(r, m) ? (r![field] as number) : null;
@@ -123,6 +126,7 @@ export function PresencePanel({
     comparable: result.comparable,
     ...Object.fromEntries(result.series.map((s) => [s.name, s.values[i]])),
   }));
+  const chartLabel = "월별 외국인 존재인구 추세";
   return (
     <section className="card trend-card">
       <div className="section-heading">
@@ -130,8 +134,7 @@ export function PresencePanel({
           <span className="eyebrow">월별 방문 배경</span>
           <h2>외국인 존재인구의 흐름</h2>
           <p className="subtle">
-            {months[0] ?? "미연결"} ~ {months.at(-1) ?? "미연결"} · 실제 연결{" "}
-            {months.length}개월 · {hour}시 일평균 존재 추정
+            {months.length ? `${months[0]} ~ ${months.at(-1)} · 관측 기간 ${months.length}개월` : "관측한 달 없음"} · {hour}시 일평균
           </p>
         </div>
         <span className="badge">통신 기반 추정</span>
@@ -150,7 +153,7 @@ export function PresencePanel({
           <select
             aria-label="요일 구분"
             value={day}
-            onChange={(e) => setDay(e.target.value as typeof day)}
+            onChange={(event) => setDay(event.target.value as typeof day)}
           >
             <option value="mean">전체</option>
             <option value="weekday">평일</option>
@@ -162,24 +165,25 @@ export function PresencePanel({
           <select
             aria-label="추세 기간"
             value={window}
-            onChange={(e) => setWindow(e.target.value)}
+            onChange={(event) => setWindow(event.target.value)}
           >
             <option value="12">최근 12개월</option>
             <option value="24">최근 24개월 이내</option>
-            <option value="60">연결된 전체 기간</option>
+            <option value="60">전체 관측 기간</option>
           </select>
         </label>
       </div>
       {months.length ? (
-        <Chart
-          option={lines(months, result.series, "명")}
-          label="월별 외국인 존재인구 추세"
-          height={340}
-        />
+        <ChartFrame
+          label={chartLabel}
+          cue="선이 높을수록 그 시각에 머문 것으로 추정한 사람이 많습니다." guide="가로축은 월, 세로축은 선택한 시각의 일평균 인원(명)입니다. 서울·구 합계는 기간 내내 관측된 같은 동만 더합니다. 선이 끊긴 달은 0명이 아니라 관측값이 없는 달입니다. 예약이나 투숙객 수는 아닙니다."
+        >
+          <PresenceTrendChart months={months} series={result.series} label={chartLabel} />
+        </ChartFrame>
       ) : (
         <div className="empty-state">
-          <h3>월별 원자료를 연결하고 있습니다</h3>
-          <p>연결된 기간만 차트에 표시하며, 빈 달을 0으로 채우지 않습니다.</p>
+          <h3>이 기간의 월별 관측값이 없습니다</h3>
+          <p>연결한 기간만 차트에 표시하며, 빈 달을 0으로 채우지 않습니다.</p>
         </div>
       )}
       <div className="chart-foot">
@@ -189,9 +193,9 @@ export function PresencePanel({
         <span>예약·숙박객 수가 아닌 존재인구</span>
       </div>
       <p className="method-note">
-        지역 합계는 선택 기간에 모든 일자가 관측된 공통 행정동의 일평균을
-        더합니다. 행정경계 변경과 소표본 비공개에 유의하세요. 선택동의 미완전
-        월은 공란으로 남깁니다.
+        지역 합계는 선택 기간의 모든 일자가 관측된 공통 행정동의 월 일평균을 더합니다.
+        월별 일수와 일치하지 않는 자료는 제외하며, 행정경계 변경과 소표본 비공개에
+        유의하세요. 선택동의 미완전 월은 공란으로 남깁니다.
       </p>
       <details>
         <summary>월별 수치와 관측 범위 확인</summary>
@@ -201,9 +205,9 @@ export function PresencePanel({
             { key: "month", label: "월" },
             { key: "observed", label: "완전 관측동 N" },
             { key: "comparable", label: "공통 관측동 N" },
-            ...result.series.map((s) => ({
-              key: s.name,
-              label: s.name,
+            ...result.series.map((item) => ({
+              key: item.name,
+              label: item.name,
               unit: "명",
             })),
           ]}
@@ -241,7 +245,7 @@ export function ContextScatter({
       </div>
       <Chart
         height={340}
-        label="도시민박업 영업 등록과 04시 외국인 존재인구 산점도"
+        label="도시민박업 영업 등록과 04시 외국인 존재인구 산점도" guide="점 하나가 행정동 하나입니다. 오른쪽일수록 도시민박 등록이 많고, 위쪽일수록 04시 외국인 생활인구가 많습니다. 같은 동에서 관측됐어도 그 사람이 해당 숙소에 묵었다는 뜻은 아닙니다."
         onClick={(p) => {
           if (p.data?.code) onSelect(p.data.code);
         }}
@@ -302,28 +306,22 @@ export function PerformancePanel({
   if (!overlay)
     return (
       <section className="card empty-state connector-empty">
-        <span className="eyebrow">개인 성과 데이터 연결</span>
-        <h2>숙소 성과를 담을 자리는 준비되어 있습니다</h2>
+        <span className="eyebrow">성과 자료 연결</span>
+        <h2>숙소 성과를 보려면 자료를 연결하세요</h2>
         <p>
           매출·ADR·점유율·예약박수는 별도 데이터가 필요합니다. 파일을 연결하면
-          같은 화면에서 기간별 성과를 볼 수 있습니다.
+          같은 시장의 월별 값을 비교할 수 있습니다.
         </p>
-        <div className="connector-flow">
-          <span>AirROI / AirDNA / 직접 정산</span>
-          <span>표준 JSON</span>
-          <span>개인 분석 화면</span>
-        </div>
+
         <div className="button-row">
           <button className="primary" onClick={onImport}>
-            <Upload size={16} /> 로컬 파일 연결
+            <Upload size={16} /> 파일 연결
           </button>
           <button onClick={downloadOverlayTemplate}>
             <Download size={16} /> 연결 양식 다운로드
           </button>
         </div>
-        <p className="subtle">
-          API 키 불필요 · 파일은 브라우저 메모리에만 사용 · 서버 전송 없음
-        </p>
+
         <a
           className="text-link"
           href="https://www.airroi.com/atlas/charts/revenue?country-code=KR&state=Seoul&city=Seoul"
@@ -370,20 +368,20 @@ export function PerformancePanel({
       <section className="card">
         <div className="section-heading">
           <div>
-            <span className="eyebrow">로컬 성과 데이터</span>
+            <span className="eyebrow">연결한 성과 자료</span>
             <h2>{overlay.meta.title}</h2>
             <p className="subtle">
               {overlay.meta.provider} · 기준 {overlay.meta.observedAt} ·{" "}
               {overlay.meta.geography}
             </p>
           </div>
-          <span className="badge private">이 기기에서만</span>
+          <span className="badge private">연결한 자료</span>
         </div>
         <div className="chart-controls">
           <label>
             시장
             <select
-              aria-label="로컬 성과 시장"
+              aria-label="성과 시장"
               value={chosen}
               onChange={(e) => setMarketId(e.target.value)}
             >
@@ -397,7 +395,7 @@ export function PerformancePanel({
           <label>
             성과지표
             <select
-              aria-label="로컬 성과 지표"
+              aria-label="성과 지표"
               value={measure}
               onChange={(e) => setMeasure(e.target.value)}
             >
@@ -411,7 +409,7 @@ export function PerformancePanel({
           <label>
             집계 방식
             <select
-              aria-label="로컬 성과 집계"
+              aria-label="성과 집계"
               value={selectedAggregation}
               onChange={(e) => setAggregation(e.target.value)}
             >
@@ -433,7 +431,7 @@ export function PerformancePanel({
         {values.length ? (
           <Chart
             height={360}
-            label="로컬 시장 월별 성과"
+            label="시장 월별 성과" guide="가로축은 월, 세로축은 위에서 선택한 성과 지표입니다. 같은 시장과 집계 방식 안에서 비교하세요. 값이 없는 달을 0으로 보지 않습니다."
             option={lines(
               values.map((r) => r.month),
               [

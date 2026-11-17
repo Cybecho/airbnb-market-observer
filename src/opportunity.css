@@ -1,0 +1,51 @@
+/* Opportunity lens: architectural drawing, intentionally local to this screen. */
+.decision-studio { max-width: 1240px; margin: 0 auto; color: #222; }
+.decision-premise { border-left: 2px solid #222; padding-left: 12px; margin: 0 0 14px; }
+.decision-premise strong { font-size: 15px; }
+.intent-steps { display: flex; gap: 0; border-top: 1px solid #222; border-bottom: 1px solid #222; margin-bottom: 18px; }
+.intent-step { flex: 1; border: 0; border-right: 1px solid #d7d7d2; border-radius: 0; padding: 10px 12px; min-height: 58px; background: transparent; }
+.intent-step:last-child { border-right: 0; }
+.intent-step.active { background: #f9f9f9; border-color: #d7d7d2; box-shadow: inset 0 -2px #326d9e; }
+.intent-index { color: #326d9e; }
+.intent-step strong { font-size: 14px; letter-spacing: 0; }
+.intent-step small { margin-top: 2px; font-size: 10px; }
+.lens-panel.opportunity-lens { border-radius: 0; border-color: #222; padding: 22px; background: #f9f9f9; }
+.opportunity-heading { padding-bottom: 15px; margin-bottom: 16px; border-bottom: 1px solid #222; }
+.lens-eyebrow { color: #326d9e; letter-spacing: 1.2px; }
+.lens-heading h2 { font-size: 24px; letter-spacing: -1px; }
+.decision-badge { border-radius: 0; background: transparent; border: 1px solid #bcbcb6; color: #222; }
+.opportunity-controls { gap: 0; margin: 0 0 12px; border-top: 1px dotted #a9aaa6; border-bottom: 1px dotted #a9aaa6; }
+.opportunity-controls label { padding: 9px 14px 9px 0; margin-right: 14px; border-right: 1px dotted #c7c8c3; color: #555; }
+.opportunity-controls select, .opportunity-controls input { min-width: 145px; border-radius: 0; }
+.opportunity-groups { gap: 0; margin-bottom: 14px; border-bottom: 1px solid #222; }
+.opportunity-groups button { margin: 0; padding: 8px 11px; border: 0; border-radius: 0; background: transparent; }
+.opportunity-groups button[aria-pressed="true"] { color: #222; background: #e8f1fa; border-color: transparent; box-shadow: inset 0 -2px #326d9e; }
+.opportunity-reading-key { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; padding: 8px 0; color: #555; font-size: 10px; }
+.opportunity-reading-key span { display: inline-flex; align-items: center; gap: 5px; }
+.opportunity-key-dot { width: 7px; height: 7px; background: #326d9e; border-radius: 50%; }
+.opportunity-key-dot--muted { background: #aebbc6; }
+.opportunity-key-line { width: 16px; border-top: 1px dashed #777; }
+.opportunity-layout { grid-template-columns: minmax(0, 1fr) 245px; gap: 20px; }
+.opportunity-plot { padding: 0 10px 0 0; }
+.opportunity-plot-head { margin: 3px 0 7px; color: #444; }
+.segmented button { border-radius: 0; }
+.opportunity-detail { padding-left: 18px; border-left: 1px solid #222; }
+.decision-evidence { border-radius: 0; background: #222; border-color: #222; }
+.decision-evidence span { background: #f9f9f9; padding: 11px 12px; }
+.decision-evidence b { color: #222; }
+.decision-details { border-top-color: #222; }
+.decision-details summary { color: #222; }
+.decision-note { color: #555; }
+.live-updates { margin-top: 18px; border-radius: 0; border-color: #bfc7c2; background: transparent; padding: 11px 0; border-left: 0; border-right: 0; }
+.live-updates__head .lens-eyebrow { display: none; }
+.live-updates h3 { font-size: 13px; margin: 0; }
+.live-updates__facts { margin: 7px 0 0; }
+.live-sources { grid-template-columns: 1fr; gap: 0; margin-top: 9px; }
+.live-source { border-radius: 0; border-width: 1px 0 0; padding: 8px 0; background: transparent; }
+.live-source:last-child { border-bottom: 1px solid #e0e1dc; }
+@media (max-width: 760px) { .intent-step { padding: 9px 7px; gap: 7px; } .intent-step small { display: none; } .opportunity-layout { grid-template-columns: 1fr; } .opportunity-detail { border-left: 0; border-top: 1px solid #222; padding: 16px 0 0; } .opportunity-controls label { border-right: 0; } }
+
+.live-updates__details { margin-top: 8px; border-top: 1px dotted #a9aaa6; padding-top: 7px; }
+.live-updates__details summary { cursor: pointer; color: #222; font-size: 10px; }
+
+@media(max-width:760px){.lens-panel.opportunity-lens{padding:16px 12px}.opportunity-plot{padding-right:0}.opportunity-controls label{margin:0;padding:6px 0;min-width:0}.opportunity-controls{gap:8px}.opportunity-controls input,.opportunity-controls select{min-width:0;width:100%}.opportunity-detail{padding-left:0}.intent-step{min-height:46px}.live-updates__details summary{min-height:36px}}
