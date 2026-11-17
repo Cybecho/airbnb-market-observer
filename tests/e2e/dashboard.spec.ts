@@ -48,7 +48,7 @@ test("trends and evidence panels retain detailed data", async ({ page }) => {
   ).toBeVisible();
   await page.getByLabel("추세 기간").selectOption("12");
   await expect(page.locator(".trend-card .subtle")).toContainText(
-    "실제 연결 12개월",
+    "관측 기간 12개월",
   );
   await page.getByLabel("요일 구분").selectOption("weekend");
   await page.getByRole("button", { name: "14시", exact: true }).click();
@@ -59,7 +59,7 @@ test("trends and evidence panels retain detailed data", async ({ page }) => {
     .getByRole("button", { name: "고객 · 방문자", exact: true })
     .click();
   await expect(
-    page.getByRole("heading", { name: "거주국별 공유숙박 이용자" }),
+    page.getByRole("heading", { name: "거주지역별 공유숙박 이용자" }),
   ).toBeVisible();
   await expect(
     page.getByRole("heading", { name: "공유숙박 1인·1박 지출" }),
@@ -75,12 +75,12 @@ test("trends and evidence panels retain detailed data", async ({ page }) => {
   await expect(
     page.getByRole("heading", { name: "467개 법정동 등록 현황" }),
   ).toBeVisible();
-  await page.getByRole("button", { name: "데이터 연결", exact: true }).click();
+  await page.getByRole("button", { name: "자료 연결", exact: true }).click();
   await expect(
-    page.getByRole("heading", { name: "원천 출처 카탈로그" }),
+    page.getByRole("heading", { name: "자료 출처" }),
   ).toBeVisible();
   await expect(
-    page.getByRole("heading", { name: "데이터 연결 현황" }),
+    page.getByRole("heading", { name: "연결한 자료", level: 2, exact: true }),
   ).toBeVisible();
 });
 
@@ -98,13 +98,13 @@ test("legacy and overlay imports stay local, validate, and clear", async ({
   page.on("request", (r) => {
     if (!["GET", "HEAD"].includes(r.method())) writes.push(r.url());
   });
-  const input = page.getByLabel("로컬 데이터 파일");
+  const input = page.getByLabel("연결할 파일");
   await input.setInputFiles({
     name: "invalid.json",
     mimeType: "application/json",
     buffer: Buffer.from("{}"),
   });
-  await expect(page.getByRole("alert")).toBeVisible();
+  await expect(page.getByRole("alert")).toHaveText("파일 형식 또는 내용이 올바르지 않습니다.");
   dashboard.rows[0].m3_2026_jan_oct_female_pct = 0;
   await input.setInputFiles({
     name: "synthetic-legacy-fixture.json",
@@ -118,7 +118,7 @@ test("legacy and overlay imports stay local, validate, and clear", async ({
     .getByRole("button", { name: dashboard.rows[0].admin_name, exact: true })
     .click();
   await expect(page.locator(".profile-value")).toContainText("0%");
-  await page.getByRole("button", { name: /데이터 지우기/ }).click();
+  await page.getByRole("button", { name: /연결 해제/ }).click();
   await expect(page.locator(".local-banner")).toHaveCount(0);
   const fixture = {
     schemaVersion: "amo-overlay/1",
@@ -173,19 +173,19 @@ test("legacy and overlay imports stay local, validate, and clear", async ({
     page.getByRole("heading", { name: "E2E 합성 성과" }),
   ).toBeVisible();
   await expect(
-    page.getByRole("img", { name: "로컬 시장 월별 성과" }),
+    page.getByRole("img", { name: "시장 월별 성과" }),
   ).toBeVisible();
-  await page.getByLabel("로컬 성과 지표").selectOption("occupancy");
-  await page.getByLabel("로컬 성과 집계").selectOption("mean");
+  await page.getByLabel("성과 지표").selectOption("occupancy");
+  await page.getByLabel("성과 집계").selectOption("mean");
   await expect(
     page.locator(".data-table").first().locator("tbody tr"),
   ).toHaveCount(2);
   expect(writes).toEqual([]);
-  await page.getByRole("button", { name: /데이터 지우기/ }).click();
+  await page.getByRole("button", { name: /연결 해제/ }).click();
   await expect(page.locator(".local-banner")).toHaveCount(0);
   await expect(
     page.getByRole("heading", {
-      name: "숙소 성과를 담을 자리는 준비되어 있습니다",
+      name: "숙소 성과를 보려면 자료를 연결하세요",
     }),
   ).toBeVisible();
 });
@@ -202,7 +202,7 @@ test("narrow screen has working navigation and no document overflow", async ({
     page.getByRole("region", { name: /서울 행정동 지표 지도/ }),
   ).toBeVisible();
   await page.locator(".nav-more > summary").click();
-  for (const name of ["고객 · 방문자", "데이터 연결", "지도 탐색"]) {
+  for (const name of ["고객 · 방문자", "자료 연결", "지도 탐색"]) {
     await page.getByRole("button", { name, exact: true }).click();
     expect(
       await page.evaluate(
@@ -222,7 +222,7 @@ test("mobile navigation remains visible after local import, resize and scrolling
   ).toBeVisible();
   const dashboard = await (await request.get("/data/dashboard.json")).json();
   const extensions = await (await request.get("/data/extensions.json")).json();
-  await page.getByLabel("로컬 데이터 파일").setInputFiles({
+  await page.getByLabel("연결할 파일").setInputFiles({
     name: "synthetic-mobile-fixture.json",
     mimeType: "application/json",
     buffer: Buffer.from(JSON.stringify({ dashboard, extensions })),
@@ -233,16 +233,16 @@ test("mobile navigation remains visible after local import, resize and scrolling
   await expect(
     page.getByRole("navigation", { name: "주요 탐색" }),
   ).toBeInViewport();
-  await page.getByRole("button", { name: "데이터 연결", exact: true }).click();
+  await page.getByRole("button", { name: "자료 연결", exact: true }).click();
   await expect(
     page.getByRole("heading", {
-      name: "무엇을 알고, 무엇을 연결할까요",
+      name: "연결한 자료와 기준",
       exact: true,
     }),
   ).toBeInViewport();
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
   await expect(
-    page.getByRole("button", { name: "로컬 데이터", exact: true }),
+    page.locator(".topbar").getByRole("button", { name: "파일 연결", exact: true }),
   ).toBeVisible();
   expect(
     await page.evaluate(

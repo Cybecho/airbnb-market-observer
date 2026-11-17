@@ -71,7 +71,7 @@ export function RentExplorer({
       </div>
       <Chart
         height={Math.max(240, Math.min(650, rows.length * 24))}
-        label="자치구 월세 중앙값 순위"
+        label="자치구 월세 중앙값 순위" guide="같은 계약기간·주택유형·보증금 범위에서 비교합니다. 긴 막대일수록 신고 월세의 중앙값이 높습니다. 자치구 값으로 특정 동이나 숙소의 비용을 알 수는 없습니다."
         option={bars(
           rows.map((r) => r["자치구명"]),
           rows.map((r) => r["월세중위_만원"]),
@@ -118,10 +118,10 @@ export function SurveyPanels({ data, Table }: { data: any; Table: any }) {
             <section className="card" key={dim}>
               <h2>{title}</h2>
               <p className="subtle">
-                서울전체 공유숙박746명 · 가중 구성비 · 별도 주변분포
+                서울 전체 · 공유숙박 이용 응답자 746명 · 항목별 가중 구성비
               </p>
               <Chart
-                label={title + " 가중비중"}
+                label={title + " 가중 비중"} cue="막대 길이는 전체 응답자에서 차지하는 가중 비중입니다." guide={`${title} 항목별로 막대 길이와 백분율을 비교하세요. 서울 전체 공유숙박 이용 응답자의 가중 분포입니다. 다른 설문 항목과 곱해 한 고객의 특성으로 해석할 수 없습니다.`}
                 option={bars(
                   r.map((x) => x.category),
                   r.map((x) => x.within_cohort_weighted_pct),
@@ -135,8 +135,7 @@ export function SurveyPanels({ data, Table }: { data: any; Table: any }) {
       <section className="card">
         <h2>공유숙박 1인·1박 지출</h2>
         <p className="subtle">
-          647명 중640명 유효 · 원/응답자/박 · 가중 분위수. ADR·호스트 매출이
-          아닙니다. 결측7명과 관측0원20명을 구분합니다.
+          공유숙박만 이용한 647명 중 640명이 지출을 답했습니다. 금액은 1인 1박 기준이며, 객실 단가나 호스트 매출이 아닙니다. 응답하지 않은 7명과 0원이라고 답한 20명을 구분했습니다.
         </p>
         <Table
           rows={data.price ?? []}
@@ -176,22 +175,22 @@ export function ExtraEvidence({
             lodging_current_operating: r.lodging_current_operating,
             tourist_current_operating: r.tourist_current_operating,
           }))}
-        note="10자리 법정동 코드 · 지도427행정동과 다릅니다. 업종을 합쳐 유일숙소 수로 만들지 않습니다."
+        note="법정동은 지도의 427개 행정동과 경계가 다릅니다. 같은 숙소가 여러 업종에 등록될 수 있어 업종별 수를 합산하지 않습니다."
       />
       <details className="card">
         <summary>침실·계절성·건축물·커뮤니티 추가 근거</summary>
         <GenericDataset
           title="서울 침실별 과거 벤치마크"
           rows={ext.revenue?.bedrooms}
-          note="모델추정·통화·기간을 유지합니다. 재배포제한 KPI는 공란이며 실제정산이 아닙니다."
+          note="출처가 추정한 값이며 실제 정산액은 아닙니다. 원래 통화와 기간으로 표시하고, 공개할 수 없는 값은 비워 뒀습니다."
         />
         <GenericDataset
           title="과거 월별 계절성"
           rows={ext.revenue?.seasonality}
-          note="월평균과 연간중앙값은 다릅니다. 재배포 미확인값을 숨깁니다."
+          note="월평균은 연간 중앙값과 다릅니다. 공개해도 되는지 확인하지 못한 값은 표시하지 않습니다."
         />
         <GenericDataset
-          title="민간 동명·침실 순위 (로컬)"
+          title="연결 자료의 지역명·침실별 순위"
           rows={ext.vendorBedroomRanks}
           note="공식 행정동과 강제 연결하지 않습니다. 기록된 동명·기간·표본만 해석합니다."
         />
@@ -203,7 +202,7 @@ export function ExtraEvidence({
         <GenericDataset
           title="커뮤니티 근거 평가"
           rows={ext.community}
-          note="정량 대표표본이 아닌 방법론·경험 참고입니다."
+          note="개별 경험을 참고하는 자료이며 서울 전체를 대표하지 않습니다."
         />
       </details>
     </>

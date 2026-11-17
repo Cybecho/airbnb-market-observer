@@ -193,7 +193,7 @@ test("linked bedroom revenue stays local and uses one month and exact listing ID
   page.on("request", (r) => {
     if (!["GET", "HEAD"].includes(r.method())) writes.push(r.url());
   });
-  await page.getByLabel("로컬 데이터 파일").setInputFiles({
+  await page.getByLabel("연결할 파일").setInputFiles({
     name: "synthetic-bedroom-linkage.json",
     mimeType: "application/json",
     buffer: Buffer.from(JSON.stringify(fixture)),
