@@ -18,9 +18,10 @@ import {
   SlidersHorizontal,
 } from "lucide-react";
 import SeoulMap from "./Map";
+import DecisionStudio from "./DecisionStudio";
 import Chart, { bars, lines } from "./Chart";
 import DataTable, { GenericDataset } from "./DataTable";
-import { RentExplorer, SurveyPanels, ExtraEvidence } from "./ResearchPanels";
+import { SurveyPanels, ExtraEvidence } from "./ResearchPanels";
 import {
   PresencePanel,
   ContextScatter,
@@ -35,16 +36,21 @@ import {
   type PrivateOverlay,
 } from "./adapter";
 const sections = [
+  ["decision", "핵심 판단", SlidersHorizontal],
   ["map", "지도 탐색", MapIcon],
   ["trends", "월별 추세", LineChart],
   ["compare", "지역 비교", GitCompare],
   ["people", "고객 · 방문자", Users],
-  ["revenue", "매출 · 임대료", BarChart3],
+  ["revenue", "매출 근거", BarChart3],
   ["supply", "등록 공급", Building2],
   ["performance", "숙소 성과", SlidersHorizontal],
   ["sources", "데이터 연결", Database],
 ] as const;
 const titles: Record<string, [string, string]> = {
+  decision: [
+    "기회 · 적합 · 검증",
+    "어디를 더 볼지, 누구에게 맞출지, 매출 근거는 무엇인지.",
+  ],
   map: [
     "서울 숙박시장을 한눈에",
     "큰 흐름에서 생활권으로, 지도를 눌러 근거를 좁혀 보세요.",
@@ -62,8 +68,8 @@ const titles: Record<string, [string, string]> = {
     "서울 공유숙박 설문과 지역 소비 구성을 서로 다른 근거로 살펴봅니다.",
   ],
   revenue: [
-    "매출 배경과 임대료를 나란히",
-    "여관 카드매출 추정과 주택 임대차 신고자료는 별개의 모집단입니다.",
+    "매출의 원천과 단위를 먼저",
+    "여관 카드추정매출과 숙소별 추정 매출은 서로 다른 모집단입니다.",
   ],
   supply: [
     "등록 공급의 분포와 변화",
@@ -111,7 +117,7 @@ export default function App() {
   const [view, setView] = useState(
       sections.some(([id]) => id === hash.get("view"))
         ? hash.get("view")!
-        : "map",
+        : "decision",
     ),
     [gu, setGu] = useState(hash.get("gu") || ""),
     [selected, setSelected] = useState(hash.get("dong") || ""),
@@ -220,7 +226,7 @@ export default function App() {
       const parsed = JSON.parse(await file.text());
       if (parsed.schemaVersion === "amo-overlay/1") {
         setOverlay(parseOverlay(parsed));
-        setView("performance");
+        if (view !== "decision") setView("performance");
       } else {
         const validated = validateLegacyBundle(
           parsed,
@@ -288,7 +294,11 @@ export default function App() {
         본문으로 건너뛰기
       </a>
       <aside className="sidebar">
-        <a className="brand" href="#view=map" onClick={() => setView("map")}>
+        <a
+          className="brand"
+          href="#view=decision"
+          onClick={() => setView("decision")}
+        >
           <span className="brand-mark">
             <Layers size={21} />
           </span>
@@ -300,21 +310,49 @@ export default function App() {
         </a>
         <span className="sidebar-label">서울 숙박시장 관측</span>
         <nav aria-label="주요 탐색">
-          {sections.map(([id, label, Icon]) => (
-            <button
-              key={id}
-              className={view === id ? "active" : ""}
-              onClick={() => setView(id)}
-              aria-current={view === id ? "page" : undefined}
-            >
-              <Icon size={18} />
-              <span>{label}</span>
-              {id === "compare" && compared.length > 0 && (
-                <b className="nav-count">{compared.length}</b>
-              )}
-            </button>
-          ))}
+          {sections
+            .filter(([id]) =>
+              ["decision", "map", "compare", "sources"].includes(id),
+            )
+            .map(([id, label, Icon]) => (
+              <button
+                key={id}
+                className={view === id ? "active" : ""}
+                onClick={() => setView(id)}
+                aria-current={view === id ? "page" : undefined}
+              >
+                <Icon size={18} />
+                <span>{label}</span>
+                {id === "compare" && compared.length > 0 && (
+                  <b className="nav-count">{compared.length}</b>
+                )}
+              </button>
+            ))}
         </nav>
+        <details
+          className="nav-more"
+          open={!["decision", "map", "compare", "sources"].includes(view)}
+        >
+          <summary>세부 근거</summary>
+          <div className="nav-secondary">
+            {sections
+              .filter(
+                ([id]) =>
+                  !["decision", "map", "compare", "sources"].includes(id),
+              )
+              .map(([id, label, Icon]) => (
+                <button
+                  key={id}
+                  className={view === id ? "active" : ""}
+                  onClick={() => setView(id)}
+                  aria-current={view === id ? "page" : undefined}
+                >
+                  <Icon size={17} />
+                  <span>{label}</span>
+                </button>
+              ))}
+          </div>
+        </details>
         <div className="sidebar-bottom">
           <span className="status-dot" />
           {local ? "개인 데이터 연결됨" : "무료 관측자료"}
@@ -398,67 +436,89 @@ export default function App() {
               </time>
             </div>
           </div>
-          {view !== "sources" && view !== "performance" && (
-            <div className="filterbar">
-              <label>
-                지역
-                <select
-                  aria-label="자치구"
-                  value={gu}
-                  onChange={(e) => {
-                    setGu(e.target.value);
-                    setSelected("");
-                    setSearch("");
-                  }}
-                >
-                  <option value="">서울 전체 · 25개 구</option>
-                  {gus.map((g) => (
-                    <option key={g}>{g}</option>
-                  ))}
-                </select>
-              </label>
-              {["map", "compare"].includes(view) && (
-                <label className="wide-filter">
-                  살펴볼 지표
-                  <select
-                    aria-label="지도 지표"
-                    value={layer}
-                    onChange={(e) => setLayer(Number(e.target.value))}
-                  >
-                    {metricList.map((m, i) => (
-                      <option key={m.key} value={i}>
-                        {m.label}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-              )}
-              {["people", "compare", "map"].includes(view) && (
+          {view !== "sources" &&
+            view !== "performance" &&
+            view !== "decision" && (
+              <div className="filterbar">
                 <label>
-                  고객구성 기간
+                  지역
                   <select
-                    aria-label="고객구성 관측기간"
-                    value={period}
-                    onChange={(e) => setPeriod(e.target.value)}
+                    aria-label="자치구"
+                    value={gu}
+                    onChange={(e) => {
+                      setGu(e.target.value);
+                      setSelected("");
+                      setSearch("");
+                    }}
                   >
-                    {Object.entries(periods).map(([key, label]) => (
-                      <option key={key} value={key}>
-                        {label}
-                      </option>
+                    <option value="">서울 전체 · 25개 구</option>
+                    {gus.map((g) => (
+                      <option key={g}>{g}</option>
                     ))}
                   </select>
                 </label>
-              )}
-              {active && (
-                <button
-                  className="selection-pill"
-                  onClick={() => setSelected("")}
-                >
-                  {active.admin_name}
-                  <X size={13} />
-                </button>
-              )}
-            </div>
+                {["map", "compare"].includes(view) && (
+                  <label className="wide-filter">
+                    살펴볼 지표
+                    <select
+                      aria-label="지도 지표"
+                      value={layer}
+                      onChange={(e) => setLayer(Number(e.target.value))}
+                    >
+                      {metricList.map((m, i) => (
+                        <option key={m.key} value={i}>
+                          {m.label}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                )}
+                {["people", "compare", "map"].includes(view) && (
+                  <label>
+                    고객구성 기간
+                    <select
+                      aria-label="고객구성 관측기간"
+                      value={period}
+                      onChange={(e) => setPeriod(e.target.value)}
+                    >
+                      {Object.entries(periods).map(([key, label]) => (
+                        <option key={key} value={key}>
+                          {label}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                )}
+                {active && (
+                  <button
+                    className="selection-pill"
+                    onClick={() => setSelected("")}
+                  >
+                    {active.admin_name}
+                    <X size={13} />
+                  </button>
+                )}
+              </div>
+            )}
+          {view === "decision" && (
+            <DecisionStudio
+              data={data}
+              ext={ext}
+              rows={rows}
+              overlay={overlay}
+              gu={gu}
+              selected={selected}
+              compared={compared}
+              onGuChange={(g) => {
+                setGu(g);
+                setSelected("");
+                setSearch("");
+              }}
+              onSelect={select}
+              onToggleCompare={toggleCompare}
+              onExplore={setView}
+              onImport={() => fileInput.current?.click()}
+            />
           )}
           {view === "map" && (
             <>
@@ -869,7 +929,7 @@ export default function App() {
                   ROI를 계산하지 않습니다.
                 </p>
               </section>
-              <RentExplorer rents={ext.rents} gu={gu} Table={DataTable} />
+
               <details className="card">
                 <summary>기존 민간 시장 벤치마크 상세</summary>
                 <GenericDataset

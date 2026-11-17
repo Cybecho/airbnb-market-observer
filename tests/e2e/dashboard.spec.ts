@@ -5,7 +5,7 @@ test("atlas loads, searches, selects and compares regions", async ({
 }) => {
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
-  await page.goto("/");
+  await page.goto("/#view=map");
   await expect(
     page.getByRole("heading", { name: "서울 숙박시장을 한눈에", exact: true }),
   ).toBeVisible();
@@ -37,10 +37,11 @@ test("atlas loads, searches, selects and compares regions", async ({
 });
 
 test("trends and evidence panels retain detailed data", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/#view=map");
   await expect(
     page.getByRole("heading", { name: "서울 숙박시장을 한눈에" }),
   ).toBeVisible();
+  await page.locator(".nav-more > summary").click();
   await page.getByRole("button", { name: "월별 추세", exact: true }).click();
   await expect(
     page.getByRole("heading", { name: "외국인 존재인구의 흐름" }),
@@ -63,13 +64,13 @@ test("trends and evidence panels retain detailed data", async ({ page }) => {
   await expect(
     page.getByRole("heading", { name: "공유숙박 1인·1박 지출" }),
   ).toBeVisible();
-  await page
-    .getByRole("button", { name: "매출 · 임대료", exact: true })
-    .click();
+  await page.getByRole("button", { name: "매출 근거", exact: true }).click();
+  await expect(
+    page.getByRole("heading", { name: "여관 카드추정매출 · 점포당 월환산" }),
+  ).toBeVisible();
   await expect(
     page.getByRole("heading", { name: "월세 계약 비교" }),
-  ).toBeVisible();
-  await page.getByLabel("계약기간").selectOption("2026상반기");
+  ).toHaveCount(0);
   await page.getByRole("button", { name: "등록 공급", exact: true }).click();
   await expect(
     page.getByRole("heading", { name: "467개 법정동 등록 현황" }),
@@ -87,7 +88,7 @@ test("legacy and overlay imports stay local, validate, and clear", async ({
   page,
   request,
 }) => {
-  await page.goto("/");
+  await page.goto("/#view=map");
   await expect(
     page.getByRole("heading", { name: "서울 숙박시장을 한눈에" }),
   ).toBeVisible();
@@ -193,13 +194,14 @@ test("narrow screen has working navigation and no document overflow", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/");
+  await page.goto("/#view=map");
   await expect(
     page.getByRole("heading", { name: "서울 숙박시장을 한눈에" }),
   ).toBeVisible();
   await expect(
     page.getByRole("region", { name: /서울 행정동 지표 지도/ }),
   ).toBeVisible();
+  await page.locator(".nav-more > summary").click();
   for (const name of ["고객 · 방문자", "데이터 연결", "지도 탐색"]) {
     await page.getByRole("button", { name, exact: true }).click();
     expect(
@@ -210,10 +212,14 @@ test("narrow screen has working navigation and no document overflow", async ({
   }
 });
 
-
-test("mobile navigation remains visible after local import, resize and scrolling", async ({ page, request }) => {
-  await page.goto("/");
-  await expect(page.getByRole("heading", { name: "서울 숙박시장을 한눈에", exact: true })).toBeVisible();
+test("mobile navigation remains visible after local import, resize and scrolling", async ({
+  page,
+  request,
+}) => {
+  await page.goto("/#view=map");
+  await expect(
+    page.getByRole("heading", { name: "서울 숙박시장을 한눈에", exact: true }),
+  ).toBeVisible();
   const dashboard = await (await request.get("/data/dashboard.json")).json();
   const extensions = await (await request.get("/data/extensions.json")).json();
   await page.getByLabel("로컬 데이터 파일").setInputFiles({
@@ -224,10 +230,23 @@ test("mobile navigation remains visible after local import, resize and scrolling
   await expect(page.locator(".local-banner")).toBeVisible();
   await page.setViewportSize({ width: 390, height: 844 });
   await page.evaluate(() => window.scrollTo(0, 1200));
-  await expect(page.getByRole("navigation", { name: "주요 탐색" })).toBeInViewport();
+  await expect(
+    page.getByRole("navigation", { name: "주요 탐색" }),
+  ).toBeInViewport();
   await page.getByRole("button", { name: "데이터 연결", exact: true }).click();
-  await expect(page.getByRole("heading", { name: "무엇을 알고, 무엇을 연결할까요", exact: true })).toBeInViewport();
+  await expect(
+    page.getByRole("heading", {
+      name: "무엇을 알고, 무엇을 연결할까요",
+      exact: true,
+    }),
+  ).toBeInViewport();
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
-  await expect(page.getByRole("button", { name: "로컬 데이터", exact: true })).toBeVisible();
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1)).toBe(true);
+  await expect(
+    page.getByRole("button", { name: "로컬 데이터", exact: true }),
+  ).toBeVisible();
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= window.innerWidth + 1,
+    ),
+  ).toBe(true);
 });

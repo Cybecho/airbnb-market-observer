@@ -6,7 +6,9 @@ import path from "node:path";
 import { gunzipSync } from "node:zlib";
 import { createHash } from "node:crypto";
 if (process.platform !== "linux" || process.env.GITHUB_ACTIONS !== "true") {
-  throw new Error("Run this reviewed patch only in GitHub-hosted Linux, never locally.");
+  throw new Error(
+    "Run this reviewed patch only in GitHub-hosted Linux, never locally.",
+  );
 }
 const encoded = [
   "H4sIAAAAAAACA+y9a3Mbx5Uw/FdGip0C1iBI3WyH4qVsR0m8sWM/krObKoovNQSGJGIQgxcXUVwEW5RE+aEt7kpKRIuSSS2dyJbkZZ7AEnVxRX6fKv2UfCTA//CeS/dM90z3AJDpbLK1qVgEBj19OX369LmfxsFq",
@@ -487,24 +489,59 @@ const encoded = [
   "P/CpNeG/ljXhUSwGui1CKkeG5y1ozIq4EcmifdNrO1kGBuoPxVbhD0PuNnRk3p1aKqaWiqmlYmqpmFoqppaK79xSIdFgaq2YWium1grDWrF5fvP/A2O4DG9xLAQA",
 ].join("");
 const decoded = gunzipSync(Buffer.from(encoded, "base64"));
-if (createHash("sha256").update(decoded).digest("hex") !== "5e6569552e70a560b33d0377352c3fff5dabcaf955a1fb1e11a68cec49f6c517") throw new Error("Patch checksum mismatch");
+if (
+  createHash("sha256").update(decoded).digest("hex") !==
+  "5e6569552e70a560b33d0377352c3fff5dabcaf955a1fb1e11a68cec49f6c517"
+)
+  throw new Error("Patch checksum mismatch");
 const manifest = JSON.parse(decoded.toString("utf8"));
-const allowed = new Set(["src/App.tsx","src/DecisionStudio.tsx","src/decision.ts","src/FitLens.tsx","src/RevenueLens.tsx","src/decision.test.ts","src/styles.css","tests/e2e/dashboard.spec.ts","tests/e2e/decision.spec.ts","docs/DECISION-STUDIO.md","README.md"]);
-if (manifest.schemaVersion !== "amo-reviewed-source/1" || manifest.files.length !== allowed.size) throw new Error("Unexpected patch manifest");
+const allowed = new Set([
+  "src/App.tsx",
+  "src/DecisionStudio.tsx",
+  "src/decision.ts",
+  "src/FitLens.tsx",
+  "src/RevenueLens.tsx",
+  "src/decision.test.ts",
+  "src/styles.css",
+  "tests/e2e/dashboard.spec.ts",
+  "tests/e2e/decision.spec.ts",
+  "docs/DECISION-STUDIO.md",
+  "README.md",
+]);
+if (
+  manifest.schemaVersion !== "amo-reviewed-source/1" ||
+  manifest.files.length !== allowed.size
+)
+  throw new Error("Unexpected patch manifest");
 const root = process.cwd();
 const targets = new Set();
 for (const file of manifest.files) {
   const target = path.resolve(root, file.path);
-  if (!allowed.has(file.path) || !target.startsWith(root + path.sep) || targets.has(target)) throw new Error("Unexpected patch path: " + file.path);
+  if (
+    !allowed.has(file.path) ||
+    !target.startsWith(root + path.sep) ||
+    targets.has(target)
+  )
+    throw new Error("Unexpected patch path: " + file.path);
   targets.add(target);
-  if (typeof file.content !== "string") throw new Error("Missing source content");
+  if (typeof file.content !== "string")
+    throw new Error("Missing source content");
   const actual = fs.existsSync(target) ? fs.readFileSync(target, "utf8") : null;
-  if (actual !== file.before && actual !== file.content) throw new Error("Concurrent change: review before replacing " + file.path);
+  if (actual !== file.before && actual !== file.content)
+    throw new Error("Concurrent change: review before replacing " + file.path);
 }
 for (const file of manifest.files) {
   const target = path.resolve(root, file.path);
   fs.mkdirSync(path.dirname(target), { recursive: true });
   fs.writeFileSync(target, file.content);
-  console.log(file.path + " sha256=" + createHash("sha256").update(file.content).digest("hex"));
+  console.log(
+    file.path +
+      " sha256=" +
+      createHash("sha256").update(file.content).digest("hex"),
+  );
 }
-console.log("Applied " + manifest.files.length + " reviewed source files. No local install, build, or test was run.");
+console.log(
+  "Applied " +
+    manifest.files.length +
+    " reviewed source files. No local install, build, or test was run.",
+);
