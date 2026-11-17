@@ -18,3 +18,9 @@
 .area-evidence__heading > *, .area-evidence__section-head > *, .area-evidence__reading > div, .area-evidence__context-grid article { min-width:0; }
 .area-evidence__coverage { margin:0 0 10px; color:var(--ae-muted); font-size:.86rem; line-height:1.55; overflow-wrap:anywhere; }
 .area-evidence__context-grid article { overflow-wrap:anywhere; }
+/* A wide native table must not set the implicit minimum of the surrounding grid track. */
+.area-evidence { width:100%; max-width:100%; min-width:0; grid-template-columns:minmax(0,1fr); }
+.area-evidence > * { min-width:0; max-width:100%; box-sizing:border-box; }
+.area-evidence__table-wrap { display:block; min-width:0; width:100%; max-width:100%; contain:inline-size; overflow-x:auto; overscroll-behavior-x:contain; }
+.area-evidence__comparison, .area-evidence__trend { min-width:0; contain:inline-size; }
+.area-evidence__trend .atlas-chart-frame, .area-evidence__comparison .atlas-chart-frame { max-width:100%; }

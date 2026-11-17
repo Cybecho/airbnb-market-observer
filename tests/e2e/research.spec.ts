@@ -221,11 +221,13 @@ test("where lens filters, selects real paths and table links, and preserves deep
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(whereUrl(mobileTarget));
   await expectSelectedArea(page, mobileTarget);
-  expect(
-    await page.evaluate(
-      () => document.documentElement.scrollWidth <= window.innerWidth + 1,
-    ),
-  ).toBe(true);
+  const mobileLayout = await page.evaluate(() => ({
+    viewport: window.innerWidth,
+    document: document.documentElement.scrollWidth,
+    boxes: [...document.querySelectorAll('[data-testid="research-lens"] > *,[data-testid="area-evidence"] > *')].filter(el=>el.getBoundingClientRect().right > window.innerWidth + 1).map(el=>[el.className,Math.round(el.getBoundingClientRect().width)]),
+  }));
+  expect(mobileLayout.document, JSON.stringify(mobileLayout)).toBeLessThanOrEqual(mobileLayout.viewport + 1);
+  await expect(page.getByTestId('area-evidence').getByRole('heading',{name:mobileTarget.gu+' '+mobileTarget.name,exact:true})).toBeVisible();
   await page.getByRole("searchbox", { name: "조사 동 검색", exact: true }).fill(mobileTarget.code);
   await page
     .getByTestId("research-table")

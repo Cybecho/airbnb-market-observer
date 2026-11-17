@@ -197,7 +197,7 @@ export default function AreaEvidence({
         <p className="area-evidence__periods">
           비교: 이전 {index.period.previous} / 현재 {index.period.current} · 등록 기준일 {index.period.registryDate} · 단위: 04시 존재 추정 인구는 해당 기간 일평균 명, 등록은 영업 등록 건 · 표의 실제값과 기준값은 소수점 셋째 자리까지 표시합니다.
         </p>
-        <div className="area-evidence__table-wrap">
+        <div className="area-evidence__table-wrap" tabIndex={0} role="region" aria-label="원값 표 가로 탐색">
           <table className="area-evidence__table">
             <caption>분류 규칙별 실제값, 서울 기준값, 판정</caption>
             <thead><tr><th scope="col">규칙</th><th scope="col">이 지역 실제값</th><th scope="col">서울 기준값</th><th scope="col">비교 방식</th><th scope="col">판정</th></tr></thead>
@@ -229,7 +229,7 @@ export default function AreaEvidence({
             <PresenceTrendChart months={months} series={trend.series} label={`${area.gu} ${area.name}의 월별 04시와 14시 존재 추정 인구`} />
           </ChartFrame>
           <p className="area-evidence__method">각 시간은 해당 월의 모든 날짜가 관측된 경우만 표시합니다. 선이 끊긴 달은 0명이 아니라 미제공 또는 일수 불일치입니다. 다른 맥락 지표와 합산하지 않습니다.</p>
-          <details className="area-evidence__details"><summary>월별 값과 일수 보기</summary><div className="area-evidence__table-wrap"><table className="area-evidence__table"><caption>공식 월별 관측값과 해당 시간의 관측 일수</caption><thead><tr><th scope="col">월</th><th scope="col">04시 일평균</th><th scope="col">04시 관측일</th><th scope="col">14시 일평균</th><th scope="col">14시 관측일</th></tr></thead><tbody>{trend.rowsByMonth.map(({ month, row }) => <tr key={month}><th scope="row">{month}</th><td>{numberText(coverage(row, month, "04"), "명")}</td><td>{row?.days04 ?? "미제공"} / {wholeDays(month)}일</td><td>{numberText(coverage(row, month, "14"), "명")}</td><td>{row?.days14 ?? "미제공"} / {wholeDays(month)}일</td></tr>)}</tbody></table></div></details>
+          <details className="area-evidence__details"><summary>월별 값과 일수 보기</summary><div className="area-evidence__table-wrap" tabIndex={0} role="region" aria-label="원값 표 가로 탐색"><table className="area-evidence__table"><caption>공식 월별 관측값과 해당 시간의 관측 일수</caption><thead><tr><th scope="col">월</th><th scope="col">04시 일평균</th><th scope="col">04시 관측일</th><th scope="col">14시 일평균</th><th scope="col">14시 관측일</th></tr></thead><tbody>{trend.rowsByMonth.map(({ month, row }) => <tr key={month}><th scope="row">{month}</th><td>{numberText(coverage(row, month, "04"), "명")}</td><td>{row?.days04 ?? "미제공"} / {wholeDays(month)}일</td><td>{numberText(coverage(row, month, "14"), "명")}</td><td>{row?.days14 ?? "미제공"} / {wholeDays(month)}일</td></tr>)}</tbody></table></div></details>
         </> : <p className="area-evidence__empty">이 지역의 완전한 공식 월별 04시·14시 관측값이 없어 추세 차트를 표시하지 않습니다.</p>}
       </section>
 
