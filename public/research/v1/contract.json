@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "amo-research-contract/1",
+  "endpoints": {
+    "index": { "path": "research/v1/index.json", "relativeTo": "SITE ROOT", "method": "GET, HEAD" },
+    "gaps": { "path": "research/v1/gaps.json", "relativeTo": "SITE ROOT", "method": "GET, HEAD", "scope": "authored six-item acquisition-path array" },
+    "buildProvenance": { "path": "build-provenance.json", "relativeTo": "SITE ROOT", "method": "GET, HEAD", "scope": "existing workflow provenance with commit and run metadata" },
+    "authentication": "none",
+    "signedQuery": "none",
+    "mutation": "none",
+    "upload": "none",
+    "otherMethods": "405 Method Not Allowed"
+  },
+  "pathResolution": "These paths are relative to the deployment SITE ROOT, not to /research/v1/. Resolve from the page root, for example new URL('.', document.baseURI), before appending the path.",
+  "purpose": "Read-only area-research atlas for selecting where to investigate next. It is not a booking, operating, investment, legal, licensing, or suitability decision.",
+  "canonicalBoundaries": { "path": "data/seoul-admin.geojson", "relativeTo": "SITE ROOT", "unit": "8-digit Seoul administrative dong", "requiredFeatureCount": 427, "requiredGuCount": 25, "identity": ["properties.admin_code", "properties.gu", "properties.admin_name"], "boundaryVintage": "Every feature properties.boundary_date exactly equals index.boundary and automation.registry.boundaryVintage." },
+  "index": {
+    "schemaVersion": "amo-research/1",
+    "required": ["schemaVersion", "methodVersion", "checkedAt", "boundary", "period", "thresholds", "counts", "areas", "sources"],
+    "additiveMethodologicalFields": { "methodology": ["summary", "rules"], "provenance": ["path", "files"], "limitations": "string array" },
+    "provenance": { "path": "data/build-manifest.json", "relativeTo": "SITE ROOT", "contains": ["dashboard.json sha256", "automation.json sha256"], "buildRecord": "build-provenance.json at SITE ROOT" },
+    "inputsForCalculation": ["data/dashboard.json", "data/automation.json"],
+    "independentValidationInputs": ["data/seoul-admin.geojson", "data/observatory.json", "data/build-manifest.json"]
+  },
+  "units": {
+    "area": "one 8-digit administrative dong; never a property, listing, host, guest, account, or raw source record",
+    "current04": "estimated daily mean short-stay foreign population present at 04:00, persons",
+    "registrations": "operating foreign-tourist urban homestay registrations, count",
+    "inflowDaily": "estimated cross-dong movement events/day, not people",
+    "nightPurposePct": "share of 00:00–05:59 arrivals among short-term arrivals in the purpose dataset, percent",
+    "subwayTransportPct": "subway share in the transport dataset, percent",
+    "innQuarterKrw": "estimated inn-industry quarterly amount, KRW; not Airbnb revenue"
+  },
+  "nullAndZero": {
+    "null": "not supplied, incomplete, invalid, period-mismatched, or intentionally withheld; never replace with zero",
+    "zero": "a measured or published zero and remains zero",
+    "eligible": "true only when all classification inputs are valid and complete",
+    "insufficient": "eligible=false; all gates are null; missing explains the held-out classification",
+    "context": "contextual values may be null without changing eligibility",
+    "thresholds": "levelMedian, baseQ25, and registryMedian are null only with no eligible areas; positiveGainMedian is null when no eligible area has a strictly positive delta"
+  },
+  "thresholdAlgorithm": {
+    "population": "Eligible areas are exactly areas with a presence row, registry row, nonnegative current04, strictly positive previous04, complete expected calendar days in both compared periods, valid official changePct, and nonnegative integer registrations.",
+    "denominators": "All medians and the base quartile use the eligible-area set only. positiveGainMedian uses only eligible areas whose delta04=current04-previous04 is strictly greater than zero.",
+    "levelMedian": "Median current04: sorted middle value for odd n; arithmetic mean of the two middle values for even n.",
+    "baseQ25": "Nearest-rank first quartile previous04: sorted value at one-based rank ceil(0.25*n).",
+    "positiveGainMedian": "Median of strictly positive eligible delta04 values, using the same odd/even median rule.",
+    "registryMedian": "Median registrations across eligible areas, using the same odd/even median rule.",
+    "gates": "level=current04>=levelMedian; base=previous04>=baseQ25; gain=delta04>0 and delta04>=positiveGainMedian; lowRegistration=registrations<=registryMedian.",
+    "tiers": "field: level, base, gain, lowRegistration all true. peer: level, base, gain true and lowRegistration false. watch: eligible otherwise. insufficient: ineligible. A zero field count is valid."
+  },
+  "navigation": {
+    "canonicalHref": "#view=decision&lens=where&dong={code}",
+    "routes": ["#view=decision&lens=where&dong={code}", "#view=decision&lens=opportunity&dong={code}", "#view=decision&lens=fit&dong={code}", "#view=decision&lens=verification&dong={code}"],
+    "optionalQuery": ["gu={gu}", "tier={tier}"],
+    "lenses": ["where", "opportunity", "fit", "verification"]
+  },
+  "uiBindings": {
+    "lens": "[data-testid=research-lens]",
+    "mapArea": "[data-testid=\"research-map\"] path[data-area-code][data-tier]",
+    "tableArea": "[data-testid=\"research-table\"] a[data-area-code]",
+    "evidence": "[data-testid=\"area-evidence\"][data-area-code]",
+    "evidenceTitle": "[data-testid=\"area-evidence\"] h2",
+    "labels": ["조사 동 검색", "조사 자치구", "조사 분류"]
+  },
+  "sourceRequirements": {
+    "mandatory": ["OA-23018", "OA-16045"],
+    "officialUrlPattern": "https://data.seoul.go.kr/dataList/{id}/S/1/datasetView.do",
+    "metadata": ["id", "title", "url", "status", "sourcePeriod", "checkedAt"],
+    "periods": "OA-23018 must equal the current comparison YYYY-MM; OA-22379, OA-22378, and OA-22656 must equal their included YYYY-MM period; OA-22175 must equal its included YYYYQn sales period."
+  },
+  "agentSafety": {
+    "readOnly": true,
+    "allowed": ["fetch the documented same-origin JSON", "filter and navigate using documented fragments", "read displayed provenance and evidence"],
+    "forbidden": ["submit forms", "upload files", "create accounts", "authenticate", "use signed URLs or queries", "infer private records", "treat rankings as decisions"],
+    "humanReview": ["Read reason and counterpoint together", "check nulls, missing fields, periods, boundaries, and source provenance", "test the counterpoint against local field evidence", "separate confidence in an observed measure from confidence in the next action", "record unresolved gaps before acting"]
+  },
+  "reproducibility": {
+    "genericExample": "Fetch the same deployment's research/v1/index.json, select an area by code, verify href equals #view=decision&lens=where&dong={code}, then reproduce its tier from values, thresholds, gates, missing, and sources in that response.",
+    "determinism": "The endpoint documents are recreated for every development request, build, CI run, or data refresh from local buffers only. They use no clock or network input."
+  }
+}

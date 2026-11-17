@@ -50,3 +50,7 @@
 GitHub 저장소의 private 여부와 Pages 접근 제어는 같은 설정이 아닙니다. 일반 Pages 주소에는 앱과 공개 기본자료만 두고, 개인 파일은 로컬 가져오기로 연결합니다. 이 설계는 개인 사용을 지원하지만 웹 주소에 로그인 장벽을 제공하는 것은 아닙니다.
 
 원조사 기준일은 2026-11-15이며 새 공식 원본 수집·앱 개편은 2026-11-17입니다. 자동 배포는 원천 자료의 자동 갱신을 의미하지 않습니다. 소프트웨어는 MIT이며 제3자 데이터 조건은 별개입니다.
+
+### 현장 조사 지도: 어디를, 왜 볼까
+
+[조사 지도](https://cybecho.github.io/airbnb-market-observer/#view=decision&lens=where)에서 동을 누르면 04시 변화·도시민박 등록과 반대 근거를 함께 봅니다. 기존 기회·적합·검증은 서로 다른 질문으로 유지합니다. [판단 규칙과 재현 예시](docs/RESEARCH-ATLAS.md) · [자료 공백과 확보 경로](docs/RESEARCH-GAPS.md) · [에이전트용 읽기 계약](https://cybecho.github.io/airbnb-market-observer/research/v1/contract.json).
