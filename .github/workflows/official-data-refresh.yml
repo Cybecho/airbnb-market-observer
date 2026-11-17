@@ -46,6 +46,13 @@ jobs:
         run: npx prettier --write src scripts docs tests README.md package.json package-lock.json
       - name: Test parsers and application logic before network collection
         run: npm test
+      - name: Verify refreshed-data UI contract before initial large downloads
+        if: inputs.operation == 'install'
+        run: |
+          npm run data:build
+          npm run build
+          npx playwright install --with-deps chromium
+          npx playwright test tests/e2e/refresh.spec.ts
       - name: Collect only anonymous official public sources
         run: npm run data:refresh
       - name: Rebuild deterministic public payload and fail closed
