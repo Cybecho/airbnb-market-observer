@@ -5,14 +5,12 @@ import { __test } from "./mobility.mjs";
 const names = new Map([["11110000", { gu: "종로구", name: "테스트동" }]]);
 
 test("OD collector uses short-term counts, cross-dong scope, and separate calendar denominators", () => {
-  const rows = __test
-    .datesInMonth("202610")
-    .map((etl_ymd) => ({
-      o_admdong_cd: "11120000",
-      d_admdong_cd: "11110000",
-      short_forn_cnt: "0",
-      etl_ymd,
-    }));
+  const rows = __test.datesInMonth("202610").map((etl_ymd) => ({
+    o_admdong_cd: "11120000",
+    d_admdong_cd: "11110000",
+    short_forn_cnt: "0",
+    etl_ymd,
+  }));
   rows.push(
     {
       o_admdong_cd: "28110000",
@@ -41,15 +39,13 @@ test("OD collector uses short-term counts, cross-dong scope, and separate calend
 });
 
 test("segment shares use their own short-arrival denominator and explicitly define night", () => {
-  const rows = __test
-    .datesInMonth("202610")
-    .map((etl_ymd) => ({
-      d_admdong_cd: "11110000",
-      short_forn_cnt: "0",
-      time_cd: "06",
-      move_purpose: "1",
-      etl_ymd,
-    }));
+  const rows = __test.datesInMonth("202610").map((etl_ymd) => ({
+    d_admdong_cd: "11110000",
+    short_forn_cnt: "0",
+    time_cd: "06",
+    move_purpose: "1",
+    etl_ymd,
+  }));
   rows.push(
     {
       d_admdong_cd: "11110000",
