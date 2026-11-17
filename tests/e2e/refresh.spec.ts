@@ -99,12 +99,12 @@ test("uses a supplied automation payload rather than fixed legacy opportunity fi
   );
   await page.goto("/");
   await expect(
-    page.getByRole("heading", { name: "현재 기회 비교 기준" }),
+    page.getByRole("heading", { name: "비교 기준" }),
   ).toBeVisible();
   await expect(page.locator(".lens-heading .decision-badge")).toContainText(
     `2 / ${dashboard.rows.length}동`,
   );
-  await expect(page.locator(".live-updates")).toContainText("마지막 성공 확인");
+  await expect(page.locator(".live-updates")).toContainText("마지막 갱신 확인");
   await expect(page.locator(".live-updates")).toContainText(
     "2026·2027년 1~12월",
   );
@@ -124,14 +124,14 @@ test("uses a supplied automation payload rather than fixed legacy opportunity fi
     ),
     { ...extensions, automation: { status: "untrusted-private-fixture" } },
   ]) {
-    await page.getByLabel("로컬 데이터 파일").setInputFiles({
+    await page.getByLabel("연결할 파일").setInputFiles({
       name: "synthetic-legacy-without-official-authority.json",
       mimeType: "application/json",
       buffer: Buffer.from(
         JSON.stringify({ dashboard, extensions: localExtensions }),
       ),
     });
-    await expect(page.getByRole("status")).toContainText("개인 데이터 연결됨");
+    await expect(page.getByRole("status")).toContainText("파일 연결됨");
     await expect(page.locator(".live-updates")).toContainText(
       "2026·2027년 1~12월",
     );
@@ -139,7 +139,7 @@ test("uses a supplied automation payload rather than fixed legacy opportunity fi
       `2 / ${dashboard.rows.length}동`,
     );
     await page
-      .getByRole("button", { name: "데이터 지우기", exact: true })
+      .getByRole("button", { name: "연결 해제", exact: true })
       .click();
   }
 });
