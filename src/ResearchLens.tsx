@@ -30,7 +30,8 @@ export default function ResearchLensView({index,geo,observatory,gu,tier,selected
     onSelect(code);
     if(readNow || window.matchMedia('(max-width:760px)').matches) requestAnimationFrame(showEvidence);
   };
-  const results=useMemo(()=>{if(!index)return [];const needle=norm(query);return index.areas.filter(a=>(!gu||a.gu===gu)&&(!tier||a.tier===tier)&&(!needle||norm(`${a.gu}${a.name}`).includes(needle)||a.code.includes(needle))).sort((a,b)=>a.gu.localeCompare(b.gu,'ko')||a.name.localeCompare(b.name,'ko')||a.code.localeCompare(b.code));},[gu,tier,query,index]);
+  const boundaryNames=useMemo(()=>new Map(geo.features.map(f=>[String(f.properties?.admin_code??''),String(f.properties?.admin_name??'')])),[geo]);
+  const results=useMemo(()=>{if(!index)return [];const needle=norm(query);return index.areas.filter(a=>(!gu||a.gu===gu)&&(!tier||a.tier===tier)&&(!needle||norm(`${a.gu}${a.name}`).includes(needle)||norm(`${a.gu}${boundaryNames.get(a.code)??''}`).includes(needle)||a.code.includes(needle))).sort((a,b)=>a.gu.localeCompare(b.gu,'ko')||a.name.localeCompare(b.name,'ko')||a.code.localeCompare(b.code));},[gu,tier,query,index,boundaryNames]);
   const visibleCodes=useMemo(()=>new Set(results.map(a=>a.code)),[results]);
   const active=index?.areas.find(a=>a.code===selected);
   const examples=useMemo(()=>{const eligible=results.filter(a=>a.tier==='field');return (eligible.length?eligible:results).slice().sort((a,b)=>(b.values.delta04??-Infinity)-(a.values.delta04??-Infinity)||a.code.localeCompare(b.code)).slice(0,3);},[results]);

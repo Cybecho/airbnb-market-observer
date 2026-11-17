@@ -57,6 +57,51 @@ function validateManifest(manifest, buffers) {
     if (entry.bytes !== buffer.length || entry.sha256 !== sha256(buffer)) throw new RangeError("build manifest checksum mismatch");
   }
 }
+// Presentation aliases reviewed for these exact IDs and the 2026-10-01 boundary.
+// Joins always use the unique eight-digit code; names cannot create a match.
+const LABEL_PAIRS = new Map(Object.entries({
+  "11110615": [
+    "종로1.2.3.4가동",
+    "종로1·2·3·4가동"
+  ],
+  "11110630": [
+    "종로5.6가동",
+    "종로5·6가동"
+  ],
+  "11200615": [
+    "금호2.3가동",
+    "금호2·3가동"
+  ],
+  "11260575": [
+    "면목3.8동",
+    "면목3·8동"
+  ],
+  "11350665": [
+    "상계3.4동",
+    "상계3·4동"
+  ],
+  "11350695": [
+    "상계6.7동",
+    "상계6·7동"
+  ],
+  "11350625": [
+    "중계2.3동",
+    "중계2·3동"
+  ],
+  "11740526": [
+    "상일2동",
+    "상일제2동"
+  ],
+  "11740525": [
+    "상일1동",
+    "상일제1동"
+  ]
+}));
+export function sameBoundaryLabel(code, displayName, boundaryName, vintage) {
+  if (nonempty(displayName) && displayName === boundaryName) return true;
+  const pair = vintage === '2026-10-01' && LABEL_PAIRS.get(code);
+  return Boolean(pair && pair[0] === displayName && pair[1] === boundaryName);
+}
 function validateGeography(geo, dashboard, boundary) {
   if (!isObject(geo) || !Array.isArray(geo.features) || geo.features.length !== 427) throw new RangeError("canonical geography must contain 427 features");
   if (!Array.isArray(dashboard.rows) || dashboard.rows.length !== 427) throw new RangeError("dashboard must contain 427 rows");
@@ -68,7 +113,7 @@ function validateGeography(geo, dashboard, boundary) {
   const geographyCodes = new Set(), gus = new Set(), boundaryDates = new Set();
   for (const feature of geo.features) {
     const properties = feature?.properties, code = String(properties?.admin_code ?? ""), dashboardRow = dashboardByCode.get(code);
-    if (!isObject(properties) || !CODES.test(code) || geographyCodes.has(code) || !dashboardRow || properties.gu !== dashboardRow.gu || properties.admin_name !== dashboardRow.admin_name || !nonempty(properties.boundary_date)) throw new RangeError("canonical geography does not exactly match dashboard identities");
+    if (!isObject(properties) || !CODES.test(code) || geographyCodes.has(code) || !dashboardRow || properties.gu !== dashboardRow.gu || !sameBoundaryLabel(code, dashboardRow.admin_name, properties.admin_name, boundary) || !nonempty(properties.boundary_date)) throw new RangeError("canonical geography does not exactly match dashboard identities");
     geographyCodes.add(code); gus.add(properties.gu); boundaryDates.add(properties.boundary_date);
   }
   if (geographyCodes.size !== 427 || gus.size !== 25 || dashboardByCode.size !== geographyCodes.size || boundaryDates.size !== 1 || boundaryDates.values().next().value !== boundary) throw new RangeError("canonical geography coverage or boundary vintage is invalid");

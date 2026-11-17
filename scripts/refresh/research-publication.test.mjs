@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
-import { buildResearchPublication, validateResearchIndex } from "../research-publication.mjs";
+import { buildResearchPublication, sameBoundaryLabel, validateResearchIndex } from "../research-publication.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const ciOnly = process.platform !== "linux" || !process.env.CI;
@@ -49,4 +49,11 @@ test("public contract uses exact CSS bindings and authored public links", { skip
   assert.equal(contract.uiBindings.tableArea, '[data-testid="research-table"] a[data-area-code]');
   assert.equal(contract.uiBindings.evidence, '[data-testid="area-evidence"][data-area-code]');
   assert.equal(contract.uiBindings.evidenceTitle, '[data-testid="area-evidence"] h2');
+});
+
+test('boundary label variants never join by name or relax the code/vintage', () => {
+  assert.equal(sameBoundaryLabel('11740526','상일2동','상일제2동','2026-10-01'),true);
+  assert.equal(sameBoundaryLabel('11740525','상일2동','상일제2동','2026-10-01'),false);
+  assert.equal(sameBoundaryLabel('11740526','상일2동','상일제1동','2026-10-01'),false);
+  assert.equal(sameBoundaryLabel('11740526','상일2동','상일제2동','2027-01-01'),false);
 });

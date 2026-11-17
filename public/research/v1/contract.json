@@ -1,9 +1,23 @@
 {
   "schemaVersion": "amo-research-contract/1",
   "endpoints": {
-    "index": { "path": "research/v1/index.json", "relativeTo": "SITE ROOT", "method": "GET, HEAD" },
-    "gaps": { "path": "research/v1/gaps.json", "relativeTo": "SITE ROOT", "method": "GET, HEAD", "scope": "authored six-item acquisition-path array" },
-    "buildProvenance": { "path": "build-provenance.json", "relativeTo": "SITE ROOT", "method": "GET, HEAD", "scope": "existing workflow provenance with commit and run metadata" },
+    "index": {
+      "path": "research/v1/index.json",
+      "relativeTo": "SITE ROOT",
+      "method": "GET, HEAD"
+    },
+    "gaps": {
+      "path": "research/v1/gaps.json",
+      "relativeTo": "SITE ROOT",
+      "method": "GET, HEAD",
+      "scope": "authored six-item acquisition-path array"
+    },
+    "buildProvenance": {
+      "path": "build-provenance.json",
+      "relativeTo": "SITE ROOT",
+      "method": "GET, HEAD",
+      "scope": "existing workflow provenance with commit and run metadata"
+    },
     "authentication": "none",
     "signedQuery": "none",
     "mutation": "none",
@@ -12,14 +26,62 @@
   },
   "pathResolution": "These paths are relative to the deployment SITE ROOT, not to /research/v1/. Resolve from the page root, for example new URL('.', document.baseURI), before appending the path.",
   "purpose": "Read-only area-research atlas for selecting where to investigate next. It is not a booking, operating, investment, legal, licensing, or suitability decision.",
-  "canonicalBoundaries": { "path": "data/seoul-admin.geojson", "relativeTo": "SITE ROOT", "unit": "8-digit Seoul administrative dong", "requiredFeatureCount": 427, "requiredGuCount": 25, "identity": ["properties.admin_code", "properties.gu", "properties.admin_name"], "boundaryVintage": "Every feature properties.boundary_date exactly equals index.boundary and automation.registry.boundaryVintage." },
+  "canonicalBoundaries": {
+    "path": "data/seoul-admin.geojson",
+    "relativeTo": "SITE ROOT",
+    "unit": "8-digit Seoul administrative dong",
+    "requiredFeatureCount": 427,
+    "requiredGuCount": 25,
+    "identity": [
+      "properties.admin_code",
+      "properties.gu",
+      "properties.admin_name"
+    ],
+    "boundaryVintage": "Every feature properties.boundary_date exactly equals index.boundary and automation.registry.boundaryVintage.",
+    "labelAliases": "Join by the eight-digit code only. Display spelling must match the boundary or one reviewed code-specific, vintage-specific name pair (seven middle-dot variants, two 상일제N동 variants). Never join by normalized name."
+  },
   "index": {
     "schemaVersion": "amo-research/1",
-    "required": ["schemaVersion", "methodVersion", "checkedAt", "boundary", "period", "thresholds", "counts", "areas", "sources"],
-    "additiveMethodologicalFields": { "methodology": ["summary", "rules"], "provenance": ["path", "files"], "limitations": "string array" },
-    "provenance": { "path": "data/build-manifest.json", "relativeTo": "SITE ROOT", "contains": ["dashboard.json sha256", "automation.json sha256"], "buildRecord": "build-provenance.json at SITE ROOT" },
-    "inputsForCalculation": ["data/dashboard.json", "data/automation.json"],
-    "independentValidationInputs": ["data/seoul-admin.geojson", "data/observatory.json", "data/build-manifest.json"]
+    "required": [
+      "schemaVersion",
+      "methodVersion",
+      "checkedAt",
+      "boundary",
+      "period",
+      "thresholds",
+      "counts",
+      "areas",
+      "sources"
+    ],
+    "additiveMethodologicalFields": {
+      "methodology": [
+        "summary",
+        "rules"
+      ],
+      "provenance": [
+        "path",
+        "files"
+      ],
+      "limitations": "string array"
+    },
+    "provenance": {
+      "path": "data/build-manifest.json",
+      "relativeTo": "SITE ROOT",
+      "contains": [
+        "dashboard.json sha256",
+        "automation.json sha256"
+      ],
+      "buildRecord": "build-provenance.json at SITE ROOT"
+    },
+    "inputsForCalculation": [
+      "data/dashboard.json",
+      "data/automation.json"
+    ],
+    "independentValidationInputs": [
+      "data/seoul-admin.geojson",
+      "data/observatory.json",
+      "data/build-manifest.json"
+    ]
   },
   "units": {
     "area": "one 8-digit administrative dong; never a property, listing, host, guest, account, or raw source record",
@@ -50,9 +112,22 @@
   },
   "navigation": {
     "canonicalHref": "#view=decision&lens=where&dong={code}",
-    "routes": ["#view=decision&lens=where&dong={code}", "#view=decision&lens=opportunity&dong={code}", "#view=decision&lens=fit&dong={code}", "#view=decision&lens=verification&dong={code}"],
-    "optionalQuery": ["gu={gu}", "tier={tier}"],
-    "lenses": ["where", "opportunity", "fit", "verification"]
+    "routes": [
+      "#view=decision&lens=where&dong={code}",
+      "#view=decision&lens=opportunity&dong={code}",
+      "#view=decision&lens=fit&dong={code}",
+      "#view=decision&lens=verification&dong={code}"
+    ],
+    "optionalQuery": [
+      "gu={gu}",
+      "tier={tier}"
+    ],
+    "lenses": [
+      "where",
+      "opportunity",
+      "fit",
+      "verification"
+    ]
   },
   "uiBindings": {
     "lens": "[data-testid=research-lens]",
@@ -60,19 +135,51 @@
     "tableArea": "[data-testid=\"research-table\"] a[data-area-code]",
     "evidence": "[data-testid=\"area-evidence\"][data-area-code]",
     "evidenceTitle": "[data-testid=\"area-evidence\"] h2",
-    "labels": ["조사 동 검색", "조사 자치구", "조사 분류"]
+    "labels": [
+      "조사 동 검색",
+      "조사 자치구",
+      "조사 분류"
+    ]
   },
   "sourceRequirements": {
-    "mandatory": ["OA-23018", "OA-16045"],
+    "mandatory": [
+      "OA-23018",
+      "OA-16045"
+    ],
     "officialUrlPattern": "https://data.seoul.go.kr/dataList/{id}/S/1/datasetView.do",
-    "metadata": ["id", "title", "url", "status", "sourcePeriod", "checkedAt"],
+    "metadata": [
+      "id",
+      "title",
+      "url",
+      "status",
+      "sourcePeriod",
+      "checkedAt"
+    ],
     "periods": "OA-23018 must equal the current comparison YYYY-MM; OA-22379, OA-22378, and OA-22656 must equal their included YYYY-MM period; OA-22175 must equal its included YYYYQn sales period."
   },
   "agentSafety": {
     "readOnly": true,
-    "allowed": ["fetch the documented same-origin JSON", "filter and navigate using documented fragments", "read displayed provenance and evidence"],
-    "forbidden": ["submit forms", "upload files", "create accounts", "authenticate", "use signed URLs or queries", "infer private records", "treat rankings as decisions"],
-    "humanReview": ["Read reason and counterpoint together", "check nulls, missing fields, periods, boundaries, and source provenance", "test the counterpoint against local field evidence", "separate confidence in an observed measure from confidence in the next action", "record unresolved gaps before acting"]
+    "allowed": [
+      "fetch the documented same-origin JSON",
+      "filter and navigate using documented fragments",
+      "read displayed provenance and evidence"
+    ],
+    "forbidden": [
+      "submit forms",
+      "upload files",
+      "create accounts",
+      "authenticate",
+      "use signed URLs or queries",
+      "infer private records",
+      "treat rankings as decisions"
+    ],
+    "humanReview": [
+      "Read reason and counterpoint together",
+      "check nulls, missing fields, periods, boundaries, and source provenance",
+      "test the counterpoint against local field evidence",
+      "separate confidence in an observed measure from confidence in the next action",
+      "record unresolved gaps before acting"
+    ]
   },
   "reproducibility": {
     "genericExample": "Fetch the same deployment's research/v1/index.json, select an area by code, verify href equals #view=decision&lens=where&dong={code}, then reproduce its tier from values, thresholds, gates, missing, and sources in that response.",
