@@ -18,6 +18,8 @@ jobs:
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
         with:
           node-version: 24
@@ -28,7 +30,11 @@ jobs:
         if: inputs.operation == 'lockfile'
         run: npm install --package-lock-only --ignore-scripts
       - name: Install on GitHub Linux only
-        run: npm ci --ignore-scripts
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends proj-bin unzip
+          command -v iconv
+          npm ci --ignore-scripts
       - name: Format and rebuild deterministic data
         run: |
           npx prettier --write src scripts docs tests README.md package.json package-lock.json
