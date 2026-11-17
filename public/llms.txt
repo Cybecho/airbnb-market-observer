@@ -1,0 +1,26 @@
+# Public research atlas
+
+Read-only, same-origin research data for a Seoul administrative-dong atlas. It helps a human choose what to investigate next; it is not a decision engine.
+
+Paths are relative to the deployment SITE ROOT, not to `/research/v1/`. Resolve the page root first, for example with `new URL('.', document.baseURI)`, then append:
+
+- `research/v1/index.json`: public research index
+- `research/v1/gaps.json`: authored six-item acquisition-path array; it explains what remains unavailable, why, provider, procedure, denominator, and permissible conclusion
+- `build-provenance.json`: existing root workflow provenance with commit and run metadata
+- `research/v1/contract.json`: complete public contract
+- `data/seoul-admin.geojson`: canonical 427-dong boundary set
+- `data/build-manifest.json`: source checksums
+
+For a human, Playwright, or Computer Use agent:
+1. Fetch the index and contract from the same deployment.
+2. Treat each `areas[]` item as one 8-digit administrative dong, not a listing, property, person, or business.
+3. Preserve `null` as unavailable/incomplete and preserve measured `0`. Check `eligible`, `missing`, periods, sources, reason, and counterpoint before using a tier.
+4. Reproduce thresholds only with the documented eligible-area denominators and strict-positive gain denominator in the contract.
+5. Use documented fragments only: `#view=decision&lens=where|opportunity|fit|verification&dong={code}`, with optional `gu` and `tier` filters.
+6. Use these CSS selectors: `[data-testid="research-lens"]`, `[data-testid="research-map"] path[data-area-code][data-tier]`, `[data-testid="research-table"] a[data-area-code]`, `[data-testid="area-evidence"][data-area-code]`, and `[data-testid="area-evidence"] h2`. Labels are `조사 동 검색`, `조사 자치구`, and `조사 분류`.
+
+Units: `inflowDaily` is estimated cross-dong movement events/day, not people. `nightPurposePct` is the share of 00:00–05:59 arrivals among short-term arrivals in the purpose dataset. `subwayTransportPct` is the subway share in the transport dataset.
+
+Safety: read only. No login, upload, form action, mutation, signed query, private/raw-record inference, or autonomous operating, investment, legal, or licensing conclusion. A human must evaluate the counterpoint, source confidence, period and boundary fit, and unresolved gaps before real-world action.
+
+Match the control role and exact accessible name (not a substring): combobox ‘조사 자치구’, combobox ‘조사 분류’, searchbox ‘조사 동 검색’. In Playwright, use getByRole('combobox', {name:'조사 분류',exact:true}). Select an area by its 8-digit code rather than guessing a map coordinate.

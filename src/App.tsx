@@ -18,6 +18,10 @@ import {
   SlidersHorizontal,
 } from "lucide-react";
 import SeoulMap from "./Map";
+import { parseSiteRoute, siteHref, lensHref, type SiteRoute } from "./researchRoute";
+import { parsePublicResearch } from "./researchRead";
+import type { ResearchIndex } from "./researchTypes";
+import ResearchGaps from "./ResearchGaps";
 import DecisionStudio from "./DecisionStudio";
 import Chart, { bars, lines } from "./Chart";
 import { ChartFrame } from "./ChartFrame";
@@ -50,7 +54,7 @@ const sections = [
 const titles: Record<string, [string, string]> = {
   decision: [
     "기회 · 적합 · 검증",
-    "어디를 더 볼지, 누구에게 맞출지, 매출 근거는 무엇인지.",
+    "어느 동을 현장에서 확인하고, 어떤 고객과 매출 가설을 검증할까요?",
   ],
   map: [
     "서울 숙박시장을 한눈에",
@@ -85,7 +89,7 @@ const titles: Record<string, [string, string]> = {
     "자료의 기간·지역·단위를 확인합니다.",
   ],
 };
-const hash = new URLSearchParams(location.hash.slice(1));
+
 function MetricCard({
   label,
   value,
@@ -115,17 +119,24 @@ export default function App() {
     [overlay, setOverlay] = useState<PrivateOverlay | null>(null),
     [error, setError] = useState(""),
     [importError, setImportError] = useState("");
-  const [view, setView] = useState(
-      sections.some(([id]) => id === hash.get("view"))
-        ? hash.get("view")!
-        : "decision",
-    ),
-    [gu, setGu] = useState(hash.get("gu") || ""),
-    [selected, setSelected] = useState(hash.get("dong") || ""),
-    [search, setSearch] = useState(""),
-    [period, setPeriod] = useState(hash.get("period") || "2026_jan_oct"),
-    [layer, setLayer] = useState(Number(hash.get("layer") ?? 5)),
-    [compared, setCompared] = useState<string[]>([]);
+  const [route,setRoute] = useState(() => parseSiteRoute(location.hash));
+  const {view,lens,gu,dong:selected,tier,period,layer} = route;
+  const patchRoute = (patch: Partial<SiteRoute>) => setRoute(previous => ({...previous,...patch}));
+  const setView = (view:string) => patchRoute({view,lens:'opportunity',tier:''});
+  const setGu = (gu:string) => patchRoute({gu});
+  const setSelected = (dong:string) => patchRoute({dong});
+  const setPeriod = (period:string) => patchRoute({period});
+  const setLayer = (layer:number) => patchRoute({layer});
+  const [search,setSearch] = useState(''), [compared,setCompared] = useState<string[]>([]);
+  const [research,setResearch] = useState<ResearchIndex|null>(null);
+  useEffect(() => {
+    const sync = () => {
+      if (location.hash && !location.hash.startsWith('#view=')) return;
+      setRoute(parseSiteRoute(location.hash));
+    };
+    window.addEventListener('hashchange',sync);window.addEventListener('popstate',sync);
+    return () => {window.removeEventListener('hashchange',sync);window.removeEventListener('popstate',sync);};
+  },[]);
   const fileInput = useRef<HTMLInputElement>(null);
   const data = privateData ?? publicData,
     ext = privateExt ?? publicExt,
@@ -146,13 +157,15 @@ export default function App() {
       get("seoul-admin.geojson"),
       get("extensions.json", true),
       get("observatory.json", true),
+      fetch(base + "research/v1/index.json").then(r => r.ok ? r.json() : null).catch(() => null),
     ])
-      .then(([d, g, e, o]) => {
+      .then(([d, g, e, o, index]) => {
         if (!live) return;
         setPublicData(d);
         setGeo(g);
         setPublicExt(e ?? {});
         setObservatory(o);
+        setResearch(parsePublicResearch(index,d,e?.automation));
       })
       .catch(() => {
         if (live)
@@ -165,14 +178,14 @@ export default function App() {
     };
   }, []);
   useEffect(() => {
-    const p = new URLSearchParams({ view, period, layer: String(layer) });
-    if (gu) p.set("gu", gu);
-    if (selected) p.set("dong", selected);
-    history.replaceState(null, "", "#" + p);
-  }, [view, gu, selected, period, layer]);
+    const next = siteHref(route);
+    if (next === location.hash) return;
+    if (siteHref(parseSiteRoute(location.hash)) === next) history.replaceState(null,'',next);
+    else history.pushState(null,'',next);
+  }, [route]);
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "auto" });
-  }, [view]);
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }, [view,lens]);
   const rows: Row[] = useMemo(
     () =>
       (data?.rows ?? data?.rows427 ?? []).map((r: Row) => ({
@@ -298,14 +311,14 @@ export default function App() {
   ];
   return (
     <div className="app-shell">
-      <a className="skip" href="#content">
+      <a className="skip" href="#content" onClick={e => {e.preventDefault();document.getElementById("content")?.focus();}}>
         본문으로 건너뛰기
       </a>
       <aside className="sidebar">
         <a
           className="brand"
           href="#view=decision"
-          onClick={() => setView("decision")}
+          aria-label="핵심 판단 처음으로"
         >
           <span className="brand-mark">
             <Layers size={21} />
@@ -389,7 +402,7 @@ export default function App() {
               value={search}
               onChange={(e) => {
                 setSearch(e.target.value);
-                if (view !== "map") setView("map");
+                if (view !== "map" && !(view === "decision" && lens === "where")) setView("map");
               }}
             />
           </div>
@@ -426,7 +439,7 @@ export default function App() {
             {importError}
           </div>
         )}
-        <main id="content">
+        <main id="content" tabIndex={-1}>
           <div className="page-heading">
             <div>
               <span className="eyebrow">
@@ -510,6 +523,10 @@ export default function App() {
             )}
           {view === "decision" && (
             <DecisionStudio
+              lens={lens} onLensChange={next => patchRoute({lens:next,tier:''})}
+              research={research} geo={geo} observatory={observatory}
+              tier={tier} onTierChange={next => patchRoute({tier:next,dong:''})}
+              researchQuery={search} onResearchQuery={setSearch}
               data={data}
               ext={ext}
               rows={rows}
@@ -647,6 +664,7 @@ export default function App() {
                           <small>2026년 2분기</small>
                         </div>
                       </dl>
+                      <a className="research-inline-link" href={lensHref('where',selected)}>이 동의 조사 분류와 근거 보기</a>
                       <button
                         className="text-link"
                         onClick={() => setView("trends")}
@@ -1170,6 +1188,7 @@ export default function App() {
                   ))}
                 </div>
               </section>
+              <details className="card research-gap-section"><summary>공개자료의 역할과 추가 자료 확보 경로</summary><ResearchGaps /></details>
               <section className="card connection-card">
                 <div>
                   <span className="eyebrow">파일 추가</span>

@@ -1,6 +1,11 @@
 import { useMemo, useState } from "react";
 import { registryAxis, inspections } from "./atlasViews";
 import Chart from "./Chart";
+import ResearchLensView from "./ResearchLens";
+import { lensHref } from "./researchRoute";
+import type { ResearchIndex, ResearchTier, ResearchLens } from "./researchTypes";
+import type { FeatureCollection } from "geojson";
+import type { Observatory } from "./ObservatoryPanels";
 import DataTable from "./DataTable";
 import FitLens from "./FitLens";
 import RevenueLens from "./RevenueLens";
@@ -23,6 +28,15 @@ import {
 } from "./decision";
 
 type Props = {
+  lens: ResearchLens;
+  onLensChange: (lens: ResearchLens) => void;
+  research: ResearchIndex|null;
+  geo: FeatureCollection;
+  observatory: Observatory|null;
+  tier: ResearchTier|'';
+  onTierChange: (tier: ResearchTier|'') => void;
+  researchQuery: string;
+  onResearchQuery: (query:string) => void;
   data: any;
   ext: any;
   rows: Row[];
@@ -58,7 +72,7 @@ export default function DecisionStudio(props: Props) {
     onExplore,
     onImport,
   } = props;
-  const [intent, setIntent] = useState<Intent>("opportunity");
+  const intent = props.lens;
   const [group, setGroup] = useState("");
   const [query, setQuery] = useState("");
   const [minimum, setMinimum] = useState(0);
@@ -110,7 +124,7 @@ export default function DecisionStudio(props: Props) {
   const outside = shown.filter((p) => Math.abs(p.change) > 50).length;
   const gus = [...new Set(rows.map((r) => String(r.gu)))].sort();
   const selectIntent = (next: Intent) => {
-    setIntent(next);
+    props.onLensChange(next);
     window.scrollTo({ top: 0, behavior: "auto" });
   };
   const mark = (p: OpportunityPoint, muted = false) => ({
@@ -229,7 +243,12 @@ export default function DecisionStudio(props: Props) {
           </button>
         ))}
       </div>
-      {chosenName && (
+      <div className={'research-entry' + (intent === 'where' ? ' is-current' : '')}>
+        <span><b>현장 조사 지도</b><small>세 질문을 한 동에서 점검하기</small></span>
+        <a className="research-entry-link" href={lensHref('where',selected,gu,intent === 'where' ? props.tier : '')} aria-current={intent === 'where' ? 'page' : undefined} aria-label="어디를, 왜 볼까">어디를, 왜 볼까 <span aria-hidden="true">↗</span></a>
+      </div>
+      {intent === 'where' && <ResearchLensView index={props.research} geo={props.geo} observatory={props.observatory} gu={gu} tier={props.tier} selected={selected} query={props.researchQuery} onQuery={props.onResearchQuery} onGu={onGuChange} onTier={props.onTierChange} onSelect={onSelect} />}
+      {chosenName && intent !== 'where' && (
         <div className="decision-selection">
           <span>
             관심 지역 <b>{chosenName}</b>
@@ -401,6 +420,7 @@ export default function DecisionStudio(props: Props) {
                     <button onClick={() => onExplore("map")}>
                       지도에서 위치 확인
                     </button>
+                    <a className="research-inline-link" href={lensHref('where',selected)}>이 동의 조사 분류와 반대 근거</a>
                     {inspections.map(item => <button key={item.id} onClick={() => item.destination === "trends" ? onExplore("trends") : selectIntent(item.destination)}>{item.title} <small>· {item.scope}</small></button>)}
                   </div>
                 </>
@@ -515,6 +535,7 @@ export default function DecisionStudio(props: Props) {
           />
           <div className="decision-next">
             <button onClick={() => selectIntent("fit")}>이전: 적합</button>
+            <a className="research-inline-link" href={lensHref('where',selected)}>현장 조사 지도로 정리</a>
             <button onClick={() => onExplore("sources")}>
               연결 자료와 출처 확인
             </button>
@@ -524,7 +545,7 @@ export default function DecisionStudio(props: Props) {
       <details className="decision-method">
         <summary>화면 범위</summary>
         <p>
-          세 단계는 조사 순서입니다. 기회 화면은 동별 생활인구 변화와 등록 수를,
+          기회·적합·검증은 서로 다른 세 질문입니다. 현장 조사 지도는 이 질문을 한 동에서 다시 확인하는 화면이지 수익 점수가 아닙니다. 기회 화면은 동별 생활인구 변화와 등록 수를,
           적합·검증 화면은 각자 표시된 자료 범위를 다룹니다. 서로 다른 자료가
           고객 이동이나 인과관계를 뜻하지는 않습니다.
         </p>

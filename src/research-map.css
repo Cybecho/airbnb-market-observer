@@ -1,0 +1,151 @@
+.research-map-wrap {
+  position: relative;
+  min-height: 360px;
+  overflow: hidden;
+  border: 1px solid #d8dddf;
+  background: #f5f7f7;
+}
+
+.research-map {
+  height: clamp(360px, 55vw, 620px);
+  min-height: 360px;
+  background: #f1f4f4;
+  isolation: isolate;
+}
+
+.research-map .leaflet-control-zoom {
+  border: 1px solid #b8c2c5 !important;
+  border-radius: 3px !important;
+  box-shadow: 0 2px 8px rgb(30 48 54 / 12%) !important;
+}
+
+.research-map .leaflet-control-zoom a {
+  color: #22363b !important;
+  background: #fff;
+}
+
+.research-map .leaflet-control-attribution {
+  max-width: calc(100% - 12px);
+  color: #58666b;
+  font-size: 9px;
+  background: rgb(255 255 255 / 88%);
+}
+
+.research-map .leaflet-interactive {
+  cursor: pointer;
+  outline: none;
+  transition: fill-opacity 120ms ease, stroke-width 120ms ease;
+}
+
+.research-map .leaflet-interactive[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
+.research-map .leaflet-interactive:focus-visible {
+  stroke: #102f35 !important;
+  stroke-width: 3.5px !important;
+  filter: drop-shadow(0 0 2px #fff);
+}
+
+.research-map-tooltip {
+  border: 1px solid #b9c3c4 !important;
+  border-radius: 3px !important;
+  padding: 6px 8px !important;
+  color: #1d2e33;
+  font-size: 12px;
+  line-height: 1.35;
+  box-shadow: 0 4px 14px rgb(30 48 54 / 16%) !important;
+}
+
+.research-map-actions {
+  position: absolute;
+  z-index: 500;
+  top: 12px;
+  right: 12px;
+}
+
+.research-map-actions button {
+  min-height: 34px;
+  border: 1px solid #aebabc;
+  border-radius: 3px;
+  padding: 6px 9px;
+  color: #26383d;
+  background: rgb(255 255 255 / 94%);
+  font: inherit;
+  font-size: 12px;
+  box-shadow: 0 2px 7px rgb(30 48 54 / 10%);
+}
+
+.research-map-actions button:hover {
+  background: #fff;
+}
+
+.research-map-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+  .research-map-wrap,
+  .research-map {
+    min-height: 330px;
+  }
+
+  .research-map {
+    height: min(70vh, 460px);
+  }
+
+  .research-map-actions {
+    top: 9px;
+    right: 9px;
+  }
+
+  .research-map-actions button {
+    min-height: 40px;
+  }
+}
+
+.research-map-legend {
+  display: flex;
+  gap: 8px 13px;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 38px;
+  padding: 8px 12px;
+  border-top: 1px solid #d8dddf;
+  color: #435258;
+  background: #fff;
+  font-size: 11px;
+}
+
+.research-map-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.research-map-legend i {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 1px solid rgb(27 45 50 / 18%);
+  border-radius: 2px;
+}
+
+.research-map-legend-muted i {
+  background: #f5f6f7;
+  border-color: #abb5bd;
+  border-style: dashed;
+}
+
+.research-map-legend-filtered i {
+  background: #dce1e4;
+  border-color: #c7ced3;
+  border-style: dashed;
+}
