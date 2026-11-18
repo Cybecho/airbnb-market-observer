@@ -7,13 +7,11 @@ on:
         type: choice
         options: [sources, locations, weekly]
         default: sources
-  push:
-    branches: [muse-strategy-evidence-v1]
 permissions:
   contents: read
 jobs:
   sources:
-    if: github.repository == 'Cybecho/airbnb-market-observer' && ((github.ref == 'refs/heads/main' && inputs.review == 'sources') || (github.event_name == 'push' && contains(github.event.head_commit.message, '[원본검산]')))
+    if: github.repository == 'Cybecho/airbnb-market-observer' && github.ref == 'refs/heads/main' && inputs.review == 'sources'
     runs-on: ubuntu-24.04
     timeout-minutes: 12
     steps:
@@ -30,7 +28,7 @@ jobs:
           if node scripts/strategy/subway-cli.mjs --materialize > "$RUNNER_TEMP/subway-result" 2>&1; then echo 'Rights decision changed; inspect before publication'; exit 1; fi
           test ! -e public/strategy/v1/subway.json
   locations:
-    if: github.repository == 'Cybecho/airbnb-market-observer' && ((github.ref == 'refs/heads/main' && inputs.review == 'locations') || (github.event_name == 'push' && contains(github.event.head_commit.message, '[위치검산]')))
+    if: github.repository == 'Cybecho/airbnb-market-observer' && github.ref == 'refs/heads/main' && inputs.review == 'locations'
     runs-on: ubuntu-24.04
     timeout-minutes: 8
     steps:
@@ -49,7 +47,7 @@ jobs:
           if-no-files-found: error
           retention-days: 3
   weekly:
-    if: github.repository == 'Cybecho/airbnb-market-observer' && ((github.ref == 'refs/heads/main' && inputs.review == 'weekly') || (github.event_name == 'push' && contains(github.event.head_commit.message, '[주간검산]')))
+    if: github.repository == 'Cybecho/airbnb-market-observer' && github.ref == 'refs/heads/main' && inputs.review == 'weekly'
     runs-on: ubuntu-24.04
     timeout-minutes: 60
     env: {NODE_OPTIONS: '--max-old-space-size=3072'}

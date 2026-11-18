@@ -1,3 +1,4 @@
+import './strategy/check-public-strategy.mjs';
 import { nationalitySlot } from './strategy/nationality.mjs';
 import fs from "node:fs";
 import path from "node:path";

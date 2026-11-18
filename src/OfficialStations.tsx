@@ -33,7 +33,7 @@ export function useOfficialStations(){
 
 /** Adds only an in-memory layer. Caller owns its toggle and must use the returned cleanup. */
 export function addOfficialStationLayer(Lf:typeof L,map:L.Map,s:OfficialStationSnapshot,selectedCode?:string){
-  const pane='amoOfficialStations';if(!map.getPane(pane))map.createPane(pane).style.zIndex='460';
+  const pane='amoOfficialStations';const element=map.getPane(pane)??map.createPane(pane);element.style.zIndex='460';element.dataset.testid='official-station-map-pane';
   const group=Lf.layerGroup().addTo(map),row=s.rows.find(r=>r.adminCode===selectedCode);
   const near=new Set(row?.nearestStationIds??[]),credit=`<a href="${sourceUrl}">역 위치: © 서울특별시 · 서울교통공사</a> (<a href="${kogl}">공공누리 1유형</a>)`;
   map.attributionControl?.addAttribution(credit);

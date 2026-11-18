@@ -755,6 +755,7 @@ export default function App() {
             </>
           )}
           {view === 'map' && <section className="card strategy-card"><OfficialStations snapshot={stationLocations} adminCode={selected}/><PoiContext adminCode={selected} mode="map"/><SubwayContext /></section>}
+          {['trends','supply','people'].includes(view)&&<section className="card strategy-card"><label htmlFor="strategy-area"><strong>조사할 행정동</strong></label> <select id="strategy-area" value={selected} onChange={e=>setSelected(e.target.value)}><option value="">지역을 선택하세요</option>{(research?.areas??[]).filter(a=>!gu||a.gu===gu||a.code===selected).map(a=><option key={a.code} value={a.code}>{a.gu} {a.name}</option>)}</select><p className="method-note">선택한 동의 공식 관측을 봅니다. 전국 입국 통계의 범위는 바뀌지 않습니다.</p></section>}
           {view === "trends" && (
             <>
               <PresencePanel
