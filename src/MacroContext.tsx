@@ -46,7 +46,7 @@ export function MacroContext() {
       .catch(()=>{if(!controller.signal.aborted) setFailed(true);});
     return ()=>controller.abort();
   },[]);
-  return <section className="card trend-card" aria-label="전국 방한 외래관광객 추세">
+  return <section className="card national-arrivals-card" aria-label="전국 방한 외래관광객 추세">
     <div className="section-heading"><div><span className="eyebrow">전국 관광 배경</span><h2>한국에 입국한 외래관광객</h2>
       <p className="subtle">대한민국 전체 · 월간 입국 인원(명) · 지역 선택과 무관</p></div><span className="badge">한국관광공사</span></div>
     {rows ? <>
