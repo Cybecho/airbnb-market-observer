@@ -27,10 +27,13 @@ export default function PresenceTrendChart({
   months,
   series,
   label,
+  description = "월별 존재 추정 인구 추세입니다. 단위는 명이며, 값이 없는 달은 연결하지 않습니다.",
 }: {
   months: string[];
   series: PresenceTrendSeries[];
   label: string;
+  /** Optional contextual reading guide; existing chart callers remain compatible. */
+  description?: string;
 }) {
   const canvas = useRef<HTMLCanvasElement>(null);
   const chart = useRef<ChartInstance<"line", (number | null)[], string> | null>(
@@ -218,7 +221,7 @@ export default function PresenceTrendChart({
         )}
       </div>
       <p id={descriptionId} className="atlas-sr-only">
-        월별 존재 추정 인구 추세입니다. 단위는 명이며, 값이 없는 달은 연결하지 않습니다.
+        {description}
       </p>
       <p aria-live="polite" className="atlas-trend-readout">
         {tooltip

@@ -19,6 +19,7 @@ export type PresenceRow = {
   weekend14: number | null;
   days04: number | null;
   days14: number | null;
+  meanNight?: number | null; daysNight?: number; mean22?: number | null; days22?: number;
 };
 export type Observatory = {
   schemaVersion: string;
@@ -49,7 +50,7 @@ export function PresencePanel({
   selected: string;
   compare?: string[];
 }) {
-  const [hour, setHour] = useState<"04" | "14">("04"),
+  const [hour, setHour] = useState<"04" | "14" | "Night" | "22">("04"),
     [day, setDay] = useState<"mean" | "weekday" | "weekend">("mean"),
     [window, setWindow] = useState("24");
   const months = useMemo(
@@ -57,7 +58,9 @@ export function PresencePanel({
       [...(observatory?.presence?.months ?? [])].sort().slice(-Number(window)),
     [observatory, window],
   );
-  const field = `${day}${hour}` as keyof PresenceRow;
+  const allDaysOnly = hour === 'Night' || hour === '22';
+  const hourLabel = hour === 'Night' ? '야간 00~06시' : `${hour}시`;
+  const field = `${allDaysOnly?'mean':day}${hour}` as keyof PresenceRow;
   const result = useMemo(() => {
     const raw = observatory?.presence?.rows ?? [];
     const scope = rows.filter((r) => !gu || r.gu === gu);
@@ -134,7 +137,7 @@ export function PresencePanel({
           <span className="eyebrow">월별 방문 배경</span>
           <h2>외국인 존재인구의 흐름</h2>
           <p className="subtle">
-            {months.length ? `${months[0]} ~ ${months.at(-1)} · 관측 기간 ${months.length}개월` : "관측한 달 없음"} · {hour}시 일평균
+            {months.length ? `${months[0]} ~ ${months.at(-1)} · 관측 기간 ${months.length}개월` : "관측한 달 없음"} · {hourLabel} 일평균
           </p>
         </div>
         <span className="badge">통신 기반 추정</span>
@@ -147,12 +150,14 @@ export function PresencePanel({
           <button aria-pressed={hour === "14"} onClick={() => setHour("14")}>
             14시
           </button>
+          <button aria-pressed={hour === 'Night'} onClick={()=>setHour('Night')}>야간 00~06시</button>
+          <button aria-pressed={hour === '22'} onClick={()=>setHour('22')}>22시</button>
         </div>
         <label>
           요일
           <select
             aria-label="요일 구분"
-            value={day}
+            disabled={allDaysOnly} value={allDaysOnly?'mean':day}
             onChange={(event) => setDay(event.target.value as typeof day)}
           >
             <option value="mean">전체</option>
@@ -194,6 +199,7 @@ export function PresencePanel({
       </div>
       <p className="method-note">
         지역 합계는 선택 기간의 모든 일자가 관측된 공통 행정동의 월 일평균을 더합니다.
+        야간은 같은 날 00·01·02·03·04·05·06시가 모두 관측된 날의 7시점 평균입니다. 22시와 야간은 전체 요일 기준입니다.
         월별 일수와 일치하지 않는 자료는 제외하며, 행정경계 변경과 소표본 비공개에
         유의하세요. 선택동의 미완전 월은 공란으로 남깁니다.
       </p>
