@@ -32,3 +32,10 @@ test('reconstruction detects extra unapproved columns and derivation changes in 
  const p={schema:'amo-station-locations/1',rows:[{distanceM:0}]};compareCandidate(Buffer.from(JSON.stringify(p)+'\n'),p);
  assert.throws(()=>compareCandidate(Buffer.from(JSON.stringify({...p,raw:[]})+'\n'),p));assert.throws(()=>compareCandidate(Buffer.from(JSON.stringify({...p,rows:[{distanceM:1}]})+'\n'),p));
 });
+
+test('published 276 station coordinates reproduce all 427 interior anchors, membership and straight-line ties unchanged',async()=>{
+ const {readFile}=await import('node:fs/promises');const data=JSON.parse(await readFile(new URL('../../public/strategy/v1/station-locations.json',import.meta.url),'utf8'));
+ const {features}=JSON.parse(await readFile(new URL('../../public/data/seoul-admin.geojson',import.meta.url),'utf8'));
+ const official=new Map(data.stations.map(s=>[s.stationId,{stationId:s.stationId,label:s.name,point:s.lonLat}]));
+ const result=deriveLocations(official,features);assert.equal(result.rows.length,427);assert.equal(result.stations.length,276);assert.deepEqual(result.rows,data.rows);assert.deepEqual(result.stations,data.stations);
+});

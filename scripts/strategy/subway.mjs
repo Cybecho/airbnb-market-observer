@@ -79,18 +79,25 @@ export function membership(point, features) {
 export function interiorAnchor(geometry) {
   const polys=geometry?.type==='Polygon'?[geometry.coordinates]:geometry?.type==='MultiPolygon'?geometry.coordinates:[];
   let best=null,width=0;
-  for(const poly of polys){
-    if(!poly[0]?.length)continue;
-    const ys=poly[0].map(p=>p[1]), y=(Math.min(...ys)+Math.max(...ys))/2, crossings=[];
-    for(const ring of poly) for(let i=1;i<ring.length;i++){
-      const a=ring[i-1],b=ring[i]; if((a[1]>y)!==(b[1]>y))crossings.push(a[0]+(b[0]-a[0])*(y-a[1])/(b[1]-a[1]));
+  function consider(poly,y){
+    const xs=[];
+    for(const ring of poly)for(let i=1;i<ring.length;i++){
+      const a=ring[i-1],b=ring[i];if((a[1]>y)!==(b[1]>y))xs.push(a[0]+(b[0]-a[0])*(y-a[1])/(b[1]-a[1]));
     }
-    crossings.sort((a,b)=>a-b);
-    for(let i=1;i<crossings.length;i++){
-      const span=crossings[i]-crossings[i-1],p=[(crossings[i]+crossings[i-1])/2,y];
-      if(span>width && pointInGeometry(p,geometry)==='inside'){width=span;best=p;}
+    xs.sort((a,b)=>a-b);
+    for(let i=1;i<xs.length;i++){
+      const w=xs[i]-xs[i-1],p=[(xs[i]+xs[i-1])/2,y];
+      if(w>width&&pointInGeometry(p,geometry)==='inside'){width=w;best=p;}
     }
-  } return best;
+  }
+  for(const poly of polys){if(!poly[0]?.length)continue;const ys=poly[0].map(p=>p[1]);consider(poly,(Math.min(...ys)+Math.max(...ys))/2);}
+  if(best)return best; // Preserve the already verified 427 mid-latitude reference points.
+  // The default chord can coincide with a horizontal edge of a hole. An open slab between
+  // two distinct vertex latitudes cannot lie on a horizontal ring edge. Never nudge stations.
+  for(const poly of polys){const ys=[...new Set(poly.flatMap(r=>r.map(p=>p[1])))].sort((a,b)=>a-b);
+    for(let i=1;i<ys.length;i++)if(ys[i]>ys[i-1])consider(poly,(ys[i]+ys[i-1])/2);
+  }
+  return best;
 }
 export function haversineMetres(a,b){
   validPoint(a);validPoint(b);const r=Math.PI/180;
