@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "amo-macro-arrivals/1",
+  "geography": "KR",
+  "frequency": "month",
+  "measure": "inbound-visitor-arrivals",
+  "unit": "persons",
+  "period": { "first": "2024-10", "last": "2026-09", "count": 24 },
+  "source": {
+    "publisher": "한국관광공사 관광데이터서비스팀",
+    "title": "2026년 9월 한국관광통계 공표",
+    "publishedAt": "2026-10-28T10:10:00+09:00",
+    "releasePage": "https://datalab.visitkorea.or.kr/site/portal/ex/bbs/View.do?bcIdx=311425&cateCont=spt01&cbIdx=1127&pageIndex=1",
+    "methodUrl": "https://datalab.visitkorea.or.kr/datalab/portal/getMetaInfoList.do",
+    "license": "KOGL-0",
+    "licenseUrl": "https://www.kogl.or.kr/info/licenseType0.do",
+    "files": [
+      {
+        "role": "primary",
+        "name": "전체국가통계_202609.xlsx",
+        "downloadUrl": "https://datalab.visitkorea.or.kr/common/board/Download.do?bcIdx=311425&cbIdx=1127&streFileNm=da20f322-a2a3-4c02-846d-89668abdb7fa.xlsx",
+        "bytes": 1129744,
+        "sha256": "f2b383757aacea0645e0220488eaf31d65210d478f6f3f0abe414658dc4ef98d",
+        "table": "입국!A4 = G.TOTAL; row 3 = month; row 4 = national arrivals"
+      },
+      {
+        "role": "overlap-check",
+        "name": "전체국가통계_202608.xlsx",
+        "releasePage": "https://datalab.visitkorea.or.kr/site/portal/ex/bbs/View.do?bcIdx=311301&cateCont=spt01&cbIdx=1127&pageIndex=1",
+        "publishedAt": "2026-09-28T09:52:00+09:00",
+        "downloadUrl": "https://datalab.visitkorea.or.kr/common/board/Download.do?bcIdx=311301&cbIdx=1127&streFileNm=5146fdf7-8c3e-47cd-84c0-83e798c28c15.xlsx",
+        "bytes": 1129126,
+        "sha256": "714a9b4785583918d3d020494c94442ace1d072856268c9d48cfd1aab66a94cb",
+        "table": "입국!G.TOTAL, 2024-10..2026-08"
+      },
+      {
+        "role": "latest-check",
+        "name": "주요국가통계_202609.xlsx",
+        "downloadUrl": "https://datalab.visitkorea.or.kr/common/board/Download.do?bcIdx=311425&cbIdx=1127&streFileNm=805a5db1-1754-4292-aeae-d0a3eb89a849.xlsx",
+        "bytes": 38628,
+        "sha256": "e9306fe0a2a1ec26f47a34732434cbd2e796347c2f77de97881741a2f759ff7f",
+        "table": "한국어!A6 = 전체 방한 외래관광객 수; C6 = current month; G6 = cumulative (check only)"
+      }
+    ]
+  },
+  "rows": [
+    { "month": "2024-10", "arrivals": 1600263, "cell": "NA4" },
+    { "month": "2024-11", "arrivals": 1361076, "cell": "NB4" },
+    { "month": "2024-12", "arrivals": 1270863, "cell": "NC4" },
+    { "month": "2025-01", "arrivals": 1117243, "cell": "NE4" },
+    { "month": "2025-02", "arrivals": 1138408, "cell": "NF4" },
+    { "month": "2025-03", "arrivals": 1614596, "cell": "NG4" },
+    { "month": "2025-04", "arrivals": 1707113, "cell": "NH4" },
+    { "month": "2025-05", "arrivals": 1629387, "cell": "NI4" },
+    { "month": "2025-06", "arrivals": 1619220, "cell": "NJ4" },
+    { "month": "2025-07", "arrivals": 1733199, "cell": "NK4" },
+    { "month": "2025-08", "arrivals": 1820332, "cell": "NL4" },
+    { "month": "2025-09", "arrivals": 1702813, "cell": "NM4" },
+    { "month": "2025-10", "arrivals": 1739020, "cell": "NN4" },
+    { "month": "2025-11", "arrivals": 1596939, "cell": "NO4" },
+    { "month": "2025-12", "arrivals": 1518292, "cell": "NP4" },
+    { "month": "2026-01", "arrivals": 1265658, "cell": "NR4" },
+    { "month": "2026-02", "arrivals": 1431472, "cell": "NS4" },
+    { "month": "2026-03", "arrivals": 2045992, "cell": "NT4" },
+    { "month": "2026-04", "arrivals": 2027860, "cell": "NU4" },
+    { "month": "2026-05", "arrivals": 1945809, "cell": "NV4" },
+    { "month": "2026-06", "arrivals": 1993128, "cell": "NW4" },
+    { "month": "2026-07", "arrivals": 2093223, "cell": "NX4" },
+    { "month": "2026-08", "arrivals": 2245293, "cell": "NY4" },
+    { "month": "2026-09", "arrivals": 2062042, "cell": "NZ4" }
+  ]
+}

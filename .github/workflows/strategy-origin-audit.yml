@@ -1,0 +1,71 @@
+name: Strategy origin audit (no deployment)
+on:
+  workflow_dispatch:
+    inputs:
+      review:
+        description: Bounded anonymous source verification; no publication
+        type: choice
+        options: [sources, locations, weekly]
+        default: sources
+  push:
+    branches: [muse-strategy-evidence-v1]
+permissions:
+  contents: read
+jobs:
+  sources:
+    if: github.repository == 'Cybecho/airbnb-market-observer' && ((github.ref == 'refs/heads/main' && inputs.review == 'sources') || (github.event_name == 'push' && contains(github.event.head_commit.message, '[원본검산]')))
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with: {node-version: 24}
+      - name: Check three licensed KTO releases against the 24 published monthly cells
+        run: node scripts/strategy/macro.mjs --verify-source
+      - name: Recheck subway rights, public original file shapes and fail-closed admission
+        run: |
+          set -euo pipefail
+          node scripts/strategy/subway-cli.mjs --audit-files
+          if node scripts/strategy/subway-cli.mjs --materialize > "$RUNNER_TEMP/subway-result" 2>&1; then echo 'Rights decision changed; inspect before publication'; exit 1; fi
+          test ! -e public/strategy/v1/subway.json
+  locations:
+    if: github.repository == 'Cybecho/airbnb-market-observer' && ((github.ref == 'refs/heads/main' && inputs.review == 'locations') || (github.event_name == 'push' && contains(github.event.head_commit.message, '[위치검산]')))
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with: {node-version: 24}
+      - name: Read the licensed location-only CSV, reconcile location IDs and verify aggregate distances
+        run: |
+          node scripts/strategy/station-locations.mjs --materialize
+          node scripts/strategy/station-locations.mjs --check
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: reviewed-station-locations
+          path: public/strategy/v1/station-locations.json
+          if-no-files-found: error
+          retention-days: 3
+  weekly:
+    if: github.repository == 'Cybecho/airbnb-market-observer' && ((github.ref == 'refs/heads/main' && inputs.review == 'weekly') || (github.event_name == 'push' && contains(github.event.head_commit.message, '[주간검산]')))
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env: {NODE_OPTIONS: '--max-old-space-size=3072'}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with: {node-version: 24}
+      - name: Run the same nine anonymous collectors, rebuild, append histories and validate without write credentials
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends proj-bin unzip
+          npm run data:refresh
+          npm run data:build
+          node scripts/strategy/history.mjs --append
+          npm run data:check
+          node scripts/strategy/history.mjs --check
+          npm run check:publication
+          node scripts/strategy/secure-spatial.mjs off
+          git diff --stat -- data/organized/insights public/data public/strategy/v1
