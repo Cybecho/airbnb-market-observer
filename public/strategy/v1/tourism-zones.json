@@ -1,0 +1,1008 @@
+{
+  "schemaVersion": "amo-tourism-zones/1",
+  "checkedOn": "2026-11-18",
+  "notice": "서울특별시고시 제2026-87호",
+  "gazette": "서울시보 제4127호",
+  "decidedOn": "2026-02-19",
+  "committeeOn": "2025-12-12",
+  "temporaryApplicationThrough": "2029-01-04",
+  "addressMonth": "2026-10",
+  "boundaryDate": "2026-10-01",
+  "coverage": "partial-representative-lots",
+  "sources": {
+    "notice": "https://urban.seoul.go.kr/UpisArchive/DATA/PM/pdf/11000TTC202601160003/%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C_%EC%A0%9C2026-87%ED%98%B8_%EA%B3%A0%EC%8B%9C.pdf",
+    "gazette": "https://www.seoul.go.kr/func/seoulsibo/fileDownload.do?fileName=seoulsibo_20260213141933_17969.pdf",
+    "noticeRecord": "https://www.eum.go.kr/web/gs/gv/gvGosiDet.jsp?seq=634617",
+    "ordinance": "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2099911",
+    "ordinanceGazette": "https://www.seoul.go.kr/func/seoulsibo/fileDownload.do?fileName=seoulsibo_20260102140841_03237.pdf",
+    "touristDistricts": "https://data.seoul.go.kr/dataList/OA-12857/F/1/datasetView.do",
+    "addressDatabase": "https://business.juso.go.kr/jst/jstAddressDownload",
+    "addressLicense": "https://www.data.go.kr/data/15050417/fileData.do"
+  },
+  "sectors": [
+    {
+      "id": "R01",
+      "name": "명동관광특구",
+      "noticeGu": "중구",
+      "locationHint": "명동1가 54",
+      "exactLots": [
+        "중구 명동1가 54"
+      ],
+      "group": "core",
+      "tablePage": 47,
+      "mapPage": 56,
+      "references": [
+        {
+          "lot": "중구 명동1가 54",
+          "pnu": "1114012600100540000",
+          "adminCode": "11140550"
+        }
+      ]
+    },
+    {
+      "id": "R02",
+      "name": "북창",
+      "noticeGu": "중구",
+      "locationHint": "북창동 104",
+      "exactLots": [
+        "중구 북창동 104"
+      ],
+      "group": "core",
+      "tablePage": 47,
+      "mapPage": 57,
+      "references": [
+        {
+          "lot": "중구 북창동 104",
+          "pnu": "1114011300101040000",
+          "adminCode": "11140520"
+        }
+      ]
+    },
+    {
+      "id": "R03",
+      "name": "테헤란로",
+      "noticeGu": "강남구",
+      "locationHint": "역삼1동·역삼2동·삼성2동·대치4동 일원",
+      "exactLots": [],
+      "group": "core",
+      "tablePage": 47,
+      "mapPage": 58,
+      "references": []
+    },
+    {
+      "id": "R04",
+      "name": "잠실광역중심제1지구",
+      "noticeGu": "송파구",
+      "locationHint": "신천동·방이동·올림픽로 주변",
+      "exactLots": [],
+      "group": "core",
+      "tablePage": 47,
+      "mapPage": 58,
+      "references": []
+    },
+    {
+      "id": "R05",
+      "name": "여의도 금융중심",
+      "noticeGu": "영등포구",
+      "locationHint": "여의도동 33",
+      "exactLots": [
+        "영등포구 여의도동 33"
+      ],
+      "group": "core",
+      "tablePage": 47,
+      "mapPage": 59,
+      "references": [
+        {
+          "lot": "영등포구 여의도동 33",
+          "pnu": "1156011000100330000",
+          "adminCode": "11560540"
+        }
+      ]
+    },
+    {
+      "id": "R06",
+      "name": "영등포지역 부도심권",
+      "noticeGu": "영등포구",
+      "locationHint": "영등포동1가 98-9",
+      "exactLots": [
+        "영등포구 영등포동1가 98-9"
+      ],
+      "group": "core",
+      "tablePage": 47,
+      "mapPage": 59,
+      "references": []
+    },
+    {
+      "id": "R07",
+      "name": "마포지구",
+      "noticeGu": "마포구",
+      "locationHint": "신촌로·양화로변 일대",
+      "exactLots": [],
+      "group": "core",
+      "tablePage": 47,
+      "mapPage": 60,
+      "references": []
+    },
+    {
+      "id": "R08",
+      "name": "용산",
+      "noticeGu": "용산구",
+      "locationHint": "중구 봉래동~용산구 한강로 일대",
+      "exactLots": [],
+      "group": "core",
+      "tablePage": 47,
+      "mapPage": 60,
+      "references": []
+    },
+    {
+      "id": "R09",
+      "name": "왕십리 광역중심",
+      "noticeGu": "성동구",
+      "locationHint": "하왕십리동·도선동·홍익동·행당동 일대",
+      "exactLots": [],
+      "group": "core",
+      "tablePage": 47,
+      "mapPage": 61,
+      "references": []
+    },
+    {
+      "id": "T01",
+      "name": "양재중심지구",
+      "noticeGu": "강남구",
+      "locationHint": "도곡동 957",
+      "exactLots": [
+        "강남구 도곡동 957"
+      ],
+      "group": "temporary",
+      "tablePage": 48,
+      "mapPage": 62,
+      "references": [
+        {
+          "lot": "강남구 도곡동 957",
+          "pnu": "1168011800109570000",
+          "adminCode": "11680655"
+        }
+      ]
+    },
+    {
+      "id": "T02",
+      "name": "천호지구",
+      "noticeGu": "강동구",
+      "locationHint": "천호동·길동·둔촌동·성내동 일원",
+      "exactLots": [],
+      "group": "temporary",
+      "tablePage": 48,
+      "mapPage": 62,
+      "references": []
+    },
+    {
+      "id": "T03",
+      "name": "수유·번동",
+      "noticeGu": "강북구",
+      "locationHint": "수유동 192 · 번동 416",
+      "exactLots": [
+        "강북구 수유동 192",
+        "강북구 번동 416"
+      ],
+      "group": "temporary",
+      "tablePage": 48,
+      "mapPage": 63,
+      "references": []
+    },
+    {
+      "id": "T04",
+      "name": "화곡역 지구중심",
+      "noticeGu": "강서구",
+      "locationHint": "화곡동 1064",
+      "exactLots": [
+        "강서구 화곡동 1064"
+      ],
+      "group": "temporary",
+      "tablePage": 48,
+      "mapPage": 63,
+      "references": [
+        {
+          "lot": "강서구 화곡동 1064",
+          "pnu": "1150010300110640000",
+          "adminCode": "11500615"
+        }
+      ]
+    },
+    {
+      "id": "T05",
+      "name": "공항로",
+      "noticeGu": "강서구",
+      "locationHint": "가양동·공항동·내발산동·등촌동·염창동·화곡동 일대",
+      "exactLots": [],
+      "group": "temporary",
+      "tablePage": 48,
+      "mapPage": 64,
+      "references": []
+    },
+    {
+      "id": "T06",
+      "name": "까치산역 지구중심",
+      "noticeGu": "강서구",
+      "locationHint": "화곡동 897",
+      "exactLots": [
+        "강서구 화곡동 897"
+      ],
+      "group": "temporary",
+      "tablePage": 48,
+      "mapPage": 64,
+      "references": []
+    },
+    {
+      "id": "T07",
+      "name": "공항지구중심",
+      "noticeGu": "강서구",
+      "locationHint": "방화동 612",
+      "exactLots": [
+        "강서구 방화동 612"
+      ],
+      "group": "temporary",
+      "tablePage": 48,
+      "mapPage": 65,
+      "references": [
+        {
+          "lot": "강서구 방화동 612",
+          "pnu": "1150010900106120000",
+          "adminCode": "11500640"
+        }
+      ]
+    },
+    {
+      "id": "T08",
+      "name": "신림지구중심",
+      "noticeGu": "관악구",
+      "locationHint": "신림동 1428",
+      "exactLots": [
+        "관악구 신림동 1428"
+      ],
+      "group": "temporary",
+      "tablePage": 48,
+      "mapPage": 66,
+      "references": []
+    },
+    {
+      "id": "T09",
+      "name": "난곡사거리지구중심",
+      "noticeGu": "관악구",
+      "locationHint": "신림동 1474",
+      "exactLots": [
+        "관악구 신림동 1474"
+      ],
+      "group": "temporary",
+      "tablePage": 48,
+      "mapPage": 67,
+      "references": []
+    },
+    {
+      "id": "T10",
+      "name": "대림지역중심",
+      "noticeGu": "관악구",
+      "locationHint": "신림동 1643 · 신림동 1655",
+      "exactLots": [
+        "관악구 신림동 1643",
+        "관악구 신림동 1655"
+      ],
+      "group": "temporary",
+      "tablePage": 48,
+      "mapPage": 67,
+      "references": [
+        {
+          "lot": "관악구 신림동 1643",
+          "pnu": "1162010200116430000",
+          "adminCode": "11620725"
+        },
+        {
+          "lot": "관악구 신림동 1655",
+          "pnu": "1162010200116550000",
+          "adminCode": "11620725"
+        }
+      ]
+    },
+    {
+      "id": "T11",
+      "name": "봉천지역중심",
+      "noticeGu": "관악구",
+      "locationHint": "봉천동 서울대입구역 사거리 일대",
+      "exactLots": [],
+      "group": "temporary",
+      "tablePage": 48,
+      "mapPage": 68,
+      "references": []
+    },
+    {
+      "id": "T12",
+      "name": "군자역지구",
+      "noticeGu": "광진구",
+      "locationHint": "중곡동 157-1",
+      "exactLots": [
+        "광진구 중곡동 157-1"
+      ],
+      "group": "temporary",
+      "tablePage": 48,
+      "mapPage": 68,
+      "references": [
+        {
+          "lot": "광진구 중곡동 157-1",
+          "pnu": "1121510100101570001",
+          "adminCode": "11215750"
+        }
+      ]
+    },
+    {
+      "id": "T13",
+      "name": "건대입구역지구",
+      "noticeGu": "광진구",
+      "locationHint": "화양동 6-1",
+      "exactLots": [
+        "광진구 화양동 6-1"
+      ],
+      "group": "temporary",
+      "tablePage": 48,
+      "mapPage": 69,
+      "references": [
+        {
+          "lot": "광진구 화양동 6-1",
+          "pnu": "1121510700100060001",
+          "adminCode": "11215710"
+        }
+      ]
+    },
+    {
+      "id": "T14",
+      "name": "화양1지구",
+      "noticeGu": "광진구",
+      "locationHint": "화양동 18-1",
+      "exactLots": [
+        "광진구 화양동 18-1"
+      ],
+      "group": "temporary",
+      "tablePage": 48,
+      "mapPage": 69,
+      "references": [
+        {
+          "lot": "광진구 화양동 18-1",
+          "pnu": "1121510700100180001",
+          "adminCode": "11215710"
+        }
+      ]
+    },
+    {
+      "id": "T15",
+      "name": "구로디지털단지역",
+      "noticeGu": "구로구",
+      "locationHint": "구로동 1124-1",
+      "exactLots": [
+        "구로구 구로동 1124-1"
+      ],
+      "group": "temporary",
+      "tablePage": 48,
+      "mapPage": 70,
+      "references": [
+        {
+          "lot": "구로구 구로동 1124-1",
+          "pnu": "1153010200111240001",
+          "adminCode": "11530540"
+        }
+      ]
+    },
+    {
+      "id": "T16",
+      "name": "가산",
+      "noticeGu": "금천구",
+      "locationHint": "가산동 140-1",
+      "exactLots": [
+        "금천구 가산동 140-1"
+      ],
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 70,
+      "references": [
+        {
+          "lot": "금천구 가산동 140-1",
+          "pnu": "1154510100101400001",
+          "adminCode": "11545510"
+        }
+      ]
+    },
+    {
+      "id": "T17",
+      "name": "금천구심",
+      "noticeGu": "금천구",
+      "locationHint": "시흥동 994",
+      "exactLots": [
+        "금천구 시흥동 994"
+      ],
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 71,
+      "references": [
+        {
+          "lot": "금천구 시흥동 994",
+          "pnu": "1154510300109940000",
+          "adminCode": "11545670"
+        }
+      ]
+    },
+    {
+      "id": "T18",
+      "name": "독산",
+      "noticeGu": "금천구",
+      "locationHint": "독산동 1030",
+      "exactLots": [
+        "금천구 독산동 1030"
+      ],
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 72,
+      "references": [
+        {
+          "lot": "금천구 독산동 1030",
+          "pnu": "1154510200110300000",
+          "adminCode": "11545640"
+        }
+      ]
+    },
+    {
+      "id": "T19",
+      "name": "전농2지구중심",
+      "noticeGu": "동대문구",
+      "locationHint": "전농동 33",
+      "exactLots": [
+        "동대문구 전농동 33"
+      ],
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 73,
+      "references": []
+    },
+    {
+      "id": "T20",
+      "name": "청량리역 전면부",
+      "noticeGu": "동대문구",
+      "locationHint": "청량리동 268",
+      "exactLots": [
+        "동대문구 청량리동 268"
+      ],
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 73,
+      "references": [
+        {
+          "lot": "동대문구 청량리동 268",
+          "pnu": "1123010700102680000",
+          "adminCode": "11230705"
+        }
+      ]
+    },
+    {
+      "id": "T21",
+      "name": "장안평일대",
+      "noticeGu": "동대문구",
+      "locationHint": "성동구 용답동 230-4",
+      "exactLots": [
+        "성동구 용답동 230-4"
+      ],
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 74,
+      "references": [
+        {
+          "lot": "성동구 용답동 230-4",
+          "pnu": "1120012200102300004",
+          "adminCode": "11200790"
+        }
+      ]
+    },
+    {
+      "id": "T22",
+      "name": "신설",
+      "noticeGu": "동대문구",
+      "locationHint": "신설동 117-23 · 신설동 109-5",
+      "exactLots": [
+        "동대문구 신설동 117-23",
+        "동대문구 신설동 109-5"
+      ],
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 74,
+      "references": [
+        {
+          "lot": "동대문구 신설동 117-23",
+          "pnu": "1123010100101170023",
+          "adminCode": "11230515"
+        },
+        {
+          "lot": "동대문구 신설동 109-5",
+          "pnu": "1123010100101090005",
+          "adminCode": "11230515"
+        }
+      ]
+    },
+    {
+      "id": "T23",
+      "name": "사당·이수",
+      "noticeGu": "동작구",
+      "locationHint": "사당·이수역 일대",
+      "exactLots": [],
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 75,
+      "references": []
+    },
+    {
+      "id": "T24",
+      "name": "신대방지구",
+      "noticeGu": "동작구",
+      "locationHint": "대방동 405",
+      "exactLots": [
+        "동작구 대방동 405"
+      ],
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 76,
+      "references": []
+    },
+    {
+      "id": "T25",
+      "name": "노량진지구",
+      "noticeGu": "동작구",
+      "locationHint": "노량진동 46",
+      "exactLots": [
+        "동작구 노량진동 46"
+      ],
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 76,
+      "references": []
+    },
+    {
+      "id": "T26",
+      "name": "아현2지구",
+      "noticeGu": "마포구",
+      "locationHint": "아현동 331",
+      "exactLots": [
+        "마포구 아현동 331"
+      ],
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 77,
+      "references": []
+    },
+    {
+      "id": "T27",
+      "name": "신촌지구일대",
+      "noticeGu": "마포구",
+      "locationHint": "서대문구·마포구 신촌로터리 일대",
+      "exactLots": [],
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 77,
+      "references": []
+    },
+    {
+      "id": "T28",
+      "name": "충정",
+      "noticeGu": "서대문구",
+      "locationHint": "미근동 21",
+      "exactLots": [
+        "서대문구 미근동 21"
+      ],
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 78,
+      "references": []
+    },
+    {
+      "id": "T29",
+      "name": "공릉",
+      "noticeGu": "노원구",
+      "locationHint": "공릉동 670",
+      "exactLots": [
+        "노원구 공릉동 670"
+      ],
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 79,
+      "references": []
+    },
+    {
+      "id": "T30",
+      "name": "쌍문지구중심",
+      "noticeGu": "도봉구",
+      "locationHint": "쌍문동 88 · 창동 659",
+      "exactLots": [
+        "도봉구 쌍문동 88",
+        "도봉구 창동 659"
+      ],
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 80,
+      "references": []
+    },
+    {
+      "id": "T31",
+      "name": "석관지구중심",
+      "noticeGu": "성북구",
+      "locationHint": "석관동 242-1",
+      "exactLots": [
+        "성북구 석관동 242-1"
+      ],
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 81,
+      "references": [
+        {
+          "lot": "성북구 석관동 242-1",
+          "pnu": "1129013900102420001",
+          "adminCode": "11290810"
+        }
+      ]
+    },
+    {
+      "id": "T32",
+      "name": "동선지구중심",
+      "noticeGu": "성북구",
+      "locationHint": "동선동1가 71",
+      "exactLots": [
+        "성북구 동선동1가 71"
+      ],
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 81,
+      "references": [
+        {
+          "lot": "성북구 동선동1가 71",
+          "pnu": "1129011600100710000",
+          "adminCode": "11290575"
+        }
+      ]
+    },
+    {
+      "id": "T33",
+      "name": "서초로",
+      "noticeGu": "서초구",
+      "locationHint": "서초역~강남역",
+      "exactLots": [],
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 82,
+      "references": []
+    },
+    {
+      "id": "T34",
+      "name": "양재지구중심",
+      "noticeGu": "서초구",
+      "locationHint": "서초동 1366 · 양재동 12",
+      "exactLots": [
+        "서초구 서초동 1366",
+        "서초구 양재동 12"
+      ],
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 82,
+      "references": [
+        {
+          "lot": "서초구 서초동 1366",
+          "pnu": "1165010800113660000",
+          "adminCode": "11650520"
+        }
+      ]
+    },
+    {
+      "id": "T35",
+      "name": "동대문역사문화공원주변",
+      "noticeGu": "중구",
+      "locationHint": "을지로6가 18-79",
+      "exactLots": [
+        "중구 을지로6가 18-79"
+      ],
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 83,
+      "references": [
+        {
+          "lot": "중구 을지로6가 18-79",
+          "pnu": "1114014800100180079",
+          "adminCode": "11140590"
+        }
+      ]
+    },
+    {
+      "id": "T36",
+      "name": "신길지구중심",
+      "noticeGu": "영등포구",
+      "locationHint": "신길동 254-7",
+      "exactLots": [
+        "영등포구 신길동 254-7"
+      ],
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 83,
+      "references": []
+    },
+    {
+      "id": "T37",
+      "name": "대림광역중심",
+      "noticeGu": "영등포구",
+      "locationHint": "대림동 1104-1",
+      "exactLots": [
+        "영등포구 대림동 1104-1"
+      ],
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 84,
+      "references": []
+    },
+    {
+      "id": "T38",
+      "name": "한남",
+      "noticeGu": "용산구",
+      "locationHint": "한남동 일원",
+      "exactLots": [],
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 85,
+      "references": []
+    },
+    {
+      "id": "T39",
+      "name": "이태원로 주변",
+      "noticeGu": "용산구",
+      "locationHint": "이태원동·한남동 일대",
+      "exactLots": [],
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 86,
+      "references": []
+    },
+    {
+      "id": "T40",
+      "name": "응암지구중심",
+      "noticeGu": "은평구",
+      "locationHint": "응암동 577",
+      "exactLots": [
+        "은평구 응암동 577"
+      ],
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 86,
+      "references": []
+    },
+    {
+      "id": "T41",
+      "name": "연신내",
+      "noticeGu": "은평구",
+      "locationHint": "불광동 311 · 대조동 185 · 갈현동 396",
+      "exactLots": [
+        "은평구 불광동 311",
+        "은평구 대조동 185",
+        "은평구 갈현동 396"
+      ],
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 87,
+      "references": []
+    },
+    {
+      "id": "T42",
+      "name": "불광",
+      "noticeGu": "은평구",
+      "locationHint": "불광동 272-5",
+      "exactLots": [
+        "은평구 불광동 272-5"
+      ],
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 87,
+      "references": []
+    },
+    {
+      "id": "T43",
+      "name": "율곡로",
+      "noticeGu": "종로구",
+      "locationHint": "원남동·인의동·연건동·연지동·효제동·충신동·종로6가 일대",
+      "exactLots": [],
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 88,
+      "references": []
+    },
+    {
+      "id": "T44",
+      "name": "세종로",
+      "noticeGu": "종로구",
+      "locationHint": "세종로 주변",
+      "exactLots": [],
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 89,
+      "references": []
+    },
+    {
+      "id": "T45",
+      "name": "종로2·3가",
+      "noticeGu": "종로구",
+      "locationHint": "관철동·관수동·돈의동 일대",
+      "exactLots": [],
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 90,
+      "references": []
+    },
+    {
+      "id": "T46",
+      "name": "숭인2",
+      "noticeGu": "종로구",
+      "locationHint": "숭인동 1150",
+      "exactLots": [
+        "종로구 숭인동 1150"
+      ],
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 91,
+      "references": []
+    },
+    {
+      "id": "T47",
+      "name": "숭인",
+      "noticeGu": "종로구",
+      "locationHint": "숭인동 200-16",
+      "exactLots": [
+        "종로구 숭인동 200-16"
+      ],
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 92,
+      "references": [
+        {
+          "lot": "종로구 숭인동 200-16",
+          "pnu": "1111017500102000016",
+          "adminCode": "11110710"
+        }
+      ]
+    },
+    {
+      "id": "T48",
+      "name": "종로4·5가",
+      "noticeGu": "종로구",
+      "locationHint": "종로4·5가 일대",
+      "exactLots": [],
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 93,
+      "references": []
+    },
+    {
+      "id": "T49",
+      "name": "정동 일대",
+      "noticeGu": "중구",
+      "locationHint": "중구 정동·서소문동·순화동, 종로구 신문로1·2가 일대",
+      "exactLots": [],
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 93,
+      "references": []
+    },
+    {
+      "id": "T50",
+      "name": "남대문시장",
+      "noticeGu": "중구",
+      "locationHint": "남창동 31-1",
+      "exactLots": [
+        "중구 남창동 31-1"
+      ],
+      "group": "temporary",
+      "tablePage": 51,
+      "mapPage": 94,
+      "references": [
+        {
+          "lot": "중구 남창동 31-1",
+          "pnu": "1114011200100310001",
+          "adminCode": "11140540"
+        }
+      ]
+    },
+    {
+      "id": "T51",
+      "name": "소공",
+      "noticeGu": "중구",
+      "locationHint": "태평로2가 23",
+      "exactLots": [
+        "중구 태평로2가 23"
+      ],
+      "group": "temporary",
+      "tablePage": 51,
+      "mapPage": 95,
+      "references": [
+        {
+          "lot": "중구 태평로2가 23",
+          "pnu": "1114011400100230000",
+          "adminCode": "11140520"
+        }
+      ]
+    },
+    {
+      "id": "T52",
+      "name": "묵동지구중심",
+      "noticeGu": "중랑구",
+      "locationHint": "묵동 165",
+      "exactLots": [
+        "중랑구 묵동 165"
+      ],
+      "group": "temporary",
+      "tablePage": 51,
+      "mapPage": 96,
+      "references": []
+    },
+    {
+      "id": "T53",
+      "name": "면목지구중심",
+      "noticeGu": "중랑구",
+      "locationHint": "면목동 634",
+      "exactLots": [
+        "중랑구 면목동 634"
+      ],
+      "group": "temporary",
+      "tablePage": 51,
+      "mapPage": 97,
+      "references": []
+    },
+    {
+      "id": "T54",
+      "name": "잠실광역중심제2지구",
+      "noticeGu": "송파구",
+      "locationHint": "잠실동·올림픽로 주변",
+      "exactLots": [],
+      "group": "temporary",
+      "tablePage": 51,
+      "mapPage": 97,
+      "references": []
+    }
+  ],
+  "touristDistricts": [
+    {
+      "name": "이태원",
+      "gu": "용산구",
+      "designatedOn": "1997-09-29"
+    },
+    {
+      "name": "명동·남대문·북창동·다동·무교동",
+      "gu": "중구",
+      "designatedOn": "2000-03-30"
+    },
+    {
+      "name": "동대문패션타운",
+      "gu": "중구",
+      "designatedOn": "2002-05-23"
+    },
+    {
+      "name": "종로·청계",
+      "gu": "종로구",
+      "designatedOn": "2006-03-30"
+    },
+    {
+      "name": "잠실",
+      "gu": "송파구",
+      "designatedOn": "2012-03-15"
+    },
+    {
+      "name": "강남마이스",
+      "gu": "강남구",
+      "designatedOn": "2014-12-18"
+    },
+    {
+      "name": "홍대문화예술",
+      "gu": "마포구",
+      "designatedOn": "2021-12-02"
+    },
+    {
+      "name": "고터·세빛",
+      "gu": "서초구",
+      "designatedOn": "2024-12-26"
+    }
+  ]
+}
