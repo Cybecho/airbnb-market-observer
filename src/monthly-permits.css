@@ -1,0 +1,64 @@
+.mpermit-panel {
+  box-sizing: border-box; width: 100%; min-width: 0; max-width: 100%; margin: 0 0 18px;
+  padding: clamp(14px, 2.4vw, 26px); border: 1px solid #98a7aa; border-top: 3px solid #255c74;
+  background: #fff; color: #233c44; font-variant-numeric: tabular-nums; overflow-wrap: anywhere;
+}
+.mpermit-panel *, .mpermit-panel *::before, .mpermit-panel *::after { box-sizing: border-box; }
+.mpermit-head, .mpermit-period { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 5px 16px; }
+.mpermit-head span { color: #376576; font-size: 11px; font-weight: 700; letter-spacing: .07em; }
+.mpermit-panel .mpermit-head h2 { margin: 4px 0 0; color: #1a343e; font-size: clamp(21px, 3vw, 29px); line-height: 1.25; }
+.mpermit-head small, .mpermit-period p { margin: 0; color: #4b6269; font-size: 12px; }
+.mpermit-intro, .mpermit-foot, .mpermit-detail p, .mpermit-compare p, .mpermit-detail li { line-height: 1.65; font-size: 13px; }
+.mpermit-intro { margin: 10px 0 15px; max-width: 84ch; }
+.mpermit-controls { display: grid; grid-template-columns: minmax(100px, 1fr) minmax(120px, 1fr) minmax(145px, 1.6fr) auto; gap: 9px; align-items: end; }
+.mpermit-controls label, .mpermit-period label { display: grid; min-width: 0; gap: 4px; color: #465d64; font-size: 12px; font-weight: 600; }
+.mpermit-panel select, .mpermit-reset { width: 100%; min-width: 0; max-width: 100%; min-height: 38px; margin: 0; padding: 5px 9px; border: 1px solid #899da3; border-radius: 2px; color: #223e48; background: #fff; font: inherit; }
+.mpermit-panel .mpermit-reset { width: auto; padding-inline: 10px; font-size: 12px; }
+.mpermit-reset:disabled { color: #667a80; border-color: #c7d1d3; }
+.mpermit-brief { display: grid; grid-template-columns: 1.35fr 1fr 1fr; gap: 12px; margin: 16px 0 14px; padding: 12px; border-block: 1px solid #b9cbd0; background: #f1f6f7; }
+.mpermit-brief > div { display: grid; gap: 3px; align-content: center; min-width: 0; }
+.mpermit-brief > div+div { border-left: 1px solid #c3d2d6; padding-left: 12px; }
+.mpermit-brief strong { font-size: 16px; }
+.mpermit-brief b { font-size: 20px; line-height: 1.25; color: #254a58; }
+.mpermit-brief span, .mpermit-brief small { font-size: 12px; color: #425d67; }
+.mpermit-period { align-items: center; margin-bottom: 4px; }
+.mpermit-period label { display: flex; align-items: center; gap: 6px; }
+.mpermit-period select { width: auto; min-height: 32px; }
+.mpermit-panel .chart { min-width: 0; max-width: 100%; }
+.mpermit-foot { margin: 4px 0 11px; color: #495f67; }
+.mpermit-empty { padding: 11px; border-left: 3px solid #b98949; background: #faf5ec; }
+.mpermit-compare { margin-block: 14px; }
+.mpermit-compare h3 { margin: 0; font-size: 17px; }
+.mpermit-compare p { margin: 4px 0 9px; }
+.mpermit-scroll { width: 100%; min-width: 0; max-width: 100%; max-height: 22rem; overflow: auto; overscroll-behavior: contain; border: 1px solid #c7d2d4; }
+.mpermit-panel table { width: 100%; min-width: 0; border-collapse: separate; border-spacing: 0; table-layout: auto; color: #2c454d; font-size: 12px; }
+.mpermit-panel .mpermit-raw { min-width: 760px; }
+.mpermit-panel caption { text-align: left; padding: 6px 9px; background: #f4f7f7; font-weight: 650; }
+.mpermit-panel th, .mpermit-panel td { white-space: normal; padding: 5px 9px; text-align: right; border-bottom: 1px solid #dce4e6; }
+.mpermit-panel th:first-child, .mpermit-raw th:nth-child(2), .mpermit-raw td:nth-child(2) { text-align: left; }
+.mpermit-panel thead th { position: sticky; top: 0; z-index: 1; background: #e9eff1; color: #344d56; }
+.mpermit-panel tbody tr[data-current=true] { background: #edf5f7; }
+.mpermit-panel tbody th { font-weight: 500; }
+.mpermit-panel tbody th button { border: 0; border-radius: 0; min-height: 32px; padding: 2px 0; background: transparent; color: #195b78; text-align: left; text-decoration: underline; text-underline-offset: 3px; font: inherit; font-weight: 650; }
+.mpermit-panel tbody th small { display: block; margin: 0 0 3px; color: #506670; }
+.mpermit-panel .mpermit-detail { margin: 5px 0 0; padding: 0; border: 0; border-top: 1px solid #c6d2d5; background: transparent; }
+.mpermit-detail summary { padding: 10px 2px; cursor: pointer; font-size: 13px; font-weight: 650; }
+.mpermit-detail ul { margin: 5px 0 13px; padding-left: 1.4em; }
+.mpermit-detail a { color: #185874; text-decoration: underline; }
+.mpermit-panel :is(a,button,select,summary,[tabindex]):focus-visible { outline: 2px solid #165c84; outline-offset: 2px; }
+@media(max-width: 880px) {
+  .mpermit-controls { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .mpermit-panel .mpermit-reset { justify-self: start; }
+}
+@media(max-width: 575px) {
+  .mpermit-panel { padding: 13px 10px; }
+  .mpermit-head small { width: 100%; }
+  .mpermit-brief { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; margin-block: 12px 8px; padding: 10px; }
+  .mpermit-brief > div:first-child { grid-column: 1/-1; border-bottom: 1px solid #c3d2d6; padding-bottom: 7px; }
+  .mpermit-brief > div:nth-child(2) { border: 0; padding-left: 0; }
+  .mpermit-panel th, .mpermit-panel td { padding: 5px; }
+  .mpermit-panel table:not(.mpermit-raw) th:first-child { width: 48%; }
+  .mpermit-panel select, .mpermit-panel .mpermit-reset, .mpermit-panel tbody th button, .mpermit-detail summary { min-height: 44px; }
+}
+.mpermit-source { margin: 12px 0 7px; font-size: 12px; color: #49626d; }
+.mpermit-source a { color: #185874; text-decoration: underline; }
