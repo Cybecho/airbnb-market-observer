@@ -1,0 +1,26 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {mondayKst,append,validate} from '../strategy/history-model.mjs';
+import {parseReviewedStoreCsv} from '../strategy/history-stores.mjs';
+import {createHash} from 'node:crypto';
+const load=k=>JSON.parse(readFileSync(new URL(`../../public/strategy/v1/${k}-history.json`,import.meta.url),'utf8'));
+const fact=e=>{const {period,observedAt,boundary,evidence,rows}=e;return structuredClone({period,observedAt,boundary,evidence,rows});};
+const later=(stamp,days)=>new Date(Date.parse(stamp)+days*86400000).toISOString();
+test('KST Monday is not the UTC date or scheduled run date',()=>{assert.equal(mondayKst('2026-11-15T14:59:59.000Z'),'2026-11-09');assert.equal(mondayKst('2026-11-15T15:00:00.000Z'),'2026-11-16');});
+test('real published histories: deterministic duplicate, unchanged next week appended, no overwritten prefix',()=>{const doc=validate(load('registry'),'registry'),es=doc.series.registry.entries,prefix=JSON.stringify(es),c=fact(es.at(-1));assert.equal(append(doc,'registry',c),false);c.observedAt=later(c.observedAt,7);c.period=mondayKst(c.observedAt);assert.equal(append(doc,'registry',c),true);assert.equal(JSON.stringify(es.slice(0,-1)),prefix);validate(doc,'registry');});
+test('same quarter revision preserved, exact timestamp conflict rejected, repeat idempotent',()=>{const d=validate(load('context'),'context'),prev=d.series.sales.entries.at(-1),c=fact(prev);const r=c.rows.find(x=>typeof x[2]==='number');r[2]++;assert.throws(()=>append(d,'sales',c),/same observation/);c.observedAt=later(c.observedAt,1);assert.equal(append(d,'sales',c),true);assert.equal(append(d,'sales',c),false);assert.equal(d.series.sales.entries.at(-1).previous,prev.entryHash);validate(d,'context');});
+test('invalid denominators, unknown codes and absent cells cannot enter publication',()=>{const d=load('context'),bad=(k,change)=>{const c=fact(d.series[k].entries.at(-1));change(c);assert.throws(()=>append(d,k,c));};bad('purpose',c=>{c.rows[0][4]=0;c.rows[0][5]=0;c.rows[0][6]=0;});bad('od',c=>{c.rows[0][1]=0;});bad('guesthouse',c=>{c.rows[0]=[c.rows[0][0],false,0];});bad('sales',c=>{c.rows[0][0]=c.rows[1][0];});bad('sales',c=>{c.evidence[0].industry='CS200035';});});
+test('broken historical chain or stray fields fail closed',()=>{const d=load('registry');d.series.registry.entries[0].rawName='not allowed';assert.throws(()=>validate(d,'registry'));});
+test('offline reviewed CSV uses exact industry, keeps explicit zero, and rejects an unreviewed file',()=>{
+ const header=['기준_년분기_코드','행정동_코드','행정동_코드_명','서비스_업종_코드','서비스_업종_코드_명','전체_점포_수','일반_점포_수','프랜차이즈_점포_수','개업_율','개업_점포_수','폐업_률','폐업_점포_수'];
+ const row=(period,code,industry,name,n)=>[period,code,'테스트',industry,name,n,n,'0','0','0','0','0'];
+ const all=[header,row('20262','11110515','CS200035','게스트하우스','0'),row('20262','11110530','CS200035','게스트하우스','*'),row('20262','11110530','CS200034','여관','9'),row('20261','11110515','CS200035','게스트하우스','1')];
+ const bytes=Buffer.from(all.map(a=>a.map(x=>`"${x}"`).join(',')).join('\n'));
+ const r={dataset:'OA-22172',license:'KOGL-1',sourcePage:'https://data.seoul.go.kr/dataList/OA-22172/S/1/datasetView.do?tab=A',sha256:createHash('sha256').update(bytes).digest('hex'),observedAt:'2026-11-18T05:16:23.000Z',encoding:'UTF-8',dataRows:4,latestQuarter:'2026Q2',latestIndustryRows:2};
+ assert.deepEqual(parseReviewedStoreCsv(bytes,r).rows,[{adminCode:'11110515',stores:0},{adminCode:'11110530',stores:null}]);
+ assert.throws(()=>parseReviewedStoreCsv(bytes,{...r,latestQuarter:'2026Q1'}),/quarter/);
+ assert.throws(()=>parseReviewedStoreCsv(bytes,{...r,sha256:'f'.repeat(64)}),/SHA-256/);
+ assert.throws(()=>parseReviewedStoreCsv(bytes,{...r,sourcePage:'https://example.com'}),/identity/);
+ assert.throws(()=>parseReviewedStoreCsv(bytes,{...r,latestIndustryRows:1}),/coverage/);
+});

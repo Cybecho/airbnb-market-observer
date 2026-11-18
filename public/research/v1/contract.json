@@ -6,6 +6,9 @@
       "relativeTo": "SITE ROOT",
       "method": "GET, HEAD"
     },
+    "strategyCatalog": {
+      "path": "strategy/v1/catalog.json", "relativeTo": "SITE ROOT", "method": "GET, HEAD", "scope": "Independent evidence and held datasets, not part of the tier calculation"
+    },
     "gaps": {
       "path": "research/v1/gaps.json",
       "relativeTo": "SITE ROOT",

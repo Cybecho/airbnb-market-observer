@@ -54,3 +54,9 @@ Airbtics district trailing-12-month median estimates, AirROI bedroom annual esti
 Permitted: exact same-system admin code ↔ geometry; legal code ↔ legal registry index; `(admin code, source period)` within a metric family; district labels for contextual side-by-side displays, not allocating district statistics to every dong. Preserve boundary vintage and join-status audit flags. Historical guesthouse exact-gu/name mappings are inherited audited source matches, not a general permission to name-join.
 
 Forbidden: legal/admin name allocation; residence country=nationality; nationality ratios×unrelated lodging totals; sex margin×age margin as joint distribution; source missing→0; incomplete age components→sum; population/registrations→occupancy or shortage; purpose/transport denominator mixing; adding registry types as unique properties; vendor revenue−rent as profit; listing approximate pins→personal addresses.
+
+## 보조 전략·비대시보드·관측 필드
+
+기본 대시보드 필드 사전은 기존 146필드 그대로이며 대시보드 의미도 바꾸지 않는다. A1–A6과 B1–B5는 [STRATEGY-FIELD-DICTIONARY.md](STRATEGY-FIELD-DICTIONARY.md)에 별도 기술한다. 이들은 dashboard.json의 암묵적 필드나 대시보드 점수 입력이 아니며 0으로 보충하면 안 된다.
+
+A1은 NIGHT-PRESENCE-RESULTS.md에 이화동 추출 결과를 공개했지만, 존재 추정치이지 투숙이 아니다. A2/B4는 각 원천 기간을 보존하는 append 전용 관측 이력이고 B4 게스트하우스 항목은 수동 검토 입력이 필요하다. A3 승하차는 재배포 권리 보류로 공개값이 없다. OA-22534 역사점은 별도 공공누리 1유형 공식 위치 출력으로, Ubuntu에서 독립 물질화·원본 검증을 마쳐 기능 PR 공개 대상이다(행정동 427개, 호선별 역사점 276개). 이는 승하차나 OSM 자료가 아니다. A4는 검토된 경로에서 필지 폴리곤을 얻지 못해 동별 공개값이 없다. A5는 공표물별로 수동 고정한 KTO 전국 월별 계열이며 주간 원천이 아니다. A6은 첫 runner 시도만 기록했으며 관측행·가용성·건수 주장이 없다. B1은 63개 중 24개 구역, 22개 행정동의 26개 대표지번 양성 근거만 공개한다. 최종 공개본은 구역별 adminCode와 확인 지번 수만 두며 PNU·지번 문자열은 싣지 않고 원문 링크만 제공한다. 이는 구역·동 전체의 포함을 뜻하지 않는다. B2에는 권리·값이 없고 B3 건축물대장과 B5 용도지역은 기본 OFF로, 각 승인과 공개 계약이 충족될 때까지 아무것도 공개하지 않는다.

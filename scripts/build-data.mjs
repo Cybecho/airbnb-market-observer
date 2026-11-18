@@ -1,3 +1,4 @@
+import { nationalitySlot } from './strategy/nationality.mjs';
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -32,7 +33,7 @@ const extensions = {
     definition: read("rents/definitions.json"),
   },
   tourism: {
-    nationality: [],
+    nationality: nationalitySlot(read("tourism/nationality-release.json"), dashboard.rows.map(row => row.admin_code)),
     nationalitySupport: read("tourism/nationality-support.json"),
     residenceCountryHistorical: read(
       "tourism/residence-country-historical.json",

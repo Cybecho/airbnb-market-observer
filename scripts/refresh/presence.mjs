@@ -9,6 +9,8 @@ const LIST_URL =
 const DOWNLOAD_URL =
   "https://datafile.seoul.go.kr/bigfile/iot/inf/nio_download.do?&useCache=false";
 const SOURCE_ID = "OA-23018";
+export const NIGHT_FIELDS = ["meanNight", "daysNight", "mean22", "days22"];
+export const NIGHT_QUALITY_FIELDS = ["validNight", "valid22"];
 const FIRST_MONTH = "2024-11";
 const MAX_CATCHUP_MONTHS = 36;
 const MAX_ZIP_BYTES = 55 * 1024 * 1024;
@@ -282,7 +284,7 @@ async function unpackArchive(zipPath, month) {
   return members;
 }
 
-/** Validates full daily/hourly structure and produces public monthly 04:00/14:00 means. */
+/** Validate all 24 structural slots; publish monthly means, never hourly source rows. */
 export function aggregatePresenceMonth({
   month,
   members,
@@ -313,7 +315,8 @@ export function aggregatePresenceMonth({
       seenDates.add(record.date);
       activeCodes.add(record.code);
       if (record.suppressed) suppressed += 1;
-      data.push(record);
+      if (record.value !== null && (record.hour <= 6 || record.hour === 14 || record.hour === 22))
+        data.push(record);
     }
   }
   if (
@@ -334,13 +337,18 @@ export function aggregatePresenceMonth({
           fail("archive lacks complete 24-hour structural rows");
       }
   const byCode = new Map(
-    [...activeCodes].map((code) => [code, { 4: [], 14: [] }]),
+    [...activeCodes].map((code) => [code, { 4: [], 14: [], 22: [], nights: new Map() }]),
   );
-  for (const record of data) {
-    if ((record.hour === 4 || record.hour === 14) && record.value !== null) {
-      byCode
-        .get(record.code)
-        [record.hour].push({ date: record.date, value: record.value });
+  for (const { code, date, hour, value } of data) {
+    const hours = byCode.get(code);
+    if (hour === 4 || hour === 14 || hour === 22) hours[hour].push({ date, value });
+    if (hour <= 6) {
+      // Uniqueness of date/hour/code was verified above. A source '*' never
+      // contributes to either the sum or the number of observed slots.
+      const night = hours.nights.get(date) ?? { slots: 0, sum: 0 };
+      night.slots++;
+      night.sum += value;
+      hours.nights.set(date, night);
     }
   }
   const average = (items, type = "all") => {
@@ -363,6 +371,8 @@ export function aggregatePresenceMonth({
   const rows = [...byCode]
     .map(([code, hours]) => {
       const label = names.get(code);
+      const nights = [...hours.nights].filter(([, day]) => day.slots === 7)
+        .map(([date, day]) => ({ date, value: day.sum / 7 }));
       return {
         month,
         adminCode: code,
@@ -376,6 +386,10 @@ export function aggregatePresenceMonth({
         weekend14: average(hours[14], "weekend"),
         days04: hours[4].length,
         days14: hours[14].length,
+        meanNight: average(nights),
+        daysNight: nights.length,
+        mean22: average(hours[22]),
+        days22: hours[22].length,
       };
     })
     .sort((a, b) => cmp(a.adminCode, b.adminCode));
@@ -389,11 +403,24 @@ export function aggregatePresenceMonth({
       suppressedSPOP: suppressed,
       valid04: rows.reduce((n, row) => n + row.days04, 0),
       valid14: rows.reduce((n, row) => n + row.days14, 0),
+      validNight: rows.reduce((n, row) => n + row.daysNight, 0),
+      valid22: rows.reduce((n, row) => n + row.days22, 0),
     },
   };
 }
 
-export function selectedArchives({ listed, observatory, previousState, now }) {
+function monthsNeedingNight(observatory, prior) {
+  const rows = Map.groupBy(observatory.presence.rows ?? [], (r) => r.month);
+  return new Set((observatory.presence.months ?? []).filter((month) => {
+    const quality = observatory.presence.quality?.refreshMonths?.[month];
+    const cached = prior[month]?.quality;
+    return !rows.get(month)?.length || rows.get(month).some((r) => NIGHT_FIELDS.some((k) => !Object.hasOwn(r, k))) ||
+      NIGHT_QUALITY_FIELDS.some((k) => !Number.isSafeInteger(quality?.[k]) || quality[k] !== cached?.[k]);
+  }));
+}
+
+/** Pinned migration selects only the already published months, never a new edition. */
+export function selectedArchives({ listed, observatory, previousState, now, pinnedOnly = false }) {
   const completeThrough = previousMonth(koreaMonth(now));
   const complete = listed.filter(
     (file) => file.month >= FIRST_MONTH && file.month <= completeThrough,
@@ -408,8 +435,15 @@ export function selectedArchives({ listed, observatory, previousState, now }) {
   if ([...existing].some((month) => !listedMonths.has(month)))
     fail("an existing complete source month is absent from the file list");
   const prior = previousState?.files ?? {};
-  const wanted = new Set();
-  if (Object.keys(prior).length === 0)
+  const wanted = monthsNeedingNight(observatory, prior);
+  if (pinnedOnly) {
+    for (const month of observatory.presence.months) {
+      const pinned = prior[month], file = complete.find((item) => item.month === month);
+      if (!file || !/^[a-f0-9]{64}$/.test(pinned?.sha256 ?? "") ||
+          pinned.listVersion !== file.listVersion || pinned.filename !== file.filename)
+        fail(`historical edition changed or missing for ${month}; review without publishing`);
+    }
+  } else if (Object.keys(prior).length === 0)
     for (const file of complete) wanted.add(file.month);
   else {
     for (const file of complete.slice(-2)) wanted.add(file.month);
@@ -437,6 +471,7 @@ export async function refreshPresence({
   tempDir,
   now = new Date(),
   fetchBytes,
+  pinnedOnly = false,
 }) {
   if (!observatory?.presence || typeof fetchBytes !== "function" || !tempDir)
     fail("missing refresh inputs");
@@ -461,7 +496,7 @@ export async function refreshPresence({
     if (String(error.message).startsWith(`${SOURCE_ID}:`)) throw error;
     fail("file-list parse failed");
   }
-  const chosen = selectedArchives({ listed, observatory, previousState, now });
+  const chosen = selectedArchives({ listed, observatory, previousState, now, pinnedOnly });
   const next = structuredClone(observatory);
   const state = structuredClone(previousState ?? {});
   state.files ??= {};
@@ -490,6 +525,9 @@ export async function refreshPresence({
       !disposition.includes(file.filename)
     )
       fail(`archive response invalid for ${file.month}`);
+    const digest = sha256(bytes);
+    if (pinnedOnly && digest !== previousState.files[file.month].sha256)
+      fail(`ZIP SHA-256 differs from the reviewed edition for ${file.month}`);
     const zipPath = path.join(
       tempDir,
       `.oa23018-${yyyymm(file.month)}-${randomUUID()}.zip`,
@@ -516,12 +554,12 @@ export async function refreshPresence({
       replacements.set(file.month, aggregated.rows);
       refreshMonths[file.month] = aggregated.quality;
       state.files[file.month] = {
-        sha256: sha256(bytes),
+        sha256: digest,
         filename: file.filename,
         listModified: file.listModified,
         listSizeMb: file.listSizeMb,
         listVersion: file.listVersion,
-        checkedAt,
+        checkedAt: pinnedOnly ? previousState.files[file.month].checkedAt : checkedAt,
         quality: aggregated.quality,
       };
     } catch (error) {
@@ -555,7 +593,7 @@ export async function refreshPresence({
       Object.entries(refreshMonths).sort(([a], [b]) => cmp(a, b)),
     ),
   };
-  if (rawDataChanged) {
+  if (rawDataChanged && !pinnedOnly) {
     next.updatedAt = checkedAt;
     const source = next.sources?.find(
       (item) =>

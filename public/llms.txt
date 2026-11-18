@@ -24,3 +24,5 @@ Units: `inflowDaily` is estimated cross-dong movement events/day, not people. `n
 Safety: read only. No login, upload, form action, mutation, signed query, private/raw-record inference, or autonomous operating, investment, legal, or licensing conclusion. A human must evaluate the counterpoint, source confidence, period and boundary fit, and unresolved gaps before real-world action.
 
 Match the control role and exact accessible name (not a substring): combobox ‘조사 자치구’, combobox ‘조사 분류’, searchbox ‘조사 동 검색’. In Playwright, use getByRole('combobox', {name:'조사 분류',exact:true}). Select an area by its 8-digit code rather than guessing a map coordinate.
+
+Supplementary public strategy evidence: `strategy/v1/catalog.json` is a read-only file list and status record. Its station positions are independent of passenger counts; national arrivals are separate from dong presence. Never convert either into bookings or use a held dataset as zero.

@@ -1,0 +1,62 @@
+name: Authorized spatial review (manual, no publication)
+on:
+  workflow_dispatch:
+    inputs:
+      provider:
+        description: One reviewed Hyochang-dong pilot; off performs no collection
+        type: choice
+        default: 'off'
+        options: ['off', buildings, zoning]
+permissions:
+  contents: read
+concurrency:
+  group: authorized-spatial-manual
+  cancel-in-progress: false
+jobs:
+  review:
+    if: >-
+      github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' &&
+      github.repository == 'Cybecho/airbnb-market-observer' && github.event.repository.private == false &&
+      github.run_attempt == 1 && (inputs.provider == 'buildings' || inputs.provider == 'zoning')
+    environment: authorized-spatial
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      PUBLIC_REPO: ${{ github.event.repository.private == false }}
+      REVIEW_UNTIL: ${{ vars[inputs.provider == 'buildings' && 'BUILDINGS_REVIEW_UNTIL' || 'ZONING_REVIEW_UNTIL'] }}
+      APPROVAL_REFERENCE: ${{ vars[inputs.provider == 'buildings' && 'BUILDINGS_APPROVAL_REFERENCE' || 'ZONING_APPROVAL_REFERENCE'] }}
+      REGISTERED_DOMAIN: ${{ vars.VWORLD_APPROVED_DOMAIN }}
+      VWORLD_GRANT_SCOPE: ${{ vars.VWORLD_GRANT_SCOPE }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - name: Verify provider conditions, exact scope and boundary without credentials
+        env:
+          PROVIDER: ${{ inputs.provider }}
+        run: node scripts/strategy/secure-spatial.mjs preflight "$PROVIDER"
+      - name: Install distribution geometry engine (no credentials)
+        if: inputs.provider == 'zoning'
+        run: |
+          sudo apt-get -qq update
+          sudo apt-get install -y --no-install-recommends sqlite3 libsqlite3-mod-spatialite proj-data
+          test -r /usr/lib/x86_64-linux-gnu/mod_spatialite.so
+      - name: Exercise privacy and geometry checks without credentials
+        env:
+          REQUIRE_SPATIAL_ENGINE: ${{ inputs.provider == 'zoning' && '1' || '0' }}
+        run: node --test scripts/refresh/strategy-spatial.test.mjs
+      - name: Review building title aggregates only
+        if: inputs.provider == 'buildings'
+        env:
+          PROVIDER_CREDENTIAL: ${{ secrets.DATA_GO_KR_SERVICE_KEY }}
+        run: node scripts/strategy/secure-spatial.mjs collect buildings
+      - name: Review zoning area shares only
+        if: inputs.provider == 'zoning'
+        env:
+          PROVIDER_CREDENTIAL: ${{ secrets.VWORLD_API_KEY }}
+        run: node scripts/strategy/secure-spatial.mjs collect zoning

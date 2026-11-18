@@ -54,3 +54,12 @@ GitHub 저장소의 private 여부와 Pages 접근 제어는 같은 설정이 �
 ### 현장 조사 지도: 어디를, 왜 볼까
 
 [조사 지도](https://cybecho.github.io/airbnb-market-observer/#view=decision&lens=where)에서 동을 누르면 04시 변화·도시민박 등록과 반대 근거를 함께 봅니다. 기존 기회·적합·검증은 서로 다른 질문으로 유지합니다. [판단 규칙과 재현 예시](docs/RESEARCH-ATLAS.md) · [자료 공백과 확보 경로](docs/RESEARCH-GAPS.md) · [에이전트용 읽기 계약](https://cybecho.github.io/airbnb-market-observer/research/v1/contract.json).
+
+## 보조 전략·관측 자료의 공개 경계
+
+대시보드의 기존 146개 필드와 판단 의미는 바꾸지 않는다. A1–A6 및 B1–B5는 별도 전략·비대시보드·관측 자료이며, 공개된 관측·보류·수동 검토를 섞지 않는다. 필드·상태·파일 계약은 [보조 전략 필드 사전](docs/data/STRATEGY-FIELD-DICTIONARY.md)에서, 근거별 상세는 해당 docs/data 문서에서 확인한다.
+
+- A1은 이화동의 실제 추출 결과를 [야간 존재인구 결과](docs/data/NIGHT-PRESENCE-RESULTS.md)로만 제시한다. 존재인구는 예약·투숙이 아니다.
+- A2/B4의 append 이력은 별도 관측 이력이며, B4 게스트하우스는 수동 검토한 원본만 추가한다.
+- A3 승하차는 재배포 권리 보류이나, OA-22534 위치 전용은 Ubuntu에서 독립 검증을 마쳐 기능 PR 공개 대상으로 분리한다. A4는 필지 폴리곤 미확보, B1은 26 대표지번/24 구역/22 동의 양성 확인만, B2는 권리·값 없음, B3/B5는 기본 OFF다.
+- A5 KTO 전국 입국 월합계는 새 공표 때마다 라이선스·원표·해시를 사람이 다시 고정하는 수동 갱신이다. A6은 첫 runner가 시도 기록만 남기고 관측을 내지 않아 건수나 가용성을 주장하지 않는다.

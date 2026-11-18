@@ -1,0 +1,753 @@
+{
+  "schemaVersion": "amo-tourism-zones/1",
+  "checkedOn": "2026-11-18",
+  "notice": "서울특별시고시 제2026-87호",
+  "gazette": "서울시보 제4127호",
+  "decidedOn": "2026-02-19",
+  "committeeOn": "2025-12-12",
+  "temporaryApplicationThrough": "2029-01-04",
+  "addressMonth": "2026-10",
+  "boundaryDate": "2026-10-01",
+  "coverage": "partial-representative-lots",
+  "sources": {
+    "notice": "https://urban.seoul.go.kr/UpisArchive/DATA/PM/pdf/11000TTC202601160003/%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C_%EC%A0%9C2026-87%ED%98%B8_%EA%B3%A0%EC%8B%9C.pdf",
+    "gazette": "https://www.seoul.go.kr/func/seoulsibo/fileDownload.do?fileName=seoulsibo_20260213141933_17969.pdf",
+    "noticeRecord": "https://www.eum.go.kr/web/gs/gv/gvGosiDet.jsp?seq=634617",
+    "ordinance": "https://www.law.go.kr/LSW/ordinInfoP.do?ordinSeq=2099911",
+    "ordinanceGazette": "https://www.seoul.go.kr/func/seoulsibo/fileDownload.do?fileName=seoulsibo_20260102140841_03237.pdf",
+    "touristDistricts": "https://data.seoul.go.kr/dataList/OA-12857/F/1/datasetView.do",
+    "addressDatabase": "https://business.juso.go.kr/jst/jstAddressDownload",
+    "addressLicense": "https://www.data.go.kr/data/15050417/fileData.do"
+  },
+  "sectors": [
+    {
+      "id": "R01",
+      "name": "명동관광특구",
+      "noticeGu": "중구",
+      "group": "core",
+      "tablePage": 47,
+      "mapPage": 56,
+      "references": [
+        {
+          "adminCode": "11140550",
+          "verifiedLotCount": 1
+        }
+      ]
+    },
+    {
+      "id": "R02",
+      "name": "북창",
+      "noticeGu": "중구",
+      "group": "core",
+      "tablePage": 47,
+      "mapPage": 57,
+      "references": [
+        {
+          "adminCode": "11140520",
+          "verifiedLotCount": 1
+        }
+      ]
+    },
+    {
+      "id": "R03",
+      "name": "테헤란로",
+      "noticeGu": "강남구",
+      "group": "core",
+      "tablePage": 47,
+      "mapPage": 58,
+      "references": []
+    },
+    {
+      "id": "R04",
+      "name": "잠실광역중심제1지구",
+      "noticeGu": "송파구",
+      "group": "core",
+      "tablePage": 47,
+      "mapPage": 58,
+      "references": []
+    },
+    {
+      "id": "R05",
+      "name": "여의도 금융중심",
+      "noticeGu": "영등포구",
+      "group": "core",
+      "tablePage": 47,
+      "mapPage": 59,
+      "references": [
+        {
+          "adminCode": "11560540",
+          "verifiedLotCount": 1
+        }
+      ]
+    },
+    {
+      "id": "R06",
+      "name": "영등포지역 부도심권",
+      "noticeGu": "영등포구",
+      "group": "core",
+      "tablePage": 47,
+      "mapPage": 59,
+      "references": []
+    },
+    {
+      "id": "R07",
+      "name": "마포지구",
+      "noticeGu": "마포구",
+      "group": "core",
+      "tablePage": 47,
+      "mapPage": 60,
+      "references": []
+    },
+    {
+      "id": "R08",
+      "name": "용산",
+      "noticeGu": "용산구",
+      "group": "core",
+      "tablePage": 47,
+      "mapPage": 60,
+      "references": []
+    },
+    {
+      "id": "R09",
+      "name": "왕십리 광역중심",
+      "noticeGu": "성동구",
+      "group": "core",
+      "tablePage": 47,
+      "mapPage": 61,
+      "references": []
+    },
+    {
+      "id": "T01",
+      "name": "양재중심지구",
+      "noticeGu": "강남구",
+      "group": "temporary",
+      "tablePage": 48,
+      "mapPage": 62,
+      "references": [
+        {
+          "adminCode": "11680655",
+          "verifiedLotCount": 1
+        }
+      ]
+    },
+    {
+      "id": "T02",
+      "name": "천호지구",
+      "noticeGu": "강동구",
+      "group": "temporary",
+      "tablePage": 48,
+      "mapPage": 62,
+      "references": []
+    },
+    {
+      "id": "T03",
+      "name": "수유·번동",
+      "noticeGu": "강북구",
+      "group": "temporary",
+      "tablePage": 48,
+      "mapPage": 63,
+      "references": []
+    },
+    {
+      "id": "T04",
+      "name": "화곡역 지구중심",
+      "noticeGu": "강서구",
+      "group": "temporary",
+      "tablePage": 48,
+      "mapPage": 63,
+      "references": [
+        {
+          "adminCode": "11500615",
+          "verifiedLotCount": 1
+        }
+      ]
+    },
+    {
+      "id": "T05",
+      "name": "공항로",
+      "noticeGu": "강서구",
+      "group": "temporary",
+      "tablePage": 48,
+      "mapPage": 64,
+      "references": []
+    },
+    {
+      "id": "T06",
+      "name": "까치산역 지구중심",
+      "noticeGu": "강서구",
+      "group": "temporary",
+      "tablePage": 48,
+      "mapPage": 64,
+      "references": []
+    },
+    {
+      "id": "T07",
+      "name": "공항지구중심",
+      "noticeGu": "강서구",
+      "group": "temporary",
+      "tablePage": 48,
+      "mapPage": 65,
+      "references": [
+        {
+          "adminCode": "11500640",
+          "verifiedLotCount": 1
+        }
+      ]
+    },
+    {
+      "id": "T08",
+      "name": "신림지구중심",
+      "noticeGu": "관악구",
+      "group": "temporary",
+      "tablePage": 48,
+      "mapPage": 66,
+      "references": []
+    },
+    {
+      "id": "T09",
+      "name": "난곡사거리지구중심",
+      "noticeGu": "관악구",
+      "group": "temporary",
+      "tablePage": 48,
+      "mapPage": 67,
+      "references": []
+    },
+    {
+      "id": "T10",
+      "name": "대림지역중심",
+      "noticeGu": "관악구",
+      "group": "temporary",
+      "tablePage": 48,
+      "mapPage": 67,
+      "references": [
+        {
+          "adminCode": "11620725",
+          "verifiedLotCount": 2
+        }
+      ]
+    },
+    {
+      "id": "T11",
+      "name": "봉천지역중심",
+      "noticeGu": "관악구",
+      "group": "temporary",
+      "tablePage": 48,
+      "mapPage": 68,
+      "references": []
+    },
+    {
+      "id": "T12",
+      "name": "군자역지구",
+      "noticeGu": "광진구",
+      "group": "temporary",
+      "tablePage": 48,
+      "mapPage": 68,
+      "references": [
+        {
+          "adminCode": "11215750",
+          "verifiedLotCount": 1
+        }
+      ]
+    },
+    {
+      "id": "T13",
+      "name": "건대입구역지구",
+      "noticeGu": "광진구",
+      "group": "temporary",
+      "tablePage": 48,
+      "mapPage": 69,
+      "references": [
+        {
+          "adminCode": "11215710",
+          "verifiedLotCount": 1
+        }
+      ]
+    },
+    {
+      "id": "T14",
+      "name": "화양1지구",
+      "noticeGu": "광진구",
+      "group": "temporary",
+      "tablePage": 48,
+      "mapPage": 69,
+      "references": [
+        {
+          "adminCode": "11215710",
+          "verifiedLotCount": 1
+        }
+      ]
+    },
+    {
+      "id": "T15",
+      "name": "구로디지털단지역",
+      "noticeGu": "구로구",
+      "group": "temporary",
+      "tablePage": 48,
+      "mapPage": 70,
+      "references": [
+        {
+          "adminCode": "11530540",
+          "verifiedLotCount": 1
+        }
+      ]
+    },
+    {
+      "id": "T16",
+      "name": "가산",
+      "noticeGu": "금천구",
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 70,
+      "references": [
+        {
+          "adminCode": "11545510",
+          "verifiedLotCount": 1
+        }
+      ]
+    },
+    {
+      "id": "T17",
+      "name": "금천구심",
+      "noticeGu": "금천구",
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 71,
+      "references": [
+        {
+          "adminCode": "11545670",
+          "verifiedLotCount": 1
+        }
+      ]
+    },
+    {
+      "id": "T18",
+      "name": "독산",
+      "noticeGu": "금천구",
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 72,
+      "references": [
+        {
+          "adminCode": "11545640",
+          "verifiedLotCount": 1
+        }
+      ]
+    },
+    {
+      "id": "T19",
+      "name": "전농2지구중심",
+      "noticeGu": "동대문구",
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 73,
+      "references": []
+    },
+    {
+      "id": "T20",
+      "name": "청량리역 전면부",
+      "noticeGu": "동대문구",
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 73,
+      "references": [
+        {
+          "adminCode": "11230705",
+          "verifiedLotCount": 1
+        }
+      ]
+    },
+    {
+      "id": "T21",
+      "name": "장안평일대",
+      "noticeGu": "동대문구",
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 74,
+      "references": [
+        {
+          "adminCode": "11200790",
+          "verifiedLotCount": 1
+        }
+      ]
+    },
+    {
+      "id": "T22",
+      "name": "신설",
+      "noticeGu": "동대문구",
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 74,
+      "references": [
+        {
+          "adminCode": "11230515",
+          "verifiedLotCount": 2
+        }
+      ]
+    },
+    {
+      "id": "T23",
+      "name": "사당·이수",
+      "noticeGu": "동작구",
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 75,
+      "references": []
+    },
+    {
+      "id": "T24",
+      "name": "신대방지구",
+      "noticeGu": "동작구",
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 76,
+      "references": []
+    },
+    {
+      "id": "T25",
+      "name": "노량진지구",
+      "noticeGu": "동작구",
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 76,
+      "references": []
+    },
+    {
+      "id": "T26",
+      "name": "아현2지구",
+      "noticeGu": "마포구",
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 77,
+      "references": []
+    },
+    {
+      "id": "T27",
+      "name": "신촌지구일대",
+      "noticeGu": "마포구",
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 77,
+      "references": []
+    },
+    {
+      "id": "T28",
+      "name": "충정",
+      "noticeGu": "서대문구",
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 78,
+      "references": []
+    },
+    {
+      "id": "T29",
+      "name": "공릉",
+      "noticeGu": "노원구",
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 79,
+      "references": []
+    },
+    {
+      "id": "T30",
+      "name": "쌍문지구중심",
+      "noticeGu": "도봉구",
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 80,
+      "references": []
+    },
+    {
+      "id": "T31",
+      "name": "석관지구중심",
+      "noticeGu": "성북구",
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 81,
+      "references": [
+        {
+          "adminCode": "11290810",
+          "verifiedLotCount": 1
+        }
+      ]
+    },
+    {
+      "id": "T32",
+      "name": "동선지구중심",
+      "noticeGu": "성북구",
+      "group": "temporary",
+      "tablePage": 49,
+      "mapPage": 81,
+      "references": [
+        {
+          "adminCode": "11290575",
+          "verifiedLotCount": 1
+        }
+      ]
+    },
+    {
+      "id": "T33",
+      "name": "서초로",
+      "noticeGu": "서초구",
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 82,
+      "references": []
+    },
+    {
+      "id": "T34",
+      "name": "양재지구중심",
+      "noticeGu": "서초구",
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 82,
+      "references": [
+        {
+          "adminCode": "11650520",
+          "verifiedLotCount": 1
+        }
+      ]
+    },
+    {
+      "id": "T35",
+      "name": "동대문역사문화공원주변",
+      "noticeGu": "중구",
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 83,
+      "references": [
+        {
+          "adminCode": "11140590",
+          "verifiedLotCount": 1
+        }
+      ]
+    },
+    {
+      "id": "T36",
+      "name": "신길지구중심",
+      "noticeGu": "영등포구",
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 83,
+      "references": []
+    },
+    {
+      "id": "T37",
+      "name": "대림광역중심",
+      "noticeGu": "영등포구",
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 84,
+      "references": []
+    },
+    {
+      "id": "T38",
+      "name": "한남",
+      "noticeGu": "용산구",
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 85,
+      "references": []
+    },
+    {
+      "id": "T39",
+      "name": "이태원로 주변",
+      "noticeGu": "용산구",
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 86,
+      "references": []
+    },
+    {
+      "id": "T40",
+      "name": "응암지구중심",
+      "noticeGu": "은평구",
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 86,
+      "references": []
+    },
+    {
+      "id": "T41",
+      "name": "연신내",
+      "noticeGu": "은평구",
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 87,
+      "references": []
+    },
+    {
+      "id": "T42",
+      "name": "불광",
+      "noticeGu": "은평구",
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 87,
+      "references": []
+    },
+    {
+      "id": "T43",
+      "name": "율곡로",
+      "noticeGu": "종로구",
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 88,
+      "references": []
+    },
+    {
+      "id": "T44",
+      "name": "세종로",
+      "noticeGu": "종로구",
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 89,
+      "references": []
+    },
+    {
+      "id": "T45",
+      "name": "종로2·3가",
+      "noticeGu": "종로구",
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 90,
+      "references": []
+    },
+    {
+      "id": "T46",
+      "name": "숭인2",
+      "noticeGu": "종로구",
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 91,
+      "references": []
+    },
+    {
+      "id": "T47",
+      "name": "숭인",
+      "noticeGu": "종로구",
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 92,
+      "references": [
+        {
+          "adminCode": "11110710",
+          "verifiedLotCount": 1
+        }
+      ]
+    },
+    {
+      "id": "T48",
+      "name": "종로4·5가",
+      "noticeGu": "종로구",
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 93,
+      "references": []
+    },
+    {
+      "id": "T49",
+      "name": "정동 일대",
+      "noticeGu": "중구",
+      "group": "temporary",
+      "tablePage": 50,
+      "mapPage": 93,
+      "references": []
+    },
+    {
+      "id": "T50",
+      "name": "남대문시장",
+      "noticeGu": "중구",
+      "group": "temporary",
+      "tablePage": 51,
+      "mapPage": 94,
+      "references": [
+        {
+          "adminCode": "11140540",
+          "verifiedLotCount": 1
+        }
+      ]
+    },
+    {
+      "id": "T51",
+      "name": "소공",
+      "noticeGu": "중구",
+      "group": "temporary",
+      "tablePage": 51,
+      "mapPage": 95,
+      "references": [
+        {
+          "adminCode": "11140520",
+          "verifiedLotCount": 1
+        }
+      ]
+    },
+    {
+      "id": "T52",
+      "name": "묵동지구중심",
+      "noticeGu": "중랑구",
+      "group": "temporary",
+      "tablePage": 51,
+      "mapPage": 96,
+      "references": []
+    },
+    {
+      "id": "T53",
+      "name": "면목지구중심",
+      "noticeGu": "중랑구",
+      "group": "temporary",
+      "tablePage": 51,
+      "mapPage": 97,
+      "references": []
+    },
+    {
+      "id": "T54",
+      "name": "잠실광역중심제2지구",
+      "noticeGu": "송파구",
+      "group": "temporary",
+      "tablePage": 51,
+      "mapPage": 97,
+      "references": []
+    }
+  ],
+  "touristDistricts": [
+    {
+      "name": "이태원",
+      "gu": "용산구",
+      "designatedOn": "1997-09-29"
+    },
+    {
+      "name": "명동·남대문·북창동·다동·무교동",
+      "gu": "중구",
+      "designatedOn": "2000-03-30"
+    },
+    {
+      "name": "동대문패션타운",
+      "gu": "중구",
+      "designatedOn": "2002-05-23"
+    },
+    {
+      "name": "종로·청계",
+      "gu": "종로구",
+      "designatedOn": "2006-03-30"
+    },
+    {
+      "name": "잠실",
+      "gu": "송파구",
+      "designatedOn": "2012-03-15"
+    },
+    {
+      "name": "강남마이스",
+      "gu": "강남구",
+      "designatedOn": "2014-12-18"
+    },
+    {
+      "name": "홍대문화예술",
+      "gu": "마포구",
+      "designatedOn": "2021-12-02"
+    },
+    {
+      "name": "고터·세빛",
+      "gu": "서초구",
+      "designatedOn": "2024-12-26"
+    }
+  ]
+}

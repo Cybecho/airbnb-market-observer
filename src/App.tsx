@@ -22,6 +22,16 @@ import { parseSiteRoute, siteHref, lensHref, type SiteRoute } from "./researchRo
 import { parsePublicResearch } from "./researchRead";
 import type { ResearchIndex } from "./researchTypes";
 import ResearchGaps from "./ResearchGaps";
+import { StrategyHistory } from './StrategyHistory';
+import MacroContext from './MacroContext';
+import LandContext from './LandContext';
+import TourismZones from './TourismZones';
+import SpatialContext from './SpatialContext';
+import PoiContext from './PoiContext';
+import SubwayContext from './SubwayContext';
+import './strategy-evidence.css';
+import { useOfficialStations, OfficialStations } from './OfficialStations';
+import NationalitySlot from './NationalitySlot';
 import DecisionStudio from "./DecisionStudio";
 import Chart, { bars, lines } from "./Chart";
 import { ChartFrame } from "./ChartFrame";
@@ -121,6 +131,7 @@ export default function App() {
     [importError, setImportError] = useState("");
   const [route,setRoute] = useState(() => parseSiteRoute(location.hash));
   const {view,lens,gu,dong:selected,tier,period,layer} = route;
+  const stationLocations=useOfficialStations();
   const patchRoute = (patch: Partial<SiteRoute>) => setRoute(previous => ({...previous,...patch}));
   const setView = (view:string) => patchRoute({view,lens:'opportunity',tier:''});
   const setGu = (gu:string) => patchRoute({gu});
@@ -743,6 +754,8 @@ export default function App() {
               </section>
             </>
           )}
+          {view === 'map' && <section className="card strategy-card"><OfficialStations snapshot={stationLocations} adminCode={selected}/><PoiContext adminCode={selected} mode="map"/><SubwayContext /></section>}
+          {['trends','supply','people'].includes(view)&&<section className="card strategy-card"><label htmlFor="strategy-area"><strong>조사할 행정동</strong></label> <select id="strategy-area" value={selected} onChange={e=>setSelected(e.target.value)}><option value="">지역을 선택하세요</option>{(research?.areas??[]).filter(a=>!gu||a.gu===gu||a.code===selected).map(a=><option key={a.code} value={a.code}>{a.gu} {a.name}</option>)}</select><p className="method-note">선택한 동의 공식 관측을 봅니다. 전국 입국 통계의 범위는 바뀌지 않습니다.</p></section>}
           {view === "trends" && (
             <>
               <PresencePanel
@@ -752,6 +765,8 @@ export default function App() {
                 selected={selected}
                 compare={compared}
               />
+              <MacroContext />
+              <StrategyHistory code={selected} mode="trends" />
               <ContextScatter
                 rows={filtered}
                 onSelect={(code) => {
@@ -773,6 +788,7 @@ export default function App() {
           )}
           {view === "compare" && (
             <>
+              <LandContext areas={(research?.areas ?? []).filter(a=>compared.includes(a.code))} periodLabel={research?.period.current} />
               {!compared.length ? (
                 <section className="card empty-state">
                   <GitCompare size={32} />
@@ -847,6 +863,7 @@ export default function App() {
           )}
           {view === "people" && (
             <>
+              <NationalitySlot rows={publicExt?.tourism?.nationality} code={selected}/>
               <section className="card">
                 <div className="section-heading">
                   <div>
@@ -979,6 +996,9 @@ export default function App() {
           )}
           {view === "supply" && (
             <>
+              <StrategyHistory code={selected} mode="supply" />
+              <section className="card strategy-card"><TourismZones adminCode={selected} /></section>
+              <details className="card strategy-card"><summary>건물 용도와 용도지역은 어디까지 확인했나요?</summary><SpatialContext adminCode={selected}/></details>
               <section className="card">
                 <div className="section-heading">
                   <div>

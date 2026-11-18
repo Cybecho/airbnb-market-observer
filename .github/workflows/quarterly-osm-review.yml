@@ -1,0 +1,89 @@
+name: Quarterly OSM review (one reserved attempt)
+on:
+  schedule:
+    - cron: '23 1 1 1,4,7,10 *' # UTC quarter start; scheduling delays are harmless.
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: amo-osm-quarter
+  cancel-in-progress: false
+jobs:
+  reserve:
+    if: github.repository == 'Cybecho/airbnb-market-observer' && github.ref == 'refs/heads/main' && github.run_attempt == 1
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    outputs:
+      reserved: ${{ steps.reserve.outputs.reserved }}
+      sha: ${{ steps.reserve.outputs.sha }}
+      quarter: ${{ steps.reserve.outputs.quarter }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Commit a durable reservation before any Overpass request
+        id: reserve
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git checkout --detach origin/main
+          quarter="$(node -e 'const d=new Date(); console.log(`${d.getUTCFullYear()}-Q${Math.floor(d.getUTCMonth()/3)+1}`)')"
+          ledger="data/organized/insights/osm-attempts/${quarter}.json"
+          echo "quarter=$quarter" >> "$GITHUB_OUTPUT"
+          if test -e "$ledger"; then
+            echo "A durable reservation already exists for $quarter; no Overpass request will run."
+            echo 'reserved=false' >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          mkdir -p "$(dirname "$ledger")"
+          now="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          printf '{"quarter":"%s","attemptedAt":"%s","endpoint":"https://overpass-api.de/api/interpreter"}\n' "$quarter" "$now" > "$ledger"
+          git add -- "$ledger"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          # Skip unrelated push workflows: this commit is only a reservation, never a publication.
+          git commit -m "Reserve OSM review attempt for $quarter [skip ci]"
+          git push origin HEAD:main
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo 'reserved=true' >> "$GITHUB_OUTPUT"
+  collect:
+    needs: reserve
+    if: github.run_attempt == 1 && needs.reserve.outputs.reserved == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ needs.reserve.outputs.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with: {node-version: 24}
+      - name: Use the committed reservation once; keep unavailable evidence distinct from successful data
+        env:
+          EXPECT_OSM_QUARTER: ${{ needs.reserve.outputs.quarter }}
+        run: |
+          set -euo pipefail
+          test -f "data/organized/insights/osm-attempts/${EXPECT_OSM_QUARTER}.json"
+          mkdir -p "$RUNNER_TEMP/osm-review"
+          cp "data/organized/insights/osm-attempts/${EXPECT_OSM_QUARTER}.json" "$RUNNER_TEMP/osm-review/reservation.json"
+          node scripts/strategy/osm-poi.mjs --collect --ledger-dir "$RUNNER_TEMP/osm-once" > "$RUNNER_TEMP/osm-review/result.json"
+          node --input-type=module <<'NODE'
+          import {readFile,copyFile,appendFile} from 'node:fs/promises';
+          const dir=process.env.RUNNER_TEMP+'/osm-review', r=JSON.parse(await readFile(dir+'/result.json','utf8'));
+          if(r.quarter!==process.env.EXPECT_OSM_QUARTER)throw Error('UTC quarter changed; no promotion');
+          if(r.status==='available')await copyFile('public/strategy/v1/osm-poi.json',dir+'/osm-poi.json');
+          await appendFile(process.env.GITHUB_STEP_SUMMARY,`${r.quarter}: ${r.status}. A verified aggregate needs a separate reviewed PR; no automatic publication.\n`);
+          NODE
+      - name: Save only the reservation, status and any new verified aggregate
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: reviewed-osm-${{ needs.reserve.outputs.quarter }}
+          path: ${{ runner.temp }}/osm-review
+          if-no-files-found: ignore
+          retention-days: 14

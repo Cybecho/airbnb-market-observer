@@ -1,0 +1,3 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {nationalitySlot} from '../strategy/nationality.mjs';
+const held={schema:'amo-nationality/1',status:'withheld',approvalRef:null,rows:[]};
+test('B2: no numeric nationality cube without a written and reviewed grant',()=>{assert.deepEqual(nationalitySlot(held,[]),[]);for(const doc of [{...held,rows:[{}]},{...held,approvalRef:'access-only'},{...held,rows:[{value:0}]},{...held,status:'approved',approvalRef:'self-declared'},{...held,privateRecord:{}},{...held,status:'unrecognized'}])assert.throws(()=>nationalitySlot(doc,[]));});

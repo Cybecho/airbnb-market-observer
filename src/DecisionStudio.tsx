@@ -1,3 +1,8 @@
+import { useOfficialStations, OfficialStations } from './OfficialStations';
+import NightContext from './NightContext';
+import { StrategyHistory } from './StrategyHistory';
+import PoiContext from './PoiContext';
+import TourismZones from './TourismZones';
 import { useMemo, useState } from "react";
 import { registryAxis, inspections } from "./atlasViews";
 import Chart from "./Chart";
@@ -58,6 +63,7 @@ const intents = [
 type Intent = (typeof intents)[number][0];
 
 export default function DecisionStudio(props: Props) {
+  const officialStations=useOfficialStations();
   const {
     data,
     ext,
@@ -442,6 +448,7 @@ export default function DecisionStudio(props: Props) {
               </button>
             </aside>
           </div>
+          {selected && <details className="card strategy-card" key={selected}><summary>선택한 동의 야간 체류·등록 이력·특화구역 확인</summary><NightContext observatory={props.observatory} adminCode={selected}/><OfficialStations snapshot={officialStations} adminCode={selected}/><StrategyHistory code={selected} mode="opportunity"/><TourismZones adminCode={selected} compact /></details>}
           <LiveUpdates state={automation} />
           <div className="decision-evidence">
             <span><b>차트에 있음</b> 04시 생활인구 변화 · 등록 수</span>
@@ -511,6 +518,7 @@ export default function DecisionStudio(props: Props) {
       {intent === "fit" && (
         <>
           <FitLens data={data} selectedName={chosenName} />
+          <section className="card strategy-card"><OfficialStations snapshot={officialStations} adminCode={selected}/><PoiContext adminCode={selected} mode="fit"/></section>
           <div className="decision-next">
             <button onClick={() => selectIntent("opportunity")}>
               이전: 기회

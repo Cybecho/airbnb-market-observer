@@ -1,3 +1,5 @@
+import { useOfficialStations, addOfficialStationLayer } from './OfficialStations';
+import { usePoiSnapshot, addPoiStationLayer } from './PoiContext';
 import { useEffect, useMemo, useRef, useState } from "react";
 import L from "leaflet";
 import type { FeatureCollection } from "geojson";
@@ -25,6 +27,10 @@ export default function SeoulMap({
     polygons = useRef<L.GeoJSON | null>(null),
     labels = useRef<L.LayerGroup | null>(null),
     tiles = useRef<L.TileLayer | null>(null);
+  const officialStations=useOfficialStations();
+  const [showOfficialStations,setShowOfficialStations]=useState(false);
+  const poi = usePoiSnapshot();
+  const [showStations, setShowStations] = useState(false);
   const [basemap, setBasemap] = useState(false);
   const callback = useRef(onSelect);
   callback.current = onSelect;
@@ -193,6 +199,8 @@ export default function SeoulMap({
       tiles.current = null;
     };
   }, [basemap]);
+  useEffect(()=>{const m=map.current;if(m && showOfficialStations && officialStations) return addOfficialStationLayer(L,m,officialStations,selected);},[officialStations,showOfficialStations,selected,geo]);
+  useEffect(()=>{const m=map.current;if(showStations && m && poi) return addPoiStationLayer(L,m,poi.stations);},[poi,showStations,geo]);
   return (
     <div className="map-wrap">
       <div
@@ -210,6 +218,8 @@ export default function SeoulMap({
         >
           범위에 맞추기
         </button>
+        {officialStations && <button aria-pressed={showOfficialStations} onClick={()=>setShowOfficialStations(x=>!x)}>교통공사 역 위치 {showOfficialStations?'켜짐':'꺼짐'}</button>}
+        {poi && <button aria-pressed={showStations} onClick={()=>setShowStations(x=>!x)}>역 기준점 {showStations?'켜짐':'꺼짐'}</button>}
         <button aria-pressed={basemap} onClick={() => setBasemap(!basemap)}>
           배경지도 {basemap ? "켜짐" : "꺼짐"}
         </button>

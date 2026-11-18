@@ -1,0 +1,21 @@
+{
+  "schema": "amo-strategy-catalog/1",
+  "scope": "서울 현장 조사와 전국 관광 배경. 자료끼리 합산하거나 예약·정산·허가 가능성으로 환산하지 않는다.",
+  "pathsRelativeTo": "site root",
+  "observed": [
+    {"id":"A1","path":"data/observatory.json","fields":["meanNight","daysNight","mean22","days22"],"grain":"행정동×월, 명(유효일 평균) 및 일"},
+    {"id":"A2","path":"strategy/v1/registry-history.json","grain":"행정동×실제 관측 주, 영업 인허가 레코드 건"},
+    {"id":"A3-location-only","path":"strategy/v1/station-locations.json","grain":"교통공사 1~8호선 역사 좌표 및 동 대표점에서의 직선 미터. 승객·보행 아님"},
+    {"id":"A5","path":"strategy/v1/macro.json","grain":"대한민국 전체×월 방한 외래관광객 입국 인원"},
+    {"id":"B1","path":"strategy/v1/tourism-zones.json","grain":"고시 구역 및 공식 대표지번으로 확인한 일부 행정동. 필지 허가 아님"},
+    {"id":"B4","path":"strategy/v1/context-history.json","grain":"행정동×이동 월 또는 여관 카드추정매출·게스트하우스 점포 관측 분기"}
+  ],
+  "withheld": [
+    {"id":"A3-ridership","why":"두 원천 모두 변경허용 조건이 아니며 00시·01시 분리가 불가능"},
+    {"id":"A4","why":"필지 실제 경계와 가격 자료의 공간결합 미검증"},
+    {"id":"A6","path":"strategy/v1/osm-status.json","why":"시도 상태를 먼저 확인. 시설 미관측을 0으로 채우지 않는다"},
+    {"id":"B2","why":"국적×행정동×숙박업종 표와 재배포 승인 미확인"},
+    {"id":"B3","why":"기본 비활성, 현행 무료 승인과 한도 확인 전 호출·게시 없음"},
+    {"id":"B5","why":"기본 비활성, 등록 도메인·러너·파생 공개 조건 미확인"}
+  ]
+}

@@ -1,0 +1,79 @@
+name: Strategy source review (read-only)
+on:
+  workflow_dispatch:
+    inputs:
+      task:
+        description: Read-only source aggregate to inspect on trusted main
+        type: choice
+        options: [land, night, history]
+        default: land
+permissions:
+  contents: read
+jobs:
+  land:
+    if: github.repository == 'Cybecho/airbnb-market-observer' && github.ref == 'refs/heads/main' && inputs.task == 'land'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: {persist-credentials: false, ref: main}
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with: {node-version: 24}
+      - name: Official ZIP metadata and nonidentifying structural counts only
+        run: node scripts/strategy/land-source.mjs
+  night:
+    if: github.repository == 'Cybecho/airbnb-market-observer' && github.ref == 'refs/heads/main' && inputs.task == 'night'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env: {NODE_OPTIONS: '--max-old-space-size=3072'}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: {persist-credentials: false, ref: main}
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with: {node-version: 24}
+      - name: Replay only pinned Seoul archives and verify all legacy fields
+        run: node scripts/materialize-night-presence.mjs
+      - name: Validate public aggregates and package allowlisted outputs only
+        run: |
+          set -euo pipefail
+          cp "$RUNNER_TEMP/a1-materialized/observatory.json" data/organized/insights/observatory.json
+          cp "$RUNNER_TEMP/a1-materialized/refresh-state.json" data/organized/insights/refresh-state.json
+          npm run data:build
+          npm run data:check
+          npm run check:publication
+          pk="$RUNNER_TEMP/night-package"
+          mkdir -p "$pk"/data/organized/insights "$pk"/public/data "$pk"/docs/data
+          cp data/organized/insights/{observatory,refresh-state}.json "$pk"/data/organized/insights/
+          cp public/data/{observatory,build-manifest}.json "$pk"/public/data/
+          cp "$RUNNER_TEMP/a1-materialized/ihwa.md" "$pk"/docs/data/NIGHT-PRESENCE-RESULTS.md
+          cp "$RUNNER_TEMP/a1-materialized/lineage.json" "$pk"/docs/data/NIGHT-PRESENCE-LINEAGE.json
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: reviewed-night-aggregates
+          path: ${{ runner.temp }}/night-package
+          if-no-files-found: error
+          retention-days: 3
+  history:
+    if: github.repository == 'Cybecho/airbnb-market-observer' && github.ref == 'refs/heads/main' && inputs.task == 'history'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with: {persist-credentials: false, ref: main}
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with: {node-version: 24}
+      - name: Check committed registry and context histories without collection
+        run: |
+          set -euo pipefail
+          # The guesthouse series is accepted only by the separately reviewed private CSV path;
+          # this check deliberately never invokes history-stores or --append-stores.
+          node scripts/strategy/history.mjs --check
+          npm run check:publication
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: reviewed-history-aggregates
+          path: |
+            public/strategy/v1/registry-history.json
+            public/strategy/v1/context-history.json
+          if-no-files-found: error
+          retention-days: 3
