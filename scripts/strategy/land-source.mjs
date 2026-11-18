@@ -48,6 +48,7 @@ export async function readPriceArchive(visitor) {
   assertGitHubHostedLinux(); const {fetchBytes}=createFetcher({attempts:2});
   const {bytes:page}=await fetchBytes(LAND_PRICE_PAGE,{maxBytes:700000}); const r=priceRelease(page.toString('utf8'));
   const {bytes}=await fetchBytes(DOWNLOAD,{method:'POST',headers:{'content-type':'application/x-www-form-urlencoded'},body:'infId=OA-1180&seqNo=&seq=93&infSeq=3',maxBytes:16*1024*1024});
+  if(sha256(bytes)!=='df607c6ddfcce3d9f2399cabb79ad3e201059060fe2127de2232c651715ad7e6')fail('archive fingerprint changed; re-audit source');
   const fs=members(bytes); const report={...r,bytes:bytes.length,sha256:sha256(bytes),members:[],skippedOther:false};
   for(const {ext,size,get} of fs){const m={ext,size};report.members.push(m); if(ext==='dir')continue;if(!['txt','csv','tsv'].includes(ext)){report.skippedOther=true;continue;}
     const s=(await text(get())).replace(/^\uFEFF/,''); let start=0,idx=0,delim,fields;for(let i=0;i<=s.length;i++){if(i<s.length&&s.charCodeAt(i)!==10)continue;let line=s.slice(start,i);start=i+1;if(line.endsWith('\r'))line=line.slice(0,-1);if(!line)continue;
