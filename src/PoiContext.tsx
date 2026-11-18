@@ -9,7 +9,7 @@ const url=import.meta.env.BASE_URL+'strategy/v1/osm-poi.json';
 const attr='https://www.openstreetmap.org/copyright', odbl='https://opendatacommons.org/licenses/odbl/1-0/';
 let pending:Promise<Snapshot|null>|undefined;
 export function loadPoiSnapshot(){
-  return pending??=fetch(url,{credentials:'omit'}).then(async r=>{if(!r.ok)return null;const s:Snapshot=await r.json();return s?.schema==='amo-osm-poi/1' && s.status==='available' && Array.isArray(s.rows) && Array.isArray(s.stations)?s:null;}).catch(()=>null);
+  return pending??=fetch(import.meta.env.BASE_URL+'strategy/v1/osm-status.json',{credentials:'omit'}).then(async res=>{if(!res.ok)throw Error('status');const state=await res.json();if(state?.schema!=='amo-osm-status/1' || !['available','retained'].includes(state.status) || state.availableSnapshot!=='osm-poi.json')throw Error('no verified quarter');return fetch(url,{credentials:'omit'});}).then(async r=>{if(!r.ok)return null;const s:Snapshot=await r.json();return s?.schema==='amo-osm-poi/1' && s.status==='available' && Array.isArray(s.rows) && Array.isArray(s.stations)?s:null;}).catch(()=>null);
 }
 export function usePoiSnapshot(){
   const [data,setData]=useState<Snapshot|null|undefined>(undefined);
@@ -29,6 +29,6 @@ export function PoiContext({adminCode,mode='fit'}:{adminCode:string;mode?:'fit'|
     <p>{data.quarter} 수집 · OSM 원천 {data.sourceTimestamp.slice(0,10)} (UTC). 지도에 입력된 시설만 셉니다. 미관측은 0개가 아니며, 실제 영업 여부나 야간 영업을 확인한 값이 아닙니다.</p>
     {!row?<p>행정동을 선택하면 관측 수와 밀도를 확인할 수 있습니다.</p>:<><table><caption>선택 동의 지도 관측 · 분모 {row.areaKm2.toLocaleString('ko-KR',{maximumFractionDigits:3})} km²</caption><thead><tr><th>시설 유형</th><th>관측 수</th><th>개/km²</th></tr></thead><tbody>{(Object.keys(labels) as Key[]).map(k=><tr key={k}><th scope="row">{labels[k]}</th><td>{row.counts[k]?.toLocaleString('ko-KR')??'미관측'}</td><td>{row.densityPerKm2[k]?.toLocaleString('ko-KR',{maximumFractionDigits:2})??'미관측'}</td></tr>)}</tbody></table>
     <p><strong>가까운 관측 지하철역: </strong>{row.nearestStation?`${row.nearestStation.name} · 직선 약 ${row.nearestStation.distanceM.toLocaleString('ko-KR')} m`:'미관측'}. 동 내부 기준점과 서울 내 역 지점 사이의 거리입니다. 숙소·출입구 기준도, 실제 도보 거리나 시간도 아닙니다.</p></>}
-    <small><a href={attr}>© OpenStreetMap contributors</a> · <a href={odbl}>ODbL 1.0</a> · <a href={url} download>파생 DB 다운로드</a> · 경계: SGIS 공공누리1 / <a href="https://github.com/vuski/admdongkor">vuski/admdongkor</a> <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> (서울 선택·좌표 정리).</small></>}</section>;
+    <small><a href={attr}>© OpenStreetMap contributors</a> · <a href={odbl}>ODbL 1.0</a> · <a href={url} download>파생 DB 다운로드</a> · 경계: SGIS 공공누리1 / <a href="https://github.com/vuski/admdongkor">vuski/admdongkor</a> <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> (서울 선택·좌표 정리).</small></>}{data===null&&<small><a href={import.meta.env.BASE_URL+'strategy/v1/osm-status.json'}>최근 분기 시도 기록</a> · 한 분기에 한 번만 확인합니다.</small>}</section>;
 }
 export default PoiContext;

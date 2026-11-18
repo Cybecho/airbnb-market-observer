@@ -25,3 +25,7 @@
 
 - **© OpenStreetMap contributors** · [저작권·출처](https://www.openstreetmap.org/copyright) · [ODbL 1.0 법문](https://opendatacommons.org/licenses/odbl/1-0/) · [OSMF 표시 지침](https://osmfoundation.org/wiki/Licence/Attribution_Guidelines). 복제·배포·상업적 이용·가공은 조건부 허용. 이 독립 OSM 파생 DB는 **ODbL 1.0**으로 공개한다. DB 내부와 문서에 저작권 표시와 라이선스 URI를 보존하고, 화면/지도 레이어에 출처와 링크를 표시한다. 이용자는 화면에서 파생 DB 전체 JSON을 무료·기계판독 형식으로 받을 수 있다. 공개 파생 DB나 그 산출물을 사용하는 경우 동일 허가 및 파생 DB(또는 변경 내역) 제공 요건을 확인해야 한다(§§4.2–4.7). 기술적/추가적 제한을 덧붙이지 않는다.
 - **코드 MIT ≠ OSM DB ODbL ≠ 경계 CC BY 4.0.** 별도로 배포되는 경계는 [SGIS](https://sgis.kostat.go.kr) [공공누리 제1유형](https://www.kogl.or.kr/info/licenseType1.do) → [vuski/admdongkor](https://github.com/vuski/admdongkor) [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) → AMO 서울 선택·좌표 정리·코드 연결. 경계 원본/지도 타일을 파생 JSON에 포함하지 않으며 경계 저작자를 명시한다. 이 파일의 ODbL을 다른 공공 통계, 프로그램, 문서 또는 독립 경계 DB에 일괄 적용하지 않는다. ODbL이 개인정보 공개 허가를 뜻하지 않는다.
+
+### 첫 시도: 2026-Q4
+
+[Ubuntu 공개 실행](https://github.com/Cybecho/airbnb-market-observer/actions/runs/44246659381/job/134607130798)에서 2026-11-18 05:47 UTC 한 번 요청했고 Overpass가 HTTP 502를 반환했다. 검증된 OSM 관측 파일은 없다. 이번 분기는 재요청하지 않는다. `public/strategy/v1/osm-status.json`은 집계 대신 이 사실을 표시한다. 다음 분기 사용 가능한 집계가 생기면 검토 PR에서 `availableSnapshot: "osm-poi.json"`과 실제 파일을 함께 반영한다. 서울교통공사 OA-22534 좌표는 OSM에서 가져온 역이나 POI가 아니다.
