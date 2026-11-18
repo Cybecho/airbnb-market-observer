@@ -1,0 +1,25 @@
+name: Strategy source review (no keys)
+on:
+  workflow_dispatch:
+    inputs:
+      task:
+        description: Source aggregate to inspect; no deployment or write access
+        type: choice
+        options: [land, night, history, osm]
+        default: land
+  push:
+    branches: [muse-strategy-evidence-v1]
+permissions:
+  contents: read
+jobs:
+  land:
+    if: github.repository == 'Cybecho/airbnb-market-observer' && (inputs.task == 'land' || contains(github.event.head_commit.message, '[자료확인:A4]'))
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with: {node-version: 24}
+      - name: Official ZIP metadata and nonidentifying structural counts only
+        run: node scripts/strategy/land-source.mjs
