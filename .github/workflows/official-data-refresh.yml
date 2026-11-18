@@ -55,9 +55,13 @@ jobs:
           npx playwright test tests/e2e/refresh.spec.ts
       - name: Collect only anonymous official public sources
         run: npm run data:refresh
-      - name: Rebuild deterministic public payload and fail closed
+      - name: Rebuild payload then append and check observed strategy histories offline
         run: |
           npm run data:build
+          # --append only reads the refreshed public inputs; it never reads the reviewed private
+          # guesthouse CSV and makes no network request.
+          node scripts/strategy/history.mjs --append
+          node scripts/strategy/history.mjs --check
           npm run data:check
           npm run check:publication
           npm audit --omit=dev --audit-level=high
@@ -89,7 +93,8 @@ jobs:
           if [ "$OPERATION" = 'install' ]; then
             git add -- src scripts docs tests README.md package.json package-lock.json .gitignore
           fi
-          git add -- data/organized/insights/observatory.json data/organized/insights/automation.json data/organized/insights/refresh-state.json public/data
+          # Change detection covers both verified history documents as well as data payloads.
+          git add -- data/organized/insights/observatory.json data/organized/insights/automation.json data/organized/insights/refresh-state.json public/data public/strategy/v1/registry-history.json public/strategy/v1/context-history.json
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           if ! git diff --cached --quiet; then
@@ -111,7 +116,8 @@ jobs:
         with:
           path: dist
   deploy:
-    if: inputs.operation != 'check'
+    # A failed or cancelled refresh cannot replace the previously deployed Pages artifact.
+    if: needs.refresh.result == 'success' && inputs.operation != 'check'
     needs: refresh
     runs-on: ubuntu-24.04
     timeout-minutes: 10

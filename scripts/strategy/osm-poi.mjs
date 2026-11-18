@@ -50,6 +50,6 @@ export async function run({root=process.cwd(),ledgerDir='.refresh-private/osm-at
 if(process.argv[1] && import.meta.url===pathToFileURL(path.resolve(process.argv[1])).href){
   const args=process.argv.slice(2);let collect=false,ledgerDir;
   for(let i=0;i<args.length;i++){if(args[i]==='--collect')collect=true;else if(args[i]==='--ledger-dir' && args[i+1])ledgerDir=args[++i];else throw Error('사용법: node scripts/strategy/osm-poi.mjs [--collect] [--ledger-dir 경로]');}
-  if(collect)assertGitHubHostedLinux();
+  if(collect){assertGitHubHostedLinux();assert(process.env.EXPECT_OSM_QUARTER===quarterFor(new Date()),'일치하는 분기 예약 없음: 요청하지 않음');}
   console.log(JSON.stringify(await run({collect,ledgerDir})));
 }

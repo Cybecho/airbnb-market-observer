@@ -29,3 +29,5 @@
 ### 첫 시도: 2026-Q4
 
 [Ubuntu 공개 실행](https://github.com/Cybecho/airbnb-market-observer/actions/runs/44246659381/job/134607130798)에서 2026-11-18 05:47 UTC 한 번 요청했고 Overpass가 HTTP 502를 반환했다. 검증된 OSM 관측 파일은 없다. 이번 분기는 재요청하지 않는다. `public/strategy/v1/osm-status.json`은 집계 대신 이 사실을 표시한다. 다음 분기 사용 가능한 집계가 생기면 검토 PR에서 `availableSnapshot: "osm-poi.json"`과 실제 파일을 함께 반영한다. 서울교통공사 OA-22534 좌표는 OSM에서 가져온 역이나 POI가 아니다.
+
+실제 분기 실행은 `.github/workflows/quarterly-osm-review.yml`이 담당한다. `main`에 원장을 먼저 기록하고 첫 실행(`run_attempt=1`)만 격리된 Ubuntu 단계에서 같은 UTC 분기의 `EXPECT_OSM_QUARTER`를 확인해 요청한다. 실패·취소·재실행 때 같은 분기 요청은 하지 않는다. 소스 원장과 상태는 보존하며 성공 집계만 수동 검토 PR의 후보가 된다.
