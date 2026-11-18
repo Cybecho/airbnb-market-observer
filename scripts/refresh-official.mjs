@@ -1,3 +1,4 @@
+import {monthlyCollector} from './monthly/collector.mjs';
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -52,11 +53,14 @@ async function main() {
   console.log(
     "Checking four official registration snapshots and latest public sales quarter. No credentials are used.",
   );
+  const monthly = monthlyCollector(geometry, now);
   const registryResult = await refreshRegistry({
+    onVerifiedSource: monthly.accept,
     ...shared,
     geometry,
     previousState: previous.registry,
   });
+  const monthlyPayload = monthly.finish();
   const salesResult = await refreshSales({
     ...shared,
     names: currentNames,
@@ -131,6 +135,11 @@ async function main() {
     await fs.writeFile(staging, JSON.stringify(value) + "\n");
     await fs.rename(staging, target);
   }
+  const monthlyDir = path.join(root, "public/supply/v1");
+  await fs.mkdir(monthlyDir, { recursive:true });
+  const monthlyFile = path.join(monthlyDir, "monthly.json");
+  await fs.writeFile(monthlyFile + ".candidate", JSON.stringify(monthlyPayload) + "\n");
+  await fs.rename(monthlyFile + ".candidate", monthlyFile);
   const report = {
     checkedAt,
     status: "collected_and_semantically_validated",
