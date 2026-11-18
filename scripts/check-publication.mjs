@@ -1,8 +1,10 @@
+import { nationalitySlot } from './strategy/nationality.mjs';
 import fs from "node:fs";
 import path from "node:path";
 import assert from "node:assert/strict";
 const d = JSON.parse(fs.readFileSync("public/data/dashboard.json", "utf8"));
 const e = JSON.parse(fs.readFileSync("public/data/extensions.json", "utf8"));
+assert.deepEqual(e.tourism.nationality, nationalitySlot(JSON.parse(fs.readFileSync('data/organized/tourism/nationality-release.json','utf8')), d.rows.map(row => row.admin_code)), 'Unauthorized or altered nationality cells');
 let checked = 0;
 for (const r of d.rows)
   for (const [k, v] of Object.entries(r)) {

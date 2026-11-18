@@ -22,6 +22,7 @@ import { parseSiteRoute, siteHref, lensHref, type SiteRoute } from "./researchRo
 import { parsePublicResearch } from "./researchRead";
 import type { ResearchIndex } from "./researchTypes";
 import ResearchGaps from "./ResearchGaps";
+import NationalitySlot from './NationalitySlot';
 import DecisionStudio from "./DecisionStudio";
 import Chart, { bars, lines } from "./Chart";
 import { ChartFrame } from "./ChartFrame";
@@ -847,6 +848,7 @@ export default function App() {
           )}
           {view === "people" && (
             <>
+              <NationalitySlot rows={publicExt?.tourism?.nationality} code={selected}/>
               <section className="card">
                 <div className="section-heading">
                   <div>
