@@ -318,7 +318,7 @@ function validProjectedPoint(record) {
     : null;
 }
 
-export async function projectCoordinates(points) {
+export async function projectCoordinates(points, { nullableOutside = false } = {}) {
   if (!points.length) return [];
   // Source X/Y is easting/northing; EPSG:5174 declares northing/easting. cs2cs -r reverses the expected input axes.
   const input = points.map(([x, y]) => `${x} ${y}`).join("\n") + "\n";
@@ -358,8 +358,10 @@ export async function projectCoordinates(points) {
       lon > 127.3 ||
       lat < 37.3 ||
       lat > 37.8
-    )
+    ) {
+      if (nullableOutside) return null;
       fail("projected coordinate outside broad Seoul bounds");
+    }
     return [lon, lat];
   });
 }
@@ -409,6 +411,7 @@ export async function refreshRegistry({
   tempDir,
   now = new Date(),
   fetchBytes,
+  onVerifiedSource,
 }) {
   if (typeof fetchBytes !== "function") fail("fetchBytes must be injected");
   if (!tempDir) fail("tempDir is required for collector isolation");
@@ -550,6 +553,9 @@ export async function refreshRegistry({
       statusCounts,
     };
     guardDrop(priorSource(previousState, source.key), quality, source.key);
+    // Optional in-memory consumer. No raw rows, source identifiers or locations leave this callback.
+    if (onVerifiedSource) await onVerifiedSource({ source, records, quality, pageBytes:pageResponse.bytes,
+      validProjectedPoint, locate:point=>locate(point, allFeatures), classify:record=>classifyStatus(record,source) });
     qualities.push(quality);
   }
 
