@@ -1,0 +1,83 @@
+# Monthly check of the Yanolja Research DataLab download board for a new
+# quarterly "국내 숙박업 실적 지표" .xlsx; appends Seoul 공유숙박 rows
+# to data/yanolja/seoul-shared-monthly.csv. No API key needed.
+# Registration dates vary (2026 Q2: 2026-10-05, Q3: 2026-10-27),
+# so this checks monthly instead of on a fixed quarterly date.
+# It only downloads files Yanolja Research offers for free download.
+# Vendor pages (AirDNA/AirROI/Airbtics) are NOT touched here — their
+# ToS prohibit scraping; those stay a manual monthly snapshot.
+name: Yanolja quarterly fetch
+
+on:
+  schedule:
+    - cron: "17 6 1 * *"  # 1st of each month, 06:17 UTC (matches repo cadence)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install openpyxl
+      - name: Fetch new Yanolja files and append Seoul shared rows
+        run: |
+          python3 - <<'PY'
+          import csv, os, re, urllib.request, urllib.parse
+          import openpyxl
+          board = "https://www.yanolja-research.com/datalab/download?lang=kr"
+          req = urllib.request.Request(board, headers={"User-Agent": "Mozilla/5.0"})
+          html = urllib.request.urlopen(req, timeout=60).read().decode("utf-8", "ignore")
+          found = {}
+          for m in re.finditer(r'fileDown\?type=4(?:&|&amp;)number=(\d+)(?:&|&amp;)name=([^"]+?\.xlsx)', html):
+              found[int(m.group(1))] = urllib.parse.unquote(m.group(2))
+          csv_path = "data/yanolja/seoul-shared-monthly.csv"
+          have = set()
+          if os.path.exists(csv_path):
+              have = {r["month"] for r in csv.DictReader(open(csv_path, encoding="utf-8"))}
+          new_rows = []
+          for n, name in sorted(found.items()):
+              url = ("https://www.yanolja-research.com/common/fileDown?type=4&number="
+                     + str(n) + "&name=" + urllib.parse.quote(name))
+              req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+              data = urllib.request.urlopen(req, timeout=60).read()
+              assert data[:2] == b"PK", f"file {n} is not xlsx"
+              open(f"/tmp/yanolja_{n}.xlsx", "wb").write(data)
+              wb = openpyxl.load_workbook(f"/tmp/yanolja_{n}.xlsx", data_only=True, read_only=True)
+              ws = wb[wb.sheetnames[0]]
+              rr = list(ws.iter_rows(values_only=True)); h = rr[0]
+              def col(*names):
+                  for i, x in enumerate(h):
+                      if x in names: return i
+              d, r_, t = col("날짜"), col("지역_국문", "지역"), col("숙소유형_국문", "숙소유형")
+              a, o, v = h.index("ADR"), h.index("OCC"), h.index("REVPAR")
+              for row in rr[1:]:
+                  if row[r_] == "서울" and row[t] == "공유숙박" and str(row[d]) not in have:
+                      new_rows.append([str(row[d]), int(round(row[a])), round(float(row[o]), 2),
+                                       int(round(row[v])), name.replace(".xlsx", ""), n, ""])
+                      have.add(str(row[d]))
+          if new_rows:
+              os.makedirs("data", exist_ok=True)
+              new = not os.path.exists(csv_path)
+              with open(csv_path, "a", newline="", encoding="utf-8") as f:
+                  w = csv.writer(f)
+                  if new:
+                      w.writerow(["month", "adr_krw", "occ_pct", "revpar_krw",
+                                  "source_file", "file_number", "file_registered"])
+                  w.writerows(sorted(new_rows))
+              print(f"added {len(new_rows)} rows")
+          else:
+              print("no new months")
+          PY
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/yanolja/seoul-shared-monthly.csv
+          git diff --cached --quiet || git commit -m "Yanolja: append new Seoul shared-accommodation months"
+          git push
