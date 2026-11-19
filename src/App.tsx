@@ -424,7 +424,7 @@ export default function App() {
       </aside>
     </>
   );
-  if (view === 'articles') return <div className="app-shell">{navigation}<ArticleHub title={titles.articles[0]} description={titles.articles[1]} /></div>;
+  if (view === 'articles') return <div className="app-shell">{navigation}<div className="workspace article-workspace"><ArticleHub title={titles.articles[0]} description={titles.articles[1]} /></div></div>;
   return (
     <div className="app-shell">
       {navigation}
