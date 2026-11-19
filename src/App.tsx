@@ -33,6 +33,7 @@ import './strategy-evidence.css';
 import { useOfficialStations, OfficialStations } from './OfficialStations';
 import NationalitySlot from './NationalitySlot';
 import DecisionStudio from "./DecisionStudio";
+import ArticleHub from "./ArticleHub";
 import MonthlyPermitTrend from "./MonthlyPermitTrend";
 import Chart, { bars, lines } from "./Chart";
 import { ChartFrame } from "./ChartFrame";
@@ -61,8 +62,11 @@ const sections = [
   ["supply", "등록 공급", Building2],
   ["performance", "숙소 성과", SlidersHorizontal],
   ["sources", "자료 연결", Database],
+  ["articles", "리서치 글 모음", Layers],
 ] as const;
+const primaryViews: readonly string[] = ["decision", "map", "compare", "sources", "articles"];
 const titles: Record<string, [string, string]> = {
+  articles: ["리서치 글 모음", "숙박·관광 리포트와 조사를 발행일 순으로 모았습니다. 제목을 눌러 발행처의 원문으로 이동하세요."],
   decision: [
     "기회 · 적합 · 검증",
     "어느 동을 현장에서 확인하고, 어떤 고객과 매출 가설을 검증할까요?",
@@ -340,8 +344,8 @@ export default function App() {
       unit: "%",
     },
   ];
-  return (
-    <div className="app-shell">
+  const navigation = (
+    <>
       <a className="skip" href="#content" onClick={e => {e.preventDefault();document.getElementById("content")?.focus();}}>
         본문으로 건너뛰기
       </a>
@@ -361,10 +365,10 @@ export default function App() {
           </span>
         </a>
         <span className="sidebar-label">서울 숙박시장 관측</span>
-        <nav aria-label="주요 탐색">
+        <nav aria-label="주요 탐색" className="article-primary-nav">
           {sections
             .filter(([id]) =>
-              ["decision", "map", "compare", "sources"].includes(id),
+              primaryViews.includes(id),
             )
             .map(([id, label, Icon]) => (
               <button
@@ -383,14 +387,14 @@ export default function App() {
         </nav>
         <details
           className="nav-more"
-          open={!["decision", "map", "compare", "sources"].includes(view)}
+          open={!primaryViews.includes(view)}
         >
           <summary>세부 근거</summary>
           <div className="nav-secondary">
             {sections
               .filter(
                 ([id]) =>
-                  !["decision", "map", "compare", "sources"].includes(id),
+                  !primaryViews.includes(id),
               )
               .map(([id, label, Icon]) => (
                 <button
@@ -418,6 +422,12 @@ export default function App() {
           </a>
         </div>
       </aside>
+    </>
+  );
+  if (view === 'articles') return <div className="app-shell">{navigation}<div className="workspace article-workspace"><ArticleHub title={titles.articles[0]} description={titles.articles[1]} /></div></div>;
+  return (
+    <div className="app-shell">
+      {navigation}
       <div className="workspace">
         <header className="topbar">
           <div className="scope-label">

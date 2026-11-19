@@ -9,6 +9,8 @@ export default defineConfig({
   use: {
     baseURL: "http://127.0.0.1:4173",
     viewport: { width: 1440, height: 1000 },
+    // The Pages workflow uses the actual browser shipped in the hosted Ubuntu image.
+    ...(process.env.AMO_HOSTED_CHROME === '/usr/bin/google-chrome' ? {launchOptions: {executablePath: '/usr/bin/google-chrome'}} : {}),
     trace: "retain-on-failure",
   },
   webServer: {

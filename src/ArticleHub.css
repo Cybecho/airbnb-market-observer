@@ -1,0 +1,91 @@
+.app-shell .article-workspace > .article-hub {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: clamp(16px, 3vw, 44px);
+}
+
+.article-hub .article-hub-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 0 16px;
+}
+
+.article-hub-heading h1 {
+  margin: 0;
+  font-size: clamp(1.45rem, 3vw, 2rem);
+}
+
+.article-hub-heading p {
+  margin: 6px 0 0;
+}
+
+.article-hub-heading a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: inherit;
+  font-weight: 650;
+  text-underline-offset: 3px;
+}
+
+.article-hub .article-hub-frame {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  max-height: none;
+  border: 0;
+  border-radius: 12px;
+  background: white;
+}
+
+@media (max-width: 480px) {
+  .app-shell .sidebar:has(.article-primary-nav) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    box-sizing: border-box;
+    height: auto;
+  }
+
+  .app-shell .sidebar nav.article-primary-nav {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-column: 1 / -1;
+    max-width: 100%;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    gap: 2px;
+  }
+
+  .app-shell .sidebar .article-primary-nav button {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 0;
+    min-height: 44px;
+    padding: 3px 1px;
+    gap: 2px;
+    font-size: 0.72rem;
+    line-height: 1.25;
+    white-space: normal;
+    text-align: center;
+    word-break: keep-all;
+  }
+
+  .sidebar .article-primary-nav .nav-count {
+    position: absolute;
+    top: 0;
+    right: 1px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-shell .sidebar .nav-more { min-width: 0; max-width: 100%; }
+  .app-shell .sidebar .nav-secondary { min-width: 0; max-width: 100%; overflow-x:auto; }
+}
