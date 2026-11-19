@@ -33,6 +33,7 @@ import './strategy-evidence.css';
 import { useOfficialStations, OfficialStations } from './OfficialStations';
 import NationalitySlot from './NationalitySlot';
 import DecisionStudio from "./DecisionStudio";
+import MonthlyPermitTrend from "./MonthlyPermitTrend";
 import Chart, { bars, lines } from "./Chart";
 import { ChartFrame } from "./ChartFrame";
 import DataTable, { GenericDataset } from "./DataTable";
@@ -134,12 +135,20 @@ export default function App() {
   const stationLocations=useOfficialStations();
   const patchRoute = (patch: Partial<SiteRoute>) => setRoute(previous => ({...previous,...patch}));
   const setView = (view:string) => patchRoute({view,lens:'opportunity',tier:''});
-  const setGu = (gu:string) => patchRoute({gu});
   const setSelected = (dong:string) => patchRoute({dong});
   const setPeriod = (period:string) => patchRoute({period});
   const setLayer = (layer:number) => patchRoute({layer});
   const [search,setSearch] = useState(''), [compared,setCompared] = useState<string[]>([]);
   const [research,setResearch] = useState<ResearchIndex|null>(null);
+  // Region identity always comes from the public boundary, never a private dashboard.
+  const publicPlaces = useMemo(() => {
+    const places = new Map<string, {gu: string; name: string}>();
+    for (const f of geo?.features ?? []) {
+      const p = f.properties;
+      if (p?.admin_code && p.gu && p.admin_name) places.set(String(p.admin_code), { gu: p.gu, name: p.admin_name });
+    }
+    return places;
+  }, [geo]);
   useEffect(() => {
     const sync = () => {
       if (location.hash && !location.hash.startsWith('#view=')) return;
@@ -227,8 +236,19 @@ export default function App() {
     [rows],
   );
   const select = (code: string) => {
-    setSelected(code);
+    // Preserve an all-city map on click. If the previous district filter excludes
+    // the clicked polygon, move that filter too so the global scope stays coherent.
+    const place = publicPlaces.get(code);
+    patchRoute({ dong: code, ...(gu && place && place.gu !== gu ? {gu: place.gu} : {}) });
   };
+  const chooseRegion = (nextGu: string, dong = '') => {
+    patchRoute({ gu: nextGu, dong });
+    setSearch('');
+  };
+  const place = publicPlaces.get(selected);
+  const monthlyTrend = <MonthlyPermitTrend gu={gu} selected={selected}
+    fallbackName={place && `${place.gu} ${place.name}`} categoryId={route.permit ?? 'foreigner'}
+    onArea={chooseRegion} onCategory={permit=>patchRoute({permit})} />;
   const toggleCompare = (code: string) =>
     setCompared((old) =>
       old.includes(code)
@@ -477,11 +497,7 @@ export default function App() {
                   <select
                     aria-label="자치구"
                     value={gu}
-                    onChange={(e) => {
-                      setGu(e.target.value);
-                      setSelected("");
-                      setSearch("");
-                    }}
+                    onChange={(e) => chooseRegion(e.target.value)}
                   >
                     <option value="">서울 전체 · 25개 구</option>
                     {gus.map((g) => (
@@ -535,6 +551,7 @@ export default function App() {
           {view === "decision" && (
             <DecisionStudio
               lens={lens} onLensChange={next => patchRoute({lens:next,tier:''})}
+              monthlyTrend={monthlyTrend}
               research={research} geo={geo} observatory={observatory}
               tier={tier} onTierChange={next => patchRoute({tier:next,dong:''})}
               researchQuery={search} onResearchQuery={setSearch}
@@ -545,11 +562,7 @@ export default function App() {
               gu={gu}
               selected={selected}
               compared={compared}
-              onGuChange={(g) => {
-                setGu(g);
-                setSelected("");
-                setSearch("");
-              }}
+              onGuChange={chooseRegion}
               onSelect={select}
               onToggleCompare={toggleCompare}
               onExplore={setView}
@@ -713,6 +726,7 @@ export default function App() {
                   </details>
                 </aside>
               </div>
+              {monthlyTrend}
               <div className="insight-strip">
                 <span className="badge">읽는 방법</span>지도는 선택 지표가
                 관측된 동끼리 비교합니다. 회색은 0이 아니며, 지역 지표를 Airbnb
@@ -755,7 +769,8 @@ export default function App() {
             </>
           )}
           {view === 'map' && <section className="card strategy-card"><OfficialStations snapshot={stationLocations} adminCode={selected}/><PoiContext adminCode={selected} mode="map"/><SubwayContext /></section>}
-          {['trends','supply','people'].includes(view)&&<section className="card strategy-card"><label htmlFor="strategy-area"><strong>조사할 행정동</strong></label> <select id="strategy-area" value={selected} onChange={e=>setSelected(e.target.value)}><option value="">지역을 선택하세요</option>{(research?.areas??[]).filter(a=>!gu||a.gu===gu||a.code===selected).map(a=><option key={a.code} value={a.code}>{a.gu} {a.name}</option>)}</select><p className="method-note">선택한 동의 공식 관측을 봅니다. 전국 입국 통계의 범위는 바뀌지 않습니다.</p></section>}
+          {['trends','supply'].includes(view) && monthlyTrend}
+          {['trends','supply','people'].includes(view)&&<section className="card strategy-card"><label htmlFor="strategy-area"><strong>조사할 행정동</strong></label> <select id="strategy-area" value={selected} onChange={e=>select(e.target.value)}><option value="">지역을 선택하세요</option>{(research?.areas??[]).filter(a=>!gu||a.gu===gu||a.code===selected).map(a=><option key={a.code} value={a.code}>{a.gu} {a.name}</option>)}</select><p className="method-note">선택한 동의 공식 관측을 봅니다. 전국 입국 통계의 범위는 바뀌지 않습니다.</p></section>}
           {view === "trends" && (
             <>
               <PresencePanel

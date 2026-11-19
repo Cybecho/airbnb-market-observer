@@ -45,13 +45,15 @@ export default function SeoulMap({
   useEffect(() => {
     if (!element.current) return;
     const m = L.map(element.current, {
-      preferCanvas: true,
+      preferCanvas: false,
       zoomSnap: 0.25,
       zoomDelta: 0.5,
       minZoom: 9,
       maxZoom: 17,
       scrollWheelZoom: false,
     });
+    // Give SVG paths their real map view before the GeoJSON layer is attached.
+    m.setView([37.5665, 126.978], 10);
     map.current = m;
     m.attributionControl.addAttribution(
       "경계: SGIS 공공누리1 · vuski/admdongkor CC BY4.0 · 2026-10-01",
@@ -91,24 +93,26 @@ export default function SeoulMap({
             f.properties?.code,
         );
         const p = l as L.Polygon;
-        const r = current.current.rows.find(
-          (x) => String(x.admin_code) === code,
-        );
-        if (!r) return;
+        const placeGu = f.properties?.gu;
+        const placeName = f.properties?.admin_name;
+        if (!code || !placeGu || !placeName) return;
         complete.extend(p.getBounds());
-        const b = boundsByGu.current.get(r.gu) ?? L.latLngBounds([]);
+        const b = boundsByGu.current.get(placeGu) ?? L.latLngBounds([]);
         b.extend(p.getBounds());
-        boundsByGu.current.set(r.gu, b);
+        boundsByGu.current.set(placeGu, b);
         p.bindTooltip(
           () => {
             const state = current.current;
             const row = state.rows.find((x) => String(x.admin_code) === code);
             const node = document.createElement("div");
-            node.textContent = `${row?.gu ?? r.gu} ${row?.admin_name ?? r.admin_name} · ${fmt(row?.[state.metric.key], state.metric.unit)}`;
+            node.textContent = `${placeGu} ${placeName} · ${fmt(row?.[state.metric.key], state.metric.unit)}`;
             return node;
           },
           { sticky: true, className: "map-tip" },
         );
+        p.on("add", () => {
+          p.getElement()?.setAttribute("data-area-code", code);
+        });
         p.on("click", () => callback.current(code));
         p.on("mouseover", () => {
           p.setStyle({ weight: 2, color: "#284d50" });

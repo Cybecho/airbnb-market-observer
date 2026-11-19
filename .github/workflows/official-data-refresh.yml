@@ -94,7 +94,7 @@ jobs:
             git add -- src scripts docs tests README.md package.json package-lock.json .gitignore
           fi
           # Change detection covers both verified history documents as well as data payloads.
-          git add -- data/organized/insights/observatory.json data/organized/insights/automation.json data/organized/insights/refresh-state.json public/data public/strategy/v1/registry-history.json public/strategy/v1/context-history.json
+          git add -- data/organized/insights/observatory.json data/organized/insights/automation.json data/organized/insights/refresh-state.json public/data public/strategy/v1/registry-history.json public/strategy/v1/context-history.json public/supply/v1/monthly.json
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           if ! git diff --cached --quiet; then

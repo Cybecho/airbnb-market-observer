@@ -3,7 +3,7 @@ import NightContext from './NightContext';
 import { StrategyHistory } from './StrategyHistory';
 import PoiContext from './PoiContext';
 import TourismZones from './TourismZones';
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import { registryAxis, inspections } from "./atlasViews";
 import Chart from "./Chart";
 import ResearchLensView from "./ResearchLens";
@@ -33,6 +33,7 @@ import {
 } from "./decision";
 
 type Props = {
+  monthlyTrend: ReactNode;
   lens: ResearchLens;
   onLensChange: (lens: ResearchLens) => void;
   research: ResearchIndex|null;
@@ -263,6 +264,7 @@ export default function DecisionStudio(props: Props) {
           <button onClick={() => onSelect("")}>지역 선택 해제</button>
         </div>
       )}
+      {(intent === 'opportunity' || intent === 'where') && props.monthlyTrend}
       {intent === "opportunity" && (
         <section className="lens-panel opportunity-lens" aria-label="기회 탐색">
           <div className="lens-heading opportunity-heading">
