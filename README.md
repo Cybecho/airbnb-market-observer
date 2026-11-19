@@ -67,3 +67,6 @@ GitHub 저장소의 private 여부와 Pages 접근 제어는 같은 설정이 �
 ### 월별 숙박 인허가 · 업종별 신규와 폐업률
 
 [등록 공급](https://cybecho.github.io/airbnb-market-observer/#view=supply) 또는 기회·지도에서 지역을 선택하면 그 업종의 최근 24개 완료월과 **같은 업종 서울 전체**를 비교한다. 외국인관광 도시민박업, 한옥체험업, 관광숙박업(호스텔 등 세부업종), 공중위생 숙박업(일반/생활)을 분리한다. 원값 표에서 신규·폐업·순증·월초 분모와 해당 폐업 분자를 확인한다. 공중위생 숙박업은 폐업일이 없어 신규만 제공한다. [계산과 한계](docs/data/MONTHLY-PERMITS.md) · [공개 월별 JSON](https://cybecho.github.io/airbnb-market-observer/supply/v1/monthly.json).
+
+### 리서치 글 모음
+[리서치 글 모음 탭](https://cybecho.github.io/airbnb-market-observer/#view=articles)은 [독립 리서치 링크 허브](https://cybecho.github.io/gov-notices-hub/)의 같은 글 목록을 보여줍니다. 게시일 순·출처별 필터, 25개 구청 원문 디렉터리를 제공합니다. 개인 업로드나 행정동 선택은 허브에 보내지 않습니다. 시간별 수집·백필·권리 검토는 [별도 저장소](https://github.com/Cybecho/gov-notices-hub)에서 관리합니다.
