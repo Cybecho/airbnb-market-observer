@@ -10,7 +10,8 @@
     "test": "node --test scripts/refresh/*.test.mjs && vitest run && npm run typecheck",
     "data:build": "node scripts/build-data.mjs",
     "data:check": "node scripts/validate-data.mjs && node scripts/validate-observatory.mjs && node scripts/validate-refresh.mjs",
-    "check:publication": "node scripts/check-publication.mjs",
+    "check:publication": "node scripts/check-publication.mjs && node scripts/check-private-monthly-boundary.mjs",
+    "postbuild": "node scripts/check-private-monthly-boundary.mjs --dist",
     "test:e2e": "playwright test",
     "data:refresh": "node scripts/refresh-official.mjs",
     "typecheck": "tsc -b"

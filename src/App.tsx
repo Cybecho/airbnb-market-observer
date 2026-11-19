@@ -34,6 +34,8 @@ import { useOfficialStations, OfficialStations } from './OfficialStations';
 import NationalitySlot from './NationalitySlot';
 import DecisionStudio from "./DecisionStudio";
 import ArticleHub from "./ArticleHub";
+import SeoulSharedMonthlyPanel from './SeoulSharedMonthlyPanel';
+import { parseSeoulSharedMonthly, type SharedMonth } from './seoulSharedMonthly';
 import MonthlyPermitTrend from "./MonthlyPermitTrend";
 import Chart, { bars, lines } from "./Chart";
 import { ChartFrame } from "./ChartFrame";
@@ -132,6 +134,7 @@ export default function App() {
     [geo, setGeo] = useState<any>(null),
     [observatory, setObservatory] = useState<Observatory | null>(null),
     [overlay, setOverlay] = useState<PrivateOverlay | null>(null),
+    [sharedMonths, setSharedMonths] = useState<SharedMonth[] | null>(null),
     [error, setError] = useState(""),
     [importError, setImportError] = useState("");
   const [route,setRoute] = useState(() => parseSiteRoute(location.hash));
@@ -164,7 +167,8 @@ export default function App() {
   const fileInput = useRef<HTMLInputElement>(null);
   const data = privateData ?? publicData,
     ext = privateExt ?? publicExt,
-    local = !!privateData || !!overlay;
+    local = !!privateData || !!overlay || !!sharedMonths;
+  const importEpoch = useRef(0);
   useEffect(() => {
     const base = import.meta.env.BASE_URL;
     let live = true;
@@ -261,7 +265,10 @@ export default function App() {
           ? [...old, code]
           : old,
     );
+  const clearShared = () => { importEpoch.current++;setSharedMonths(null);setImportError(''); };
+  const sharedPanel = <SeoulSharedMonthlyPanel rows={sharedMonths} onConnect={() => fileInput.current?.click()} onClear={clearShared}/>;
   const clearLocal = () => {
+    clearShared();
     setPrivateData(null);
     setPrivateExt(null);
     setOverlay(null);
@@ -270,9 +277,13 @@ export default function App() {
   };
   async function importFile(file?: File) {
     if (!file) return;
+    const epoch=++importEpoch.current;
+    const isCsv=/\.csv$/i.test(file.name)||file.type==='text/csv';
     try {
-      if (file.size > 30_000_000) throw Error("file-too-large");
-      const parsed = JSON.parse(await file.text());
+      if (file.size > (isCsv ? 1024*1024 : 30_000_000)) throw Error(isCsv?'csv-invalid':'file-too-large');
+      const text=await file.text();if(epoch!==importEpoch.current)return;
+      if(isCsv){const parsed=parseSeoulSharedMonthly(text);setSharedMonths(parsed);setImportError('');setView('performance');return;}
+      const parsed = JSON.parse(text);
       if (parsed.schemaVersion === "amo-overlay/1") {
         setOverlay(parseOverlay(parsed));
         if (view !== "decision") setView("performance");
@@ -295,8 +306,9 @@ export default function App() {
       }
       setImportError("");
     } catch (e) {
+      if(epoch!==importEpoch.current)return;
       setImportError(
-        e instanceof Error && e.message === "file-too-large"
+        isCsv ? '야놀자 CSV를 연결하지 못했습니다. 1MB 이하의 7열 월별 원장인지 확인하세요. 이전 연결은 유지합니다.' : e instanceof Error && e.message === "file-too-large"
           ? "파일 크기는 30MB 이하여야 합니다."
           : "파일 형식 또는 내용이 올바르지 않습니다.",
       );
@@ -460,7 +472,7 @@ export default function App() {
             className="file-input"
             aria-label="연결할 파일"
             type="file"
-            accept="application/json,.json"
+            accept="application/json,.json,text/csv,.csv"
             onChange={(e) => importFile(e.target.files?.[0])}
           />
         </header>
@@ -779,6 +791,7 @@ export default function App() {
             </>
           )}
           {view === 'map' && <section className="card strategy-card"><OfficialStations snapshot={stationLocations} adminCode={selected}/><PoiContext adminCode={selected} mode="map"/><SubwayContext /></section>}
+          {view==='trends' && sharedPanel}
           {['trends','supply'].includes(view) && monthlyTrend}
           {['trends','supply','people'].includes(view)&&<section className="card strategy-card"><label htmlFor="strategy-area"><strong>조사할 행정동</strong></label> <select id="strategy-area" value={selected} onChange={e=>select(e.target.value)}><option value="">지역을 선택하세요</option>{(research?.areas??[]).filter(a=>!gu||a.gu===gu||a.code===selected).map(a=><option key={a.code} value={a.code}>{a.gu} {a.name}</option>)}</select><p className="method-note">선택한 동의 공식 관측을 봅니다. 전국 입국 통계의 범위는 바뀌지 않습니다.</p></section>}
           {view === "trends" && (
@@ -1099,6 +1112,7 @@ export default function App() {
           )}
           {view === "performance" && (
             <>
+              {sharedPanel}
               <PerformancePanel
                 overlay={overlay}
                 onImport={() => fileInput.current?.click()}
@@ -1182,6 +1196,7 @@ export default function App() {
           )}
           {view === "sources" && (
             <>
+              {sharedPanel}
               <section className="card">
                 <div className="section-heading">
                   <div>
