@@ -42,9 +42,10 @@ jobs:
           npm run typecheck
           REQUIRE_SPATIAL_ENGINE=1 npm test
           npm run build
-      - name: Install CI Chromium
-        run: npx playwright install --with-deps chromium
+      - name: Confirm browser in the GitHub-hosted Ubuntu image
+        run: test -x /usr/bin/google-chrome && /usr/bin/google-chrome --version
       - name: Browser regressions
+        env: {AMO_HOSTED_CHROME: /usr/bin/google-chrome}
         run: npm run test:e2e
       - name: Save test diagnostics
         if: always()
